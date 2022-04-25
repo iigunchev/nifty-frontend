@@ -1,8 +1,8 @@
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import React from 'react';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import Input from '../../components/Input/Input';
+import Input from '../../components/molecule/Input/Input';
 // actions
 import { setUser } from '../../redux/User/userSlice';
 // auth
