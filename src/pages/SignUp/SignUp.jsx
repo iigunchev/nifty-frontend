@@ -13,10 +13,7 @@ import fetchApiAuth from '../../utils/fetchApiAuth';
 import schemas from '../../utils/schemas';
 
 function SignUp() {
-  const [status, setStatus] = useState({
-    type: null,
-    message: ''
-  });
+  const [error, setError] = useState(null);
   // navigatings
   const navigate = useNavigate();
   // redux
@@ -42,11 +39,7 @@ function SignUp() {
       const apiUser = await fetchApiAuth(firstName, lastName);
       dispatch(setUser(apiUser));
     } catch (e) {
-      setStatus();
-      setStatus({
-        type: 'error',
-        message: e.message
-      });
+      setError(e.message);
     }
   };
 
@@ -92,7 +85,7 @@ function SignUp() {
       <button type="submit" onClick={() => logOut()}>
         sign out
       </button>
-      {status.type === 'error' && status.message}
+      {error && error}
     </main>
   );
 }
