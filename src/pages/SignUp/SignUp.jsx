@@ -2,6 +2,7 @@ import { Field, Form, Formik } from 'formik';
 import React from 'react';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
+import Input from '../../components/Input/Input';
 // actions
 import { setUser } from '../../redux/User/userSlice';
 // auth
@@ -31,7 +32,6 @@ function SignUp() {
       await signUpEmailAndPassword(email, password);
       const apiUser = await fetchApiAuth();
       dispatch(setUser(apiUser));
-      console.log(firstName, lastName);
     } catch (e) {
       console.log(e.message);
     }
@@ -47,34 +47,30 @@ function SignUp() {
       >
         {({ errors, touched }) => (
           <Form>
-            <label htmlFor="firstName">
-              First name
-              <Field name="firstName" id="firstName" />
-            </label>
-
-            {errors.firstName && touched.lastName ? (
-              <div>{errors.firstName}</div>
-            ) : null}
-            <label htmlFor="lastName">
-              Last name
-              <Field name="lastName" id="firstName" />
-            </label>
-
-            {errors.lastName && touched.lastName ? (
-              <div>{errors.lastName}</div>
-            ) : null}
-            <label htmlFor="email">
-              Email
-              <Field name="email" id="email" />
-            </label>
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-            <label htmlFor="password">
-              Password
-              <Field type="password" name="password" id="password" />
-            </label>
-            {errors.password && touched.password ? (
-              <div>{errors.password}</div>
-            ) : null}
+            <Input
+              error={errors.firstName}
+              touched={touched.firstName}
+              name="firstName"
+              label="First Name"
+            />
+            <Input
+              error={errors.lastName}
+              touched={touched.lastName}
+              name="lastName"
+              label="Last Name"
+            />
+            <Input
+              error={errors.email}
+              touched={touched.email}
+              name="email"
+              label="Email"
+            />
+            <Input
+              error={errors.password}
+              touched={touched.password}
+              name="password"
+              label="Password"
+            />
             <button type="submit">Sign up</button>
           </Form>
         )}
