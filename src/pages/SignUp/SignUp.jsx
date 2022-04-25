@@ -1,39 +1,52 @@
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../components/molecule/Input/Input';
 // actions
 import { setUser } from '../../redux/User/userSlice';
 // auth
-import {
-  signUpEmailAndPassword,
-  useAuth,
-  logOut
-} from '../../services/auth/auth';
+import { signUpEmailAndPassword, logOut } from '../../services/auth/auth';
 import fetchApiAuth from '../../utils/fetchApiAuth';
 // schema
 import schemas from '../../utils/schemas';
 
 function SignUp() {
-  // custom hook of auth firebase
-  const currentUser = useAuth();
+  const [status, setStatus] = useState({
+    type: null,
+    message: ''
+  });
+  // navigatings
+  const navigate = useNavigate();
+  // redux
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
   const initialValues = {
     firstName: '',
     lastName: '',
     email: '',
     password: ''
   };
-  console.log(user);
+
+  useEffect(() => {
+    if (user.token) {
+      navigate('/');
+    }
+  }, [user]);
+
   const handleSignup = async ({ firstName, lastName, email, password }) => {
     try {
       await signUpEmailAndPassword(email, password);
-      const apiUser = await fetchApiAuth();
+      const apiUser = await fetchApiAuth(firstName, lastName);
       dispatch(setUser(apiUser));
     } catch (e) {
-      console.log(e.message);
+      setStatus();
+      setStatus({
+        type: 'error',
+        message: e.message
+      });
     }
   };
 
@@ -68,6 +81,7 @@ function SignUp() {
             <Input
               error={errors.password}
               touched={touched.password}
+              password
               name="password"
               label="Password"
             />
@@ -78,6 +92,7 @@ function SignUp() {
       <button type="submit" onClick={() => logOut()}>
         sign out
       </button>
+      {status.type === 'error' && status.message}
     </main>
   );
 }
