@@ -11,10 +11,11 @@ const signupSchema = Yup.object().shape({
     .required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
-    .password(
-      'Pass have to contain at least: 1 minus, 1 cap, 1 special char, 1 num'
-    )
     .required('Password required')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
+    )
 });
 
 export default {
