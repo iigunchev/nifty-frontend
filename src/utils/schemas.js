@@ -11,13 +11,20 @@ const signupSchema = Yup.object().shape({
     .required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
+    .matches(/^(?=.{8,})/, 'Must Contain 8 Characters')
+    .matches(/^(?=.*[a-z])/, 'Must Contain One Lowercase')
+    .matches(/^(?=.*[A-Z])/, 'Must Contain One Uppercase')
+    .matches(/^(?=.*[0-9])/, 'Must Contain One Number')
+    .matches(/^(?=.*[!@#$%^&*])/, 'Must Contain One Special Case Character')
 });
 
 const signInSchema = Yup.object().shape({
   password: Yup.string()
     .min(3, 'The password is too short')
     .max(20, 'The password is too long'),
-  email: Yup.string().email('This must be a valid email address')
+  email: Yup.string()
+    .email('This must be a valid email address')
+    .required('Password required')
 });
 
 export default {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 // react router dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import { Provider } from 'react-redux';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import store from './redux/store';
 import * as route from './routes';
 
 import store from './redux/store';
