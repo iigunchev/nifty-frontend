@@ -5,12 +5,12 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail
 } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
