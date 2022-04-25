@@ -19,6 +19,17 @@ const signupSchema = Yup.object().shape({
     .matches(/^(?=.*[!@#$%^&*])/, 'Must Contain One Special Case Character')
 });
 
+const signInSchema = Yup.object().shape({
+  password: Yup.string()
+    .min(3, 'The password is too short')
+    .max(20, 'The password is too long')
+    .required('Password is required'),
+  email: Yup.string()
+    .email('This must be a valid email address')
+    .required('Email is required')
+});
+
 export default {
-  signupSchema
+  signupSchema,
+  signInSchema
 };

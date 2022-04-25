@@ -1,19 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+// redux
+import { useDispatch } from 'react-redux';
+// formik
 import { Formik, Form } from 'formik';
-
+// router
 import { useNavigate, Link } from 'react-router-dom';
+// redux actions
+import { setUser } from '../../redux/User/userSlice';
 
 import { HOME, SIGN_UP } from '../../routes';
+// formik schema
 import schemas from '../../utils/schemas';
-
-import Input from '../../components/molecule/Input/Input';
-
+// components
+import Input from '../../components/molecules/Input/Input';
+// auth
 import { signInEmailAndPassword } from '../../services/auth/auth';
-
+// styles
 import './Login.scss';
+// utils
+import fetchApiAuth from '../../utils/fetchApiAuth';
 
 function Login() {
   const navigate = useNavigate();
+
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const handleLogin = async (values) => {
+    try {
+      setIsLoading(true);
+      await signInEmailAndPassword(values.email, values.password);
+      const apiUser = await fetchApiAuth();
+      dispatch(setUser(apiUser));
+      navigate(HOME);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="row">
@@ -24,22 +49,16 @@ function Login() {
           password: ''
         }}
         validationSchema={schemas.signInSchema}
-        onSubmit={async (values) => {
-          try {
-            await signInEmailAndPassword(values.email, values.password);
-
-            navigate(HOME);
-          } catch (error) {
-            console.log(error);
-          }
-        }}
+        onSubmit={(values) => handleLogin(values)}
       >
-        {({ handleSubmit }) => (
+        {({ handleSubmit, errors, touched }) => (
           <Form onSubmit={handleSubmit}>
             <div className="">
               <div className="">
                 <Input
                   id="email"
+                  touched={touched.email}
+                  error={errors.email}
                   name="email"
                   label="E-mail"
                   placeholder="example@example.com"
@@ -49,6 +68,8 @@ function Login() {
                 <Input
                   id="password"
                   name="password"
+                  touched={touched.password}
+                  error={errors.password}
                   label="Password"
                   placeholder="Password"
                   password
@@ -56,7 +77,7 @@ function Login() {
               </div>
 
               <div className="">
-                <button className="" type="submit">
+                <button disabled={isLoading} className="" type="submit">
                   Sign in
                 </button>
               </div>
@@ -71,6 +92,7 @@ function Login() {
           </Form>
         )}
       </Formik>
+      {error && error}
     </div>
   );
 }
