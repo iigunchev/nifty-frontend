@@ -21,7 +21,9 @@ function Login() {
 
   return (
     <>
-      <button onClick={handleLogin}>login</button>
+      <button onClick={handleLogin} type="button">
+        login
+      </button>
       <span>{user?.email}</span>
     </>
   );

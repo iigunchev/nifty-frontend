@@ -11,9 +11,9 @@ const initialValues = {
 function SignUp() {
   return (
     <main className="signupWrapper">
-      <Formik initialValues={initialValues} onSubmit={(values) => {}}>
+      <Formik initialValues={initialValues} onSubmit={() => {}}>
         {() => {}}
-        <form></form>
+        <form />
       </Formik>
     </main>
   );
