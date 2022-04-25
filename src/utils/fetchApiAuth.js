@@ -4,7 +4,7 @@ const fetchApiAuth = async () => {
   try {
     const token = await getCurrentUserToken();
     // const authHeader = `bearer ${token}`;
-    return new Promise((res, _rej) => {
+    return new Promise((res) => {
       setTimeout(() => {
         res({
           token,
