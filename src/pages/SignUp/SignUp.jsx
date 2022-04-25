@@ -1,13 +1,40 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+// actions
+import { setUser } from '../../redux/User/userSlice';
+// auth
+import {
+  signUpEmailAndPassword,
+  useAuth,
+  logOut
+} from '../../services/auth/auth';
+import fetchApiAuth from '../../utils/fetchApiAuth';
+// schema
 import schemas from '../../utils/schemas';
 
 function SignUp() {
+  // custom hook of auth firebase
+  const currentUser = useAuth();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const initialValues = {
     firstName: '',
     lastName: '',
     email: '',
     password: ''
+  };
+  console.log(user);
+  const handleSignup = async ({ firstName, lastName, email, password }) => {
+    try {
+      await signUpEmailAndPassword(email, password);
+      const apiUser = await fetchApiAuth();
+      dispatch(setUser(apiUser));
+      console.log(firstName, lastName);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (
@@ -16,9 +43,7 @@ function SignUp() {
       <Formik
         initialValues={initialValues}
         validationSchema={schemas.signupSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={(values) => handleSignup(values)}
       >
         {({ errors, touched }) => (
           <Form>
@@ -54,6 +79,9 @@ function SignUp() {
           </Form>
         )}
       </Formik>
+      <button type="submit" onClick={() => logOut()}>
+        sign out
+      </button>
     </main>
   );
 }
