@@ -11,12 +11,16 @@ const signupSchema = Yup.object().shape({
     .required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
-    .password(
-      'Pass have to contain at least: 1 minus, 1 cap, 1 special char, 1 num'
-    )
-    .required('Password required')
+});
+
+const signInSchema = Yup.object().shape({
+  password: Yup.string()
+    .min(3, 'The password is too short')
+    .max(20, 'The password is too long'),
+  email: Yup.string().email('This must be a valid email address')
 });
 
 export default {
-  signupSchema
+  signupSchema,
+  signInSchema
 };
