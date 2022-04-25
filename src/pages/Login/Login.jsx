@@ -8,7 +8,7 @@ import './Login.scss';
 function Login() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(user);
+
   const handleLogin = () => {
     dispatch(
       setUser({
@@ -21,7 +21,9 @@ function Login() {
 
   return (
     <>
-      <button onClick={handleLogin}>login</button>
+      <button type="button" onClick={handleLogin}>
+        login
+      </button>
       <span>{user?.email}</span>
     </>
   );
