@@ -1,0 +1,5 @@
+@use '../../sass/main.scss' as l;
+
+div.row {
+  // @include l.flex-container($direction: column, $align: center);
+}
