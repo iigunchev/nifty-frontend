@@ -1,0 +1,27 @@
+// Background colors
+
+$bg-dark: #161434;
+$bg-gray: #383254;
+$bg-dark-accent: #26033E;
+$bg-light: #fff;
+$bg-offwhite: #DCD9DE;
+$accent-light: #C685FD;
+$accent-dark: #9C32F1;
+
+// Text colors
+
+$text-dark: #26033E;
+$text-gray: #DCD9DE;
+
+// Border radius
+
+$border: 24px;
+
+// Box shadow
+
+$boxshadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; //#38 Tailwind
+// $boxshadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; //#59 Shopify
+
+// Linear gradient
+
+$primary-gradient: linear-gradient(135deg, rgba(198,133,253,1) 0%, rgba(156,50,241,1) 100%);
