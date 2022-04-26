@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { LOGIN, SIGN_UP, HOME } from '../../routes';
 
-import Input from '../../components/molecule/Input/Input';
+import Input from '../../components/molecules/Input/Input';
 
 import { sendResetEmail } from '../../services/auth/auth';
 

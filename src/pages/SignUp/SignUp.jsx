@@ -1,23 +1,24 @@
 import { Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../components/molecule/Input/Input';
+import Input from '../../components/molecules/Input/Input';
 // actions
 import { setUser } from '../../redux/User/userSlice';
+import { HOME } from '../../routes';
 // auth
-import { signUpEmailAndPassword, logOut } from '../../services/auth/auth';
+import { signUpEmailAndPassword } from '../../services/auth/auth';
 import fetchApiAuth from '../../utils/fetchApiAuth';
 // schema
 import schemas from '../../utils/schemas';
 
 function SignUp() {
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   // navigatings
   const navigate = useNavigate();
   // redux
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -27,19 +28,17 @@ function SignUp() {
     password: ''
   };
 
-  useEffect(() => {
-    if (user.token) {
-      navigate('/');
-    }
-  }, [user]);
-
   const handleSignup = async ({ firstName, lastName, email, password }) => {
     try {
+      setIsLoading(true);
       await signUpEmailAndPassword(email, password);
       const apiUser = await fetchApiAuth(firstName, lastName);
       dispatch(setUser(apiUser));
+      navigate(HOME);
     } catch (e) {
       setError(e.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -78,13 +77,12 @@ function SignUp() {
               name="password"
               label="Password"
             />
-            <button type="submit">Sign up</button>
+            <button disabled={isLoading} type="submit">
+              Sign up
+            </button>
           </Form>
         )}
       </Formik>
-      <button type="submit" onClick={() => logOut()}>
-        sign out
-      </button>
       {error && error}
     </main>
   );
