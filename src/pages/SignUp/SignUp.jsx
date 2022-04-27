@@ -9,8 +9,8 @@ import { setUser } from '../../redux/User/userSlice';
 import { HOME } from '../../routes';
 // auth
 import { signUpEmailAndPassword } from '../../services/auth/auth';
-import fetchSignupApi from '../../utils/fetchSignupApi';
-import handleSignupErrors from '../../utils/handleSignupErrors';
+import apiAuth from '../../utils/fetchAuthApi';
+import handleAuthErrors from '../../utils/handleAuthErrors';
 // schema
 import schemas from '../../utils/schemas';
 
@@ -32,12 +32,14 @@ function SignUp() {
   const handleSignup = async ({ firstName, lastName, email, password }) => {
     try {
       setIsLoading(true);
+      // auth in firebase and api
       await signUpEmailAndPassword(email, password);
-      const apiUser = await fetchSignupApi(firstName, lastName);
+      const apiUser = await apiAuth.signupWithApi(firstName, lastName);
+      // set user in redux
       dispatch(setUser(apiUser));
       navigate(HOME);
     } catch (e) {
-      const message = handleSignupErrors(e.message);
+      const message = handleAuthErrors(e.message);
       setError(message);
     } finally {
       setIsLoading(false);

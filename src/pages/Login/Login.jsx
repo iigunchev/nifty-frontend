@@ -18,7 +18,8 @@ import { signInEmailAndPassword } from '../../services/auth/auth';
 // styles
 import './Login.scss';
 // utils
-import fetchSignupApi from '../../utils/fetchSignupApi';
+import apiAuth from '../../utils/fetchAuthApi';
+import handleAuthErrors from '../../utils/handleAuthErrors';
 
 function Login() {
   const navigate = useNavigate();
@@ -29,12 +30,15 @@ function Login() {
   const handleLogin = async (values) => {
     try {
       setIsLoading(true);
+      // auth in firebase and api
       await signInEmailAndPassword(values.email, values.password);
-      const apiUser = await fetchSignupApi();
+      const apiUser = await apiAuth.loginWithApi();
+      // set user in redux
       dispatch(setUser(apiUser));
       navigate(HOME);
     } catch (e) {
-      setError(e.message);
+      const message = handleAuthErrors(e.message);
+      setError(message);
     } finally {
       setIsLoading(false);
     }
