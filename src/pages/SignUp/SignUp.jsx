@@ -9,7 +9,8 @@ import { setUser } from '../../redux/User/userSlice';
 import { HOME } from '../../routes';
 // auth
 import { signUpEmailAndPassword } from '../../services/auth/auth';
-import fetchApiAuth from '../../utils/fetchApiAuth';
+import fetchSignupApi from '../../utils/fetchSignupApi';
+import handleSignupErrors from '../../utils/handleSignupErrors';
 // schema
 import schemas from '../../utils/schemas';
 
@@ -32,11 +33,12 @@ function SignUp() {
     try {
       setIsLoading(true);
       await signUpEmailAndPassword(email, password);
-      const apiUser = await fetchApiAuth(firstName, lastName);
+      const apiUser = await fetchSignupApi(firstName, lastName);
       dispatch(setUser(apiUser));
       navigate(HOME);
     } catch (e) {
-      setError(e.message);
+      const message = handleSignupErrors(e.message);
+      setError(message);
     } finally {
       setIsLoading(false);
     }

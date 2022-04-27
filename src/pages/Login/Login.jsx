@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 import { useNavigate, Link } from 'react-router-dom';
 // redux actions
 import { setUser } from '../../redux/User/userSlice';
-
+// routes
 import { HOME, SIGN_UP } from '../../routes';
 // formik schema
 import schemas from '../../utils/schemas';
@@ -18,7 +18,7 @@ import { signInEmailAndPassword } from '../../services/auth/auth';
 // styles
 import './Login.scss';
 // utils
-import fetchApiAuth from '../../utils/fetchApiAuth';
+import fetchSignupApi from '../../utils/fetchSignupApi';
 
 function Login() {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ function Login() {
     try {
       setIsLoading(true);
       await signInEmailAndPassword(values.email, values.password);
-      const apiUser = await fetchApiAuth();
+      const apiUser = await fetchSignupApi();
       dispatch(setUser(apiUser));
       navigate(HOME);
     } catch (e) {
