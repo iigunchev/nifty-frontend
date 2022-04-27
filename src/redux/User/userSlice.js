@@ -29,12 +29,12 @@ const userSlice = createSlice({
       state.artist = payload.artist;
       state.isLoggedIn = true;
     },
-    removeUser: (state) => {
-      state.user = initialState;
-    },
-    clearUser() {
+    removeUser: () => {
       storage.removeItem('persist:root');
+      return { ...initialState };
     }
+    // clearUser() {
+    // }
   }
 });
 

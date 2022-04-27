@@ -1,8 +1,9 @@
 import { React } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { logOut } from '../../services/auth/auth';
+import { removeUser } from '../../redux/User/userSlice';
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import LOGO2 from '../../assets/img/img1.jpg';
 
@@ -11,13 +12,15 @@ import './Home.scss';
 function Home() {
   const user = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogIn = () => {
     navigate('/login');
   };
-  const handleLogOut = () => {
-    // navigate('/login');
+  const handleLogOut = async () => {
+    await logOut();
+    dispatch(removeUser());
   };
 
   return (
