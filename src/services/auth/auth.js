@@ -8,7 +8,8 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  deleteUser
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 
@@ -61,6 +62,14 @@ export function getCurrentUserEmail() {
   }
 
   return auth.currentUser.email;
+}
+
+export async function deleteCurrentUser() {
+  try {
+    await deleteUser(auth.currentUser);
+  } catch (e) {
+    throw Error(e.message);
+  }
 }
 
 export function useAuth() {
