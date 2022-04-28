@@ -4,7 +4,7 @@ import './ButtonSubmit.scss';
 
 function AuthButton({ children }) {
   return (
-    <button className="loginbutton" type="submit" label="button">
+    <button className="buttonSubmit" type="submit" label="button">
       {children}
     </button>
   );

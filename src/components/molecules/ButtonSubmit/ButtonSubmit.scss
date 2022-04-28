@@ -2,7 +2,12 @@
 @use '../../../sass/core/typography' as t;
 @use '../../../sass/abstracts/mixins' as m;
 
-.loginbutton {
+.buttonSubmit {
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
   height: 50px;
   width: 100%;
@@ -10,5 +15,5 @@
   line-height: 1.2;
   padding: 0 20px;
   border-radius: $border;
-  text-transform: uppercase;
+  background: $primary-gradient;
 }

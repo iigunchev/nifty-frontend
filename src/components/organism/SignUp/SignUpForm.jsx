@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 import './SignUpForm.scss';
 // redux
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Input from '../../molecules/Input/Input';
 import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 // actions
 import { setUser } from '../../../redux/User/userSlice';
-import { HOME } from '../../../routes';
+import { HOME, LOGIN } from '../../../routes';
 // auth
 import { signUpEmailAndPassword } from '../../../services/auth/auth';
 import apiAuth from '../../../utils/fetchAuthApi';
@@ -94,6 +94,9 @@ function SignUpForm() {
         )}
       </Formik>
       <ErrorContainer error={error} />
+      <div className="loginLink">
+        <Link to={LOGIN}>Back to Login</Link>
+      </div>
     </>
   );
 }
