@@ -1,4 +1,7 @@
-.bgLogin {
+@use '../../sass/abstracts/variables' as *;
+@use '../../sass/core/typography' as t;
+@use '../../sass/abstracts/mixins' as m;
+.loginContainer {
   width: 100%;
   min-height: 100vh;
   display: -webkit-box;
@@ -6,53 +9,45 @@
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 2em;
   align-items: center;
   padding: 15px;
-  background: rgb(63, 94, 251);
-  background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(252, 70, 107, 1) 83%
-  );
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: $bg-dark;
+  color: $text-dark;
+}
+.logoWrapper {
+  max-width: 500px;
+  width: 60%;
+  .logo-md {
+    margin-top: 1em;
+    @include m.logo();
+  }
 }
 
-.wrapLogin {
-  width: 500px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-
-  padding-right: 55px;
-
-  padding-left: 55px;
-
-  padding-bottom: 54px;
-
-  padding-top: 65px;
-}
-
-.formLogin {
+.sectionWrapper {
+  max-width: 500px;
   width: 100%;
+  background: #fff;
+  border-radius: $border;
+  overflow: hidden;
+  box-shadow: $boxshadow-light;
+  padding: 45px;
 }
 
-.titleLogin {
+.loginHeading {
   display: block;
-
-  font-size: 39px;
-  color: #333333;
+  font-size: t.$text-2xl;
+  font-weight: 600;
   line-height: 1.2;
   text-align: center;
-
-  padding-bottom: 49px;
+  margin-bottom: 1em;
 }
 
 .loginbutton {
-  font-size: 16px;
+  font-weight: 500;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
@@ -60,7 +55,6 @@
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  // width: 100%;
   height: 50px;
 }
 
@@ -83,55 +77,22 @@
   flex-direction: column;
   -ms-align-items: center;
   align-items: center;
-
-  padding-top: 155px;
 }
 .textSignup {
+  margin-top: 3em;
   font-size: 14px;
   line-height: 1.5;
-  color: #666666;
   padding-bottom: 17px;
+  color: $text-gray;
 }
 
-.txt2 {
-  font-size: 14px;
+.signupLink {
+  font-weight: 500;
   line-height: 1.5;
-  color: #333333;
   text-transform: uppercase;
-}
-
-.containerButtonLogin {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.wrapButtonLogin {
-  width: 100%;
-  display: block;
-  position: relative;
-  z-index: 1;
-  border-radius: 25px;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-.loginBgButton {
-  position: absolute;
-  z-index: -1;
-  width: 300%;
-  height: 100%;
-  background: radial-gradient(circle, #fc00ff 0%, #00dbde 83%);
-
-  top: 0;
-  left: -100%;
-  transition: all 0.4s;
 }
 
 .loginbutton {
-  font-size: 16px;
-  color: #fff;
-  line-height: 1.2;
-  text-transform: uppercase;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -139,62 +100,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  font-size: 1.1rem;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
   padding: 0 20px;
-  width: 100%;
-  height: 50px;
+  border-radius: $border;
+  background: $primary-gradient;
 }
-
-.wrapInput {
-  position: relative;
-
-  width: 100%;
-
-  border-bottom: 2px solid #d9d9d9;
-
-  margin-bottom: 23px;
+a {
+  text-decoration: none;
+  color: $text-darkgray;
+  &:visited {
+    color: $text-darkgray;
+  }
+  &:hover {
+    color: $text-gray;
+  }
 }
-
 button {
   outline: none !important;
   border: none;
   background: transparent;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
-}
-a {
-  text-decoration: none;
-  background-color: transparent;
-  :hover {
-    color: white;
-  }
-}
-
-label {
-  font-size: 14px;
-  color: #333333;
-  line-height: 1.5;
-  padding-left: 7px;
-}
-input {
-  font-size: 16px;
-  color: #333333;
-  line-height: 1.2;
-  display: block;
-  width: 100%;
-  height: 55px;
-  background: transparent;
-  padding: 0 7px 0 43px;
-  outline: none;
-  border: none;
+  cursor: pointer;
 }
 
 .svgimg {

@@ -35,7 +35,6 @@ function SignUp() {
       // auth in firebase and api
       await signUpEmailAndPassword(email, password);
       const apiUser = await apiAuth.signupWithApi(firstName, lastName);
-      console.log(apiUser);
       // set user in redux
       dispatch(setUser(apiUser));
       navigate(HOME);

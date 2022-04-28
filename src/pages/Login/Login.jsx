@@ -20,9 +20,10 @@ import './Login.scss';
 // utils
 import apiAuth from '../../utils/fetchAuthApi';
 import handleAuthErrors from '../../utils/handleAuthErrors';
-
-import EMAIL from '../../assets/img/email-svg.svg';
-import PASSWORD from '../../assets/img/password-svg.svg';
+// icons
+import LOGO from '../../assets/svg/LogoViolet.svg';
+import emailIcon from '../../assets/img/email-svg.svg';
+import passwordIcon from '../../assets/img/password-svg.svg';
 
 function Login() {
   const navigate = useNavigate();
@@ -48,84 +49,67 @@ function Login() {
   };
 
   return (
-    <div className="bgLogin">
-      <div className="wrapLogin">
-        <div className="formLogin">
-          <h1 className="titleLogin">Login</h1>
-          <Formik
-            initialValues={{
-              email: '',
-              password: ''
-            }}
-            validationSchema={schemas.signInSchema}
-            onSubmit={(values) => handleLogin(values)}
-          >
-            {({ handleSubmit, errors, touched }) => (
-              <Form onSubmit={handleSubmit}>
-                <div className="">
-                  <div className="">
-                    <div className="wrapInput">
-                      <Input
-                        id="email"
-                        touched={touched.email}
-                        error={errors.email}
-                        name="email"
-                        label="Email"
-                        placeholder="Type your email"
-                      />
-
-                      <svg className="svgimg" src={EMAIL} alt="email-logo" />
-                    </div>
-                  </div>
-                  <div className="wrapInput">
-                    <Input
-                      id="password"
-                      name="password"
-                      touched={touched.password}
-                      error={errors.password}
-                      label="Password"
-                      placeholder="Type your password"
-                      password
-                    />
-
-                    <svg
-                      className="svgimg"
-                      src={PASSWORD}
-                      alt="password-logo"
-                    />
-                  </div>
-                  <div className="textRightLogin">
-                    <Link to={RESET_PASSWORD}>Forgot password?</Link>
-                  </div>
-
-                  <div className="containerButtonLogin">
-                    <div className="wrapButtonLogin">
-                      <div className="loginBgButton" />
-                      <button
-                        disabled={isLoading}
-                        className="loginbutton"
-                        type="submit"
-                      >
-                        LOGIN
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="flexBottomText">
-                    <span className="textSignup">Or Sign Up Using</span>
-
-                    <span className="txt2">
-                      <Link to={SIGN_UP}>Sign up</Link>
-                    </span>
-                  </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-          {error && error}
-        </div>
+    <main className="loginContainer">
+      <div className="logoWrapper">
+        <img src={LOGO} alt="nifty Logo" className="logo-md" />
       </div>
-    </div>
+      <section className="sectionWrapper">
+        <h1 className="loginHeading">Login</h1>
+        <Formik
+          initialValues={{
+            email: '',
+            password: ''
+          }}
+          validationSchema={schemas.signInSchema}
+          onSubmit={(values) => handleLogin(values)}
+        >
+          {({ handleSubmit, errors, touched }) => (
+            <Form onSubmit={handleSubmit}>
+              <Input
+                id="email"
+                touched={touched.email}
+                icon={emailIcon}
+                error={errors.email}
+                name="email"
+                label="Email"
+                placeholder="Type your email"
+              />
+              <Input
+                id="password"
+                icon={passwordIcon}
+                name="password"
+                touched={touched.password}
+                error={errors.password}
+                label="Password"
+                placeholder="Type your password"
+                password
+              />
+              <div className="textRightLogin">
+                <Link to={RESET_PASSWORD}>Forgot password?</Link>
+              </div>
+
+              <div className="loginBgButton" />
+              <button
+                disabled={isLoading}
+                className="loginbutton"
+                type="submit"
+              >
+                LOGIN
+              </button>
+              {error && error}
+
+              <div className="flexBottomText">
+                <span className="textSignup">Don&apos;t have an account?</span>
+
+                <span className="signupLink">
+                  <Link to={SIGN_UP}>Sign up</Link>
+                </span>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </section>
+    </main>
   );
 }
 
