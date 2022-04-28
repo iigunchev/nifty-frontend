@@ -4,16 +4,18 @@ import React, { useState } from 'react';
 import './SignUpForm.scss';
 // redux
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Input from '../../molecules/Input/Input';
+import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 // actions
 import { setUser } from '../../../redux/User/userSlice';
-import { HOME } from '../../../routes';
+import { HOME, LOGIN } from '../../../routes';
 // auth
 import { signUpEmailAndPassword } from '../../../services/auth/auth';
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
+
 // schema
 import schemas from '../../../utils/schemas';
 
@@ -62,35 +64,45 @@ function SignUpForm() {
             <Input
               error={errors.firstName}
               touched={touched.firstName}
+              icon="user"
               name="firstName"
               label="First Name"
+              placeholder="Type your Name"
             />
             <Input
               error={errors.lastName}
               touched={touched.lastName}
+              icon="user"
               name="lastName"
               label="Last Name"
+              placeholder="Type your last name"
             />
             <Input
               error={errors.email}
               touched={touched.email}
+              icon="email"
               name="email"
               label="Email"
+              placeholder="Type your email"
             />
             <Input
               error={errors.password}
               touched={touched.password}
+              signUpPassword
+              icon="password"
               password
               name="password"
               label="Password"
+              placeholder="Type your password"
             />
-            <button disabled={isLoading} type="submit">
-              Sign up
-            </button>
+            <ButtonSubmit disabled={isLoading}>Sign up</ButtonSubmit>
           </Form>
         )}
       </Formik>
       <ErrorContainer error={error} />
+      <div className="loginLink">
+        <Link to={LOGIN}>Back to Login</Link>
+      </div>
     </>
   );
 }

@@ -15,18 +15,21 @@ import schemas from '../../../utils/schemas';
 // components
 import Input from '../../molecules/Input/Input';
 // auth
-import { signInEmailAndPassword } from '../../../services/auth/auth';
+import {
+  signInEmailAndPassword,
+  signInWithGoogle
+} from '../../../services/auth/auth';
 // styles
 import './LoginForm.scss';
 // utils
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 // icons
-import emailIcon from '../../../assets/img/email-svg.svg';
-import passwordIcon from '../../../assets/img/password-svg.svg';
 import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
+
+import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -34,6 +37,25 @@ function LoginForm() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      // auth in firebase and api
+      await signInWithGoogle();
+      const apiUser = await apiAuth.signupWithApi();
+      // set user in redux
+      dispatch(setUser(apiUser));
+      navigate(HOME);
+    } catch (e) {
+      const message = handleAuthErrors(e.message);
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleLogin = async (values) => {
     try {
       setIsLoading(true);
@@ -68,7 +90,7 @@ function LoginForm() {
             <Input
               id="email"
               touched={touched.email}
-              icon={emailIcon}
+              icon="email"
               error={errors.email}
               name="email"
               label="Email"
@@ -76,7 +98,7 @@ function LoginForm() {
             />
             <Input
               id="password"
-              icon={passwordIcon}
+              icon="password"
               name="password"
               touched={touched.password}
               error={errors.password}
@@ -89,35 +111,26 @@ function LoginForm() {
             </div>
 
             <div className="loginBgButton" />
-            <button disabled={isLoading} className="loginbutton" type="submit">
+            <ButtonSubmit disabled={isLoading}>
               {isLoading ? (
                 <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
               ) : (
                 'LOGIN'
               )}
-            </button>
+            </ButtonSubmit>
             <ErrorContainer error={error} />
 
+            <button
+              disabled={isLoading}
+              className="googleLoginbutton"
+              onClick={handleLoginWithGoogle}
+              type="button"
+            >
+              <img src={googleIcon} alt="google icon" />
+              <span>Continue with google</span>
+            </button>
+            <ErrorContainer error={error} />
             <div className="flexBottomText">
-              <button
-                disabled={isLoading}
-                className="googleLoginbutton"
-                type="submit"
-              >
-                {isLoading ? (
-                  <Waveform
-                    size={40}
-                    lineWeight={3.5}
-                    speed={1}
-                    color="white"
-                  />
-                ) : (
-                  <>
-                    <img src={googleIcon} alt="google icon" />
-                    <span>Continue with google</span>
-                  </>
-                )}
-              </button>
               <span className="textSignup">Don&apos;t have an account?</span>
 
               <span className="signupLink">

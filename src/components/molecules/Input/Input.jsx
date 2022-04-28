@@ -1,6 +1,11 @@
 import { Field } from 'formik';
 import React from 'react';
 
+// icons
+import userIcon from '../../../assets/img/userIcon.svg';
+import emailIcon from '../../../assets/img/email-svg.svg';
+import passwordIcon from '../../../assets/img/password-svg.svg';
+
 import './input.scss';
 
 function Input({
@@ -9,13 +14,21 @@ function Input({
   icon = null,
   error,
   touched,
+  signUpPassword = false,
   placeholder = '',
   password = false
 }) {
+  const icons = {
+    email: emailIcon,
+    password: passwordIcon,
+    user: userIcon
+  };
   return (
     <div className="inputContainer">
       <div className="inputWrapper">
-        {icon && <img src={icon} alt="input icon" className="inputIcon" />}
+        {icon && (
+          <img src={icons[icon]} alt="input icon" className="inputIcon" />
+        )}
         <label htmlFor={`${name}Input`}>
           {label}
           <Field
@@ -27,7 +40,22 @@ function Input({
           />
         </label>
       </div>
-      <div className="errorText">{error && touched ? `${error}` : ''}</div>
+      <InputError
+        error={error}
+        touched={touched}
+        size={signUpPassword ? '0.70em' : null}
+      />
+    </div>
+  );
+}
+
+function InputError({ error, touched, size = '1em' }) {
+  const styles = {
+    fontSize: size
+  };
+  return (
+    <div style={styles} className="errorText">
+      {error && touched ? `${error}` : ''}
     </div>
   );
 }
