@@ -16,10 +16,7 @@ import { HOME } from '../../../routes';
 import { signUpEmailAndPassword } from '../../../services/auth/auth';
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
-// icons
-import userIcon from '../../../assets/img/userIcon.svg';
-import emailIcon from '../../../assets/img/email-svg.svg';
-import passwordIcon from '../../../assets/img/password-svg.svg';
+
 // schema
 import schemas from '../../../utils/schemas';
 
@@ -68,7 +65,7 @@ function SignUpForm() {
             <Input
               error={errors.firstName}
               touched={touched.firstName}
-              icon={userIcon}
+              icon="user"
               name="firstName"
               label="First Name"
               placeholder="Introduce your first name"
@@ -76,7 +73,7 @@ function SignUpForm() {
             <Input
               error={errors.lastName}
               touched={touched.lastName}
-              icon={userIcon}
+              icon="user"
               name="lastName"
               label="Last Name"
               placeholder="Introduce your last name"
@@ -84,7 +81,7 @@ function SignUpForm() {
             <Input
               error={errors.email}
               touched={touched.email}
-              icon={emailIcon}
+              icon="email"
               name="email"
               label="Email"
               placeholder="Introduce your email"
@@ -92,7 +89,8 @@ function SignUpForm() {
             <Input
               error={errors.password}
               touched={touched.password}
-              icon={passwordIcon}
+              signUpPassword
+              icon="password"
               password
               name="password"
               label="Password"

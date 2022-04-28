@@ -11,7 +11,6 @@ import Input from '../../molecules/Input/Input';
 
 import { sendResetEmail } from '../../../services/auth/auth';
 // icons
-import emailIcon from '../../../assets/img/email-svg.svg';
 import schemas from '../../../utils/schemas';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
@@ -48,7 +47,7 @@ function ResetPasswordForm() {
             <div className="">
               <div className="">
                 <Input
-                  icon={emailIcon}
+                  icon="email"
                   id="email"
                   name="email"
                   label="E-mail"

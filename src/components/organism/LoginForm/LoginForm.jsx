@@ -25,8 +25,6 @@ import './LoginForm.scss';
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 // icons
-import emailIcon from '../../../assets/img/email-svg.svg';
-import passwordIcon from '../../../assets/img/password-svg.svg';
 import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
@@ -90,7 +88,7 @@ function LoginForm() {
             <Input
               id="email"
               touched={touched.email}
-              icon={emailIcon}
+              icon="email"
               error={errors.email}
               name="email"
               label="Email"
@@ -98,7 +96,7 @@ function LoginForm() {
             />
             <Input
               id="password"
-              icon={passwordIcon}
+              icon="password"
               name="password"
               touched={touched.password}
               error={errors.password}
