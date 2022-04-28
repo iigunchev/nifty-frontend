@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
-import Input from '../../components/molecules/Input/Input';
+import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
+import Input from '../../molecules/Input/Input';
 // actions
-import { setUser } from '../../redux/User/userSlice';
-import { HOME } from '../../routes';
+import { setUser } from '../../../redux/User/userSlice';
+import { HOME } from '../../../routes';
 // auth
-import { signUpEmailAndPassword } from '../../services/auth/auth';
-import apiAuth from '../../utils/fetchAuthApi';
-import handleAuthErrors from '../../utils/handleAuthErrors';
+import { signUpEmailAndPassword } from '../../../services/auth/auth';
+import apiAuth from '../../../utils/fetchAuthApi';
+import handleAuthErrors from '../../../utils/handleAuthErrors';
 // schema
-import schemas from '../../utils/schemas';
+import schemas from '../../../utils/schemas';
 
 function SignUp() {
   const [error, setError] = useState(null);

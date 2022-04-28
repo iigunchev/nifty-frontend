@@ -3,11 +3,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // pages
 import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
-import ResetPassword from './pages/ResetPassword/ResetPassword';
 import * as route from './routes';
 import ProtectedRoute from './components/molecules/ProtectedRoute/ProtectedRoute';
+import Auth from './pages/Auth/Auth';
+import Login from './components/organism/Login/Login';
+import SignUp from './components/organism/SignUp/SignUp';
+import ResetPassword from './components/organism/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -21,9 +22,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path={route.SIGN_UP} element={<SignUp />} />
-        <Route path={route.LOGIN} element={<Login />} />
-        <Route path={route.RESET_PASSWORD} element={<ResetPassword />} />
+        <Route path={route.AUTH} element={<Auth />}>
+          <Route path={`${route.AUTH}/${route.LOGIN}`} element={<Login />} />
+          <Route path={`${route.AUTH}/${route.SIGN_UP}`} element={<SignUp />} />
+          <Route
+            path={`${route.AUTH}/${route.RESET_PASSWORD}`}
+            element={<ResetPassword />}
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

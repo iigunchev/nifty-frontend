@@ -1,6 +1,6 @@
-@use '../../sass/abstracts/variables' as *;
-@use '../../sass/core/typography' as t;
-@use '../../sass/abstracts/mixins' as m;
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+@use '../../../sass/abstracts/mixins' as m;
 .loginContainer {
   width: 100%;
   min-height: 100vh;

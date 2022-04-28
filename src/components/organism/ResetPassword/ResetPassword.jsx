@@ -4,11 +4,11 @@ import { Formik, Form } from 'formik';
 
 import { useNavigate, Link } from 'react-router-dom';
 
-import { LOGIN, SIGN_UP, HOME } from '../../routes';
+import { LOGIN, SIGN_UP, HOME, AUTH } from '../../../routes';
 
-import Input from '../../components/molecules/Input/Input';
+import Input from '../../molecules/Input/Input';
 
-import { sendResetEmail } from '../../services/auth/auth';
+import { sendResetEmail } from '../../../services/auth/auth';
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -52,12 +52,12 @@ function ResetPassword() {
                 </button>
               </div>
               <div className="">
-                <Link to={SIGN_UP}>
+                <Link to={`${AUTH}${SIGN_UP}`}>
                   <button className="" type="button">
                     create new account
                   </button>
                 </Link>
-                <Link to={LOGIN}>
+                <Link to={`${AUTH}${LOGIN}`}>
                   <button className="" type="button">
                     back to login
                   </button>
