@@ -1,0 +1,40 @@
+@use '../../sass/abstracts/variables' as *;
+@use '../../sass/layout/flex' as l;
+
+.accountContainer {
+  @include l.flex-container($direction: column, $align: flex-start);
+  padding: 2em;
+}
+.accountCols {
+  @include l.flex-container($align: flex-start, $gap: 3em); 
+  section {
+    width: 600px;
+    margin-top: 2em;
+  }
+  div.buttonWrapper {
+    @include l.flex-container($spacing: flex-end);
+    width: 100%;
+  }
+  button {
+    margin-top: 1em;
+    font-weight: 500;
+    height: 30px;
+    width: 30%;
+    color: #fff;
+    line-height: 1;
+    padding: 0 10px;
+    border-radius: $border;
+    background: $primary-gradient;
+  }
+  button.updateAvatar {
+    background: transparent;
+    color: $text-dark;
+    font-weight: 400;
+    padding: 0;
+    width: 100%;
+  }
+}
+img.avatar {
+  width: 150px;
+  margin-top: 2em;
+}

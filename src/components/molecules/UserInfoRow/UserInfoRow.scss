@@ -1,0 +1,17 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/layout/flex' as l;
+
+.userInfoRowContainer{
+  @include l.flex-container($align: flex-start);
+  border-bottom: 1px solid lightgray;
+  padding: 1em 0;
+}
+.userInfoWrapper{
+  width: 50%;
+}
+.userInfoType {
+  color: $text-lightgray;
+}
+.userInfoDetails {
+  text-align: left;
+}

@@ -8,6 +8,7 @@ import ProtectedRoute from './components/molecules/ProtectedRoute/ProtectedRoute
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Signup from './pages/Signup/Signup';
+import Account from './pages/Account/Account';
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path={route.ACCOUNT}
+          element={
+            // <ProtectedRoute>
+            <Account />
+            // </ProtectedRoute>
           }
         />
         <Route path={route.LOGIN} element={<Login />} />
