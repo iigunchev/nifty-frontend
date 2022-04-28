@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 import Input from '../../components/molecules/Input/Input';
 // actions
 import { setUser } from '../../redux/User/userSlice';
@@ -87,7 +88,7 @@ function SignUp() {
           </Form>
         )}
       </Formik>
-      {error && error}
+      <ErrorContainer error={error} />
     </main>
   );
 }

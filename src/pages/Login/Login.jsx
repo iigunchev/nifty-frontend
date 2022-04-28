@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik';
 // router
 import { useNavigate, Link } from 'react-router-dom';
 // redux actions
+import { Waveform } from '@uiball/loaders';
 import { setUser } from '../../redux/User/userSlice';
 
 import { HOME, SIGN_UP, RESET_PASSWORD } from '../../routes';
@@ -24,6 +25,7 @@ import handleAuthErrors from '../../utils/handleAuthErrors';
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import emailIcon from '../../assets/img/email-svg.svg';
 import passwordIcon from '../../assets/img/password-svg.svg';
+import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 
 function Login() {
   const navigate = useNavigate();
@@ -94,9 +96,18 @@ function Login() {
                 className="loginbutton"
                 type="submit"
               >
-                LOGIN
+                {isLoading ? (
+                  <Waveform
+                    size={40}
+                    lineWeight={3.5}
+                    speed={1}
+                    color="white"
+                  />
+                ) : (
+                  'LOGIN'
+                )}
               </button>
-              {error && error}
+              <ErrorContainer error={error} />
 
               <div className="flexBottomText">
                 <span className="textSignup">Don&apos;t have an account?</span>
