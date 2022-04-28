@@ -1,0 +1,14 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+@use '../../../sass/abstracts/mixins' as m;
+
+.loginbutton {
+  font-weight: 500;
+  height: 50px;
+  width: 100%;
+  color: #fff;
+  line-height: 1.2;
+  padding: 0 20px;
+  border-radius: $border;
+  text-transform: uppercase;
+}

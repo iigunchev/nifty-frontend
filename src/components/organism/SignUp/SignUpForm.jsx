@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Input from '../../molecules/Input/Input';
+import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 // actions
 import { setUser } from '../../../redux/User/userSlice';
 import { HOME } from '../../../routes';
@@ -64,18 +65,21 @@ function SignUpForm() {
               touched={touched.firstName}
               name="firstName"
               label="First Name"
+              placeholder="Type your Name"
             />
             <Input
               error={errors.lastName}
               touched={touched.lastName}
               name="lastName"
               label="Last Name"
+              placeholder="Type your last name"
             />
             <Input
               error={errors.email}
               touched={touched.email}
               name="email"
               label="Email"
+              placeholder="Type your email"
             />
             <Input
               error={errors.password}
@@ -83,10 +87,9 @@ function SignUpForm() {
               password
               name="password"
               label="Password"
+              placeholder="Type your password"
             />
-            <button disabled={isLoading} type="submit">
-              Sign up
-            </button>
+            <ButtonSubmit disabled={isLoading}>Sign up</ButtonSubmit>
           </Form>
         )}
       </Formik>
