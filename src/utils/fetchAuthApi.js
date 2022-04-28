@@ -1,24 +1,32 @@
-import { deleteCurrentUser, getCurrentUserToken } from '../services/auth/auth';
+import {
+  deleteCurrentUser,
+  getCurrentUserFullName,
+  getCurrentUserToken
+} from '../services/auth/auth';
 
 //* SIGN UP FETCH AND LOGIN FETCH TO API
 
-const signupWithApi = async (firstName = '', lastName = '') => {
+const signupWithApi = async (
+  firstName = getCurrentUserFullName(),
+  lastName = null
+) => {
   try {
     const token = await getCurrentUserToken();
 
     const authHeader = `Bearer ${token}`;
-
-    const response = await fetch(
-      `${process.env.REACT_APP_NODE_SERVER}/account/signup`,
-      {
-        headers: {
-          Authorization: authHeader,
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify({ firstName, lastName })
-      }
-    );
+    const URL = lastName
+      ? `${process.env.REACT_APP_NODE_SERVER}/account/signup`
+      : `${process.env.REACT_APP_NODE_SERVER}/account/signUpWithProvider`;
+    const response = await fetch(URL, {
+      headers: {
+        Authorization: authHeader,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: lastName
+        ? JSON.stringify({ firstName, lastName })
+        : JSON.stringify({ firstName })
+    });
     if (!response.ok) {
       throw new Error('Failed');
     }

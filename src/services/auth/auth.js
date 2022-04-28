@@ -56,12 +56,12 @@ export function getCurrentUserToken() {
   return auth.currentUser.getIdToken();
 }
 
-export function getCurrentUserEmail() {
+export function getCurrentUserFullName() {
   if (!auth.currentUser) {
     return null;
   }
 
-  return auth.currentUser.email;
+  return auth.currentUser.displayName;
 }
 
 export async function deleteCurrentUser() {
