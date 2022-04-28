@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 
 import { useNavigate, Link } from 'react-router-dom';
 
-import { LOGIN, SIGN_UP, HOME } from '../../../routes';
+import { LOGIN, HOME } from '../../../routes';
 
 import Input from '../../molecules/Input/Input';
 
@@ -14,6 +14,7 @@ import { sendResetEmail } from '../../../services/auth/auth';
 import schemas from '../../../utils/schemas';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
+import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 
 function ResetPasswordForm() {
   const navigate = useNavigate();
@@ -44,36 +45,20 @@ function ResetPasswordForm() {
       >
         {({ handleSubmit, errors, touched }) => (
           <Form onSubmit={handleSubmit}>
-            <div className="">
-              <div className="">
-                <Input
-                  icon="email"
-                  id="email"
-                  name="email"
-                  label="E-mail"
-                  error={errors.email}
-                  touched={touched.email}
-                  placeholder="example@example.com"
-                />
-              </div>
+            <Input
+              icon="email"
+              id="email"
+              name="email"
+              label="E-mail"
+              error={errors.email}
+              touched={touched.email}
+              placeholder="example@example.com"
+            />
 
-              <div className="">
-                <button className="" type="submit">
-                  Reset Password
-                </button>
-              </div>
-              <div className="">
-                <Link to={SIGN_UP}>
-                  <button className="" type="button">
-                    create new account
-                  </button>
-                </Link>
-                <Link to={LOGIN}>
-                  <button className="" type="button">
-                    back to login
-                  </button>
-                </Link>
-              </div>
+            <ButtonSubmit>Reset Password</ButtonSubmit>
+
+            <div className="loginLink">
+              <Link to={LOGIN}>Back to Login</Link>
             </div>
           </Form>
         )}

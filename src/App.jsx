@@ -7,7 +7,7 @@ import * as route from './routes';
 import ProtectedRoute from './components/molecules/ProtectedRoute/ProtectedRoute';
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
-import Signup from './pages/Signup/Signup';
+import Signup from './pages/SignUp/Signup';
 
 function App() {
   return (

@@ -29,6 +29,8 @@ import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
+import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+
 function LoginForm() {
   const navigate = useNavigate();
 
@@ -109,13 +111,14 @@ function LoginForm() {
             </div>
 
             <div className="loginBgButton" />
-            <button disabled={isLoading} className="loginbutton" type="submit">
+            <ButtonSubmit disabled={isLoading}>
               {isLoading ? (
                 <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
               ) : (
                 'LOGIN'
               )}
-            </button>
+            </ButtonSubmit>
+            <ErrorContainer error={error} />
 
             <button
               disabled={isLoading}
