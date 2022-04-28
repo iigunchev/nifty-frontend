@@ -14,11 +14,7 @@ function Input({
 }) {
   return (
     <div className="inputContainer">
-      <div
-        className={
-          error && touched ? `inputWrapper inputWrapperError` : `inputWrapper`
-        }
-      >
+      <div className="inputWrapper">
         {icon && <img src={icon} alt="input icon" className="inputIcon" />}
         <label htmlFor={`${name}Input`}>
           {label}
@@ -27,10 +23,11 @@ function Input({
             name={name}
             id={`${name}Input`}
             placeholder={placeholder}
+            className={error && touched ? `${'inputError'}` : ''}
           />
         </label>
       </div>
-      <div className="inputError">{error && touched ? `${error}` : ''}</div>
+      <div className="errorText">{error && touched ? `${error}` : ''}</div>
     </div>
   );
 }

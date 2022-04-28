@@ -1,0 +1,10 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.errorContainer {
+  text-align: center;
+  margin: 1.25em 0;
+  color: $bg-red;
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.5em;
+}

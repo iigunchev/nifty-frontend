@@ -1,20 +1,23 @@
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
+// styles
+import './SignUpForm.scss';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../components/molecules/Input/Input';
+import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
+import Input from '../../molecules/Input/Input';
 // actions
-import { setUser } from '../../redux/User/userSlice';
-import { HOME } from '../../routes';
+import { setUser } from '../../../redux/User/userSlice';
+import { HOME } from '../../../routes';
 // auth
-import { signUpEmailAndPassword } from '../../services/auth/auth';
-import apiAuth from '../../utils/fetchAuthApi';
-import handleAuthErrors from '../../utils/handleAuthErrors';
+import { signUpEmailAndPassword } from '../../../services/auth/auth';
+import apiAuth from '../../../utils/fetchAuthApi';
+import handleAuthErrors from '../../../utils/handleAuthErrors';
 // schema
-import schemas from '../../utils/schemas';
+import schemas from '../../../utils/schemas';
 
-function SignUp() {
+function SignUpForm() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // navigatings
@@ -47,8 +50,8 @@ function SignUp() {
   };
 
   return (
-    <main className="signupWrapper">
-      <h1>Sign up</h1>
+    <>
+      <h1 className="authHeading">Sign up</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={schemas.signupSchema}
@@ -87,9 +90,9 @@ function SignUp() {
           </Form>
         )}
       </Formik>
-      {error && error}
-    </main>
+      <ErrorContainer error={error} />
+    </>
   );
 }
 
-export default SignUp;
+export default SignUpForm;

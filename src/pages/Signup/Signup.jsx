@@ -1,13 +1,13 @@
 import React from 'react';
-import LoginForm from '../../components/organism/LoginForm/LoginForm';
+import SignUpForm from '../../components/organism/SignUp/SignUpForm';
 import AuthTemplate from '../../components/template/AuthTemplate';
 
-function Login() {
+function Signup() {
   return (
     <AuthTemplate>
-      <LoginForm />
+      <SignUpForm />
     </AuthTemplate>
   );
 }
 
-export default Login;
+export default Signup;
