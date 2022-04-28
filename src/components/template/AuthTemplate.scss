@@ -1,0 +1,46 @@
+@use '../../sass/abstracts/variables' as *;
+@use '../../sass/abstracts/mixins' as m;
+@use '../../sass/core/typography' as t;
+
+.loginContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2em;
+  align-items: center;
+  padding: 15px;
+  background: $bg-dark;
+  color: $text-dark;
+}
+.logoWrapper {
+  max-width: 500px;
+  width: 60%;
+  .logo-md {
+    margin-top: 1em;
+    @include m.logo();
+  }
+}
+
+.sectionWrapper {
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  border-radius: $border;
+  overflow: hidden;
+  box-shadow: $boxshadow-light;
+  padding: 45px;
+}
+.authHeading {
+  font-size: t.$text-2xl;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 1em;
+}

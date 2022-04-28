@@ -9,7 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Waveform } from '@uiball/loaders';
 import { setUser } from '../../../redux/User/userSlice';
 
-import { HOME, SIGN_UP, RESET_PASSWORD, AUTH } from '../../../routes';
+import { HOME, SIGN_UP, RESET_PASSWORD } from '../../../routes';
 // formik schema
 import schemas from '../../../utils/schemas';
 // components
@@ -24,6 +24,7 @@ import handleAuthErrors from '../../../utils/handleAuthErrors';
 // icons
 import emailIcon from '../../../assets/img/email-svg.svg';
 import passwordIcon from '../../../assets/img/password-svg.svg';
+import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
@@ -36,6 +37,7 @@ function Login() {
   const handleLogin = async (values) => {
     try {
       setIsLoading(true);
+      setError(null);
       // auth in firebase and api
       await signInEmailAndPassword(values.email, values.password);
       const apiUser = await apiAuth.loginWithApi();
@@ -52,7 +54,7 @@ function Login() {
 
   return (
     <>
-      <h1 className="loginHeading">Login</h1>
+      <h1 className="authHeading">Login</h1>
       <Formik
         initialValues={{
           email: '',
@@ -83,7 +85,7 @@ function Login() {
               password
             />
             <div className="textRightLogin">
-              <Link to={`${AUTH}${RESET_PASSWORD}`}>Forgot password?</Link>
+              <Link to={RESET_PASSWORD}>Forgot password?</Link>
             </div>
 
             <div className="loginBgButton" />
@@ -97,10 +99,29 @@ function Login() {
             <ErrorContainer error={error} />
 
             <div className="flexBottomText">
+              <button
+                disabled={isLoading}
+                className="googleLoginbutton"
+                type="submit"
+              >
+                {isLoading ? (
+                  <Waveform
+                    size={40}
+                    lineWeight={3.5}
+                    speed={1}
+                    color="white"
+                  />
+                ) : (
+                  <>
+                    <img src={googleIcon} alt="google icon" />
+                    <span>Continue with google</span>
+                  </>
+                )}
+              </button>
               <span className="textSignup">Don&apos;t have an account?</span>
 
               <span className="signupLink">
-                <Link to={`${AUTH}${SIGN_UP}`}>Sign up</Link>
+                <Link to={SIGN_UP}>Sign up</Link>
               </span>
             </div>
           </Form>

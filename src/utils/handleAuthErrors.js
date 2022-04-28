@@ -2,7 +2,7 @@ const handleAuthErrors = (message) => {
   // ? ask 4 this
   //* login errors
   if (message === 'Firebase: Error (auth/user-not-found).') {
-    return 'User not found';
+    return 'Oops, these credentials are not valid';
   }
   if (message === 'Firebase: Error (auth/wrong-password).') {
     return 'Wrong password!';

@@ -1,63 +1,25 @@
 @use '../../../sass/abstracts/variables' as *;
 @use '../../../sass/core/typography' as t;
 @use '../../../sass/abstracts/mixins' as m;
-.loginContainer {
-  width: 100%;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
+
+.googleLoginbutton {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 2em;
   align-items: center;
-  padding: 15px;
-  background: $bg-dark;
-  color: $text-dark;
-}
-.logoWrapper {
-  max-width: 500px;
-  width: 60%;
-  .logo-md {
-    margin-top: 1em;
-    @include m.logo();
+  justify-content: center;
+  gap: 1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1em;
+  height: 50px;
+  background-color: $bg-light;
+  border: 1px solid $accent-light;
+  width: 100%;
+  border-radius: $border;
+  padding: 1em;
+  img {
+    height: 1em;
   }
 }
-
-.sectionWrapper {
-  max-width: 500px;
-  width: 100%;
-  background: #fff;
-  border-radius: $border;
-  overflow: hidden;
-  box-shadow: $boxshadow-light;
-  padding: 45px;
-}
-
-.loginHeading {
-  display: block;
-  font-size: t.$text-2xl;
-  font-weight: 600;
-  line-height: 1.2;
-  text-align: center;
-  margin-bottom: 1em;
-}
-
-.loginbutton {
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.2;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  height: 50px;
-}
-
 .textRightLogin {
   padding-bottom: 31px;
   padding-top: 8px;
@@ -93,18 +55,11 @@
 }
 
 .loginbutton {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-weight: 500;
+  height: 50px;
   width: 100%;
-  font-size: 1.1rem;
   color: #fff;
   line-height: 1.2;
-  text-transform: uppercase;
   padding: 0 20px;
   border-radius: $border;
   background: $primary-gradient;

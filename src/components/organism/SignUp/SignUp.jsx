@@ -48,8 +48,8 @@ function SignUp() {
   };
 
   return (
-    <main className="signupWrapper">
-      <h1>Sign up</h1>
+    <>
+      <h1 className="authHeading">Sign up</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={schemas.signupSchema}
@@ -89,7 +89,7 @@ function SignUp() {
         )}
       </Formik>
       <ErrorContainer error={error} />
-    </main>
+    </>
   );
 }
 

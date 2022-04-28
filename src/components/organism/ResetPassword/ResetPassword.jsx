@@ -4,20 +4,23 @@ import { Formik, Form } from 'formik';
 
 import { useNavigate, Link } from 'react-router-dom';
 
-import { LOGIN, SIGN_UP, HOME, AUTH } from '../../../routes';
+import { LOGIN, SIGN_UP, HOME } from '../../../routes';
 
 import Input from '../../molecules/Input/Input';
 
 import { sendResetEmail } from '../../../services/auth/auth';
+// icons
+import emailIcon from '../../../assets/img/email-svg.svg';
 
 function ResetPassword() {
   const navigate = useNavigate();
 
   return (
-    <div className="">
-      <h1>Trouble Logging In?</h1>
+    <>
+      <h1 className="authHeading">Trouble Logging In?</h1>
       <p>
-        Enter your email and well send you a link to get back into your account.
+        Enter your email and we&apos;ll send you a link to get back into your
+        account.
       </p>
 
       <Formik
@@ -39,6 +42,7 @@ function ResetPassword() {
             <div className="">
               <div className="">
                 <Input
+                  icon={emailIcon}
                   id="email"
                   name="email"
                   label="E-mail"
@@ -48,16 +52,16 @@ function ResetPassword() {
 
               <div className="">
                 <button className="" type="submit">
-                  Restart Password
+                  Reset Password
                 </button>
               </div>
               <div className="">
-                <Link to={`${AUTH}${SIGN_UP}`}>
+                <Link to={SIGN_UP}>
                   <button className="" type="button">
                     create new account
                   </button>
                 </Link>
-                <Link to={`${AUTH}${LOGIN}`}>
+                <Link to={LOGIN}>
                   <button className="" type="button">
                     back to login
                   </button>
@@ -67,7 +71,7 @@ function ResetPassword() {
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 }
 
