@@ -15,7 +15,10 @@ import schemas from '../../../utils/schemas';
 // components
 import Input from '../../molecules/Input/Input';
 // auth
-import { signInEmailAndPassword } from '../../../services/auth/auth';
+import {
+  signInEmailAndPassword,
+  signInWithGoogle
+} from '../../../services/auth/auth';
 // styles
 import './LoginForm.scss';
 // utils
@@ -34,6 +37,25 @@ function LoginForm() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      // auth in firebase and api
+      await signInWithGoogle();
+      const apiUser = await apiAuth.signupWithApi();
+      // set user in redux
+      dispatch(setUser(apiUser));
+      navigate(HOME);
+    } catch (e) {
+      const message = handleAuthErrors(e.message);
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleLogin = async (values) => {
     try {
       setIsLoading(true);
@@ -96,28 +118,18 @@ function LoginForm() {
                 'LOGIN'
               )}
             </button>
-            <ErrorContainer error={error} />
 
+            <button
+              disabled={isLoading}
+              className="googleLoginbutton"
+              onClick={handleLoginWithGoogle}
+              type="button"
+            >
+              <img src={googleIcon} alt="google icon" />
+              <span>Continue with google</span>
+            </button>
+            <ErrorContainer error={error} />
             <div className="flexBottomText">
-              <button
-                disabled={isLoading}
-                className="googleLoginbutton"
-                type="submit"
-              >
-                {isLoading ? (
-                  <Waveform
-                    size={40}
-                    lineWeight={3.5}
-                    speed={1}
-                    color="white"
-                  />
-                ) : (
-                  <>
-                    <img src={googleIcon} alt="google icon" />
-                    <span>Continue with google</span>
-                  </>
-                )}
-              </button>
               <span className="textSignup">Don&apos;t have an account?</span>
 
               <span className="signupLink">

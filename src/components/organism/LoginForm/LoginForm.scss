@@ -1,25 +1,6 @@
 @use '../../../sass/abstracts/variables' as *;
 @use '../../../sass/core/typography' as t;
 @use '../../../sass/abstracts/mixins' as m;
-
-.googleLoginbutton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-top: 1em;
-  height: 50px;
-  background-color: $bg-light;
-  border: 1px solid $accent-light;
-  width: 100%;
-  border-radius: $border;
-  padding: 1em;
-  img {
-    height: 1em;
-  }
-}
 .textRightLogin {
   padding-bottom: 31px;
   padding-top: 8px;
@@ -55,6 +36,9 @@
 }
 
 .loginbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
   height: 50px;
   width: 100%;
@@ -63,6 +47,25 @@
   padding: 0 20px;
   border-radius: $border;
   background: $primary-gradient;
+}
+
+.googleLoginbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1em;
+  height: 50px;
+  background-color: $bg-light;
+  border: 1px solid $accent-light;
+  width: 100%;
+  border-radius: $border;
+  padding: 1em;
+  img {
+    height: 1em;
+  }
 }
 a {
   text-decoration: none;
