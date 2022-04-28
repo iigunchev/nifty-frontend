@@ -17,7 +17,7 @@ import Input from '../../molecules/Input/Input';
 // auth
 import { signInEmailAndPassword } from '../../../services/auth/auth';
 // styles
-import './Login.scss';
+import './LoginForm.scss';
 // utils
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
@@ -28,7 +28,7 @@ import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
-function Login() {
+function LoginForm() {
   const navigate = useNavigate();
 
   const [error, setError] = useState(null);
@@ -131,4 +131,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginForm;

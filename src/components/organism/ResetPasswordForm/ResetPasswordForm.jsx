@@ -1,5 +1,6 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+// styles
+import './ResetPasswordForm.scss';
 import { Formik, Form } from 'formik';
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -11,10 +12,13 @@ import Input from '../../molecules/Input/Input';
 import { sendResetEmail } from '../../../services/auth/auth';
 // icons
 import emailIcon from '../../../assets/img/email-svg.svg';
+import schemas from '../../../utils/schemas';
+import handleAuthErrors from '../../../utils/handleAuthErrors';
+import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
-function ResetPassword() {
+function ResetPasswordForm() {
   const navigate = useNavigate();
-
+  const [error, setError] = useState(null);
   return (
     <>
       <h1 className="authHeading">Trouble Logging In?</h1>
@@ -32,12 +36,14 @@ function ResetPassword() {
             await sendResetEmail(values.email);
 
             navigate(HOME);
-          } catch (error) {
-            console.log(error);
+          } catch (e) {
+            const message = handleAuthErrors(e.message);
+            setError(message);
           }
         }}
+        validationSchema={schemas.resetPasswordSchema}
       >
-        {({ handleSubmit }) => (
+        {({ handleSubmit, errors, touched }) => (
           <Form onSubmit={handleSubmit}>
             <div className="">
               <div className="">
@@ -46,6 +52,8 @@ function ResetPassword() {
                   id="email"
                   name="email"
                   label="E-mail"
+                  error={errors.email}
+                  touched={touched.email}
                   placeholder="example@example.com"
                 />
               </div>
@@ -71,8 +79,9 @@ function ResetPassword() {
           </Form>
         )}
       </Formik>
+      <ErrorContainer error={error} />
     </>
   );
 }
 
-export default ResetPassword;
+export default ResetPasswordForm;

@@ -29,7 +29,14 @@ const signInSchema = Yup.object().shape({
     .required('Email is required')
 });
 
+const resetPasswordSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('This must be a valid email address')
+    .required('Email is required')
+});
+
 export default {
   signupSchema,
-  signInSchema
+  signInSchema,
+  resetPasswordSchema
 };

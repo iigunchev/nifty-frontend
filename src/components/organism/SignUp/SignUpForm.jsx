@@ -1,5 +1,7 @@
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
+// styles
+import './SignUpForm.scss';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +17,7 @@ import handleAuthErrors from '../../../utils/handleAuthErrors';
 // schema
 import schemas from '../../../utils/schemas';
 
-function SignUp() {
+function SignUpForm() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // navigatings
@@ -93,4 +95,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignUpForm;
