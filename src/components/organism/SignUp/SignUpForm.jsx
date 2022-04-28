@@ -5,6 +5,8 @@ import './SignUpForm.scss';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+// components
+
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Input from '../../molecules/Input/Input';
 // actions
@@ -14,6 +16,10 @@ import { HOME } from '../../../routes';
 import { signUpEmailAndPassword } from '../../../services/auth/auth';
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
+// icons
+import userIcon from '../../../assets/img/userIcon.svg';
+import emailIcon from '../../../assets/img/email-svg.svg';
+import passwordIcon from '../../../assets/img/password-svg.svg';
 // schema
 import schemas from '../../../utils/schemas';
 
@@ -62,28 +68,37 @@ function SignUpForm() {
             <Input
               error={errors.firstName}
               touched={touched.firstName}
+              icon={userIcon}
               name="firstName"
               label="First Name"
+              placeholder="Introduce your first name"
             />
             <Input
               error={errors.lastName}
               touched={touched.lastName}
+              icon={userIcon}
               name="lastName"
               label="Last Name"
+              placeholder="Introduce your last name"
             />
             <Input
               error={errors.email}
               touched={touched.email}
+              icon={emailIcon}
               name="email"
               label="Email"
+              placeholder="Introduce your email"
             />
             <Input
               error={errors.password}
               touched={touched.password}
+              icon={passwordIcon}
               password
               name="password"
               label="Password"
+              placeholder="Introduce your password"
             />
+
             <button disabled={isLoading} type="submit">
               Sign up
             </button>

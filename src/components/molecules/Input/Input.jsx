@@ -27,7 +27,9 @@ function Input({
           />
         </label>
       </div>
-      <div className="errorText">{error && touched ? `${error}` : ''}</div>
+      <div style={password ? { fontSize: '10px' } : null} className="errorText">
+        {error && touched ? `${error}` : ''}
+      </div>
     </div>
   );
 }
