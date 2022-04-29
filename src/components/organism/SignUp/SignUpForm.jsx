@@ -2,6 +2,7 @@ import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 // styles
 import './SignUpForm.scss';
+import { Waveform } from '@uiball/loaders';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
@@ -95,7 +96,13 @@ function SignUpForm() {
               label="Password"
               placeholder="Type your password"
             />
-            <ButtonSubmit disabled={isLoading}>Sign up</ButtonSubmit>
+            <ButtonSubmit disabled={isLoading}>
+              {isLoading ? (
+                <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
+              ) : (
+                'SIGN UP'
+              )}
+            </ButtonSubmit>
           </Form>
         )}
       </Formik>
