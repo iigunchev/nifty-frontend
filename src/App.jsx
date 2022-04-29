@@ -25,9 +25,9 @@ function App() {
         <Route
           path={route.ACCOUNT}
           element={
-            // <ProtectedRoute>
-            <Account />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
           }
         />
         <Route path={route.LOGIN} element={<Login />} />

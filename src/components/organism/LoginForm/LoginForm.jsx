@@ -118,7 +118,6 @@ function LoginForm() {
                 'LOGIN'
               )}
             </ButtonSubmit>
-            <ErrorContainer error={error} />
 
             <button
               disabled={isLoading}
@@ -126,8 +125,8 @@ function LoginForm() {
               onClick={handleLoginWithGoogle}
               type="button"
             >
+              <span>Continue with</span>
               <img src={googleIcon} alt="google icon" />
-              <span>Continue with google</span>
             </button>
             <ErrorContainer error={error} />
             <div className="flexBottomText">
