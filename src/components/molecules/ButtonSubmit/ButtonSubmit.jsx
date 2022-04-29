@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ButtonSubmit.scss';
 
-function AuthButton({ children }) {
+function ButtonSubmit({ children }) {
   return (
     <button className="buttonSubmit" type="submit" label="button">
       {children}
@@ -10,4 +10,4 @@ function AuthButton({ children }) {
   );
 }
 
-export default AuthButton;
+export default ButtonSubmit;

@@ -1,0 +1,15 @@
+@use '../../../sass/abstracts/variables' as *;
+
+@use '../../../sass/abstracts/mixins' as m;
+@use '../../../sass/core/typography' as t;
+@use '../../../sass/layout/flex' as f;
+
+.profileSection {
+  padding: 3em;
+  @include f.flex-container(
+    $direction: column,
+    $align: flex-start,
+    $gap: 1.5em,
+    $wrap: nowrap
+  );
+}

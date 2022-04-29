@@ -9,7 +9,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
-  deleteUser
+  deleteUser,
+  updateEmail,
+  EmailAuthProvider,
+  reauthenticateWithCredential
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 
@@ -62,6 +65,18 @@ export function getCurrentUserFullName() {
   }
 
   return auth.currentUser.displayName;
+}
+
+export function reauthenticate(password) {
+  const cred = EmailAuthProvider.credential(auth.currentUser.email, password);
+  return reauthenticateWithCredential(auth.currentUser, cred);
+}
+
+export function changeCurrentUserEmail(newEmail) {
+  if (!auth.currentUser) {
+    return null;
+  }
+  return updateEmail(auth.currentUser, newEmail);
 }
 
 export async function deleteCurrentUser() {

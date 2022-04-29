@@ -46,13 +46,13 @@ const loginWithApi = async () => {
     const authHeader = `Bearer ${token}`;
 
     const response = await fetch(
-      `${process.env.REACT_APP_NODE_SERVER}/account/login`,
+      `${process.env.REACT_APP_NODE_SERVER}/account`,
       {
         headers: {
           Authorization: authHeader,
           'Content-Type': 'application/json'
         },
-        method: 'POST'
+        method: 'GET'
       }
     );
     if (!response.ok) {

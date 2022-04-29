@@ -33,11 +33,9 @@ const userSlice = createSlice({
       storage.removeItem('persist:root');
       return { ...initialState };
     }
-    // clearUser() {
-    // }
   }
 });
 
-export const { setUser, removeUser, clearUser } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;
