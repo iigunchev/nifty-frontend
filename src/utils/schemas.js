@@ -35,14 +35,14 @@ const resetPasswordSchema = Yup.object().shape({
 });
 
 const editProfileSchema = Yup.object().shape({
-  // firstName: Yup.string()
-  //   .min('2', 'First name too short')
-  //   .max('20', 'First name too long')
-  //   .required('First name is required'),
-  // lastName: Yup.string()
-  //   .min('2', 'Last name too short')
-  //   .max('30', 'Last name too long')
-  //   .required('Last name is required'),
+  firstName: Yup.string()
+    .min('2', 'First name too short')
+    .max('20', 'First name too long')
+    .required('First name is required'),
+  lastName: Yup.string()
+    .min('2', 'Last name too short')
+    .max('30', 'Last name too long')
+    .required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required')
 });
 

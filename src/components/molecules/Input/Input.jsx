@@ -43,7 +43,7 @@ function Input({
       <InputError
         error={error}
         touched={touched}
-        size={signUpPassword ? '0.70em' : null}
+        size={signUpPassword ? '0.65em' : null}
       />
     </div>
   );

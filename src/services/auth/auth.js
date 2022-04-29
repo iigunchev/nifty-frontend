@@ -50,6 +50,15 @@ export function sendResetEmail(email) {
 export function logOut() {
   return signOut(auth);
 }
+//* GET INFO CURRENT USER
+
+export function getCurrentUserProviderId() {
+  if (!auth.currentUser) {
+    return null;
+  }
+  // returns provider (google, password, etc)
+  return auth.currentUser.providerData[0].providerId;
+}
 
 export function getCurrentUserToken() {
   if (!auth.currentUser) {
@@ -66,7 +75,9 @@ export function getCurrentUserFullName() {
 
   return auth.currentUser.displayName;
 }
+//* GET INFO CURRENT USER
 
+//* EDIT INFO USER
 export function reauthenticate(password) {
   const cred = EmailAuthProvider.credential(auth.currentUser.email, password);
   return reauthenticateWithCredential(auth.currentUser, cred);
@@ -78,6 +89,8 @@ export function changeCurrentUserEmail(newEmail) {
   }
   return updateEmail(auth.currentUser, newEmail);
 }
+
+//* EDIT INFO USER
 
 export async function deleteCurrentUser() {
   try {

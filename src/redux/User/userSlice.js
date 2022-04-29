@@ -11,6 +11,7 @@ const initialState = {
   following: [],
   language: 'en',
   artist: false,
+  profileImage: null,
   isLoggedIn: false
 };
 

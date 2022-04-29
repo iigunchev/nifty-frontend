@@ -6,7 +6,7 @@
   padding: 2em;
 }
 .accountCols {
-  @include l.flex-container($align: flex-start, $gap: 3em); 
+  @include l.flex-container($align: flex-start, $gap: 3em);
   section {
     width: 600px;
     margin-top: 2em;
@@ -27,11 +27,15 @@
     border-radius: $border;
     background: $primary-gradient;
   }
-  button.updateAvatar {
+
+  .updateAvatar {
+    text-align: center;
     background: transparent;
+    cursor: pointer;
     color: $text-dark;
     font-weight: 400;
     padding: 0;
+    font-size: 1.5em;
     width: 100%;
   }
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 // formik
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 // styles
 import './EditProfileForm.scss';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../redux/User/userSlice';
 // schemas
 import schemas from '../../../utils/schemas';
@@ -12,36 +13,57 @@ import schemas from '../../../utils/schemas';
 import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 import {
   changeCurrentUserEmail,
+  getCurrentUserProviderId,
   reauthenticate
 } from '../../../services/auth/auth';
 // API utils
 import api from '../../../utils/fetchEditAccount';
+import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
+import handleAuthErrors from '../../../utils/handleAuthErrors';
+import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
+import { ACCOUNT } from '../../../routes';
 
 function EditProfileForm() {
+  // router navigate
+  const navigate = useNavigate();
+
   // state confirm with pass
   const [togglePassword, setTogglePassword] = useState();
+
+  // state error manage
+  const [error, setError] = useState(null);
+
   const [formValues, setFormValues] = useState({
     firstName: '',
     lastName: '',
     email: ''
   });
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(user.email);
+
   const initialValues = {
     firstName: user.firstName,
-    lastName: user.lastName,
+    lastName: user.lastName ? user.lastName : '',
     email: user.email
   };
 
   const handleSubmit = async ({ password }) => {
+    setError(null);
     try {
-      await reauthenticate(password);
-      await changeCurrentUserEmail(formValues.email);
+      // if provider comes from email and pass
+      if (getCurrentUserProviderId() === 'password') {
+        console.log('no paso je');
+        await reauthenticate(password);
+        await changeCurrentUserEmail(formValues.email);
+      }
+
       const apiUser = await api.fetchEditProfile(formValues, user.id);
       dispatch(setUser(apiUser));
     } catch (e) {
-      console.log(e.message);
+      navigate(ACCOUNT);
+      const message = handleAuthErrors(e.message);
+      setError(message);
     }
   };
 
@@ -58,16 +80,34 @@ function EditProfileForm() {
       >
         {({ errors, touched }) => (
           <Form>
-            <label htmlFor="email">
-              Email
-              <Field type="text" id="email" name="email" />
-            </label>
-            {errors.email && touched.email && errors.email}
-            <ButtonSubmit>Save profile</ButtonSubmit>
+            {/* //? Padding problems */}
+            {/* //!GetCurrentUserProviderId not working at all, refresh when true and see */}
+            {getCurrentUserProviderId() === 'password' && (
+              <AccountEditInput
+                error={errors.email}
+                touched={touched.email}
+                label="Email"
+                name="email"
+                type="text"
+              />
+            )}
+            <AccountEditInput
+              error={errors.firstName}
+              touched={touched.firstName}
+              label="First name"
+              name="firstName"
+            />
+            <AccountEditInput
+              error={errors.lastName}
+              touched={touched.lastName}
+              label="Last name"
+              name="lastName"
+            />
+            <ButtonSubmit size="md">Save profile</ButtonSubmit>
           </Form>
         )}
       </Formik>
-
+      <ErrorContainer error={error} />
       {togglePassword && (
         <Formik
           initialValues={{
@@ -77,11 +117,12 @@ function EditProfileForm() {
         >
           {() => (
             <Form>
-              <label htmlFor="password">
-                Password
-                <Field type="password" id="password" name="password" />
-              </label>
-              <ButtonSubmit>Confirm password</ButtonSubmit>
+              <AccountEditInput
+                type="password"
+                label="Password"
+                name="password"
+              />
+              <ButtonSubmit size="md">Confirm password</ButtonSubmit>
             </Form>
           )}
         </Formik>

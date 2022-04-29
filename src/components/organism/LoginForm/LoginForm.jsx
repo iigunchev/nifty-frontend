@@ -110,7 +110,6 @@ function LoginForm() {
               <Link to={RESET_PASSWORD}>Forgot password?</Link>
             </div>
 
-            <div className="loginBgButton" />
             <ButtonSubmit disabled={isLoading}>
               {isLoading ? (
                 <Waveform size={40} lineWeight={3.5} speed={1} color="white" />

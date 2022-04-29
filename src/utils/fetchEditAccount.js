@@ -6,6 +6,7 @@ const fetchEditProfile = async (values, id) => {
     const token = await getCurrentUserToken();
     const authToken = `Bearer ${token}`;
     const URL = `/account/${id}`;
+    console.log(values);
     const apiUser = await fetchApi(URL, authToken, values, 'PUT');
     return apiUser;
   } catch (e) {

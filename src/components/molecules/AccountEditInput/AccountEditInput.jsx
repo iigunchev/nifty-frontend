@@ -16,7 +16,7 @@ function AccountEditInput({
   placeholder = '',
   type
 }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(type !== 'password');
 
   const icons = {
     showPassword: openEye,
@@ -33,7 +33,7 @@ function AccountEditInput({
           placeholder={placeholder}
           className={
             error && touched
-              ? `${'inputError'} accountEditInput`
+              ? `inputError accountEditInput`
               : 'accountEditInput'
           }
         />
