@@ -1,8 +1,13 @@
 import React from 'react';
 
+import ChangePasswordForm from '../../../components/organism/ChangePasswordForm/ChangePasswordForm';
+
 function ChangePassword() {
-  console.log('CHANGE PASSWORD');
-  return <div>ChangePassword</div>;
+  return (
+    <div>
+      <ChangePasswordForm />
+    </div>
+  );
 }
 
 export default ChangePassword;

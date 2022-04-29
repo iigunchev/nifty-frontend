@@ -15,7 +15,8 @@
     @include l.flex-container($spacing: flex-end);
     width: 100%;
   }
-  button {
+  .accountLink {
+    @include l.flex-container($spacing: center);
     margin-top: 1em;
     font-weight: 500;
     height: 30px;

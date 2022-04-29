@@ -35,7 +35,7 @@ function App() {
         />
 
         <Route
-          path={route.EDIT_PROFILE}
+          path="/account/edit-profile"
           element={
             <ProtectedRoute>
               <EditProfile />
@@ -43,7 +43,7 @@ function App() {
           }
         />
         <Route
-          path={route.CHANGE_PASSWORD}
+          path="/account/change-password"
           element={
             <ProtectedRoute>
               <ChangePassword />
