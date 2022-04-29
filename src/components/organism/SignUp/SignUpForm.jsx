@@ -13,12 +13,19 @@ import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
 import { setUser } from '../../../redux/User/userSlice';
 import { HOME, LOGIN } from '../../../routes';
 // auth
-import { signUpEmailAndPassword } from '../../../services/auth/auth';
+import {
+  signInWithGoogle,
+  signUpEmailAndPassword
+} from '../../../services/auth/auth';
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 
 // schema
 import schemas from '../../../utils/schemas';
+import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
+
+// icon
+import googleIcon from '../../../assets/svg/googleIcon.svg';
 
 function SignUpForm() {
   const [error, setError] = useState(null);
@@ -33,6 +40,24 @@ function SignUpForm() {
     lastName: '',
     email: '',
     password: ''
+  };
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      // auth in firebase and api
+      await signInWithGoogle();
+      const apiUser = await apiAuth.signupWithApi();
+      // set user in redux
+      dispatch(setUser(apiUser));
+      navigate(HOME);
+    } catch (e) {
+      const message = handleAuthErrors(e.message);
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSignup = async ({ firstName, lastName, email, password }) => {
@@ -55,6 +80,14 @@ function SignUpForm() {
   return (
     <>
       <h1 className="authHeading">Sign up</h1>
+      <SecondaryButton
+        disabled={isLoading}
+        handleClick={handleLoginWithGoogle}
+        type="button"
+      >
+        <span>Sign up with</span>
+        <img src={googleIcon} alt="google icon" />
+      </SecondaryButton>
       <Formik
         initialValues={initialValues}
         validationSchema={schemas.signupSchema}

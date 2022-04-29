@@ -30,6 +30,7 @@ import googleIcon from '../../../assets/svg/googleIcon.svg';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
 import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -117,15 +118,14 @@ function LoginForm() {
                 'LOG IN'
               )}
             </ButtonSubmit>
-            <button
+            <SecondaryButton
               disabled={isLoading}
-              className="googleLoginbutton"
-              onClick={handleLoginWithGoogle}
-              type="button"
+              handleClick={handleLoginWithGoogle}
+              type
             >
               <span>Continue with</span>
               <img src={googleIcon} alt="google icon" />
-            </button>
+            </SecondaryButton>
             <ErrorContainer error={error} />
             <div className="flexBottomText">
               <span className="textSignup">Don&apos;t have an account?</span>

@@ -1,6 +1,5 @@
 import React from 'react';
-
-import './ButtonSubmit.scss';
+import './SecondaryButton.scss';
 
 const buttonSize = {
   sm: {
@@ -13,13 +12,19 @@ const buttonSize = {
     width: '100%'
   }
 };
-
-function ButtonSubmit({ disabled, children, size = 'xl' }) {
+function SecondaryButton({
+  disabled,
+  handleClick,
+  children,
+  size = 'xl',
+  type = false
+}) {
   return (
     <button
       disabled={disabled}
-      className="buttonSubmit"
-      type="submit"
+      className="secondaryButton"
+      onClick={handleClick}
+      type={type ? 'button' : 'submit'}
       label="button"
       style={buttonSize[size]}
     >
@@ -28,4 +33,4 @@ function ButtonSubmit({ disabled, children, size = 'xl' }) {
   );
 }
 
-export default ButtonSubmit;
+export default SecondaryButton;

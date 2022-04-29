@@ -27,13 +27,12 @@ function ChangePasswordForm() {
     <section className="changePasswordFormContainer">
       <h1 className="authHeading">Change Password</h1>
       <Formik
-        style={{ width: '100%' }}
         initialValues={initialValues}
         onSubmit={(values) => handleSubmit(values)}
         validationSchema={schemas.changePasswordSchema}
       >
         {({ errors, touched }) => (
-          <Form style={{ width: '100%' }}>
+          <Form>
             <AccountEditInput
               name="oldPassword"
               error={queryError}
@@ -59,7 +58,7 @@ function ChangePasswordForm() {
               type="password"
             />
             <ButtonSubmit
-              size="200px"
+              size="md"
               disabled={queryState === 'loading'}
               className="changePasswordFormSubmitButton"
             >
