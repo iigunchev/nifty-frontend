@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+// styles
+import './LoginForm.scss';
+import { Waveform } from '@uiball/loaders';
 // redux
 import { useDispatch } from 'react-redux';
 // formik
@@ -6,7 +9,6 @@ import { Formik, Form } from 'formik';
 // router
 import { useNavigate, Link } from 'react-router-dom';
 // redux actions
-import { Waveform } from '@uiball/loaders';
 import { setUser } from '../../../redux/User/userSlice';
 
 import { HOME, SIGN_UP, RESET_PASSWORD } from '../../../routes';
@@ -19,8 +21,6 @@ import {
   signInEmailAndPassword,
   signInWithGoogle
 } from '../../../services/auth/auth';
-// styles
-import './LoginForm.scss';
 // utils
 import apiAuth from '../../../utils/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
@@ -114,10 +114,9 @@ function LoginForm() {
               {isLoading ? (
                 <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
               ) : (
-                'LOGIN'
+                'LOG IN'
               )}
             </ButtonSubmit>
-
             <button
               disabled={isLoading}
               className="googleLoginbutton"
