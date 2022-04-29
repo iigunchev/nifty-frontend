@@ -73,7 +73,6 @@ function LoginForm() {
       setIsLoading(false);
     }
   };
-
   return (
     <>
       <h1 className="authHeading">Login</h1>
