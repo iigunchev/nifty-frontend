@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
 
 import './Account.scss';
@@ -26,7 +27,9 @@ function Account() {
             <UserInfoRow type="Email" details={mockUser.email} />
           </section>
           <div className="buttonWrapper">
-            <button type="button">Update Profile</button>
+            <Link to="/account/edit-profile" className="accountLink">
+              Edit Profile
+            </Link>
           </div>
           <section>
             <div>
@@ -35,7 +38,9 @@ function Account() {
             </div>
           </section>
           <div className="buttonWrapper">
-            <button type="button">Change Password</button>
+            <Link to="/account/change-password" className="accountLink">
+              Change Password
+            </Link>
           </div>
         </div>
         <div>
@@ -45,7 +50,7 @@ function Account() {
             alt="user avatar"
           />
           <button type="button" className="updateAvatar">
-            Change Image
+            Edit
           </button>
         </div>
       </div>

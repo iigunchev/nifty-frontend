@@ -1,5 +1,5 @@
-import { Field } from 'formik';
 import React from 'react';
+import { Field } from 'formik';
 
 // icons
 import userIcon from '../../../assets/img/userIcon.svg';
@@ -49,7 +49,7 @@ function Input({
   );
 }
 
-function InputError({ error, touched, size = '1em' }) {
+export function InputError({ error, touched, size = '1em' }) {
   const styles = {
     fontSize: size
   };
