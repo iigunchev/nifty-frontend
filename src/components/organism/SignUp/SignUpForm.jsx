@@ -48,7 +48,7 @@ function SignUpForm() {
       setError(null);
       // auth in firebase and api
       await signInWithGoogle();
-      const apiUser = await apiAuth.signupWithApi();
+      const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
       navigate(HOME);
