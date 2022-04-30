@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 // styles
