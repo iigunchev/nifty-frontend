@@ -36,7 +36,7 @@ function Input({
             name={name}
             id={`${name}Input`}
             placeholder={placeholder}
-            className={error && touched ? `${'inputError'}` : ''}
+            className={error && touched ? 'inputError' : ''}
           />
         </label>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // styles
 import './LoginForm.scss';
-import { Waveform } from '@uiball/loaders';
+
 // redux
 import { useDispatch } from 'react-redux';
 // formik
@@ -29,7 +29,7 @@ import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
 import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 function LoginForm() {
@@ -110,13 +110,7 @@ function LoginForm() {
               <Link to={RESET_PASSWORD}>Forgot password?</Link>
             </div>
 
-            <ButtonSubmit disabled={isLoading}>
-              {isLoading ? (
-                <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
-              ) : (
-                'LOG IN'
-              )}
-            </ButtonSubmit>
+            <Button isLoading={isLoading}>LOG IN</Button>
             <SecondaryButton
               disabled={isLoading}
               handleClick={handleLoginWithGoogle}

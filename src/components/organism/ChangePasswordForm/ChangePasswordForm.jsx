@@ -7,7 +7,7 @@ import './ChangePasswordForm.scss';
 import { Waveform } from '@uiball/loaders';
 // schema
 import schemas from '../../../utils/schemas';
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import {
   reauthenticate,
@@ -83,7 +83,7 @@ function ChangePasswordForm() {
               >
                 Back
               </SecondaryButton>
-              <ButtonSubmit
+              <Button
                 size="md"
                 disabled={queryState === 'loading'}
                 className="changePasswordFormSubmitButton"
@@ -98,7 +98,7 @@ function ChangePasswordForm() {
                 ) : (
                   'SAVE'
                 )}
-              </ButtonSubmit>
+              </Button>
             </div>
           </Form>
         )}
