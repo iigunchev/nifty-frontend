@@ -1,5 +1,5 @@
 const fetchApi = async (route, authToken, bodyContent, method = 'GET') => {
-  const body = method === 'POST' ? JSON.stringify(bodyContent) : null;
+  const body = method !== 'GET' ? JSON.stringify(bodyContent) : null;
 
   return fetch(`${process.env.REACT_APP_NODE_SERVER}${route}`, {
     headers: {
