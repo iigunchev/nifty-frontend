@@ -77,14 +77,14 @@ function ChangePasswordForm() {
             <div className="flex-wrapper">
               <SecondaryButton
                 disabled={queryState === 'loading'}
-                size="md"
+                size="sm"
                 type="button"
                 handleClick={() => navigate('/account')}
               >
                 Back
               </SecondaryButton>
               <Button
-                size="md"
+                size="sm"
                 disabled={queryState === 'loading'}
                 className="changePasswordFormSubmitButton"
               >
