@@ -10,7 +10,7 @@ import { setUser } from '../../../redux/User/userSlice';
 // schemas
 import schemas from '../../../utils/schemas';
 // components
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
 import {
   changeCurrentUserEmail,
   getCurrentUserProviderId,
@@ -22,6 +22,7 @@ import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput'
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import { ACCOUNT } from '../../../routes';
+import Modal from '../../atoms/Modal/Modal';
 
 function EditProfileForm() {
   // router navigate
@@ -29,6 +30,7 @@ function EditProfileForm() {
 
   // state confirm with pass
   const [togglePassword, setTogglePassword] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   // state error manage
   const [error, setError] = useState(null);
@@ -48,22 +50,39 @@ function EditProfileForm() {
     email: user.email
   };
 
-  const handleSubmit = async ({ password }) => {
+  const handleSubmit = async ({ password } = {}) => {
     setError(null);
+    setIsLoading(true);
     try {
       // if provider comes from email and pass
       if (getCurrentUserProviderId() === 'password') {
-        console.log('no paso je');
         await reauthenticate(password);
         await changeCurrentUserEmail(formValues.email);
       }
 
       const apiUser = await api.fetchEditProfile(formValues, user.id);
       dispatch(setUser(apiUser));
-    } catch (e) {
       navigate(ACCOUNT);
+    } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmitWithoutEmail = async (values) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const apiUser = await api.fetchEditProfile(values, user.id);
+      dispatch(setUser(apiUser));
+      navigate(ACCOUNT);
+    } catch (e) {
+      const message = handleAuthErrors(e.message);
+      setError(message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -73,8 +92,13 @@ function EditProfileForm() {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          setTogglePassword(true);
           setFormValues(values);
+
+          if (values.email !== initialValues.email) {
+            setTogglePassword(true);
+          } else {
+            handleSubmitWithoutEmail(values);
+          }
         }}
         validationSchema={schemas.editProfileSchema}
       >
@@ -82,7 +106,7 @@ function EditProfileForm() {
           <Form>
             {/* //? Padding problems */}
             {/* //!GetCurrentUserProviderId not working at all, refresh when true and see */}
-            {getCurrentUserProviderId() === 'password' && (
+            {getCurrentUserProviderId() === 'password' ? (
               <AccountEditInput
                 error={errors.email}
                 touched={touched.email}
@@ -90,7 +114,7 @@ function EditProfileForm() {
                 name="email"
                 type="text"
               />
-            )}
+            ) : null}
             <AccountEditInput
               error={errors.firstName}
               touched={touched.firstName}
@@ -103,29 +127,33 @@ function EditProfileForm() {
               label="Last name"
               name="lastName"
             />
-            <ButtonSubmit size="md">Save profile</ButtonSubmit>
+            <Button size="md">Save profile</Button>
           </Form>
         )}
       </Formik>
-      <ErrorContainer error={error} />
       {togglePassword && (
-        <Formik
-          initialValues={{
-            password: ''
-          }}
-          onSubmit={handleSubmit}
-        >
-          {() => (
-            <Form>
-              <AccountEditInput
-                type="password"
-                label="Password"
-                name="password"
-              />
-              <ButtonSubmit size="md">Confirm password</ButtonSubmit>
-            </Form>
-          )}
-        </Formik>
+        <Modal title="Confirm your password" setShow={setTogglePassword}>
+          <Formik
+            initialValues={{
+              password: ''
+            }}
+            onSubmit={handleSubmit}
+          >
+            {() => (
+              <Form>
+                <AccountEditInput
+                  type="password"
+                  label="Password"
+                  name="password"
+                />
+                <Button isLoading={isLoading} size="md">
+                  Confirm password
+                </Button>
+              </Form>
+            )}
+          </Formik>
+          <ErrorContainer error={error} />
+        </Modal>
       )}
     </section>
   );
