@@ -1,4 +1,5 @@
 @use '../../sass/abstracts/variables' as *;
+@use '../../sass/core/typography' as t;
 @use '../../sass/layout/flex' as l;
 
 .accountContainer {
@@ -45,4 +46,10 @@
 img.avatar {
   width: 150px;
   margin-top: 2em;
+}
+.editAvatarButton {
+  font-size: t.$text-md;
+  &:hover {
+    text-decoration: underline;
+  }
 }

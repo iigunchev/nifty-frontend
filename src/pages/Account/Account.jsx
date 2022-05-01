@@ -42,7 +42,7 @@ function Account() {
           {(!user.profileImage && (
             <Avvvatars value={user.email} size="150" className="avatar" />
           )) || <img src={user.profileImage} alt="avatar" />}
-          <p>Edit</p>
+          <span className="editAvatarButton">Edit</span>
           <input type="file" hidden id="uploadImage" />
         </label>
       </div>

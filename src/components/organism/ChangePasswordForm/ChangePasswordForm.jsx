@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 
@@ -14,13 +14,11 @@ import {
   auth,
   changePassword
 } from '../../../services/auth/auth';
-import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 function ChangePasswordForm() {
   const [queryError, setQueryError] = useState('');
   const [queryState, setQueryState] = useState('');
 
-  const navigate = useNavigate();
   const initialValues = {
     oldPassword: '',
     newPassword: '',
@@ -76,14 +74,9 @@ function ChangePasswordForm() {
                 type="password"
               />
               <div className="flex-wrapper">
-                <SecondaryButton
-                  disabled={queryState === 'loading'}
-                  size="sm"
-                  type="button"
-                  handleClick={() => navigate('/account')}
-                >
+                <Link to="/account" className="backButton">
                   Back
-                </SecondaryButton>
+                </Link>
                 <Button
                   size="md"
                   disabled={queryState === 'loading'}
