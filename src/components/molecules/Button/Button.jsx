@@ -6,22 +6,23 @@ import { Waveform } from '@uiball/loaders';
 
 const buttonSize = {
   sm: {
-    width: '25%'
+    padding: '10px 10px'
   },
   md: {
-    width: '50%'
+    padding: '10px 20px'
   },
   xl: {
-    width: '100%'
+    padding: '15px 30px'
   }
 };
 
-function Button({ children, size = 'xl', isLoading = null }) {
+function Button({ children, size = 'md', isLoading = null, type = 'button' }) {
   return (
     <button
       disabled={isLoading}
-      className="buttonSubmit"
-      type="submit"
+      className="button"
+      // eslint-disable-next-line react/button-has-type
+      type={type}
       label="button"
       style={buttonSize[size]}
     >

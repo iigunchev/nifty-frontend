@@ -42,67 +42,70 @@ function ChangePasswordForm() {
   };
   return (
     <section className="changePasswordFormContainer">
-      <h1 className="authHeading">Change Password</h1>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values) => handleSubmit(values)}
-        validationSchema={schemas.changePasswordSchema}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <AccountEditInput
-              name="oldPassword"
-              error={queryError}
-              touched={touched.oldPassword}
-              label="Old Password"
-              placeholder=""
-              type="password"
-            />
-            <AccountEditInput
-              name="newPassword"
-              error={errors.newPassword}
-              touched={touched.newPassword}
-              label="New Password"
-              placeholder=""
-              type="password"
-            />
-            <AccountEditInput
-              name="repeatNewPassword"
-              error={errors.repeatNewPassword}
-              touched={touched.repeatNewPassword}
-              label="Repeat New Password"
-              placeholder=""
-              type="password"
-            />
-            <div className="flex-wrapper">
-              <SecondaryButton
-                disabled={queryState === 'loading'}
-                size="sm"
-                type="button"
-                handleClick={() => navigate('/account')}
-              >
-                Back
-              </SecondaryButton>
-              <Button
-                size="sm"
-                disabled={queryState === 'loading'}
-                className="changePasswordFormSubmitButton"
-              >
-                {queryState === 'loading' ? (
-                  <Waveform
-                    size={40}
-                    lineWeight={3.5}
-                    speed={1}
-                    color="white"
-                  />
-                ) : (
-                  'SAVE'
-                )}
-              </Button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <h1 className="heading1">Change Password</h1>
+      <div className="changePasswordFormWrapper">
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values) => handleSubmit(values)}
+          validationSchema={schemas.changePasswordSchema}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <AccountEditInput
+                name="oldPassword"
+                error={queryError}
+                touched={touched.oldPassword}
+                label="Old Password"
+                placeholder=""
+                type="password"
+              />
+              <AccountEditInput
+                name="newPassword"
+                error={errors.newPassword}
+                touched={touched.newPassword}
+                label="New Password"
+                placeholder=""
+                type="password"
+              />
+              <AccountEditInput
+                name="repeatNewPassword"
+                error={errors.repeatNewPassword}
+                touched={touched.repeatNewPassword}
+                label="Repeat New Password"
+                placeholder=""
+                type="password"
+              />
+              <div className="flex-wrapper">
+                <SecondaryButton
+                  disabled={queryState === 'loading'}
+                  size="sm"
+                  type="button"
+                  handleClick={() => navigate('/account')}
+                >
+                  Back
+                </SecondaryButton>
+                <Button
+                  size="md"
+                  disabled={queryState === 'loading'}
+                  className="changePasswordFormSubmitButton"
+                  type="submit"
+                >
+                  {queryState === 'loading' ? (
+                    <Waveform
+                      size={40}
+                      lineWeight={3.5}
+                      speed={1}
+                      color="white"
+                    />
+                  ) : (
+                    'SAVE'
+                  )}
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </section>
   );
 }

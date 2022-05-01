@@ -88,7 +88,7 @@ function EditProfileForm() {
 
   return (
     <section className="profileSection">
-      <h1>Edit your profile</h1>
+      <h1 className="heading1">Edit your profile</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
