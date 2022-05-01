@@ -2,13 +2,12 @@ import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 // styles
 import './SignUpForm.scss';
-import { Waveform } from '@uiball/loaders';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Input from '../../molecules/Input/Input';
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
 // actions
 import { setUser } from '../../../redux/User/userSlice';
 import { HOME, LOGIN } from '../../../routes';
@@ -129,13 +128,7 @@ function SignUpForm() {
               label="Password"
               placeholder="Type your password"
             />
-            <ButtonSubmit disabled={isLoading}>
-              {isLoading ? (
-                <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
-              ) : (
-                'SIGN UP'
-              )}
-            </ButtonSubmit>
+            <Button isLoading={isLoading}>SIGN UP</Button>
           </Form>
         )}
       </Formik>

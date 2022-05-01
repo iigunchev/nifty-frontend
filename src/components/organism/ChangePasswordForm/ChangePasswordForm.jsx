@@ -5,7 +5,7 @@ import './ChangePasswordForm.scss';
 import { Waveform } from '@uiball/loaders';
 // schema
 import schemas from '../../../utils/schemas';
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 
 function ChangePasswordForm() {
@@ -57,7 +57,7 @@ function ChangePasswordForm() {
               placeholder=""
               type="password"
             />
-            <ButtonSubmit
+            <Button
               size="md"
               disabled={queryState === 'loading'}
               className="changePasswordFormSubmitButton"
@@ -67,7 +67,7 @@ function ChangePasswordForm() {
               ) : (
                 'SAVE'
               )}
-            </ButtonSubmit>
+            </Button>
           </Form>
         )}
       </Formik>
