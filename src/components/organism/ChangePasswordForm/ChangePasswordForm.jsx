@@ -74,25 +74,32 @@ function ChangePasswordForm() {
               placeholder=""
               type="password"
             />
-            <SecondaryButton
-              disabled={queryState === 'loading'}
-              size="§"
-              type="button"
-              handleClick={() => navigate('/account')}
-            >
-              Back
-            </SecondaryButton>
-            <ButtonSubmit
-              size="md"
-              disabled={queryState === 'loading'}
-              className="changePasswordFormSubmitButton"
-            >
-              {queryState === 'loading' ? (
-                <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
-              ) : (
-                'SAVE'
-              )}
-            </ButtonSubmit>
+            <div className="flex-wrapper">
+              <SecondaryButton
+                disabled={queryState === 'loading'}
+                size="md"
+                type="button"
+                handleClick={() => navigate('/account')}
+              >
+                Back
+              </SecondaryButton>
+              <ButtonSubmit
+                size="md"
+                disabled={queryState === 'loading'}
+                className="changePasswordFormSubmitButton"
+              >
+                {queryState === 'loading' ? (
+                  <Waveform
+                    size={40}
+                    lineWeight={3.5}
+                    speed={1}
+                    color="white"
+                  />
+                ) : (
+                  'SAVE'
+                )}
+              </ButtonSubmit>
+            </div>
           </Form>
         )}
       </Formik>
