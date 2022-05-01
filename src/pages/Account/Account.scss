@@ -4,6 +4,9 @@
 .accountContainer {
   @include l.flex-container($direction: column, $align: flex-start);
   padding: 2em;
+  a {
+    text-decoration: none;
+  }
 }
 .accountCols {
   @include l.flex-container($align: flex-start, $gap: 3em);

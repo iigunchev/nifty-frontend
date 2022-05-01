@@ -25,7 +25,7 @@ function ChangePasswordForm() {
   };
   return (
     <section className="changePasswordFormContainer">
-      <h1 className="authHeading">Change Password</h1>
+      <h1 className="heading1">Change Password</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => handleSubmit(values)}
@@ -61,6 +61,7 @@ function ChangePasswordForm() {
               size="md"
               disabled={queryState === 'loading'}
               className="changePasswordFormSubmitButton"
+              type="submit"
             >
               {queryState === 'loading' ? (
                 <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
