@@ -2,7 +2,7 @@ import React from 'react';
 
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import GIRL from '../../assets/svg/woman-music.svg';
-import Button from '../../components/molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../components/molecules/Button/Button';
 
 import './Landing.scss';
 
@@ -41,7 +41,9 @@ function Landing() {
               <br /> from emerging and major artists
               <br /> around the world
             </p>
-            <Button>START NOW</Button>
+            <div className="buttonWrapper">
+              <Button size="xl">START NOW</Button>
+            </div>
           </div>
         </section>
         <section className="rightLandingSection">
