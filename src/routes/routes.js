@@ -1,4 +1,5 @@
-export const HOME = '/';
+export const HOME = '/home';
+export const LANDING = '/';
 export const LOGIN = '/login';
 export const SIGN_UP = '/sign-up';
 export const RESET_PASSWORD = '/password/reset';

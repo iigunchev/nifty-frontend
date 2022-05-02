@@ -11,11 +11,13 @@ import Signup from './pages/SignUp/Signup';
 import Account from './pages/Account/Account';
 import EditProfile from './pages/Account/EditProfile/EditProfile';
 import ChangePassword from './pages/Account/ChangePassword/ChangePassword';
+import Landing from './pages/Landing/Landing';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path={route.LANDING} element={<Landing />} />
         <Route
           path={route.HOME}
           element={
