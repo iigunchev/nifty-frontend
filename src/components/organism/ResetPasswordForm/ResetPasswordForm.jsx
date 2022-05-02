@@ -55,7 +55,9 @@ function ResetPasswordForm() {
               placeholder="example@example.com"
             />
 
-            <Button>Reset Password</Button>
+            <Button type="submit" size="xl">
+              Reset Password
+            </Button>
 
             <div className="loginLink">
               <Link to={LOGIN}>Back to Login</Link>

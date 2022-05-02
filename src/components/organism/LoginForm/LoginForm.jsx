@@ -110,7 +110,14 @@ function LoginForm() {
               <Link to={RESET_PASSWORD}>Forgot password?</Link>
             </div>
 
-            <Button isLoading={isLoading}>LOG IN</Button>
+            <Button
+              className="loginButton"
+              isLoading={isLoading}
+              type="submit"
+              size="xl"
+            >
+              LOG IN
+            </Button>
             <SecondaryButton
               disabled={isLoading}
               handleClick={handleLoginWithGoogle}

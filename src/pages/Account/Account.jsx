@@ -11,11 +11,11 @@ function Account() {
   const user = useSelector((state) => state.user);
   return (
     <main className="accountContainer">
-      <h1>Account</h1>
+      <h1 className="heading1">Account</h1>
       <div className="accountCols">
         <div>
           <section>
-            <h2>Details</h2>
+            <h2 className="heading2">Details</h2>
             <UserInfoRow type="First Name" details={user.firstName} />
             <UserInfoRow type="Last Name" details={user.lastName} />
             <UserInfoRow type="Email" details={user.email} />
@@ -27,7 +27,7 @@ function Account() {
           </div>
           <section>
             <div>
-              <h2>Password</h2>
+              <h2 className="heading2">Password</h2>
               <UserInfoRow type="Password" details="**********" />
             </div>
           </section>
@@ -42,7 +42,7 @@ function Account() {
           {(!user.profileImage && (
             <Avvvatars value={user.email} size="150" className="avatar" />
           )) || <img src={user.profileImage} alt="avatar" />}
-          <p>Edit</p>
+          <span className="editAvatarButton">Edit</span>
           <input type="file" hidden id="uploadImage" />
         </label>
       </div>
