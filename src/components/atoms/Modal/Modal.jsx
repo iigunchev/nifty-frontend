@@ -3,15 +3,15 @@
 import React from 'react';
 import './Modal.scss';
 
-function Modal({ children, title, setShow }) {
+function Modal({ children, title, setShow, showing }) {
   return (
     <div
       role="button"
+      className={showing ? 'showModal modal' : 'modal'}
       onKeyPress={(e) => (e.key === 'Escape' ? setShow(false) : null)}
       onClick={() => {
         setShow(false);
       }}
-      className="modal"
     >
       <div
         className="modalContent"
