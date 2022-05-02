@@ -1,5 +1,22 @@
 {
   "signup": {
-    "title": "Registrate"
+    "title": "Crear cuenta",
+    "firstName": {
+      "label": "Nombre",
+      "placeholder": "Introduce tu nombre"
+    },
+    "lastName": {
+      "label": "Apellidos",
+      "placeholder": "Introduce tus apellidos"
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Introduce tu correo"
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Introduce tu contraseña"
+    },
+    "submit": "Registrarte"
   }
 }

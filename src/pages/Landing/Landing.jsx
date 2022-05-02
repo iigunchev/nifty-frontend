@@ -3,6 +3,7 @@ import React from 'react';
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import GIRL from '../../assets/svg/woman-music.svg';
 import Button from '../../components/molecules/Button/Button';
+import SelectLang from '../../components/molecules/SelectLang/SelectLang';
 
 import './Landing.scss';
 
@@ -15,6 +16,9 @@ function Landing() {
         </div>
         <nav className="navWrapper">
           <ul className="navList">
+            <li>
+              <SelectLang />
+            </li>
             <li>
               <a href="http://localhost:3000/sign-up">Sign Up</a>
             </li>

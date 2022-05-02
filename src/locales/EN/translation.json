@@ -1,5 +1,22 @@
 {
   "signup": {
-    "title": "Sign up"
+    "title": "Sign up",
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Type your first name"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Type your last name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Type your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Type your password"
+    },
+    "submit": "Sign up"
   }
 }

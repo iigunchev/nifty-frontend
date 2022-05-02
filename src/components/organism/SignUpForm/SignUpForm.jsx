@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import './SignUpForm.scss';
 // i18n
 import { useTranslation } from 'react-i18next';
-import { changeLanguage } from 'i18next';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
@@ -44,10 +43,6 @@ function SignUpForm() {
     lastName: '',
     email: '',
     password: ''
-  };
-
-  const changeLanguageHandler = (e) => {
-    changeLanguage(e.target.value);
   };
 
   const handleLoginWithGoogle = async () => {
@@ -108,24 +103,24 @@ function SignUpForm() {
               touched={touched.firstName}
               icon="user"
               name="firstName"
-              label="First Name"
-              placeholder="Type your Name"
+              label={t('signup.firstName.label')}
+              placeholder={t('signup.firstName.placeholder')}
             />
             <Input
               error={errors.lastName}
               touched={touched.lastName}
               icon="user"
               name="lastName"
-              label="Last Name"
-              placeholder="Type your last name"
+              label={t('signup.lastName.label')}
+              placeholder={t('signup.lastName.placeholder')}
             />
             <Input
               error={errors.email}
               touched={touched.email}
               icon="email"
               name="email"
-              label="Email"
-              placeholder="Type your email"
+              label={t('signup.email.label')}
+              placeholder={t('signup.email.placeholder')}
             />
             <Input
               error={errors.password}
@@ -134,8 +129,8 @@ function SignUpForm() {
               icon="password"
               password
               name="password"
-              label="Password"
-              placeholder="Type your password"
+              label={t('signup.password.label')}
+              placeholder={t('signup.password.placeholder')}
             />
             <Button isLoading={isLoading} type="submit" size="xl">
               SIGN UP
@@ -147,10 +142,6 @@ function SignUpForm() {
       <div className="loginLink">
         <Link to={LOGIN}>Back to Login</Link>
       </div>
-      <select name="language" onChange={changeLanguageHandler}>
-        <option value="es">ES</option>
-        <option value="en">EN</option>
-      </select>
     </>
   );
 }
