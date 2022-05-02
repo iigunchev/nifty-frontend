@@ -2,6 +2,9 @@ import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 // styles
 import './SignUpForm.scss';
+// i18n
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
@@ -27,6 +30,8 @@ import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 import googleIcon from '../../../assets/svg/googleIcon.svg';
 
 function SignUpForm() {
+  // i18
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // navigatings
@@ -39,6 +44,10 @@ function SignUpForm() {
     lastName: '',
     email: '',
     password: ''
+  };
+
+  const changeLanguageHandler = (e) => {
+    changeLanguage(e.target.value);
   };
 
   const handleLoginWithGoogle = async () => {
@@ -78,7 +87,7 @@ function SignUpForm() {
 
   return (
     <>
-      <h1 className="authHeading">Sign up</h1>
+      <h1 className="authHeading">{t('signup.title')}</h1>
       <SecondaryButton
         disabled={isLoading}
         handleClick={handleLoginWithGoogle}
@@ -138,6 +147,10 @@ function SignUpForm() {
       <div className="loginLink">
         <Link to={LOGIN}>Back to Login</Link>
       </div>
+      <select name="language" onChange={changeLanguageHandler}>
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+      </select>
     </>
   );
 }
