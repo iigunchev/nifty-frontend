@@ -1,7 +1,7 @@
 const handleAuthErrors = (message) => {
   //* login with google errors
   if (message === 'Firebase: Error (auth/popup-closed-by-user).') {
-    return 'Popup closed, login canceled!';
+    return 'Popup closed, authentication canceled!';
   }
   //* reset pass errors
   if (message === 'Firebase: Error (auth/user-not-found).') {

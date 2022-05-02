@@ -1,12 +1,16 @@
 @use '../../sass/abstracts/variables' as *;
+@use '../../sass/core/typography' as t;
 @use '../../sass/layout/flex' as l;
 
 .accountContainer {
   @include l.flex-container($direction: column, $align: flex-start);
   padding: 2em;
+  a {
+    text-decoration: none;
+  }
 }
 .accountCols {
-  @include l.flex-container($align: flex-start, $gap: 3em); 
+  @include l.flex-container($align: flex-start, $gap: 3em);
   section {
     width: 600px;
     margin-top: 2em;
@@ -15,7 +19,8 @@
     @include l.flex-container($spacing: flex-end);
     width: 100%;
   }
-  button {
+  .accountLink {
+    @include l.flex-container($spacing: center);
     margin-top: 1em;
     font-weight: 500;
     height: 30px;
@@ -26,15 +31,25 @@
     border-radius: $border;
     background: $primary-gradient;
   }
-  button.updateAvatar {
+
+  .updateAvatar {
+    text-align: center;
     background: transparent;
+    cursor: pointer;
     color: $text-dark;
     font-weight: 400;
     padding: 0;
+    font-size: 1.5em;
     width: 100%;
   }
 }
 img.avatar {
   width: 150px;
   margin-top: 2em;
+}
+.editAvatarButton {
+  font-size: t.$text-md;
+  &:hover {
+    text-decoration: underline;
+  }
 }

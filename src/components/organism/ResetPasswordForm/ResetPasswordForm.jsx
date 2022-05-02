@@ -14,7 +14,7 @@ import { sendResetEmail } from '../../../services/auth/auth';
 import schemas from '../../../utils/schemas';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
 
 function ResetPasswordForm() {
   const navigate = useNavigate();
@@ -55,7 +55,9 @@ function ResetPasswordForm() {
               placeholder="example@example.com"
             />
 
-            <ButtonSubmit>Reset Password</ButtonSubmit>
+            <Button type="submit" size="xl">
+              Reset Password
+            </Button>
 
             <div className="loginLink">
               <Link to={LOGIN}>Back to Login</Link>

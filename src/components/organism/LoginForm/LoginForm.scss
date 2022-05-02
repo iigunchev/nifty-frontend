@@ -6,7 +6,6 @@
   padding-top: 8px;
   text-align: right !important;
 }
-
 .flexBottomText {
   display: -webkit-box;
   display: -webkit-flex;
@@ -33,37 +32,19 @@
   font-weight: 500;
   line-height: 1.5;
   text-transform: uppercase;
-}
-
-.googleLoginbutton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-top: 1em;
-  height: 50px;
-  background-color: $bg-light;
-  border: 1px solid $accent-light;
-  width: 100%;
-  border-radius: $border;
-  padding: 1em;
-  img {
-    height: 1em;
-  }
-}
-a {
-  text-decoration: none;
-  color: $text-darkgray;
-  &:visited {
+  
+  a {
+    text-decoration: none;
     color: $text-darkgray;
-  }
-  &:hover {
-    color: $text-gray;
+    &:visited {
+      color: $text-darkgray;
+    }
+    &:hover {
+      color: $text-gray;
+    }
   }
 }
-button {
+  button {
   outline: none !important;
   border: none;
   background: transparent;

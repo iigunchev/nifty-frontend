@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // styles
 import './LoginForm.scss';
-import { Waveform } from '@uiball/loaders';
+
 // redux
 import { useDispatch } from 'react-redux';
 // formik
@@ -29,7 +29,8 @@ import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 
-import ButtonSubmit from '../../molecules/ButtonSubmit/ButtonSubmit';
+import Button from '../../molecules/Button/Button';
+import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function LoginForm() {
       setError(null);
       // auth in firebase and api
       await signInWithGoogle();
-      const apiUser = await apiAuth.signupWithApi();
+      const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
       navigate(HOME);
@@ -109,23 +110,22 @@ function LoginForm() {
               <Link to={RESET_PASSWORD}>Forgot password?</Link>
             </div>
 
-            <div className="loginBgButton" />
-            <ButtonSubmit disabled={isLoading}>
-              {isLoading ? (
-                <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
-              ) : (
-                'LOG IN'
-              )}
-            </ButtonSubmit>
-            <button
+            <Button
+              className="loginButton"
+              isLoading={isLoading}
+              type="submit"
+              size="xl"
+            >
+              LOG IN
+            </Button>
+            <SecondaryButton
               disabled={isLoading}
-              className="googleLoginbutton"
-              onClick={handleLoginWithGoogle}
-              type="button"
+              handleClick={handleLoginWithGoogle}
+              type
             >
               <span>Continue with</span>
               <img src={googleIcon} alt="google icon" />
-            </button>
+            </SecondaryButton>
             <ErrorContainer error={error} />
             <div className="flexBottomText">
               <span className="textSignup">Don&apos;t have an account?</span>

@@ -7,7 +7,7 @@ import * as route from './routes';
 import ProtectedRoute from './components/molecules/ProtectedRoute/ProtectedRoute';
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
-import Signup from './pages/SignUp/Signup';
+import Signup from './pages/Signup/Signup';
 import Account from './pages/Account/Account';
 import EditProfile from './pages/Account/EditProfile/EditProfile';
 import ChangePassword from './pages/Account/ChangePassword/ChangePassword';
@@ -37,7 +37,7 @@ function App() {
         />
 
         <Route
-          path={route.EDIT_PROFILE}
+          path="/account/edit-profile"
           element={
             <ProtectedRoute>
               <EditProfile />
@@ -45,7 +45,7 @@ function App() {
           }
         />
         <Route
-          path={route.CHANGE_PASSWORD}
+          path="/account/change-password"
           element={
             <ProtectedRoute>
               <ChangePassword />

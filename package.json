@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "@uiball/loaders": "^1.2.5",
+    "avvvatars-react": "^0.4.2",
     "dotenv": "^16.0.0",
     "firebase": "^9.6.11",
     "formik": "^2.2.9",

@@ -34,8 +34,35 @@ const resetPasswordSchema = Yup.object().shape({
     .required('Email is required')
 });
 
+const editProfileSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min('2', 'First name too short')
+    .max('20', 'First name too long')
+    .required('First name is required'),
+  lastName: Yup.string()
+    .min('2', 'Last name too short')
+    .max('30', 'Last name too long')
+    .required('Last name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required')
+});
+
+const changePasswordSchema = Yup.object().shape({
+  newPassword: Yup.string()
+    .required('Password required')
+    .matches(
+      /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+      'Must Contain 8 Characters,One Lowercase, One Uppercase, One Number and One Special Case Character'
+    ),
+  repeatNewPassword: Yup.string().oneOf(
+    [Yup.ref('newPassword'), null],
+    'Passwords must match'
+  )
+});
+
 export default {
   signupSchema,
   signInSchema,
-  resetPasswordSchema
+  resetPasswordSchema,
+  editProfileSchema,
+  changePasswordSchema
 };

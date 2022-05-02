@@ -1,5 +1,5 @@
-import { Field } from 'formik';
 import React from 'react';
+import { Field } from 'formik';
 
 // icons
 import userIcon from '../../../assets/img/userIcon.svg';
@@ -36,20 +36,20 @@ function Input({
             name={name}
             id={`${name}Input`}
             placeholder={placeholder}
-            className={error && touched ? `${'inputError'}` : ''}
+            className={error && touched ? 'inputError' : ''}
           />
         </label>
       </div>
       <InputError
         error={error}
         touched={touched}
-        size={signUpPassword ? '0.70em' : null}
+        size={signUpPassword ? '0.65em' : null}
       />
     </div>
   );
 }
 
-function InputError({ error, touched, size = '1em' }) {
+export function InputError({ error, touched, size = '1em' }) {
   const styles = {
     fontSize: size
   };

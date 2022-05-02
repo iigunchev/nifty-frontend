@@ -1,3 +1,4 @@
+@use '../abstracts/variables' as *;
 // Fonts
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
@@ -9,3 +10,21 @@ $text-md: 16px;
 $text-lg: 24px;
 $text-xl: 32px;
 $text-2xl: 40px;
+
+// Headings
+
+.heading1 {
+  color: $text-dark;
+  font-size: $text-xl;
+  font-weight: 700;
+}
+.heading2 {
+  color: $text-dark;
+  font-size: $text-lg;
+  font-weight: 600;
+}
+.heading3 {
+  color: $text-dark;
+  font-size: $text-md;
+  font-weight: 500;
+}
