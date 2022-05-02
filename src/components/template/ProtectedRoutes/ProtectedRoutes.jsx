@@ -19,8 +19,8 @@ function ProtectedRoutes() {
 
       <Route path={route.ACCOUNT} element={<Account />} />
 
-      <Route path="/account/edit-profile" element={<EditProfile />} />
-      <Route path="/account/change-password" element={<ChangePassword />} />
+      <Route path={route.EDIT_PROFILE} element={<EditProfile />} />
+      <Route path={route.CHANGE_PASSWORD} element={<ChangePassword />} />
     </Routes>
   );
 }

@@ -7,12 +7,14 @@ import ProtectedRoutes from './components/template/ProtectedRoutes/ProtectedRout
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Signup from './pages/Signup/Signup';
+import Landing from './pages/Landing/Landing';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={`${route.APP}/*`} element={<ProtectedRoutes />} />
+        <Route path={route.LANDING} element={<Landing />} />
         <Route path={route.LOGIN} element={<Login />} />
         <Route path={route.SIGN_UP} element={<Signup />} />
         <Route path={route.RESET_PASSWORD} element={<ResetPassword />} />

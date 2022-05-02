@@ -9,7 +9,6 @@ import { Formik, Form } from 'formik';
 // router
 import { useNavigate, Link } from 'react-router-dom';
 // components
-import { Waveform } from '@uiball/loaders';
 import Input from '../../molecules/Input/Input';
 // redux actions
 import { setUser } from '../../../redux/User/userSlice';
@@ -111,7 +110,14 @@ function LoginForm() {
               <Link to={RESET_PASSWORD}>Forgot password?</Link>
             </div>
 
-            <Button isLoading={isLoading}>LOG IN</Button>
+            <Button
+              className="loginButton"
+              isLoading={isLoading}
+              type="submit"
+              size="xl"
+            >
+              LOG IN
+            </Button>
             <SecondaryButton
               disabled={isLoading}
               handleClick={handleLoginWithGoogle}

@@ -2,16 +2,15 @@
 @use '../../../sass/core/typography' as t;
 @use '../../../sass/abstracts/mixins' as m;
 
-.buttonSubmit {
+.button {
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
-  height: 50px;
-  color: #fff;
+  width: 100%;
+  font-weight: 600;
   line-height: 1.2;
-  padding: 0 20px;
   border-radius: $border;
+  color: #fff;
   background: $primary-gradient;
 }

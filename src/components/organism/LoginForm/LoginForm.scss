@@ -6,7 +6,6 @@
   padding-top: 8px;
   text-align: right !important;
 }
-
 .flexBottomText {
   display: -webkit-box;
   display: -webkit-flex;
@@ -33,19 +32,19 @@
   font-weight: 500;
   line-height: 1.5;
   text-transform: uppercase;
-}
-
-a {
-  text-decoration: none;
-  color: $text-darkgray;
-  &:visited {
+  
+  a {
+    text-decoration: none;
     color: $text-darkgray;
-  }
-  &:hover {
-    color: $text-gray;
+    &:visited {
+      color: $text-darkgray;
+    }
+    &:hover {
+      color: $text-gray;
+    }
   }
 }
-button {
+  button {
   outline: none !important;
   border: none;
   background: transparent;

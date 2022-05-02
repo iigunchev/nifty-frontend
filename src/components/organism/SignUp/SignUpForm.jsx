@@ -128,7 +128,9 @@ function SignUpForm() {
               label="Password"
               placeholder="Type your password"
             />
-            <Button isLoading={isLoading}>SIGN UP</Button>
+            <Button isLoading={isLoading} type="submit" size="xl">
+              SIGN UP
+            </Button>
           </Form>
         )}
       </Formik>

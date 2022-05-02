@@ -1,9 +1,10 @@
 export const HOME = '/home';
+export const LANDING = '/';
 export const LOGIN = '/login';
 export const SIGN_UP = '/sign-up';
 export const RESET_PASSWORD = '/password/reset';
 export const AUTH = 'auth';
 export const ACCOUNT = '/account';
-export const EDIT_PROFILE = '/edit-profile';
-export const CHANGE_PASSWORD = '/change-password';
+export const EDIT_PROFILE = '/account/edit-profile';
+export const CHANGE_PASSWORD = '/account/change-password';
 export const APP = '/app';

@@ -5,7 +5,7 @@ import { Form, Formik } from 'formik';
 import './EditProfileForm.scss';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setUser } from '../../../redux/User/userSlice';
 // schemas
 import schemas from '../../../utils/schemas';
@@ -13,7 +13,6 @@ import schemas from '../../../utils/schemas';
 import Button from '../../molecules/Button/Button';
 import {
   changeCurrentUserEmail,
-  getCurrentUserProviderId,
   reauthenticate
 } from '../../../services/auth/auth';
 // API utils
@@ -21,7 +20,7 @@ import api from '../../../utils/fetchEditAccount';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
-import { ACCOUNT } from '../../../routes';
+import { ACCOUNT, APP } from '../../../routes';
 import Modal from '../../atoms/Modal/Modal';
 
 function EditProfileForm() {
@@ -43,7 +42,6 @@ function EditProfileForm() {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
   const initialValues = {
     firstName: user.firstName,
     lastName: user.lastName ? user.lastName : '',
@@ -55,7 +53,7 @@ function EditProfileForm() {
     setIsLoading(true);
     try {
       // if provider comes from email and pass
-      if (getCurrentUserProviderId() === 'password') {
+      if (user.providerId === 'password') {
         await reauthenticate(password);
         await changeCurrentUserEmail(formValues.email);
       }
@@ -88,7 +86,7 @@ function EditProfileForm() {
 
   return (
     <section className="profileSection">
-      <h1>Edit your profile</h1>
+      <h1 className="heading1">Edit your profile</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -105,8 +103,7 @@ function EditProfileForm() {
         {({ errors, touched }) => (
           <Form>
             {/* //? Padding problems */}
-            {/* //!GetCurrentUserProviderId not working at all, refresh when true and see */}
-            {getCurrentUserProviderId() === 'password' ? (
+            {user.providerId === 'password' ? (
               <AccountEditInput
                 error={errors.email}
                 touched={touched.email}
@@ -127,34 +124,43 @@ function EditProfileForm() {
               label="Last name"
               name="lastName"
             />
-            <Button size="md">Save profile</Button>
+            <div className="flexWrapper">
+              <Link to={`${APP}${ACCOUNT}`} className="backButton">
+                Back
+              </Link>
+              <Button size="md" type="submit">
+                Save profile
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>
-      {togglePassword && (
-        <Modal title="Confirm your password" setShow={setTogglePassword}>
-          <Formik
-            initialValues={{
-              password: ''
-            }}
-            onSubmit={handleSubmit}
-          >
-            {() => (
-              <Form>
-                <AccountEditInput
-                  type="password"
-                  label="Password"
-                  name="password"
-                />
-                <Button isLoading={isLoading} size="md">
-                  Confirm password
-                </Button>
-              </Form>
-            )}
-          </Formik>
-          <ErrorContainer error={error} />
-        </Modal>
-      )}
+      <Modal
+        title="Confirm your password"
+        showing={togglePassword}
+        setShow={setTogglePassword}
+      >
+        <Formik
+          initialValues={{
+            password: ''
+          }}
+          onSubmit={handleSubmit}
+        >
+          {() => (
+            <Form>
+              <AccountEditInput
+                type="password"
+                label="Password"
+                name="password"
+              />
+              <Button isLoading={isLoading} size="md" type="submit">
+                Confirm password
+              </Button>
+            </Form>
+          )}
+        </Formik>
+        <ErrorContainer error={error} />
+      </Modal>
     </section>
   );
 }
