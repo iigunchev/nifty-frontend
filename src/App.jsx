@@ -2,57 +2,19 @@ import React from 'react';
 // react router dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // pages
-import Home from './pages/Home/Home';
 import * as route from './routes';
-import ProtectedRoute from './components/molecules/ProtectedRoute/ProtectedRoute';
+import ProtectedRoutes from './components/template/ProtectedRoutes/ProtectedRoutes';
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Signup from './pages/Signup/Signup';
-import Account from './pages/Account/Account';
-import EditProfile from './pages/Account/EditProfile/EditProfile';
-import ChangePassword from './pages/Account/ChangePassword/ChangePassword';
 import Landing from './pages/Landing/Landing';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path={`${route.APP}/*`} element={<ProtectedRoutes />} />
         <Route path={route.LANDING} element={<Landing />} />
-        <Route
-          path={route.HOME}
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path={route.ACCOUNT}
-          element={
-            <ProtectedRoute>
-              <Account />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/account/edit-profile"
-          element={
-            <ProtectedRoute>
-              <EditProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/account/change-password"
-          element={
-            <ProtectedRoute>
-              <ChangePassword />
-            </ProtectedRoute>
-          }
-        />
-
         <Route path={route.LOGIN} element={<Login />} />
         <Route path={route.SIGN_UP} element={<Signup />} />
         <Route path={route.RESET_PASSWORD} element={<ResetPassword />} />

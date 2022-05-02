@@ -20,7 +20,7 @@ import api from '../../../utils/fetchEditAccount';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
-import { ACCOUNT } from '../../../routes';
+import { ACCOUNT, APP } from '../../../routes';
 import Modal from '../../atoms/Modal/Modal';
 
 function EditProfileForm() {
@@ -125,7 +125,7 @@ function EditProfileForm() {
               name="lastName"
             />
             <div className="flexWrapper">
-              <Link to="/account" className="backButton">
+              <Link to={`${APP}${ACCOUNT}`} className="backButton">
                 Back
               </Link>
               <Button size="md" type="submit">

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 // components
 import Avvvatars from 'avvvatars-react';
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
-
+// routes
+import { APP, CHANGE_PASSWORD, EDIT_PROFILE } from '../../routes';
 import './Account.scss';
 
 function Account() {
@@ -21,7 +22,7 @@ function Account() {
             <UserInfoRow type="Email" details={user.email} />
           </section>
           <div className="buttonWrapper">
-            <Link to="/account/edit-profile" className="accountLink">
+            <Link to={`${APP}${EDIT_PROFILE}`} className="accountLink">
               Edit Profile
             </Link>
           </div>
@@ -32,7 +33,7 @@ function Account() {
             </div>
           </section>
           <div className="buttonWrapper">
-            <Link to="/account/change-password" className="accountLink">
+            <Link to={`${APP}${CHANGE_PASSWORD}`} className="accountLink">
               Change Password
             </Link>
           </div>

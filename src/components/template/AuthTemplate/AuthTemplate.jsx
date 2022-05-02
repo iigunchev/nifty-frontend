@@ -3,7 +3,7 @@ import React from 'react';
 // scss
 import './AuthTemplate.scss';
 // icons
-import LOGO from '../../assets/svg/LogoViolet.svg';
+import LOGO from '../../../assets/svg/LogoViolet.svg';
 
 function AuthTemplate({ children }) {
   return (

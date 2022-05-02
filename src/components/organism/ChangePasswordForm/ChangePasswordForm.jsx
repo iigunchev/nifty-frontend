@@ -14,6 +14,7 @@ import {
   auth,
   changePassword
 } from '../../../services/auth/auth';
+import { ACCOUNT, APP } from '../../../routes';
 
 function ChangePasswordForm() {
   const [queryError, setQueryError] = useState('');
@@ -74,7 +75,7 @@ function ChangePasswordForm() {
                 type="password"
               />
               <div className="flexWrapper">
-                <Link to="/account" className="backButton">
+                <Link to={`${APP}${ACCOUNT}`} className="backButton">
                   Back
                 </Link>
                 <Button

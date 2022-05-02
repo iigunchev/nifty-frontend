@@ -1,6 +1,6 @@
 import React from 'react';
 import ResetPasswordForm from '../../components/organism/ResetPasswordForm/ResetPasswordForm';
-import AuthTemplate from '../../components/template/AuthTemplate';
+import AuthTemplate from '../../components/template/AuthTemplate/AuthTemplate';
 
 function ResetPassword() {
   return (
