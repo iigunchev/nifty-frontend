@@ -11,7 +11,7 @@ function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to={route.LANDING} replace />;
   }
   return (
     <Routes>
