@@ -24,22 +24,20 @@ function Landing() {
           </ul>
         </nav>
       </header>
-      <div className="flexWrapper">
+      <article className="flexWrapper">
         <section className="leftLandingSection">
           <div className="leftLandingWrapper">
-            <div className="new">
+            <div className="newContainer">
               <span>NEW</span>
               <p>Create your own playlist</p>
             </div>
-            <h1>
+            <p className="headingTitle">
               Never Stop <br />
               Listening
-            </h1>
+            </p>
             <p className="landingText">
-              Discover, stream and share a <br />
-              constantly expanding mix of music
-              <br /> from emerging and major artists
-              <br /> around the world
+              Discover, stream and share a constantly expanding mix of music
+              from emerging and major artists around the world
             </p>
             <div className="buttonWrapper">
               <Button size="xl">START NOW</Button>
@@ -51,7 +49,7 @@ function Landing() {
             <img src={GIRL} alt="girl-music" />
           </div>
         </section>
-      </div>
+      </article>
     </div>
   );
 }
