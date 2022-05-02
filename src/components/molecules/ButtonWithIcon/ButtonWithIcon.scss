@@ -1,0 +1,20 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.buttonWithIcon {
+  background: $primary-gradient;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  color: white;
+  width: 28px;
+  height: 28px;
+}
+.playButtonWrapper {
+  width: 25%;
+}

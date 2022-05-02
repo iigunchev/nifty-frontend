@@ -8,6 +8,7 @@ import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Signup from './pages/Signup/Signup';
 import Landing from './pages/Landing/Landing';
+import TrendingList from './components/organism/TrendingList/TrendingList';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path={route.LOGIN} element={<Login />} />
         <Route path={route.SIGN_UP} element={<Signup />} />
         <Route path={route.RESET_PASSWORD} element={<ResetPassword />} />
+        <Route path="trending-tracks" element={<TrendingList />} />
       </Routes>
     </BrowserRouter>
   );
