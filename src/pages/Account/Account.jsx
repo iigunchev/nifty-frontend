@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // components
-import Avvvatars from 'avvvatars-react';
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
 // routes
 import { APP, CHANGE_PASSWORD, EDIT_PROFILE } from '../../routes';
 import './Account.scss';
+import Avatar from '../../components/atoms/Avatar/Avatar';
 
 function Account() {
   const user = useSelector((state) => state.user);
@@ -40,9 +40,7 @@ function Account() {
         </div>
 
         <label htmlFor="uploadImage" className="updateAvatar">
-          {(!user.profileImage && (
-            <Avvvatars value={user.email} size="150" className="avatar" />
-          )) || <img src={user.profileImage} alt="avatar" />}
+          <Avatar />
           <span className="editAvatarButton">Edit</span>
           <input type="file" hidden id="uploadImage" />
         </label>
