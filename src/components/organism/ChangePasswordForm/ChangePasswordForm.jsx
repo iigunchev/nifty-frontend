@@ -73,7 +73,7 @@ function ChangePasswordForm() {
                 placeholder=""
                 type="password"
               />
-              <div className="flex-wrapper">
+              <div className="flexWrapper">
                 <Link to="/account" className="backButton">
                   Back
                 </Link>

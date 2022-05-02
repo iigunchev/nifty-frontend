@@ -5,7 +5,7 @@ import { Form, Formik } from 'formik';
 import './EditProfileForm.scss';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setUser } from '../../../redux/User/userSlice';
 // schemas
 import schemas from '../../../utils/schemas';
@@ -42,7 +42,6 @@ function EditProfileForm() {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(user);
   const initialValues = {
     firstName: user.firstName,
     lastName: user.lastName ? user.lastName : '',
@@ -125,9 +124,14 @@ function EditProfileForm() {
               label="Last name"
               name="lastName"
             />
-            <Button size="md" type="submit">
-              Save profile
-            </Button>
+            <div className="flexWrapper">
+              <Link to="/account" className="backButton">
+                Back
+              </Link>
+              <Button size="md" type="submit">
+                Save profile
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>
