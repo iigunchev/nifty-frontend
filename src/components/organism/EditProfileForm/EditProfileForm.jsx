@@ -127,7 +127,9 @@ function EditProfileForm() {
               label="Last name"
               name="lastName"
             />
-            <Button size="md">Save profile</Button>
+            <Button size="md" type="submit">
+              Save profile
+            </Button>
           </Form>
         )}
       </Formik>
@@ -146,7 +148,7 @@ function EditProfileForm() {
                   label="Password"
                   name="password"
                 />
-                <Button isLoading={isLoading} size="md">
+                <Button isLoading={isLoading} size="md" type="submit">
                   Confirm password
                 </Button>
               </Form>
