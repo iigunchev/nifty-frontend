@@ -4,23 +4,26 @@ import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import './TrendingItem.scss';
 import { ReactComponent as SVG } from '../../../assets/svg/verticalDots.svg';
 
-function TrendingItem() {
+function TrendingItem({
+  spot,
+  artistImg,
+  trackName,
+  trackDuration,
+  artistName
+}) {
   return (
     <div className="trendingItemContainer">
-      <span className="trendingSpot">1</span>
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ75VCBzmMSP6nD506JfAy8GXuuRMqese0Nr-vetjHT4wQXbPnaHL3ZkvaBePzYTCo03Pc&usqp=CAU"
-        alt="rosalia nene"
-      />
+      <span className="trendingSpot">{spot}</span>
+      <img src={artistImg} alt={`${artistName} ${trackName}`} />
 
       <div className="detailsWrapper">
-        <span className="detailsName">Motomami</span>
+        <span className="detailsName">{trackName}</span>
         <div className="detailsOthers">
-          <span>Rosalia</span>
-          <span>Flamenco</span>
+          <span>{artistName}</span>
+          {/* <span>Flamenco</span> */}
         </div>
       </div>
-      <span>3:05</span>
+      <span>{trackDuration}</span>
       <ButtonWithIcon />
       <button type="button" title="More options">
         <SVG className="verticalDots" />
