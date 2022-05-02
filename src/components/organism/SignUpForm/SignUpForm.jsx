@@ -10,7 +10,7 @@ import Input from '../../molecules/Input/Input';
 import Button from '../../molecules/Button/Button';
 // actions
 import { setUser } from '../../../redux/User/userSlice';
-import { HOME, LOGIN } from '../../../routes';
+import { APP, LOGIN } from '../../../routes';
 // auth
 import {
   signInWithGoogle,
@@ -50,7 +50,7 @@ function SignUpForm() {
       const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(HOME);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -67,7 +67,7 @@ function SignUpForm() {
       const apiUser = await apiAuth.signupWithApi(firstName, lastName);
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(HOME);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);

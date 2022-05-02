@@ -13,7 +13,7 @@ import Input from '../../molecules/Input/Input';
 // redux actions
 import { setUser } from '../../../redux/User/userSlice';
 
-import { HOME, SIGN_UP, RESET_PASSWORD, APP } from '../../../routes';
+import { SIGN_UP, RESET_PASSWORD, APP } from '../../../routes';
 // formik schema
 import schemas from '../../../utils/schemas';
 // auth
@@ -48,7 +48,7 @@ function LoginForm() {
       const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(`${APP}${HOME}`);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -66,7 +66,7 @@ function LoginForm() {
       const apiUser = await apiAuth.loginWithApi();
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(`${APP}${HOME}`);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);

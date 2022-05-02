@@ -1,5 +1,6 @@
 import React from 'react';
-import SignUpForm from '../../components/organism/SignUp/SignUpForm';
+import SignUpForm from '../../components/organism/SignUpForm/SignUpForm';
+
 import AuthTemplate from '../../components/template/AuthTemplate/AuthTemplate';
 
 function Signup() {
