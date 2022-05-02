@@ -1,0 +1,5 @@
+@use '../../../sass/abstracts/variables' as *;
+.avatar {
+  width: 150;
+  border-radius: $border-xl;
+}

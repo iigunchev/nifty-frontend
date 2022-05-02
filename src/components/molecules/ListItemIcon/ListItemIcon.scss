@@ -1,0 +1,10 @@
+li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  img {
+    width: 1.5em;
+  }
+  cursor: pointer;
+}

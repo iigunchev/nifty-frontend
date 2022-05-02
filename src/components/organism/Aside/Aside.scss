@@ -1,0 +1,15 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/layout/flex' as f;
+aside.asideNavigation {
+  @include f.flex-container($direction: column);
+  background-color: $bg-dark;
+  color: $text-gray;
+  .profileWrapper {
+    h3 {
+      color: #fff;
+    }
+  }
+  .navListWrapper {
+    width: 130px;
+  }
+}

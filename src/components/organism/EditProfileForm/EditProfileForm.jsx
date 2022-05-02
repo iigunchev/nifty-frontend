@@ -21,7 +21,7 @@ import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput'
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import { ACCOUNT, APP } from '../../../routes';
-import Modal from '../../atoms/Modal/Modal';
+import Modal from '../../template/Modal/Modal';
 
 function EditProfileForm() {
   // router navigate
