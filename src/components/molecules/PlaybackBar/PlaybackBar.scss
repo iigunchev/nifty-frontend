@@ -1,15 +1,19 @@
 @use '../../../sass/abstracts/variables' as *;
 @use '../../../sass/core/typography' as t;
 
-.playerTimerWrapper {
+.playbackBarWrapper {
   background-color: $bg-gray;
   display: flex;
   align-items: center;
-  border-radius: $border;
+  border-radius: $border $border 0 0;
+  padding: 1em;
+  height: 60px;
+  width: 80%;
   .time {
     font-size: t.$text-sm;
   }
   input[type='range'] {
-    width: 70%;
+    width: 100%;
+    cursor: pointer;
   }
 }

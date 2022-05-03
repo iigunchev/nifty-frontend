@@ -1,9 +1,9 @@
 import React from 'react';
-import './PlayerTimer.scss';
+import './PlaybackBar.scss';
 
-function PlayerTimer() {
+function PlaybackBar() {
   return (
-    <div className="playerTimerWrapper">
+    <div className="playbackBarWrapper">
       <span className="time timeLeft">00:00</span>
       <input type="range" />
       <span className="time timeTotal">00:00</span>
@@ -11,4 +11,4 @@ function PlayerTimer() {
   );
 }
 
-export default PlayerTimer;
+export default PlaybackBar;
