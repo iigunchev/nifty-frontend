@@ -1,0 +1,14 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.playerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .playerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    background-color: $primary-gradient;
+  }
+}
