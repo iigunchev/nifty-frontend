@@ -8,7 +8,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2em;
-    background-color: $primary-gradient;
+    justify-content: space-between;
+    min-height: 180px;
+    padding: 1.5em;
+    background: $primary-gradient;
+    border-radius: $border;
   }
 }

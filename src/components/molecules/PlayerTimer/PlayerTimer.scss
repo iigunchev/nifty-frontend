@@ -1,0 +1,15 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+
+.playerTimerWrapper {
+  background-color: $bg-gray;
+  display: flex;
+  align-items: center;
+  border-radius: $border;
+  .time {
+    font-size: t.$text-sm;
+  }
+  input[type='range'] {
+    width: 70%;
+  }
+}

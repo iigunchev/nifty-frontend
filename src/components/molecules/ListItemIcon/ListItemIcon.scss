@@ -10,7 +10,7 @@ li {
     align-items: center;
     gap: 1em;
     color: $text-gray;
-    text-decoration: none;
+    text-decoration: none !important;
     img {
       width: 1.5em;
     }

@@ -6,13 +6,16 @@ import { initReactI18next } from 'react-i18next';
 // translation files
 import translationEN from './locales/EN/translation.json';
 import translationES from './locales/ES/translation.json';
+import getUserLangLocalStorage from './utils/getUserLangLocalStorage';
+
+const language = getUserLangLocalStorage();
 
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: translationEN },
     es: { translation: translationES }
   },
-  lng: localStorage.getItem('lang') || 'en',
+  lng: language || 'en',
   fallbackLng: 'en',
   interpolation: { escapeValue: false }
 });
