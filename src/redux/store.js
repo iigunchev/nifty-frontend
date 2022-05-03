@@ -5,9 +5,11 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import userSlice from './User/userSlice';
+import songSlice from './Song/songSlice';
 
 const reducers = combineReducers({
-  user: userSlice
+  user: userSlice,
+  song: songSlice
 });
 const persistConfig = {
   key: 'root',
