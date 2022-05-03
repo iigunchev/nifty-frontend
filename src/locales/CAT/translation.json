@@ -1,0 +1,22 @@
+{
+  "signup": {
+    "title": "Crear compte",
+    "firstName": {
+      "label": "Nom",
+      "placeholder": "Introdueix el teu nom"
+    },
+    "lastName": {
+      "label": "Cognoms",
+      "placeholder": "Introdueix el teu cognom"
+    },
+    "email": {
+      "label": "correu electrònic",
+      "placeholder": "Introdueix el teu correu"
+    },
+    "password": {
+      "label": "Contrasenya",
+      "placeholder": "Introdueix la teva contrasenya"
+    },
+    "submit": "Registra't"
+  }
+}

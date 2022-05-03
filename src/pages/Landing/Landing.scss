@@ -121,9 +121,54 @@
 
 .buttonWrapper {
   width: 50%;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .imggirl {
   position: absolute;
   bottom: -10px;
+}
+
+@media only screen and (max-width: 390px) {
+  .newContainer {
+    min-width: 300px;
+    margin-right: 1em;
+    span {
+      color: #9c32f1 !important;
+      background-color: rgba(255, 255, 255, 0.442) !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .navListSignUp {
+    display: none;
+  }
+  .navListSelectLng {
+    display: none;
+  }
+  .navListLogIn {
+    display: none;
+  }
+
+  .headerWrapper {
+    padding-right: 1em;
+  }
+  .leftLandingSection {
+    margin-top: 1em;
+  }
+  .newContainer {
+    span {
+      color: v.$accent-dark !important;
+      background-color: rgba(255, 255, 255, 0.442) !important;
+      border-color: v.$accent-dark !important;
+      border: 1px v.$accent-dark !important;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
 }
