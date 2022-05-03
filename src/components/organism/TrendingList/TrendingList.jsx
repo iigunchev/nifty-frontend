@@ -35,14 +35,12 @@ function TrendingList() {
         <Link to="/trending-tracks/all">See More</Link>
       </div>
       <div className="trendingListWrapper">
-        {mockTrackList.map((track, index) => (
+        {mockTrackList.map((track) => (
           <TrendingItem
-            spot={index + 1}
             key={track.trackName}
             artistImg={track.artistImg}
             trackName={track.trackName}
             artistName={track.artistName}
-            trackDuration={track.trackDuration}
           />
         ))}
       </div>
