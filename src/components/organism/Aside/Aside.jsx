@@ -6,6 +6,7 @@ import NavList from '../../molecules/NavList/NavList';
 import './Aside.scss';
 
 import * as route from '../../../routes';
+import ArrowButton from '../../atoms/ArrowButton/ArrowButton';
 
 function Aside() {
   const user = useSelector((state) => state.user);
@@ -15,6 +16,7 @@ function Aside() {
         <Avatar size={50} />
         <span>Hi!</span>
         <h3>{user.firstName}</h3>
+        <ArrowButton />
       </div>
       <nav className="navigationContainer">
         <NavList title="Menu">
