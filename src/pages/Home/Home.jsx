@@ -1,12 +1,7 @@
 import React from 'react';
-import Aside from '../../components/organism/Aside/Aside';
 
 function Home() {
-  return (
-    <div>
-      <Aside />
-    </div>
-  );
+  return <div>Home render</div>;
 }
 
 export default Home;
