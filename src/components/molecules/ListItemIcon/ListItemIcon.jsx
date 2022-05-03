@@ -17,6 +17,9 @@ import favourites from '../../../assets/svg/asideSvg/heart.svg';
 import favouritesFilled from '../../../assets/svg/asideSvg/heartFilled.svg';
 import upload from '../../../assets/svg/asideSvg/upload.svg';
 import uploadFilled from '../../../assets/svg/asideSvg/uploadFilled.svg';
+import account from '../../../assets/svg/asideSvg/user-circle.svg';
+import accountFilled from '../../../assets/svg/asideSvg/user-circleFilled.svg';
+import logout from '../../../assets/svg/asideSvg/logout.svg';
 
 function ListItemIcon({ icon = 'home', children, route = '/app' }) {
   // ? selected has to be this component?
@@ -33,7 +36,10 @@ function ListItemIcon({ icon = 'home', children, route = '/app' }) {
     favourites,
     favouritesFilled,
     upload,
-    uploadFilled
+    uploadFilled,
+    account,
+    accountFilled,
+    logout
   };
   return (
     <li>

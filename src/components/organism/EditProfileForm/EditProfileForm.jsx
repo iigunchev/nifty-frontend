@@ -60,7 +60,7 @@ function EditProfileForm() {
 
       const apiUser = await api.fetchEditProfile(formValues, user.id);
       dispatch(setUser(apiUser));
-      navigate(ACCOUNT);
+      navigate(`${APP}${ACCOUNT}`);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -75,7 +75,7 @@ function EditProfileForm() {
     try {
       const apiUser = await api.fetchEditProfile(values, user.id);
       dispatch(setUser(apiUser));
-      navigate(ACCOUNT);
+      navigate(`${APP}${ACCOUNT}`);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);

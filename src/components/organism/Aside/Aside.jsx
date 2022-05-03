@@ -1,22 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '../../atoms/Avatar/Avatar';
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
 import './Aside.scss';
+// logout
+import { removeUser } from '../../../redux/User/userSlice';
 
 import * as route from '../../../routes';
-import ArrowButton from '../../atoms/ArrowButton/ArrowButton';
+// icons
+import logout from '../../../assets/svg/asideSvg/logout.svg';
 
 function Aside() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   return (
     <>
       <div className="profileWrapper">
-        <Avatar size={50} />
-        <span>Hi!</span>
+        <Avatar size={40} />
         <h3>{user.firstName}</h3>
-        <ArrowButton />
       </div>
       <nav className="navigationContainer">
         <NavList title="Menu">
@@ -42,6 +44,22 @@ function Aside() {
               Upload
             </ListItemIcon>
           ) : null}
+        </NavList>
+
+        <NavList title="Settings">
+          <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
+            Account
+          </ListItemIcon>
+          <li className="listItemLink">
+            <button
+              onClick={() => dispatch(removeUser())}
+              type="button"
+              className="listItemLink"
+            >
+              <img src={logout} alt="logout" />
+              <span>Sign out</span>
+            </button>
+          </li>
         </NavList>
       </nav>
     </>
