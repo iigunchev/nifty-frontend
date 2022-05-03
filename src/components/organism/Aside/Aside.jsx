@@ -10,9 +10,9 @@ import * as route from '../../../routes';
 function Aside() {
   const user = useSelector((state) => state.user);
   return (
-    <aside className="appAside">
+    <>
       <div className="profileWrapper">
-        <Avatar size={100} />
+        <Avatar size={50} />
         <span>Hi!</span>
         <h3>{user.firstName}</h3>
       </div>
@@ -35,12 +35,14 @@ function Aside() {
           <ListItemIcon route={route.MY_MUSIC} icon="favourites">
             My music
           </ListItemIcon>
-          <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
-            Upload
-          </ListItemIcon>
+          {user.artist ? (
+            <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
+              Upload
+            </ListItemIcon>
+          ) : null}
         </NavList>
       </nav>
-    </aside>
+    </>
   );
 }
 

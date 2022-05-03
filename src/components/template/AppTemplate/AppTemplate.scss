@@ -1,0 +1,32 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.appWrapper {
+  display: flex;
+  background-color: $bg-dark-aside;
+  width: 100%;
+  padding: 1em;
+  min-height: 100vh;
+  aside.appAside {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    background-color: $bg-dark-aside;
+    color: $text-gray;
+    width: 300px;
+  }
+  .appContent {
+    padding: 2em;
+    border-radius: $border-xl;
+    background-color: white;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  aside.appAside {
+    display: none !important;
+  }
+  .appContent {
+    min-width: 100%;
+  }
+}

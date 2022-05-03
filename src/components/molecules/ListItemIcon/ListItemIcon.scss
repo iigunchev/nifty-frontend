@@ -2,9 +2,6 @@
 li {
   width: 100%;
   margin: 0.5em 0;
-  img {
-    width: 1.5em;
-  }
   cursor: pointer;
   .listItemLink {
     display: inline;
@@ -13,8 +10,14 @@ li {
     gap: 1em;
     color: $text-gray;
     text-decoration: none;
+    img {
+      width: 1.5em;
+    }
     &:hover {
       color: white;
+      img {
+        filter: brightness(0) invert(1);
+      }
     }
   }
   .activeLink {
