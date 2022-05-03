@@ -6,7 +6,7 @@ import Home from '../../../pages/Home/Home';
 import Account from '../../../pages/Account/Account';
 import EditProfile from '../../../pages/Account/EditProfile/EditProfile';
 import ChangePassword from '../../../pages/Account/ChangePassword/ChangePassword';
-import Aside from '../../organism/Aside/Aside';
+import AppTemplate from '../AppTemplate/AppTemplate';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -15,8 +15,7 @@ function ProtectedRoutes() {
     return <Navigate to={route.LANDING} replace />;
   }
   return (
-    <>
-      <Aside />;
+    <AppTemplate>
       <Routes>
         <Route path={route.HOME} element={<Home />} />
 
@@ -25,7 +24,7 @@ function ProtectedRoutes() {
         <Route path={route.EDIT_PROFILE} element={<EditProfile />} />
         <Route path={route.CHANGE_PASSWORD} element={<ChangePassword />} />
       </Routes>
-    </>
+    </AppTemplate>
   );
 }
 

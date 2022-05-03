@@ -1,19 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '../../atoms/Avatar/Avatar';
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
 import './Aside.scss';
+// logout
+import { removeUser } from '../../../redux/User/userSlice';
 
 import * as route from '../../../routes';
+// icons
+import logout from '../../../assets/svg/asideSvg/logout.svg';
 
 function Aside() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   return (
-    <aside className="appAside">
+    <>
       <div className="profileWrapper">
-        <Avatar size={100} />
-        <span>Hi!</span>
+        <Avatar size={40} />
         <h3>{user.firstName}</h3>
       </div>
       <nav className="navigationContainer">
@@ -35,12 +39,30 @@ function Aside() {
           <ListItemIcon route={route.MY_MUSIC} icon="favourites">
             My music
           </ListItemIcon>
-          <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
-            Upload
+          {user.artist ? (
+            <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
+              Upload
+            </ListItemIcon>
+          ) : null}
+        </NavList>
+
+        <NavList title="Settings">
+          <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
+            Account
           </ListItemIcon>
+          <li className="listItemLink">
+            <button
+              onClick={() => dispatch(removeUser())}
+              type="button"
+              className="listItemLink"
+            >
+              <img src={logout} alt="logout" />
+              <span>Sign out</span>
+            </button>
+          </li>
         </NavList>
       </nav>
-    </aside>
+    </>
   );
 }
 
