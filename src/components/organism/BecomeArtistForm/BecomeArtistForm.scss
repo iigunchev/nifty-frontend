@@ -1,0 +1,21 @@
+@use '../../../sass/abstracts/variables' as *;
+
+@use '../../../sass/abstracts/mixins' as m;
+@use '../../../sass/core/typography' as t;
+@use '../../../sass/layout/flex' as f;
+
+.ArtistSection {
+  padding: 3em;
+  @include f.flex-container(
+    $direction: column,
+    $align: flex-start,
+    $gap: 1.5em,
+    $wrap: nowrap
+  );
+}
+
+.heading1 {
+  p {
+    font-size: 15px;
+  }
+}

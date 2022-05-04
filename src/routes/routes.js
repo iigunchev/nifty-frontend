@@ -8,6 +8,7 @@ export const HOME = '/home';
 export const ACCOUNT = '/account';
 export const EDIT_PROFILE = '/account/edit-profile';
 export const CHANGE_PASSWORD = '/account/change-password';
+export const BECOME_ARTIST = '/account/become-artist';
 export const APP = '/app';
 
 export const GENRES = '/app/genres';

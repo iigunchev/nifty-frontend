@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { HOME, SIGN_UP } from '../../routes';
+import { APP, SIGN_UP } from '../../routes';
 
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import GIRL from '../../assets/svg/woman-music.svg';
@@ -64,7 +64,7 @@ function Landing() {
                 {!user ? (
                   <Link to={SIGN_UP}>START NOW</Link>
                 ) : (
-                  <Link to={HOME}>START NOW</Link>
+                  <Link to={APP}>START NOW</Link>
                 )}
               </Button>
             </div>
