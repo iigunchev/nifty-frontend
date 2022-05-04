@@ -21,6 +21,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setLanguage: (state, { payload }) => {
+      state.language = payload;
+    },
     setUser: (state, { payload }) => {
       state.id = payload._id;
       state.firstName = payload.firstName;
@@ -41,6 +44,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, setLanguage } = userSlice.actions;
 
 export default userSlice.reducer;

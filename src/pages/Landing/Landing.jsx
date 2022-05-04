@@ -2,12 +2,12 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { HOME, SIGN_UP } from '../../routes';
+import { APP, SIGN_UP } from '../../routes';
 
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import GIRL from '../../assets/svg/woman-music.svg';
 import Button from '../../components/molecules/Button/Button';
-import SelectLang from '../../components/molecules/SelectLang/SelectLang';
+import SelectLang from '../../components/atoms/SelectLang/SelectLang';
 
 import Avatar from '../../components/atoms/Avatar/Avatar';
 
@@ -64,7 +64,7 @@ function Landing() {
                 {!user ? (
                   <Link to={SIGN_UP}>START NOW</Link>
                 ) : (
-                  <Link to={HOME}>START NOW</Link>
+                  <Link to={APP}>START NOW</Link>
                 )}
               </Button>
             </div>

@@ -5,7 +5,12 @@ import { Waveform } from '@uiball/loaders';
 // components
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
 // routes
-import { APP, CHANGE_PASSWORD, EDIT_PROFILE } from '../../routes';
+import {
+  APP,
+  CHANGE_PASSWORD,
+  EDIT_PROFILE,
+  BECOME_ARTIST
+} from '../../routes';
 import './Account.scss';
 import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
@@ -90,6 +95,20 @@ function Account() {
           <div className="buttonWrapper">
             <Link to={`${APP}${CHANGE_PASSWORD}`} className="accountLink">
               Change Password
+            </Link>
+          </div>
+          <section>
+            <div>
+              <h2 className="heading2">Type Account</h2>
+              <UserInfoRow
+                type="Type Account"
+                details={!user.artist ? 'Normal User' : 'Artist'}
+              />
+            </div>
+          </section>
+          <div className="buttonWrapper">
+            <Link to={`${APP}${BECOME_ARTIST}`} className="accountLink">
+              Become Artist
             </Link>
           </div>
         </div>
