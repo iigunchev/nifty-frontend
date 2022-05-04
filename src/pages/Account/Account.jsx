@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Waveform } from '@uiball/loaders';
 // components
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
 // routes
@@ -8,54 +9,62 @@ import { APP, CHANGE_PASSWORD, EDIT_PROFILE } from '../../routes';
 import './Account.scss';
 import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
-import Button from '../../components/molecules/Button/Button';
+// import Button from '../../components/molecules/Button/Button';
 import { updateUserProfile } from '../../utils/api/apiUser';
 import { setUser } from '../../redux/User/userSlice';
+import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
+import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 
 function Account() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [isVisible, setIsVisible] = useState(false);
-  const [newAvatarImage, setNewAvatarImage] = useState('');
+  const [error, setError] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [newAvatarImage, setNewAvatarImage] = useState(null);
   const [queryState, setQueryState] = useState('');
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const toggleModal = () => {
-    setIsVisible((prevState) => !prevState);
+    setIsModalVisible((prevState) => !prevState);
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const input = document.querySelector('input[type="file"]');
+
+  const handleSubmit = async (event) => {
+    setError('');
+    event.preventDefault();
+    if (input?.files.length === 0) {
+      return setError('Please upload an image');
+    }
     setQueryState('isLoading');
-    const form = e.currentTarget;
-    const fileInput = Array.from(form.elements).find(
-      ({ name }) => name === 'file'
-    );
-    const formData = new FormData();
-
-    formData.append('file', fileInput.files[0]);
-
-    formData.append('upload_preset', 'avatar');
-
-    const data = await fetch(
-      'https://api.cloudinary.com/v1_1/devhubnifty/image/upload',
-      {
-        method: 'POST',
-        body: formData
-      }
-    ).then((r) => r.json());
-    setNewAvatarImage(data.secure_url);
-    // console.log(newAvatarImage);
-    setQueryState('');
+    try {
+      const form = event.currentTarget;
+      const fileInput = Array.from(form.elements).find(
+        ({ name }) => name === 'file'
+      );
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+      formData.append('upload_preset', 'avatar');
+      const data = await uploadNewAvatarImage('image', formData);
+      return setNewAvatarImage(data.secure_url);
+    } catch (e) {
+      return setError(e.message);
+    } finally {
+      setQueryState('');
+    }
   };
+
   const handleUpload = async () => {
     setQueryState('isLoading');
-    const profileImage = { profileImage: newAvatarImage };
-    const userApi = await updateUserProfile(profileImage, user.id);
-    console.log(userApi);
-    dispatch(setUser(userApi));
-    console.log('Upload');
-    setQueryState('');
+    try {
+      const profileImage = { profileImage: newAvatarImage };
+      const userApi = await updateUserProfile(profileImage, user.id);
+      dispatch(setUser(userApi));
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setQueryState('');
+    }
   };
-  // console.log(user);
   return (
     <main className="accountContainer">
       <h1 className="heading1">Account</h1>
@@ -97,8 +106,8 @@ function Account() {
         </label>
       </div>
       <Modal
-        showing={isVisible}
-        setShow={setIsVisible}
+        showing={isModalVisible}
+        setShow={setIsModalVisible}
         title="Update profile image"
       >
         <form
@@ -106,22 +115,49 @@ function Account() {
           onSubmit={handleSubmit}
           className="accountUpdateModalForm"
         >
-          {newAvatarImage ? (
-            <div className="avatarImagePreviewWrapper">
-              <img src={newAvatarImage} alt="" className="avatarImagePreview" />
-            </div>
-          ) : null}
+          <Avatar />
           <label className="customFileUpload">
             <input type="file" name="file" id="uploadImage" />
           </label>
           <div className="buttonWrapper">
-            <Button type="submit" size="md" isLoading={queryState}>
-              Upload
-            </Button>
-            <button type="button" className="saveButton" onClick={handleUpload}>
-              SAVE
-            </button>
+            {!newAvatarImage ? (
+              <button
+                type="submit"
+                className="uploadButton"
+                disabled={queryState}
+              >
+                {queryState ? (
+                  <Waveform
+                    size={40}
+                    lineWeight={3.5}
+                    speed={1}
+                    color="#9c32f1"
+                  />
+                ) : (
+                  'Upload'
+                )}
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="uploadButton"
+                disabled={!newAvatarImage}
+                onClick={handleUpload}
+              >
+                {queryState ? (
+                  <Waveform
+                    size={30}
+                    lineWeight={2}
+                    speed={1}
+                    color="#9c32f1"
+                  />
+                ) : (
+                  'SAVE'
+                )}
+              </button>
+            )}
           </div>
+          <ErrorContainer error={error} />
         </form>
       </Modal>
     </main>
