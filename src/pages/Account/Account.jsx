@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // components
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
@@ -9,8 +9,11 @@ import './Account.scss';
 import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
 import Button from '../../components/molecules/Button/Button';
+import { updateUserProfile } from '../../utils/api/apiUser';
+import { setUser } from '../../redux/User/userSlice';
 
 function Account() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [isVisible, setIsVisible] = useState(false);
   const [newAvatarImage, setNewAvatarImage] = useState('');
@@ -30,23 +33,29 @@ function Account() {
 
     formData.append('file', fileInput.files[0]);
 
-    formData.append('upload_preset', 'my-uploads');
+    formData.append('upload_preset', 'avatar');
 
     const data = await fetch(
-      'https://api.cloudinary.com/v1_1/cloudmedia2022/image/upload',
+      'https://api.cloudinary.com/v1_1/devhubnifty/image/upload',
       {
         method: 'POST',
         body: formData
       }
     ).then((r) => r.json());
-
     setNewAvatarImage(data.secure_url);
+    // console.log(newAvatarImage);
     setQueryState('');
-    console.log(newAvatarImage);
   };
-  const handleUpload = () => {
+  const handleUpload = async () => {
+    setQueryState('isLoading');
+    const profileImage = { profileImage: newAvatarImage };
+    const userApi = await updateUserProfile(profileImage, user.id);
+    console.log(userApi);
+    dispatch(setUser(userApi));
     console.log('Upload');
+    setQueryState('');
   };
+  // console.log(user);
   return (
     <main className="accountContainer">
       <h1 className="heading1">Account</h1>
