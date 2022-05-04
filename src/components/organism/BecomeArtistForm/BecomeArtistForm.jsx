@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setUser } from '../../../redux/User/userSlice';
 // import Button from '../../molecules/Button/Button';
-import api from '../../../utils/fetchEditAccount';
+import { updateUserProfile } from '../../../utils/api/apiUser';
 
 import { ACCOUNT, APP } from '../../../routes';
 // artist: false,
@@ -16,13 +16,12 @@ function BecomeArtistForm() {
   const user = useSelector((state) => state.user);
 
   const handleSubmit = async () => {
-    const newArtistUser = await api.fetchEditProfile(
+    const newArtistUser = await updateUserProfile(
       { artist: !user.artist },
       user.id
     );
     dispatch(setUser(newArtistUser));
   };
-
   return (
     <section className="ArtistSection">
       <h1 className="heading1">Become An Artist</h1>
@@ -34,7 +33,7 @@ function BecomeArtistForm() {
         <Link to={`${APP}${ACCOUNT}`} className="backButton">
           Back
         </Link>
-        <button type="button" onClick={handleSubmit}>
+        <button type="submit" onClick={handleSubmit}>
           {!user.artist ? 'Be Artist' : 'Cancel Suscription'}
         </button>
       </div>
