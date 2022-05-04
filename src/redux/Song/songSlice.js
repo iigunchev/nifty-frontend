@@ -10,13 +10,10 @@ const songSlice = createSlice({
   name: 'songs',
   initialState,
   reducers: {
-    setSong: (state, { payload }) => {
-      console.log(payload);
-      return {
-        audio: new Audio(payload),
-        isPlaying: true
-      };
-    }
+    setSong: (state, { payload }) => ({
+      audio: new Audio(payload),
+      isPlaying: true
+    })
   }
 });
 
