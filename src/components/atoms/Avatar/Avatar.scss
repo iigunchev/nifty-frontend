@@ -1,5 +1,10 @@
 @use '../../../sass/abstracts/variables' as *;
+.avatarImageWrapper {
+  max-width: 150px;
+}
 .avatar {
-  width: 150;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: $border-xl;
+  margin: 0 !important;
 }

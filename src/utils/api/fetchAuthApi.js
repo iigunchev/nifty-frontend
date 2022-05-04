@@ -2,7 +2,7 @@ import {
   deleteCurrentUser,
   getCurrentUserFullName,
   getCurrentUserToken
-} from '../services/auth/auth';
+} from '../../services/auth/auth';
 import fetchApi from './fetchApi';
 
 //* SIGN UP FETCH AND LOGIN FETCH TO API

@@ -11,7 +11,9 @@ function Avatar({ size = 150 }) {
   return !user.profileImage ? (
     <Avvvatars radius="40" value={user.email} className="avatar" size={size} />
   ) : (
-    <img src={user.profileImage} alt="avatar" className="avatar" />
+    <div className="avatarImageWrapper">
+      <img src={user.profileImage} alt="avatar" className="avatar" />
+    </div>
   );
 }
 

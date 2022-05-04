@@ -18,7 +18,7 @@ import {
   signInWithGoogle,
   signUpEmailAndPassword
 } from '../../../services/auth/auth';
-import apiAuth from '../../../utils/fetchAuthApi';
+import apiAuth from '../../../utils/api/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 
 // schema
