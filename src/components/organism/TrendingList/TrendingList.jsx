@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TrendingItem from '../../molecules/TrendingItem/TrendingItem';
+import TrendingItem from '../../molecules/TrendingTrackItem/TrendingTrackItem';
 
 import './TrendingList.scss';
 
@@ -15,7 +15,7 @@ const mockTrackList = [
   {
     artistImg:
       'https://i1.sndcdn.com/artworks-000129437053-bgvku6-t500x500.jpg',
-    trackName: 'Thunderstruck',
+    trackName: 'Thunderstruck We Will Rock youy',
     artistName: 'AC/DC',
     trackDuration: '3.25'
   },

@@ -1,0 +1,20 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+
+.songPlayerWrapper {
+  display: flex;
+  gap: 1em;
+  img {
+    width: 50px;
+    border-radius: $border/2;
+  }
+  .songPlayerInfo {
+  }
+  h3 {
+    color: white;
+  }
+  span {
+    color: $text-lightgray;
+    font-size: t.$text-sm;
+  }
+}
