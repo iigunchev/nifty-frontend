@@ -5,15 +5,16 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import userSlice from './User/userSlice';
-import songSlice from './Song/songSlice';
+import audioSlice from './Audio/audioSlice';
 
 const reducers = combineReducers({
   user: userSlice,
-  song: songSlice
+  audio: audioSlice
 });
 const persistConfig = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['audio']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

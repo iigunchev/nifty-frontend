@@ -1,8 +1,7 @@
 import React from 'react';
 import './PlayerControllers.scss';
 // redux
-import { useSelector, useDispatch } from 'react-redux';
-import { setSong } from '../../../redux/Song/songSlice';
+import { useSelector } from 'react-redux';
 // img
 import play from '../../../assets/img/player/play.png';
 import pause from '../../../assets/img/player/pause.png';
@@ -12,11 +11,13 @@ import random from '../../../assets/img/player/random.png';
 // components
 import VolumeButton from '../VolumeButton/VolumeButton';
 
-import purpurina from '../../../assets/songsTest/purpurina.mp3';
+function PlayerControllers({ isPlaying, setIsPlaying }) {
+  const { track } = useSelector((state) => state.audio);
 
-function PlayerControllers() {
-  const dispatch = useDispatch();
-  const song = useSelector((state) => state.song);
+  const playPauseTrack = () => {
+    setIsPlaying(!isPlaying);
+    return !isPlaying ? track.play() : track.pause();
+  };
 
   return (
     <div className="playbackButtonsWrapper">
@@ -29,37 +30,22 @@ function PlayerControllers() {
         <button className="nextPreviousButton" type="button">
           <img className="filteredImg" src={previous} alt="previous" />
         </button>
-        {!song.isPlaying ? (
-          <button
-            onClick={() => {
-              song.audio.pause();
-            }}
-            className="playStopButton"
-            type="button"
-          >
-            <img className="filteredImg" src={pause} alt="stop" />
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              console.log(song.audio);
-              song.audio.play();
-            }}
-            className="playStopButton"
-            type="button"
-          >
-            <img className="filteredImg" src={play} alt="play" />
-          </button>
-        )}
         <button
-          onClick={() => dispatch(setSong(purpurina))}
-          className="nextPreviousButton"
+          onClick={playPauseTrack}
+          className="playStopButton"
           type="button"
         >
+          <img
+            className="filteredImg"
+            src={isPlaying ? pause : play}
+            alt="stop"
+          />
+        </button>
+        <button className="nextPreviousButton" type="button">
           <img className="filteredImg" src={next} alt="next" />
         </button>
       </div>
-      <VolumeButton audio={song.audio} />
+      <VolumeButton track={track} />
     </div>
   );
 }
