@@ -4,7 +4,7 @@ export const LOGIN = '/login';
 export const SIGN_UP = '/sign-up';
 export const RESET_PASSWORD = '/password/reset';
 // APP ROUTES
-export const HOME = '/home';
+export const HOME = '/';
 export const ACCOUNT = '/account';
 export const EDIT_PROFILE = '/account/edit-profile';
 export const CHANGE_PASSWORD = '/account/change-password';

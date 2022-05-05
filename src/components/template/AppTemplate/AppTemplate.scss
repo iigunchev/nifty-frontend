@@ -15,7 +15,8 @@
     width: 300px;
   }
   .appContent {
-    padding: 2em;
+    position: relative;
+
     border-radius: $border-xl;
     background-color: white;
     width: 90%;
