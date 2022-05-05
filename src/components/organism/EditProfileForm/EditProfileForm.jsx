@@ -16,7 +16,7 @@ import {
   reauthenticate
 } from '../../../services/auth/auth';
 // API utils
-import api from '../../../utils/fetchEditAccount';
+import { updateUserProfile } from '../../../utils/api/apiUser';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
@@ -58,7 +58,7 @@ function EditProfileForm() {
         await changeCurrentUserEmail(formValues.email);
       }
 
-      const apiUser = await api.fetchEditProfile(formValues, user.id);
+      const apiUser = await updateUserProfile(formValues, user.id);
       dispatch(setUser(apiUser));
       navigate(`${APP}${ACCOUNT}`);
     } catch (e) {
@@ -73,7 +73,7 @@ function EditProfileForm() {
     setError(null);
     setIsLoading(true);
     try {
-      const apiUser = await api.fetchEditProfile(values, user.id);
+      const apiUser = await updateUserProfile(values, user.id);
       dispatch(setUser(apiUser));
       navigate(`${APP}${ACCOUNT}`);
     } catch (e) {
