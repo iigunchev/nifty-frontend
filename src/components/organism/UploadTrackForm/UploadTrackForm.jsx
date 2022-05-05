@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import UploadZone from '../../molecules/UploadZone/UploadZone';
 import getMetadata from '../../../utils/meta/getMetadata';
 import uploadToCloudinary from '../../../utils/cloudinary/uploadToCloudinary';
+import createTrack from '../../../utils/api/apiTrack';
+import { setAudio } from '../../../redux/Audio/audioSlice';
 
 function UploadTrackForm() {
+  const dispatch = useDispatch();
   const [file, setFiles] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +18,16 @@ function UploadTrackForm() {
       formData.append('file', file);
       formData.append('upload_preset', 'track-upload');
       const data = await uploadToCloudinary('video', formData);
-      console.log(data);
+      const mock = {
+        title: 'Motomami',
+        genre: '62723508917a49452cc45356',
+        url: data.url,
+        duration: data.duration,
+        thumbnail: metadata.image ? metadata.image : null
+      };
+      const apiTrack = await createTrack(mock);
+      dispatch(setAudio(apiTrack));
+      console.log(apiTrack);
     } catch (e) {
       console.log(e);
     } finally {

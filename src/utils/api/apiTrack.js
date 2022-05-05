@@ -1,9 +1,19 @@
-import { getCurrentUserToken } from "../../services/auth/auth";
+import { getCurrentUserToken } from '../../services/auth/auth';
+import fetchApi from './fetchApi';
 
-const createTrack = ()=>{
+const createTrack = async (values) => {
   try {
     const token = await getCurrentUserToken();
-}catch(e){
-  throw Error("Failed to fetch API")
-}
-}
+    const apiTrack = await fetchApi(
+      '/track',
+      `Bearer ${token}`,
+      values,
+      'POST'
+    );
+    return apiTrack;
+  } catch (e) {
+    throw Error('Failed to fetch API');
+  }
+};
+
+export default createTrack;

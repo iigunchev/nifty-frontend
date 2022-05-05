@@ -15,8 +15,10 @@ const audioSlice = createSlice({
   name: 'audio',
   initialState,
   reducers: {
-    setSrc: (state, { payload }) => {
-      state.src = payload;
+    setAudio: (state, { payload }) => {
+      state.src = payload.src;
+      state.artist = payload.artist;
+      state.title = payload.title;
     },
     setTrack: (state, { payload }) => {
       state.track = payload;
@@ -27,6 +29,6 @@ const audioSlice = createSlice({
   }
 });
 
-export const { setTrack, setSrc, setVolume } = audioSlice.actions;
+export const { setTrack, setAudio, setVolume } = audioSlice.actions;
 
 export default audioSlice.reducer;

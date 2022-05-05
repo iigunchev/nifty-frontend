@@ -4,7 +4,6 @@ const getMetadata = (track) =>
   new Promise((res, rej) => {
     new jsmediatags.Reader(track).read({
       onSuccess({ tags }) {
-        console.log(track);
         if (!tags.picture) {
           res({
             artist: tags.artist,
