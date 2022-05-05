@@ -1,6 +1,7 @@
 {
   "signup": {
     "title": "Crear compte",
+    "with": "Crear compte amb",
     "firstName": {
       "label": "Nom",
       "placeholder": "Introdueix el teu nom"
@@ -17,6 +18,7 @@
       "label": "Contrasenya",
       "placeholder": "Introdueix la teva contrasenya"
     },
-    "submit": "Registra't"
+    "submit": "Registra't",
+    "backToLogin" : "Tornar enrere"
   }
 }
