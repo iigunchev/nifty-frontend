@@ -6,10 +6,14 @@ const uploadNewAvatarImage = async (fileType, data) => {
         method: 'POST',
         body: data
       }
-    ).then((r) => r.json());
+    ).then((response) => {
+      if (!response.ok)
+        throw new Error('Server error. Please try again later.');
+      return response.json();
+    });
     return imageData;
   } catch (error) {
-    return error.message;
+    throw new Error(error.message);
   }
 };
 
