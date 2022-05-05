@@ -1,6 +1,7 @@
 {
   "signup": {
     "title": "Sign up",
+    "with": "Sign up with",
     "firstName": {
       "label": "First Name",
       "placeholder": "Type your first name"
@@ -17,6 +18,7 @@
       "label": "Password",
       "placeholder": "Type your password"
     },
-    "submit": "Sign up"
+    "submit": "Sign up",
+    "backToLogin" : "Back to Login"
   }
 }
