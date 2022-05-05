@@ -19,7 +19,7 @@ function Modal({ children, title, setShow, showing }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modalHeader">
-          <h3>{title}</h3>
+          <h3 className="heading3">{title}</h3>
           <button type="button" onClick={() => setShow(false)}>
             Close modal
           </button>

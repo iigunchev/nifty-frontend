@@ -33,6 +33,7 @@ const userSlice = createSlice({
       state.following = payload.following;
       state.language = payload.language;
       state.artist = payload.artist;
+      state.profileImage = payload.profileImage;
       state.isLoggedIn = true;
       state.providerId = getCurrentUserProviderId();
     },

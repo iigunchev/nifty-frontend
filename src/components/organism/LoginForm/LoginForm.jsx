@@ -22,7 +22,7 @@ import {
   signInWithGoogle
 } from '../../../services/auth/auth';
 // utils
-import apiAuth from '../../../utils/fetchAuthApi';
+import apiAuth from '../../../utils/api/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 // icons
 import googleIcon from '../../../assets/svg/googleIcon.svg';

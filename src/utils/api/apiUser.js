@@ -1,7 +1,7 @@
-import { getCurrentUserToken } from '../services/auth/auth';
+import { getCurrentUserToken } from '../../services/auth/auth';
 import fetchApi from './fetchApi';
 
-const fetchEditProfile = async (values, id) => {
+export const updateUserProfile = async (values, id) => {
   try {
     const token = await getCurrentUserToken();
     const authToken = `Bearer ${token}`;
@@ -13,9 +13,4 @@ const fetchEditProfile = async (values, id) => {
   }
 };
 
-const fetchChangePassword = () => {};
-
-export default {
-  fetchEditProfile,
-  fetchChangePassword
-};
+export const removeUserProfile = () => {};

@@ -8,6 +8,9 @@
   a {
     text-decoration: none;
   }
+  img {
+    box-shadow: $boxshadow;
+  }
 }
 .accountCols {
   @include l.flex-container($align: flex-start, $gap: 3em);
@@ -30,6 +33,12 @@
     padding: 0 10px;
     border-radius: $border;
     background: $primary-gradient;
+    box-shadow: $boxshadow;
+    &:hover {
+      text-decoration: none;
+      transform: scale(1.05);
+      transition: all 100ms ease-out;
+    }
   }
 
   .updateAvatar {
@@ -43,7 +52,7 @@
     width: 100%;
   }
 }
-img.avatar {
+.avatar {
   width: 150px;
   margin-top: 2em;
 }
@@ -52,4 +61,60 @@ img.avatar {
   &:hover {
     text-decoration: underline;
   }
+}
+.modalBody {
+  @include l.flex-container(
+    $direction: column,
+    $align: center,
+    $spacing: center
+  );
+}
+.accountUpdateModalForm {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 300px;
+
+  button {
+    margin-top: 1em;
+    box-shadow: $boxshadow;
+  }
+  input[type='file'] {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  //   input[type='file'] {
+  //     display: none;
+  //   }
+  //   label.customFileUpload {
+  //     border: 1px solid $accent-dark;
+  //     border-radius: $border;
+  //     display: inline-block;
+  //     padding: 6px 12px;
+  //     cursor: pointer;
+  // }
+  .buttonWrapper {
+    width: 100%;
+    display: flex;
+    gap: 1.5em;
+    .uploadButton {
+      padding: 10px 20px;
+      font-weight: 500;
+      border: 1px solid $accent-dark;
+      width: 100%;
+      border-radius: $border;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+.newAvatar {
+  width: 100%;
+  object-fit: cover;
 }
