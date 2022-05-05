@@ -18,21 +18,18 @@ const uploadToCloudinary = async (fileType, data) => {
 
 export const progressUpload = async (fileType, data, setProgress) => {
   try {
-    axios
-      .request({
-        method: 'post',
-        url: `https://api.cloudinary.com/v1_1/devhubnifty/${fileType}/upload`,
-        data,
-        onUploadProgress: (p) => {
-          const percent = Math.round((p.loaded / p.total) * 100);
-          console.log(percent);
-          setProgress(percent);
-          // this.setState({
-          // fileprogress: p.loaded / p.total
-          // })
-        }
-      })
-      .then((res) => console.log(res.status));
+    const response = await axios.request({
+      method: 'post',
+      url: `https://api.cloudinary.com/v1_1/devhubnifty/${fileType}/upload`,
+      data,
+      onUploadProgress: (p) => {
+        const percent = Math.round((p.loaded / p.total) * 100);
+        setProgress(percent);
+      }
+    });
+    if (response.status !== 200)
+      throw new Error('Server error. Please try again later.');
+    return response.data;
   } catch (e) {
     throw new Error(e.message);
   }

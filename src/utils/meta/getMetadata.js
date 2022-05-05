@@ -6,6 +6,7 @@ const getMetadata = (track) =>
       onSuccess({ tags }) {
         if (!tags.picture) {
           res({
+            file: track,
             artist: tags.artist,
             genre: tags.genre,
             title: tags.title,
@@ -16,6 +17,7 @@ const getMetadata = (track) =>
         const blob = new Blob([new Uint8Array(data)], { type: format });
         const imageSrc = URL.createObjectURL(blob);
         res({
+          file: track,
           artist: tags.artist,
           genre: tags.genre,
           title: tags.title,
