@@ -11,8 +11,8 @@ export const CHANGE_PASSWORD = '/account/change-password';
 export const BECOME_ARTIST = '/account/become-artist';
 export const APP = '/app';
 
-export const GENRES = '/app/genres';
-export const ALBUMS = '/app/albums';
-export const ARTISTS = '/app/artists';
-export const MY_MUSIC = '/app/my-music';
-export const UPLOAD_TRACK = '/app/upload-track';
+export const GENRES = '/genres';
+export const ALBUMS = '/albums';
+export const ARTISTS = '/artists';
+export const MY_MUSIC = '/my-music';
+export const UPLOAD_TRACK = '/upload-track';
