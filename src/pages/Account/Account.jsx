@@ -65,12 +65,6 @@ function Account() {
     }
   };
 
-  // useEffect(() => {
-  //   if (input?.files.length === 0) return;
-  //   console.log(input?.files[0]);
-  //   setNewAvatarImage(input?.files[0]);
-  // }, [input?.files.length]);
-
   return (
     <main className="accountContainer">
       <h1 className="heading1">Account</h1>
