@@ -134,7 +134,8 @@ function Account() {
           onSubmit={handleSubmit}
           className="accountUpdateModalForm"
         >
-          <Avatar />
+          {!newAvatarImage ? <Avatar /> : <img src={newAvatarImage} alt="" />}
+
           <label className="customFileUpload">
             <input type="file" name="file" id="uploadImage" />
           </label>
