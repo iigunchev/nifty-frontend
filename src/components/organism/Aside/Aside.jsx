@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Avatar from '../../atoms/Avatar/Avatar';
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
 import './Aside.scss';

@@ -69,7 +69,19 @@ function Account() {
     <main className="accountContainer">
       <h1 className="heading1">Account</h1>
       <div className="accountCols">
-        <div>
+        <div className="colsWrapper">
+          <section className="flexBetween">
+            <div className="accountAvatarContainer">
+              <Avatar size={250} />
+              <button
+                type="button"
+                className="editAvatarButton"
+                onClick={toggleModal}
+              >
+                Edit
+              </button>
+            </div>
+          </section>
           <section>
             <h2 className="heading2">Details</h2>
             <UserInfoRow type="First Name" details={user.firstName} />
@@ -78,7 +90,7 @@ function Account() {
           </section>
           <div className="buttonWrapper">
             <Link to={`${APP}${EDIT_PROFILE}`} className="accountLink">
-              Edit Profile
+              Edit
             </Link>
           </div>
           <section>
@@ -89,7 +101,7 @@ function Account() {
           </section>
           <div className="buttonWrapper">
             <Link to={`${APP}${CHANGE_PASSWORD}`} className="accountLink">
-              Change Password
+              Update
             </Link>
           </div>
           <section>
@@ -103,19 +115,9 @@ function Account() {
           </section>
           <div className="buttonWrapper">
             <Link to={`${APP}${BECOME_ARTIST}`} className="accountLink">
-              Become Artist
+              Change
             </Link>
           </div>
-        </div>
-        <div className="accountAvatarContainer">
-          <Avatar />
-          <button
-            type="button"
-            className="editAvatarButton"
-            onClick={toggleModal}
-          >
-            Edit
-          </button>
         </div>
       </div>
       <Modal
