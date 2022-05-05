@@ -1,6 +1,6 @@
 .volumeWrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   .volumeButton {
     width: 1.75em;
@@ -8,7 +8,7 @@
   .volumeRange {
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* Chromium */
-    width: 8px;
+    width: 80px;
     height: 50px;
     padding: 0 5px;
   }

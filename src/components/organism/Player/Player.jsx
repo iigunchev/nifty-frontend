@@ -6,9 +6,10 @@ import ReactAudioPlayer from 'react-audio-player';
 // molecules
 import PlayerControllers from '../../molecules/PlayerControllers/PlayerControllers';
 import PlaybackBar from '../../molecules/PlaybackBar/PlaybackBar';
-import TrackPlayer from '../../molecules/SongPlayer/SongPlayer';
+import TrackInfo from '../../molecules/TrackInfo/TrackInfo';
 import './Player.scss';
 import { setTrack } from '../../../redux/Audio/audioSlice';
+import VolumeButton from '../../molecules/VolumeButton/VolumeButton';
 
 function Player() {
   const audio = useSelector((state) => state.audio);
@@ -25,17 +26,23 @@ function Player() {
         src={audio.src}
         volume={audio.volume}
       />
-      <PlaybackBar
-        time={audio.track?.currentTime}
-        duration={audio.track?.duration}
-      />
       <div className="playerWrapper">
-        <TrackPlayer
+        <TrackInfo
           title="Motomami"
           artist="La Rosalia"
-          songImage="https://via.placeholder.com/50x50"
+          songImage="https://via.placeholder.com/70x70"
         />
-        <PlayerControllers isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        <div className="controllersWrapper">
+          <PlayerControllers
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+          />
+          <PlaybackBar
+            time={audio.track?.currentTime}
+            duration={audio.track?.duration}
+          />
+        </div>
+        <VolumeButton track={audio.track} />
       </div>
     </section>
   );

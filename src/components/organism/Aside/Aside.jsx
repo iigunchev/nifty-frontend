@@ -10,7 +10,6 @@ import { removeUser } from '../../../redux/User/userSlice';
 import * as route from '../../../routes';
 // icons
 import logout from '../../../assets/svg/asideSvg/logout.svg';
-import Player from '../Player/Player';
 
 function Aside() {
   const dispatch = useDispatch();
@@ -63,7 +62,6 @@ function Aside() {
           </li>
         </NavList>
       </nav>
-      <Player />
     </>
   );
 }
