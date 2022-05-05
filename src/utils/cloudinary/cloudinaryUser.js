@@ -1,19 +1,16 @@
 const uploadNewAvatarImage = async (fileType, data) => {
   try {
-    const imageData = await fetch(
+    const response = await fetch(
       `https://api.cloudinary.com/v1_1/devhubnifty/${fileType}/upload`,
       {
         method: 'POST',
         body: data
       }
-    ).then((response) => {
-      if (!response.ok)
-        throw new Error('Server error. Please try again later.');
-      return response.json();
-    });
-    return imageData;
+    );
+    if (!response.ok) throw new Error('Server error. Please try again later.');
+    return await response.json();
   } catch (error) {
-    throw new Error(error.message);
+    return new Error(error.message);
   }
 };
 
