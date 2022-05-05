@@ -4,16 +4,25 @@ import getMetadata from '../../../utils/meta/getMetadata';
 
 function UploadTrackForm() {
   const [file, setFiles] = useState(null);
-  console.log(file);
+  const [metadata, setMetadata] = useState(null);
+  const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append('file', file.src);
+  };
+
+  console.log(metadata);
   const handleDragFile = async (track) => {
-    const metadata = await getMetadata(track[0]);
-    console.log(metadata);
-    setFiles(metadata);
+    const trackData = await getMetadata(track[0]);
+    setMetadata(trackData);
   };
 
   return (
     <div>
-      {file ? 'formulari' : <UploadZone handleDragFile={handleDragFile} />}
+      {metadata ? (
+        <img src={metadata.image} alt="hola" />
+      ) : (
+        <UploadZone handleDragFile={handleDragFile} />
+      )}
     </div>
   );
 }

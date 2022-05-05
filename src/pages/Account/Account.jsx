@@ -17,7 +17,7 @@ import Modal from '../../components/template/Modal/Modal';
 // import Button from '../../components/molecules/Button/Button';
 import { updateUserProfile } from '../../utils/api/apiUser';
 import { setUser } from '../../redux/User/userSlice';
-import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
+import uploadToCloudinary from '../../utils/cloudinary/uploadToCloudinary';
 import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 
 function Account() {
@@ -49,7 +49,7 @@ function Account() {
       const formData = new FormData();
       formData.append('file', fileInput.files[0]);
       formData.append('upload_preset', 'avatar');
-      const data = await uploadNewAvatarImage('image', formData);
+      const data = await uploadToCloudinary('image', formData);
       return setNewAvatarImage(data.secure_url);
     } catch (e) {
       return setError(e.message);

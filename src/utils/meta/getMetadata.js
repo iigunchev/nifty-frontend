@@ -4,6 +4,7 @@ const getMetadata = (track) =>
   new Promise((res, rej) => {
     new jsmediatags.Reader(track).read({
       onSuccess({ tags }) {
+        console.log(track);
         if (!tags.picture) {
           res({
             artist: tags.artist,
@@ -12,10 +13,9 @@ const getMetadata = (track) =>
             year: tags.year
           });
         }
-        const { data } = tags.picture;
-        const base64String = new Uint8Array(data);
-        const arrayString = String.fromCharCode.apply(null, base64String);
-        const imageSrc = `data:image/jpg;base64,${btoa(arrayString)}`;
+        const { data, format } = tags.picture;
+        const blob = new Blob([new Uint8Array(data)], { type: format });
+        const imageSrc = URL.createObjectURL(blob);
         res({
           artist: tags.artist,
           genre: tags.genre,
