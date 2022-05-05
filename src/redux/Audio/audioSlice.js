@@ -7,6 +7,7 @@ const initialState = {
   track: null,
   volume: 0.5,
   isPlaying: false,
+  artist: '',
   title: ''
 };
 

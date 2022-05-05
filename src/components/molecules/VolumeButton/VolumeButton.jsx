@@ -13,7 +13,7 @@ function VolumeButton() {
   const [isBarVisible, setIsBarVisible] = useState();
   const dispatch = useDispatch();
   const { volume } = useSelector((state) => state.audio);
-  const handleChangeVolume = (e) => {
+  const onVolumeChange = (e) => {
     const actualVolume = e.target.value / 100;
     dispatch(setVolume(actualVolume));
   };
@@ -31,7 +31,7 @@ function VolumeButton() {
         min="0"
         max="100"
         orient="vertical"
-        onChange={handleChangeVolume}
+        onChange={onVolumeChange}
       />
 
       {volume !== 0 ? (
