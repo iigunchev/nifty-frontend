@@ -1,27 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React from 'react';
 
 import Dropzone from 'react-dropzone';
+import { toast } from 'react-toastify';
 
 import Button from '../Button/Button';
 // styles
 import './UploadZone.scss';
 
 function UploadZone({ handleDragFile }) {
-  const [uploadState, setUploadState] = useState(
-    'Drag and drop some files here, or click to select files '
-  );
-
   return (
     <Dropzone
       onDropAccepted={handleDragFile}
-      onDropRejected={(file) => setUploadState(file[0].errors[0].message)}
+      onDropRejected={() => toast.error('Please upload files in mp3 format.')}
       accept={{ 'audio/*': ['.mp3', '.mpeg'] }}
     >
       {({ getRootProps, getInputProps }) => (
         <section>
           <div className="dragArea" {...getRootProps()}>
-            <p>{uploadState}</p>
+            <p>Drag and drop some files here, or click to select files</p>
             <div className="btnWrapper">
               <Button className="uploadButton">
                 Upload files here

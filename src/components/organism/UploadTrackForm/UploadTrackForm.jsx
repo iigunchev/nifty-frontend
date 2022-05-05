@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // components
+import { toast } from 'react-toastify';
 import UploadZone from '../../molecules/UploadZone/UploadZone';
-import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
 // utils
 import handleAuthErrors from '../../../utils/handleAuthErrors';
@@ -13,7 +13,6 @@ function UploadTrackForm() {
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [error, setError] = useState(null);
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
@@ -31,9 +30,10 @@ function UploadTrackForm() {
       await createTrack(mock);
       // refresh state
       setMetadata(null);
+      toast.success('Song uploaded!');
     } catch (e) {
       const message = handleAuthErrors(e.message);
-      setError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -52,7 +52,6 @@ function UploadTrackForm() {
             Upload song
           </button>
           {isLoading ? <ProgressBar progress={progress} /> : null}
-          <ErrorContainer error={error} />
         </>
       ) : (
         <UploadZone handleDragFile={handleDragFile} />
