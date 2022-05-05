@@ -41,7 +41,7 @@ function Aside() {
             My music
           </ListItemIcon>
           {user.artist ? (
-            <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
+            <ListItemIcon route={route.UPLOAD_TRACK} icon="upload">
               Upload
             </ListItemIcon>
           ) : null}
