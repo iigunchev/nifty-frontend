@@ -2,7 +2,6 @@ import React from 'react';
 import './PlayerControllers.scss';
 // redux
 import { useSelector } from 'react-redux';
-// img
 import play from '../../../assets/img/player/play.png';
 import pause from '../../../assets/img/player/pause.png';
 import next from '../../../assets/img/player/next.png';
