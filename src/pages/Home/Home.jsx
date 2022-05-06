@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setSrc } from '../../redux/Audio/audioSlice';
+import { setAudio } from '../../redux/Audio/audioSlice';
 import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
 // song
 import purpurina from '../../assets/songsTest/purpurina.mp3';
@@ -14,7 +14,7 @@ function Home() {
       <button
         type="button"
         onClick={() => {
-          dispatch(setSrc(purpurina));
+          dispatch(setAudio({ src: purpurina }));
         }}
       >
         Play
@@ -22,7 +22,7 @@ function Home() {
       <button
         type="button"
         onClick={() => {
-          dispatch(setSrc(canelita));
+          dispatch(setAudio({ src: canelita }));
         }}
       >
         Play

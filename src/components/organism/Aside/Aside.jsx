@@ -27,13 +27,17 @@ function Aside() {
           <ListItemIcon route={route.APP} icon="home">
             Home
           </ListItemIcon>
-          <ListItemIcon route={route.GENRES} selected icon="genres">
+          <ListItemIcon
+            route={`${route.APP}${route.GENRES}`}
+            selected
+            icon="genres"
+          >
             Genres
           </ListItemIcon>
-          <ListItemIcon route={route.ALBUMS} icon="albums">
+          <ListItemIcon route={`${route.APP}${route.ALBUMS}`} icon="albums">
             Albums
           </ListItemIcon>
-          <ListItemIcon route={route.ARTISTS} icon="artists">
+          <ListItemIcon route={`${route.APP}${route.ARTISTS}`} icon="artists">
             Artists
           </ListItemIcon>
         </NavList>
@@ -45,7 +49,10 @@ function Aside() {
             My music
           </ListItemIcon>
           {user.artist ? (
-            <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
+            <ListItemIcon
+              route={`${route.APP}${route.UPLOAD_TRACK}`}
+              icon="upload"
+            >
               Upload
             </ListItemIcon>
           ) : null}

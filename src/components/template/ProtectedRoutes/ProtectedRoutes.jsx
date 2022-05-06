@@ -9,6 +9,7 @@ import ChangePassword from '../../../pages/Account/ChangePassword/ChangePassword
 import BecomeArtist from '../../../pages/Account/BecomeArtist/BecomeArtist';
 import AppTemplate from '../AppTemplate/AppTemplate';
 import MyMusic from '../../../pages/MyMusic/MyMusic';
+import UploadTrack from '../../../pages/UploadTrack/UploadTrack';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -22,7 +23,7 @@ function ProtectedRoutes() {
         <Route path={route.HOME} element={<Home />} />
 
         <Route path={route.ACCOUNT} element={<Account />} />
-
+        <Route path={route.UPLOAD_TRACK} element={<UploadTrack />} />
         <Route path={route.EDIT_PROFILE} element={<EditProfile />} />
         <Route path={route.CHANGE_PASSWORD} element={<ChangePassword />} />
         <Route path={route.BECOME_ARTIST} element={<BecomeArtist />} />
