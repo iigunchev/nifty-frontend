@@ -1,10 +1,10 @@
 import React from 'react';
-import TracksLiked from '../../components/organism/TracksLiked/TracksLiked';
+import TracksLikedSection from '../../components/organism/TracksLikedSection/TracksLikedSection';
 
 function MyMusic() {
   return (
     <div>
-      <TracksLiked />
+      <TracksLikedSection />
     </div>
   );
 }

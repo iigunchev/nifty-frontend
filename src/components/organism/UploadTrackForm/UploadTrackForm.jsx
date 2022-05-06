@@ -6,32 +6,38 @@ import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
 // utils
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import getMetadata from '../../../utils/meta/getMetadata';
-import { progressUpload } from '../../../utils/cloudinary/uploadToCloudinary';
+import { uploadTrackAndImageToCloudinary } from '../../../utils/cloudinary/uploadToCloudinary';
 import createTrack from '../../../utils/api/apiTrack';
 
 function UploadTrackForm() {
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      const formData = new FormData();
-      formData.append('file', metadata.file);
-      formData.append('upload_preset', 'track-upload');
-      const data = await progressUpload('video', formData, setProgress);
+      const { image, audio } = await uploadTrackAndImageToCloudinary(
+        {
+          audio: metadata.file,
+          image: metadata.image
+        },
+        setProgress
+      );
+
       const mock = {
-        title: 'Motopapi',
+        title: 'Privacy',
         genre: '62723508917a49452cc45356',
-        url: data.url,
-        duration: data.duration,
-        thumbnail: metadata.image ? metadata.image : null
+        url: audio.url,
+        duration: audio.duration,
+        thumbnail: image || null
       };
       await createTrack(mock);
       // refresh state
       setMetadata(null);
       toast.success('Song uploaded!');
     } catch (e) {
+      console.log(e.message);
       const message = handleAuthErrors(e.message);
       toast.error(message);
     } finally {
@@ -48,6 +54,8 @@ function UploadTrackForm() {
     <div>
       {metadata ? (
         <>
+          <img src={metadata.image} alt="hola" />
+
           <button type="button" onClick={handleSubmit}>
             Upload song
           </button>

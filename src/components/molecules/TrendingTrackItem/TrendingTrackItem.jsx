@@ -1,16 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+// toast
+import { toast } from 'react-toastify';
+// components
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
-
-import './TrendingTrackItem.scss';
 import { ReactComponent as SVG } from '../../../assets/svg/verticalDots.svg';
 import TrendingItem from '../TrendingItem/TrendingItem';
 import LikeButton from '../LikeButton/LikeButton';
+// utils
+import { toggleLike } from '../../../utils/api/apiTrack';
+import handleAuthErrors from '../../../utils/handleAuthErrors';
+// styles
+import './TrendingTrackItem.scss';
 
-function TrendingTrackItem({ artistImg, trackName, artistName }) {
-  const handleLikeTrack = () => {};
+function TrendingTrackItem({
+  artistImg,
+  trackName,
+  artistName,
+  trackId,
+  isLiked
+}) {
+  const [isLoading, setIsLoading] = useState(false);
+  const handleLikeTrack = async (likeValue) => {
+    setIsLoading(true);
+    try {
+      await toggleLike(likeValue, trackId);
+    } catch (e) {
+      const message = handleAuthErrors(e.message);
+      toast.error(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div className="trendingTrackItemContainer">
-      <LikeButton />
+      <LikeButton
+        disabled={isLoading}
+        handleLike={handleLikeTrack}
+        liked={isLiked}
+      />
       {/* <span className="trendingSpot">{spot}</span> */}
       <TrendingItem
         image={artistImg}

@@ -1,11 +1,19 @@
 import jsmediatags from 'jsmediatags';
 
+function blobToBase64(blob) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
+
 const getMetadata = (track) =>
   new Promise((res, rej) => {
     new jsmediatags.Reader(track).read({
-      onSuccess({ tags }) {
+      async onSuccess({ tags }) {
         if (!tags.picture) {
-          res({
+          return res({
             file: track,
             artist: tags.artist,
             genre: tags.genre,
@@ -15,8 +23,11 @@ const getMetadata = (track) =>
         }
         const { data, format } = tags.picture;
         const blob = new Blob([new Uint8Array(data)], { type: format });
-        const imageSrc = URL.createObjectURL(blob);
-        res({
+        // const imageSrc = URL.createObjectURL(blob);
+        // const u8Image = new Uint8Array(data);
+        // const b64Image = Buffer.from(blob).toString('base64');
+        const imageSrc = await blobToBase64(blob);
+        return res({
           file: track,
           artist: tags.artist,
           genre: tags.genre,
