@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 // react audio player
@@ -15,6 +15,11 @@ function Player() {
   const audio = useSelector((state) => state.audio);
   const [isPlaying, setIsPlaying] = useState(false);
   const dispatch = useDispatch();
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.currentTime = audio.track?.currentTime;
+  }, [audio.track?.currentTime]);
 
   return (
     <section className="playerContainer">
@@ -23,6 +28,7 @@ function Player() {
         onPlay={() => setIsPlaying(true)}
         onEnded={() => setIsPlaying(false)}
         onCanPlay={(element) => dispatch(setTrack(element.target))}
+        ref={audioRef}
         src={audio.src}
         volume={audio.volume}
       />
