@@ -38,7 +38,10 @@ function Aside() {
           </ListItemIcon>
         </NavList>
         <NavList title="Library">
-          <ListItemIcon route={route.MY_MUSIC} icon="favourites">
+          <ListItemIcon
+            route={`${route.APP}${route.MY_MUSIC}`}
+            icon="favourites"
+          >
             My music
           </ListItemIcon>
           {user.artist ? (

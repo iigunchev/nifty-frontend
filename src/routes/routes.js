@@ -14,5 +14,5 @@ export const APP = '/app';
 export const GENRES = '/app/genres';
 export const ALBUMS = '/app/albums';
 export const ARTISTS = '/app/artists';
-export const MY_MUSIC = '/app/my-music';
+export const MY_MUSIC = '/my-music';
 export const UPLOAD_SONG = '/app/upload-song';

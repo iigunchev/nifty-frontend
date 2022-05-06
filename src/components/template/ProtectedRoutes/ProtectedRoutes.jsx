@@ -8,6 +8,7 @@ import EditProfile from '../../../pages/Account/EditProfile/EditProfile';
 import ChangePassword from '../../../pages/Account/ChangePassword/ChangePassword';
 import BecomeArtist from '../../../pages/Account/BecomeArtist/BecomeArtist';
 import AppTemplate from '../AppTemplate/AppTemplate';
+import MyMusic from '../../../pages/MyMusic/MyMusic';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -25,6 +26,7 @@ function ProtectedRoutes() {
         <Route path={route.EDIT_PROFILE} element={<EditProfile />} />
         <Route path={route.CHANGE_PASSWORD} element={<ChangePassword />} />
         <Route path={route.BECOME_ARTIST} element={<BecomeArtist />} />
+        <Route path={route.MY_MUSIC} element={<MyMusic />} />
       </Routes>
     </AppTemplate>
   );
