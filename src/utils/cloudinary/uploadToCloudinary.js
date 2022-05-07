@@ -41,46 +41,4 @@ export const uploadToCloudinaryWithProgress = async (
   }
 };
 
-export const uploadTrackAndImageToCloudinary = async (data, setProgress) => {
-  const formData = new FormData();
-
-  const FilesWithEndpoints = [
-    {
-      url: `https://api.cloudinary.com/v1_1/devhubnifty/video/upload`,
-      formData: data.audio
-    },
-    {
-      url: `https://api.cloudinary.com/v1_1/devhubnifty/image/upload`,
-      formData: data.image
-    }
-  ];
-  try {
-    const [responseAudio, responseImage] = await axios.all(
-      FilesWithEndpoints.map((element, idx) => {
-        formData.append('file', element.formData);
-        formData.append('upload_preset', 'track-upload');
-        return axios.request({
-          method: 'post',
-          url: element.url,
-          data: formData,
-          onUploadProgress:
-            idx === 0
-              ? (p) => {
-                  const percent = Math.round((p.loaded / p.total) * 100);
-                  setProgress(percent);
-                }
-              : null
-        });
-      })
-    );
-    console.log(responseAudio, responseImage);
-    if (responseAudio.status !== 200 || responseImage.status !== 200) {
-      throw new Error();
-    }
-    return { audio: responseAudio.data, image: responseImage.data.url };
-  } catch (e) {
-    throw new Error('Failed to upload files');
-  }
-};
-
 export default uploadToCloudinary;

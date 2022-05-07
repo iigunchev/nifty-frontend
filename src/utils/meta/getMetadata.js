@@ -23,9 +23,6 @@ const getMetadata = (track) =>
         }
         const { data, format } = tags.picture;
         const blob = new Blob([new Uint8Array(data)], { type: format });
-        // const imageSrc = URL.createObjectURL(blob);
-        // const u8Image = new Uint8Array(data);
-        // const b64Image = Buffer.from(blob).toString('base64');
         const imageSrc = await blobToBase64(blob);
         return res({
           file: track,
