@@ -1,36 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // skeleton
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-// toast
-import { toast } from 'react-toastify';
 // components
 import TrendingTrackItem from '../../molecules/TrendingTrackItem/TrendingTrackItem';
 // styles
 import './TracksLikedSection.scss';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useAuth } from '../../../services/auth/auth';
-import { getTracks } from '../../../utils/api/apiTrack';
+import useFetchTracks from '../../../hooks/useFetchTracks';
 
 function TracksLikedSection() {
-  const [likedTracks, setLikedTracks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const currentUser = useAuth();
-  useEffect(() => {
-    const fetch = async () => {
-      setIsLoading(true);
-      try {
-        const apiTracks = await getTracks('/track/getLiked');
-        setLikedTracks(apiTracks);
-      } catch (e) {
-        toast.error('Error fetching tracks');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    if (!currentUser) return;
-    fetch();
-  }, [currentUser]);
-
+  const [songs, isLoading] = useFetchTracks('track/getLiked');
   return (
     <section className="musicLikedContainer">
       <h1 className="heading1">Liked Songs</h1>
@@ -39,7 +18,7 @@ function TracksLikedSection() {
           <Skeleton count={15} height={50} />
         </SkeletonTheme>
       ) : (
-        likedTracks.map((track) => (
+        songs.map((track) => (
           <TrendingTrackItem
             key={track._id}
             trackId={track._id}

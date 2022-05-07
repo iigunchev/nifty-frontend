@@ -1,39 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { setAudio } from '../../redux/Audio/audioSlice';
 import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
 // song
 import purpurina from '../../assets/songsTest/purpurina.mp3';
 import canelita from '../../assets/songsTest/canelita.mp3';
-import { getTracks } from '../../utils/api/apiTrack';
-import { useAuth } from '../../services/auth/auth';
+import useFetchTracks from '../../hooks/useFetchTracks';
 // toast
 
 function Home() {
   const dispatch = useDispatch();
-  const [songs, setSongs] = useState(null);
-
-  const currentUser = useAuth();
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const apiTracks = await getTracks('/track');
-        setSongs(apiTracks);
-      } catch (e) {
-        toast.error('Failed to fetch tracks');
-      }
-    };
-    if (!currentUser) {
-      return;
-    }
-    fetch();
-  }, [currentUser]);
+  const [songs, isLoading] = useFetchTracks('track');
   return (
     <div>
-      {songs ? (
+      {!isLoading ? (
         songs.map((track) => (
           <TrendingTrackItem
             key={track._id}

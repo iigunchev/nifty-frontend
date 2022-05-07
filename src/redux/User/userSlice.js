@@ -5,6 +5,7 @@ import { getCurrentUserProviderId } from '../../services/auth/auth';
 
 const initialState = {
   id: '',
+  token: '',
   firstName: '',
   lastName: '',
   email: null,
@@ -26,6 +27,7 @@ const userSlice = createSlice({
     },
     setUser: (state, { payload }) => {
       state.id = payload._id;
+      state.token = payload.token;
       state.firstName = payload.firstName;
       state.lastName = payload.lastName;
       state.email = payload.email;

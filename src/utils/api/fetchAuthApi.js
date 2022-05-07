@@ -14,7 +14,7 @@ const signUpWithGoogle = async () => {
     const authToken = `Bearer ${token}`;
     const URL = '/account/signUpWithProvider';
     const apiUser = await fetchApi(URL, authToken, { firstName }, 'POST');
-    return apiUser;
+    return { ...apiUser, token };
   } catch (e) {
     // in error case, delete fb user.
     deleteCurrentUser();
@@ -36,7 +36,7 @@ const signupWithApi = async (firstName, lastName) => {
       'POST'
     );
 
-    return apiUser;
+    return { ...apiUser, token };
   } catch (e) {
     // in error case, delete fb user.
     deleteCurrentUser();
@@ -54,7 +54,7 @@ const loginWithApi = async () => {
 
     const apiUser = await fetchApi(URL, authToken);
 
-    return apiUser;
+    return { ...apiUser, token };
   } catch (e) {
     throw new Error('Failed fetching resources to API');
   }
