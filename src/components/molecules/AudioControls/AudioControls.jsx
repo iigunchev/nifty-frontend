@@ -54,7 +54,10 @@ function AudioControls() {
 
   useEffect(() => {
     if (!audio.src) return;
-    togglePlayPause();
+    setIsPlaying(true);
+    // togglePlayPause();
+    audioPlayer.current.play();
+    animationRef.current = requestAnimationFrame(whilePlaying);
   }, [audio?.src]);
   return (
     <div className="primaryControlsWrapper">
@@ -83,7 +86,7 @@ function AudioControls() {
         {/* current time */}
         <div className="currentTime">{calculateTime(currentTime)}</div>
         {/* progress bar */}
-        <div>
+        <div className="progressInputContainer">
           <input
             type="range"
             className="progressBar"

@@ -6,7 +6,7 @@
   gap: 1em;
   img {
     width: 70px;
-    border-radius: $border/2;
+    border-radius: calc($border/2);
   }
 
   h3 {
@@ -15,5 +15,25 @@
   span {
     color: $text-lightgray;
     font-size: t.$text-sm;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .songPlayerInfo {
+    width: 100%;
+    animation: 20s linear 1s infinite running horizontal-slide;
+    display: flex;
+    align-items: flex-end;
+    gap: 1em;
+    margin-bottom: 8px;
+    h3 {
+      line-height: 1
+    }
+  }
+  @keyframes horizontal-slide {
+    0% {transform: translateX(0)}
+    25% {transform: translateX(200px)}
+    50% {transform: translateX(0)}
+    75% {transform: translateX(-200px)}
+    100% {transform: translateX(0)}
   }
 }
