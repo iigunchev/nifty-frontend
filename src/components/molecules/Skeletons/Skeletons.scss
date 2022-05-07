@@ -1,0 +1,11 @@
+.skeletonColumn {
+  display: flex;
+  flex-direction: column;
+}
+.skeletonRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
+  gap: 1em;
+}

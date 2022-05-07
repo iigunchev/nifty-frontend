@@ -1,13 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { setAudio } from '../../redux/Audio/audioSlice';
 import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
 // song
 import purpurina from '../../assets/songsTest/purpurina.mp3';
 import canelita from '../../assets/songsTest/canelita.mp3';
 import useFetchTracks from '../../hooks/useFetchTracks';
-// toast
+import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 
 function Home() {
   const dispatch = useDispatch();
@@ -26,9 +25,7 @@ function Home() {
           />
         ))
       ) : (
-        <SkeletonTheme borderRadius={5}>
-          <Skeleton count={15} height={50} />
-        </SkeletonTheme>
+        <TrendingTrackItemSkeleton />
       )}
       <button
         type="button"
