@@ -16,8 +16,9 @@ const createTrack = async (values) => {
   }
 };
 
-export const getTracks = async (URL, token) => {
+export const getTracks = async (URL) => {
   try {
+    const token = await getCurrentUserToken();
     const apiTracks = await fetchApi(URL, `Bearer ${token}`);
     return apiTracks;
   } catch (e) {
