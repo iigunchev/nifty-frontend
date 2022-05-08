@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Avatar from '../../atoms/Avatar/Avatar';
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
 import './Aside.scss';
@@ -11,6 +10,7 @@ import * as route from '../../../routes';
 // icons
 import logout from '../../../assets/svg/asideSvg/logout.svg';
 import Player from '../Player/Player';
+import userIcon from '../../../assets/svg/user.svg';
 
 function Aside() {
   const dispatch = useDispatch();
@@ -18,7 +18,8 @@ function Aside() {
   return (
     <>
       <div className="profileWrapper">
-        <Avatar size={40} />
+        {/* <Avatar size={40} /> */}
+        <img src={userIcon} alt="user icon" className="asideUserSvg" />
         <h3>{user.firstName}</h3>
       </div>
       <nav className="navigationContainer">

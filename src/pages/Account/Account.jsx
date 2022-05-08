@@ -14,17 +14,22 @@ import {
 import './Account.scss';
 import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
-// import Button from '../../components/molecules/Button/Button';
-import { updateUserProfile } from '../../utils/api/apiUser';
+import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 import { setUser } from '../../redux/User/userSlice';
+<<<<<<< HEAD
 import uploadToCloudinary from '../../utils/cloudinary/uploadToCloudinary';
 import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
+=======
+import { updateUserProfile } from '../../utils/api/apiUser';
+import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
+import createFormData from '../../utils/createFormData';
+>>>>>>> dev
 
 function Account() {
   const [error, setError] = useState('');
+  const [queryState, setQueryState] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newAvatarImage, setNewAvatarImage] = useState(null);
-  const [queryState, setQueryState] = useState('');
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -32,16 +37,17 @@ function Account() {
   const toggleModal = () => {
     setIsModalVisible((prevState) => !prevState);
   };
-  const input = document.querySelector('input[type="file"]');
 
-  const handleSubmit = async (event) => {
-    setError('');
+  const input = document.querySelector('input[type="file"]');
+  const handleSubmitNewImage = async (event) => {
     event.preventDefault();
-    if (input?.files.length === 0) {
+    setError('');
+    if (input.files.length === 0) {
       return setError('Please upload an image');
     }
     setQueryState('isLoading');
     try {
+<<<<<<< HEAD
       const form = event.currentTarget;
       const fileInput = Array.from(form.elements).find(
         ({ name }) => name === 'file'
@@ -50,6 +56,10 @@ function Account() {
       formData.append('file', fileInput.files[0]);
       formData.append('upload_preset', 'avatar');
       const data = await uploadToCloudinary('image', formData);
+=======
+      const formData = createFormData(event, 'avatar');
+      const data = await uploadNewAvatarImage('image', formData);
+>>>>>>> dev
       return setNewAvatarImage(data.secure_url);
     } catch (e) {
       return setError(e.message);
@@ -70,11 +80,24 @@ function Account() {
       setQueryState('');
     }
   };
+
   return (
     <main className="accountContainer">
       <h1 className="heading1">Account</h1>
       <div className="accountCols">
-        <div>
+        <div className="colsWrapper">
+          <section className="flexBetween">
+            <div className="accountAvatarContainer">
+              <Avatar size={250} />
+              <button
+                type="button"
+                className="editAvatarButton"
+                onClick={toggleModal}
+              >
+                Edit
+              </button>
+            </div>
+          </section>
           <section>
             <h2 className="heading2">Details</h2>
             <UserInfoRow type="First Name" details={user.firstName} />
@@ -83,7 +106,7 @@ function Account() {
           </section>
           <div className="buttonWrapper">
             <Link to={`${APP}${EDIT_PROFILE}`} className="accountLink">
-              Edit Profile
+              Edit
             </Link>
           </div>
           <section>
@@ -94,7 +117,7 @@ function Account() {
           </section>
           <div className="buttonWrapper">
             <Link to={`${APP}${CHANGE_PASSWORD}`} className="accountLink">
-              Change Password
+              Update
             </Link>
           </div>
           <section>
@@ -108,21 +131,10 @@ function Account() {
           </section>
           <div className="buttonWrapper">
             <Link to={`${APP}${BECOME_ARTIST}`} className="accountLink">
-              Become Artist
+              Change
             </Link>
           </div>
         </div>
-
-        <label htmlFor="uploadImage" className="updateAvatar">
-          <Avatar />
-          <button
-            type="button"
-            className="editAvatarButton"
-            onClick={toggleModal}
-          >
-            Edit
-          </button>
-        </label>
       </div>
       <Modal
         showing={isModalVisible}
@@ -131,10 +143,12 @@ function Account() {
       >
         <form
           method={!newAvatarImage ? 'POST' : ''}
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmitNewImage}
           className="accountUpdateModalForm"
         >
-          {!newAvatarImage ? <Avatar /> : <img src={newAvatarImage} alt="" />}
+          {newAvatarImage ? (
+            <img src={newAvatarImage} alt="" className="newAvatar" />
+          ) : null}
 
           <label className="customFileUpload">
             <input type="file" name="file" id="uploadImage" />
