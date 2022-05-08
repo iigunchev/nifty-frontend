@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+import React from 'react';
+=======
 import React, { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
+>>>>>>> dev
 import Aside from '../../organism/Aside/Aside';
 import Player from '../../organism/Player/Player';
 // styles
@@ -7,19 +11,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import './AppTemplate.scss';
 
 function AppTemplate({ children }) {
-  const [isMedia, setIsMedia] = useState(window.innerWidth < 1000);
-  const updateMedia = () => {
-    setIsMedia(window.innerWidth < 1000);
-  };
-  useEffect(() => {
-    window.addEventListener('resize', updateMedia);
-    return () => window.removeEventListener('resize', updateMedia);
-  }, []);
   return (
     <div className="appWrapper">
       <aside className="appAside">
         <Aside />
       </aside>
+<<<<<<< HEAD
+      <article className="appContent">{children}</article>
+      <Player />
+=======
       <article className="appContent">
         {children} {isMedia ? <Player /> : null}
       </article>
@@ -34,6 +34,7 @@ function AppTemplate({ children }) {
         draggable
         pauseOnHover
       />
+>>>>>>> dev
     </div>
   );
 }

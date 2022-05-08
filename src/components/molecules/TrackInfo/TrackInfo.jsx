@@ -1,7 +1,7 @@
 import React from 'react';
-import './SongPlayer.scss';
+import './TrackInfo.scss';
 
-function SongPlayer({ title, artist, songImage }) {
+function TrackInfo({ title, artist, songImage }) {
   return (
     <div className="songPlayerWrapper">
       <img className="songPlayerImage" src={songImage} alt="song" />
@@ -13,4 +13,4 @@ function SongPlayer({ title, artist, songImage }) {
   );
 }
 
-export default SongPlayer;
+export default TrackInfo;
