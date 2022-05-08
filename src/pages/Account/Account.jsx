@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// router dom
 import { Link } from 'react-router-dom';
+// loader component
 import { Waveform } from '@uiball/loaders';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../redux/User/userSlice';
 // components
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
 // routes
@@ -11,11 +15,13 @@ import {
   EDIT_PROFILE,
   BECOME_ARTIST
 } from '../../routes';
+// styles
 import './Account.scss';
+// components
 import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
 import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
-import { setUser } from '../../redux/User/userSlice';
+// utils fn
 import { updateUserProfile } from '../../utils/api/apiUser';
 import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
 import createFormData from '../../utils/createFormData';
@@ -34,6 +40,7 @@ function Account() {
   };
 
   const input = document.querySelector('input[type="file"]');
+
   const handleSubmitNewImage = async (event) => {
     event.preventDefault();
     setError('');

@@ -1,11 +1,14 @@
 import React from 'react';
+// redux
 import { useSelector, useDispatch } from 'react-redux';
+// components
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
+// styles
 import './Aside.scss';
-// logout
+// logout redux
 import { removeUser } from '../../../redux/User/userSlice';
-
+// routes
 import * as route from '../../../routes';
 // icons
 import logout from '../../../assets/svg/asideSvg/logout.svg';

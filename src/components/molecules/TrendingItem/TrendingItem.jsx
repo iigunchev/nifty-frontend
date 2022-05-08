@@ -2,10 +2,16 @@ import React from 'react';
 
 import './TrendingItem.scss';
 
-function TrendingItem({ image, title, description }) {
+import defaultImg from '../../../assets/img/defaultSong.png';
+
+function TrendingItem({ image = null, title, description }) {
   return (
     <div className="trendingItemContainer">
-      <img src={image} alt={`${title}`} className="trendingItemImg" />
+      <img
+        src={image || defaultImg}
+        alt={`${title}`}
+        className="trendingItemImg"
+      />
       <div className="detailsWrapper">
         <span className="detailsTitle">{title}</span>
         <div className="detailsDescription">

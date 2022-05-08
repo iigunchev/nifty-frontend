@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
-import Dropzone from 'react-dropzone';
+// toast fn
 import { toast } from 'react-toastify';
-
+// components
+import Dropzone from 'react-dropzone';
 import Button from '../Button/Button';
 // styles
 import './UploadZone.scss';

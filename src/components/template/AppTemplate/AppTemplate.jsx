@@ -1,7 +1,8 @@
 import React from 'react';
+// components
 import { ToastContainer } from 'react-toastify';
-import Aside from '../../organism/Aside/Aside';
 import Player from '../../organism/Player/Player';
+import Aside from '../../organism/Aside/Aside';
 // styles
 import 'react-toastify/dist/ReactToastify.css';
 import './AppTemplate.scss';

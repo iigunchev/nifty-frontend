@@ -1,7 +1,9 @@
 import React from 'react';
+// router dom
 import { Link } from 'react-router-dom';
+// components
 import TrendingItem from '../../molecules/TrendingTrackItem/TrendingTrackItem';
-
+// styles
 import './TrendingList.scss';
 
 const mockTrackList = [

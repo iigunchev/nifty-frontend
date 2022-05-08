@@ -4,11 +4,12 @@ import { toast } from 'react-toastify';
 import { Field, Form, Formik } from 'formik';
 import { Waveform } from '@uiball/loaders';
 import UploadZone from '../../molecules/UploadZone/UploadZone';
-import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
+import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 // utils
 import getMetadata from '../../../utils/meta/getMetadata';
+import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
-import { progressUpload } from '../../../utils/cloudinary/uploadToCloudinary';
+
 import createTrack from '../../../utils/api/apiTrack';
 import schemas from '../../../utils/schemas';
 import getGenresFromApi from '../../../utils/api/apiGenre';
@@ -38,15 +39,31 @@ function UploadTrackForm() {
     setIsLoading(true);
     try {
       const formData = new FormData();
-      formData.append('file', metadata.file);
       formData.append('upload_preset', 'track-upload');
-      const data = await progressUpload('video', formData, setProgress);
+      const cloudFiles = {
+        audio: null,
+        image: null
+      };
+      if (metadata.image) {
+        formData.append('file', metadata.image);
+        cloudFiles.image = await uploadToCloudinaryWithProgress(
+          'image',
+          formData
+        );
+      }
+      formData.append('file', metadata.file);
+      cloudFiles.audio = await uploadToCloudinaryWithProgress(
+        'video',
+        formData,
+        setProgress
+      );
+
       const mock = {
         title: formValues.title,
         genre: genreId,
-        url: data.url,
-        duration: data.duration,
-        thumbnail: metadata.image ? metadata.image : null
+        url: cloudFiles.audio.url,
+        duration: cloudFiles.audio.duration,
+        thumbnail: cloudFiles.image?.url
       };
       await createTrack(mock);
       // refresh state
@@ -70,6 +87,7 @@ function UploadTrackForm() {
         setGenres(allGenres);
       } catch (e) {
         // ERROR HANDLING MISSING
+        // ? setting metadata null?
         console.log(e.message);
       }
     })();
@@ -77,55 +95,65 @@ function UploadTrackForm() {
 
   return (
     <div style={{ padding: '1em' }}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schemas.uploadSongSchema}
-        onSubmit={(values) => handleSubmit(values)}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <AccountEditInput
-              type="text"
-              name="title"
-              label="Track name"
-              error={errors.title}
-              touched={touched.title}
-            />
-            <Field
-              name="genreSearch"
-              type="search"
-              list="trackUploadList"
-              error={errors.genreSearch}
-              required
-            />
-            <datalist id="trackUploadList">
-              {genres.map((genre) => (
-                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                <option key={genre.id} value={genre.name}>
-                  {genre.name}
-                </option>
-              ))}
-            </datalist>
-            <Button type="submit" size="md" isLoading={isLoading}>
-              {isLoading ? (
-                <Waveform size={40} lineWeight={3.5} speed={1} color="white" />
-              ) : (
-                'UPLOAD'
-              )}
-            </Button>
-          </Form>
-        )}
-      </Formik>
+      {metadata ? (
+        <>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={schemas.uploadSongSchema}
+            onSubmit={(values) => handleSubmit(values)}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <AccountEditInput
+                  type="text"
+                  name="title"
+                  label="Track name"
+                  error={errors.title}
+                  touched={touched.title}
+                />
+                <Field
+                  name="genreSearch"
+                  type="search"
+                  list="trackUploadList"
+                  error={errors.genreSearch}
+                  required
+                />
+                <datalist id="trackUploadList">
+                  {genres.map((genre) => (
+                    // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                    <option key={genre.id} value={genre.name}>
+                      {genre.name}
+                    </option>
+                  ))}
+                </datalist>
+                <Button type="submit" size="md" isLoading={isLoading}>
+                  {isLoading ? (
+                    <Waveform
+                      size={40}
+                      lineWeight={3.5}
+                      speed={1}
+                      color="white"
+                    />
+                  ) : (
+                    'UPLOAD'
+                  )}
+                </Button>
+              </Form>
+            )}
+          </Formik>
 
-      <img
-        src={
-          metadata?.image ||
-          'https://static.vecteezy.com/system/resources/thumbnails/001/200/758/small/music-note.png'
-        }
-        alt="hola"
-      />
-      {isLoading ? <ProgressBar progress={progress} /> : null}
-      <UploadZone handleDragFile={handleDragFile} />
+          <img
+            src={
+              metadata?.image ||
+              'https://static.vecteezy.com/system/resources/thumbnails/001/200/758/small/music-note.png'
+            }
+            alt="hola"
+          />
+          {isLoading ? <UploadProgressBar progress={progress} /> : null}
+        </>
+      ) : (
+        <UploadZone handleDragFile={handleDragFile} />
+      )}
     </div>
   );
 }
