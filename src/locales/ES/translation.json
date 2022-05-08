@@ -18,5 +18,21 @@
       "placeholder": "Introduce tu contraseña"
     },
     "submit": "Registrarte"
+  },
+  "login": {
+    "title": "Inicia sesión",
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Introduce tu correo"
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Introduce tu contraseña"
+    },
+    "forgotPassword": "¿Has olvidado tu contraseña?",
+    "login": "Iniciar sesión",
+    "loginGoogle": "Continuar con",
+    "dontHaveAnAccount": "¿No tienes cuenta?",
+    "signUp": "Regístrate"
   }
 }
