@@ -24,6 +24,7 @@ function SelectLang() {
     >
       <option value="en">EN</option>
       <option value="es">ES</option>
+      <option value="cat">CAT</option>
     </select>
   );
 }

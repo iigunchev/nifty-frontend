@@ -38,12 +38,16 @@
   .navList {
     display: flex;
     gap: 3em;
+    white-space: nowrap;
     li {
       list-style: none;
       a {
         font-size: t.$text-lg;
         color: rgb(237, 225, 225);
-        text-decoration: none;
+        // text-decoration: none;
+        // &:hover{
+        //   text-decoration: underline;
+        // }
       }
     }
   }
@@ -72,7 +76,7 @@
   padding-left: 4em;
 }
 
-.newContainer {
+.newFeatureContainer {
   display: flex;
   background-color: rgba(119, 119, 119, 0.166);
   height: 50px;
@@ -80,21 +84,24 @@
   border-radius: v.$border;
   min-width: 350px;
   align-items: center;
+}
 
-  p {
-    font-size: 18px;
-    padding-left: 1em;
-  }
-  span {
-    height: 50px;
-    width: 25%;
-    border-radius: v.$border;
-    background-color: v.$accent-dark;
-    text-align: center;
-    font-weight: 600;
-    padding-top: 3%;
-    padding-bottom: 3%;
-  }
+.newFeatureText {
+  font-size: 18px;
+  padding-left: 1em;
+}
+.newFeatureTitle {
+  height: 50px;
+  width: 25%;
+  border-radius: v.$border;
+
+  text-align: center;
+  font-weight: 600;
+  padding-top: 3%;
+  padding-bottom: 3%;
+
+  color: v.$accent-dark;
+  background-color: rgba(255, 255, 255, 0.442);
 }
 
 .headingTitle {
@@ -133,13 +140,9 @@
 }
 
 @media only screen and (max-width: 390px) {
-  .newContainer {
+  .newFeatureContainer {
     min-width: 300px;
     margin-right: 1em;
-    span {
-      color: #9c32f1 !important;
-      background-color: rgba(255, 255, 255, 0.442) !important;
-    }
   }
 }
 
@@ -160,15 +163,8 @@
   .leftLandingSection {
     margin-top: 1em;
   }
-  .newContainer {
-    span {
-      color: v.$accent-dark !important;
-      background-color: rgba(255, 255, 255, 0.442) !important;
-      border-color: v.$accent-dark !important;
-      border: 1px v.$accent-dark !important;
-    }
-    p {
-      font-size: 14px;
-    }
+
+  .newFeatureText {
+    font-size: 14px;
   }
 }

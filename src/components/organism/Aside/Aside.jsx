@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Avatar from '../../atoms/Avatar/Avatar';
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
 import './Aside.scss';
@@ -10,6 +9,11 @@ import { removeUser } from '../../../redux/User/userSlice';
 import * as route from '../../../routes';
 // icons
 import logout from '../../../assets/svg/asideSvg/logout.svg';
+<<<<<<< HEAD
+=======
+import Player from '../Player/Player';
+import userIcon from '../../../assets/svg/user.svg';
+>>>>>>> dev
 
 function Aside() {
   const dispatch = useDispatch();
@@ -17,7 +21,8 @@ function Aside() {
   return (
     <>
       <div className="profileWrapper">
-        <Avatar size={40} />
+        {/* <Avatar size={40} /> */}
+        <img src={userIcon} alt="user icon" className="asideUserSvg" />
         <h3>{user.firstName}</h3>
       </div>
       <nav className="navigationContainer">
@@ -25,22 +30,32 @@ function Aside() {
           <ListItemIcon route={route.APP} icon="home">
             Home
           </ListItemIcon>
-          <ListItemIcon route={route.GENRES} selected icon="genres">
+          <ListItemIcon
+            route={`${route.APP}${route.GENRES}`}
+            selected
+            icon="genres"
+          >
             Genres
           </ListItemIcon>
-          <ListItemIcon route={route.ALBUMS} icon="albums">
+          <ListItemIcon route={`${route.APP}${route.ALBUMS}`} icon="albums">
             Albums
           </ListItemIcon>
-          <ListItemIcon route={route.ARTISTS} icon="artists">
+          <ListItemIcon route={`${route.APP}${route.ARTISTS}`} icon="artists">
             Artists
           </ListItemIcon>
         </NavList>
         <NavList title="Library">
-          <ListItemIcon route={route.MY_MUSIC} icon="favourites">
+          <ListItemIcon
+            route={`${route.APP}${route.MY_MUSIC}`}
+            icon="favourites"
+          >
             My music
           </ListItemIcon>
           {user.artist ? (
-            <ListItemIcon route={route.UPLOAD_SONG} icon="upload">
+            <ListItemIcon
+              route={`${route.APP}${route.UPLOAD_TRACK}`}
+              icon="upload"
+            >
               Upload
             </ListItemIcon>
           ) : null}

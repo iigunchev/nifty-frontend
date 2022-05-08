@@ -1,6 +1,7 @@
 {
   "signup": {
     "title": "Crear cuenta",
+    "with": "Crear cuenta con",
     "firstName": {
       "label": "Nombre",
       "placeholder": "Introduce tu nombre"
@@ -17,6 +18,7 @@
       "label": "Contraseña",
       "placeholder": "Introduce tu contraseña"
     },
+<<<<<<< HEAD
     "submit": "Registrarte"
   },
   "login": {
@@ -34,5 +36,9 @@
     "loginGoogle": "Continuar con",
     "dontHaveAnAccount": "¿No tienes cuenta?",
     "signUp": "Regístrate"
+=======
+    "submit": "Registrarte",
+    "backToLogin" : "Volver atras"
+>>>>>>> dev
   }
 }

@@ -27,7 +27,7 @@ function Landing() {
               <SelectLang />
             </li>
 
-            {!user ? (
+            {!user.isLoggedIn ? (
               <>
                 <li className="navListSignUp">
                   <a href="http://localhost:3000/sign-up">Sign Up</a>
@@ -47,9 +47,9 @@ function Landing() {
       <article className="flexWrapper">
         <section className="leftLandingSection">
           <div className="leftLandingWrapper">
-            <div className="newContainer">
-              <span>NEW</span>
-              <p>Create your own playlist</p>
+            <div className="newFeatureContainer">
+              <span className="newFeatureTitle">NEW</span>
+              <span className="newFeatureText">Create your own playlist</span>
             </div>
             <p className="headingTitle">
               Never Stop <br />
@@ -60,8 +60,8 @@ function Landing() {
               from emerging and major artists around the world
             </p>
             <div className="buttonWrapper">
-              <Button size="xl">
-                {!user ? (
+              <Button>
+                {!user.isLoggedIn ? (
                   <Link to={SIGN_UP}>START NOW</Link>
                 ) : (
                   <Link to={APP}>START NOW</Link>

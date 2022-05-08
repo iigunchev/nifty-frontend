@@ -32,4 +32,10 @@
     display: inline-flex;
     justify-content: space-between;
   }
+  .modalBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+  }
 }

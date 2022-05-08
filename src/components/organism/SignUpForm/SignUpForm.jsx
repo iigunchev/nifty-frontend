@@ -88,7 +88,7 @@ function SignUpForm() {
         handleClick={handleLoginWithGoogle}
         type="button"
       >
-        <span>Sign up with</span>
+        <span>{t('signup.with')}</span>
         <img src={googleIcon} alt="google icon" />
       </SecondaryButton>
       <Formik
@@ -133,14 +133,14 @@ function SignUpForm() {
               placeholder={t('signup.password.placeholder')}
             />
             <Button isLoading={isLoading} type="submit" size="xl">
-              SIGN UP
+              {t('signup.title')}
             </Button>
           </Form>
         )}
       </Formik>
       <ErrorContainer error={error} />
       <div className="loginLink">
-        <Link to={LOGIN}>Back to Login</Link>
+        <Link to={LOGIN}>{t('signup.backToLogin')}</Link>
       </div>
     </>
   );

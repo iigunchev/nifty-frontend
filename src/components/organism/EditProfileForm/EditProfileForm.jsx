@@ -6,6 +6,7 @@ import './EditProfileForm.scss';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { setUser } from '../../../redux/User/userSlice';
 // schemas
 import schemas from '../../../utils/schemas';
@@ -60,6 +61,7 @@ function EditProfileForm() {
 
       const apiUser = await updateUserProfile(formValues, user.id);
       dispatch(setUser(apiUser));
+      toast.success('Profile edited!');
       navigate(`${APP}${ACCOUNT}`);
     } catch (e) {
       const message = handleAuthErrors(e.message);
@@ -76,8 +78,10 @@ function EditProfileForm() {
       const apiUser = await updateUserProfile(values, user.id);
       dispatch(setUser(apiUser));
       navigate(`${APP}${ACCOUNT}`);
+      toast.success('Profile edited!');
     } catch (e) {
       const message = handleAuthErrors(e.message);
+      toast.fail('Something went wrong 😞');
       setError(message);
     } finally {
       setIsLoading(false);
