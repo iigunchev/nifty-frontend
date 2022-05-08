@@ -18,7 +18,6 @@
       "label": "Contraseña",
       "placeholder": "Introduce tu contraseña"
     },
-<<<<<<< HEAD
     "submit": "Registrarte"
   },
   "login": {
@@ -35,10 +34,8 @@
     "login": "Iniciar sesión",
     "loginGoogle": "Continuar con",
     "dontHaveAnAccount": "¿No tienes cuenta?",
-    "signUp": "Regístrate"
-=======
+    "signUp": "Regístrate",
     "submit": "Registrarte",
-    "backToLogin" : "Volver atras"
->>>>>>> dev
+    "backToLogin": "Volver atras"
   }
 }

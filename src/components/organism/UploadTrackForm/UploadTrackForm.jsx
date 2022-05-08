@@ -33,6 +33,7 @@ function UploadTrackForm() {
       if (genre.name === formValues.genreSearch) {
         return genre._id;
       }
+      return null;
     });
     setIsLoading(true);
     try {

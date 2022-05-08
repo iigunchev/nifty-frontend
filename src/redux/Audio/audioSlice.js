@@ -33,11 +33,7 @@ const audioSlice = createSlice({
   }
 });
 
-<<<<<<< HEAD
-export const { setTrack, setSrc, setVolume, setCurrentTime } =
+export const { setTrack, setAudio, setVolume, setCurrentTime } =
   audioSlice.actions;
-=======
-export const { setTrack, setAudio, setVolume } = audioSlice.actions;
->>>>>>> dev
 
 export default audioSlice.reducer;

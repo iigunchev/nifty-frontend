@@ -16,14 +16,9 @@ import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
 import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 import { setUser } from '../../redux/User/userSlice';
-<<<<<<< HEAD
-import uploadToCloudinary from '../../utils/cloudinary/uploadToCloudinary';
-import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
-=======
 import { updateUserProfile } from '../../utils/api/apiUser';
 import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
 import createFormData from '../../utils/createFormData';
->>>>>>> dev
 
 function Account() {
   const [error, setError] = useState('');
@@ -47,19 +42,8 @@ function Account() {
     }
     setQueryState('isLoading');
     try {
-<<<<<<< HEAD
-      const form = event.currentTarget;
-      const fileInput = Array.from(form.elements).find(
-        ({ name }) => name === 'file'
-      );
-      const formData = new FormData();
-      formData.append('file', fileInput.files[0]);
-      formData.append('upload_preset', 'avatar');
-      const data = await uploadToCloudinary('image', formData);
-=======
       const formData = createFormData(event, 'avatar');
       const data = await uploadNewAvatarImage('image', formData);
->>>>>>> dev
       return setNewAvatarImage(data.secure_url);
     } catch (e) {
       return setError(e.message);

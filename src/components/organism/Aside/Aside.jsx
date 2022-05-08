@@ -9,11 +9,7 @@ import { removeUser } from '../../../redux/User/userSlice';
 import * as route from '../../../routes';
 // icons
 import logout from '../../../assets/svg/asideSvg/logout.svg';
-<<<<<<< HEAD
-=======
-import Player from '../Player/Player';
 import userIcon from '../../../assets/svg/user.svg';
->>>>>>> dev
 
 function Aside() {
   const dispatch = useDispatch();
