@@ -1,13 +1,13 @@
 import React from 'react';
 // redux
 import { useSelector } from 'react-redux';
-
-import './Player.scss';
-import './Player-vanilla.scss';
+// components
 import TrackInfo from '../../molecules/TrackInfo/TrackInfo';
 import VolumeButton from '../../molecules/VolumeButton/VolumeButton';
-
 import AudioControls from '../../molecules/AudioControls/AudioControls';
+// styles
+import './Player.scss';
+import './Player-vanilla.scss';
 
 function Player() {
   const audio = useSelector((state) => state.audio);

@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
+// redux
 import { useSelector } from 'react-redux';
-import './AudioControls.scss';
+// utils
 import { calculateTime } from '../../../utils/audioPlayer';
-// img
+// images
 import play from '../../../assets/img/player/play.png';
 import pause from '../../../assets/img/player/pause.png';
 import next from '../../../assets/img/player/next.png';
 import previous from '../../../assets/img/player/previous.png';
+// styles
+import './AudioControls.scss';
 
 function AudioControls() {
   const [isPlaying, setIsPlaying] = useState(false);

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Field, Form, Formik } from 'formik';
 import { Waveform } from '@uiball/loaders';
 import UploadZone from '../../molecules/UploadZone/UploadZone';
-import ProgressBar from '../../molecules/ProgressBar/ProgressBar';
+import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 // utils
 import getMetadata from '../../../utils/meta/getMetadata';
 import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
@@ -149,7 +149,7 @@ function UploadTrackForm() {
             }
             alt="hola"
           />
-          {isLoading ? <ProgressBar progress={progress} /> : null}
+          {isLoading ? <UploadProgressBar progress={progress} /> : null}
         </>
       ) : (
         <UploadZone handleDragFile={handleDragFile} />
