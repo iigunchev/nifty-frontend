@@ -16,6 +16,7 @@ import Avatar from '../../components/atoms/Avatar/Avatar';
 import Modal from '../../components/template/Modal/Modal';
 import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 import { setUser } from '../../redux/User/userSlice';
+
 import { updateUserProfile } from '../../utils/api/apiUser';
 import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
 import createFormData from '../../utils/createFormData';
@@ -34,6 +35,7 @@ function Account() {
   };
 
   const input = document.querySelector('input[type="file"]');
+
   const handleSubmitNewImage = async (event) => {
     event.preventDefault();
     setError('');

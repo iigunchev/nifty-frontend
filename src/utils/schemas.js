@@ -59,10 +59,18 @@ const changePasswordSchema = Yup.object().shape({
   )
 });
 
+const uploadSongSchema = Yup.object().shape({
+  title: Yup.string()
+    .required('Title is required')
+    .max('30', 'Title is too long'),
+  genreSearch: Yup.string().required('Please select a genre')
+});
+
 export default {
   signupSchema,
   signInSchema,
   resetPasswordSchema,
   editProfileSchema,
-  changePasswordSchema
+  changePasswordSchema,
+  uploadSongSchema
 };

@@ -6,6 +6,7 @@ const initialState = {
   src: '',
   track: null,
   volume: 0.5,
+  barProgress: 0,
   isPlaying: false,
   artist: '',
   title: ''
@@ -23,12 +24,20 @@ const audioSlice = createSlice({
     setTrack: (state, { payload }) => {
       state.track = payload;
     },
+    setCurrentTime: (state, { payload }) => {
+      state.track.currenTime = payload;
+    },
     setVolume: (state, { payload }) => {
       state.volume = payload;
     }
   }
 });
 
+<<<<<<< HEAD
+export const { setTrack, setSrc, setVolume, setCurrentTime } =
+  audioSlice.actions;
+=======
 export const { setTrack, setAudio, setVolume } = audioSlice.actions;
+>>>>>>> dev
 
 export default audioSlice.reducer;

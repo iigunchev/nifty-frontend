@@ -1,41 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 // redux
-import { useSelector, useDispatch } from 'react-redux';
-// react audio player
-import ReactAudioPlayer from 'react-audio-player';
-// molecules
-import PlayerControllers from '../../molecules/PlayerControllers/PlayerControllers';
-import PlaybackBar from '../../molecules/PlaybackBar/PlaybackBar';
-import TrackPlayer from '../../molecules/SongPlayer/SongPlayer';
+import { useSelector } from 'react-redux';
+
 import './Player.scss';
-import { setTrack } from '../../../redux/Audio/audioSlice';
+import './Player-vanilla.scss';
+import TrackInfo from '../../molecules/TrackInfo/TrackInfo';
+import VolumeButton from '../../molecules/VolumeButton/VolumeButton';
+
+import AudioControls from '../../molecules/AudioControls/AudioControls';
 
 function Player() {
   const audio = useSelector((state) => state.audio);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const dispatch = useDispatch();
 
   return (
     <section className="playerContainer">
-      <ReactAudioPlayer
-        autoPlay
-        onPlay={() => setIsPlaying(true)}
-        onEnded={() => setIsPlaying(false)}
-        onCanPlay={(element) => dispatch(setTrack(element.target))}
-        src={audio.src}
-        volume={audio.volume}
-      />
-      <PlaybackBar
-        time={audio.track?.currentTime}
-        duration={audio.track?.duration}
-      />
       <div className="playerWrapper">
-        <TrackPlayer
+        <TrackInfo
           title="Motomami"
           artist="La Rosalia"
-          songImage="https://via.placeholder.com/50x50"
+          songImage="https://via.placeholder.com/70x70"
         />
-        <PlayerControllers isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        <AudioControls />
+        <VolumeButton track={audio.track} />
       </div>
     </section>
   );

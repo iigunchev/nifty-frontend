@@ -2,12 +2,9 @@
 @use '../../../sass/core/typography' as t;
 
 .playbackBarWrapper {
-  background-color: $bg-gray;
   display: flex;
+  color: $text-lightgray;
   align-items: center;
-  border-radius: $border $border 5px 5px;
-  padding: 1em;
-  height: 60px;
   width: 80%;
   .time {
     font-size: t.$text-sm;
