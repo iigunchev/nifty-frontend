@@ -13,12 +13,9 @@ import createTrack from '../../../utils/api/apiTrack';
 
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import uploadSongSchema from '../../../utils/schemas';
-import getGenresFromApi from '../../../utils/api/apiGenre';
+import fetchapiGenre from '../../../utils/api/apiGenre';
 
 function UploadTrackForm() {
-  const [formValues, setFormvalues] = useState({
-    title: ''
-  });
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -48,11 +45,68 @@ function UploadTrackForm() {
     }
   };
 
+  //const getGenreTrack = async () => {
+  //const apiGenres = await fetchapiGenre();
+  function GenresList(props) {
+    const genres = props.genres;
+
+    genres.map(function (genres) {
+      console.log(genres);
+    });
+
+    return (
+      <datalist id="genres-list">
+        {genres.map(function (genres) {
+          return <option value={genres} />;
+        })}
+      </datalist>
+    );
+  }
+
+  function GenresInput(genres) {
+    const apiGenres = fetchapiGenre();
+    const category = genres.category;
+    return (
+      <div>
+        <input
+          list="genres-list"
+          // onChange={handleChange}
+          type="text"
+          placeholder="Search..."
+        />
+        <GenresList genres={apiGenres} />
+      </div>
+    );
+  }
+
+  // apiGenre.map(function (genre) {
+  //console.log(apiGenres);
+  // });
+  // const genrees = apiGenre.map((value) => {
+  //   return value;
+  // });
+
+  // const renderbase = ({ apiGenres }) => {
+  //   if (apiGenres) {
+  //     return Object.keys(apiGenres).map((item, index) => {
+  //       return (
+  //         <option value={apiGenres[item].code} key={index}>
+  //           {apiGenres[item].symbol}
+  //         </option>
+  //       );
+  //     });
+  //   }
+  // };
+
   const handleDragFile = async (track) => {
     const trackData = await getMetadata(track[0]);
     setMetadata(trackData);
     getGenreTrack();
   };
+
+  const [formValues, setFormvalues] = useState({
+    title: ''
+  });
 
   const initialValues = {
     title: metadata?.title
@@ -69,12 +123,24 @@ function UploadTrackForm() {
           >
             <Form>
               <AccountEditInput label="title" name="title" />
-
+              <input type="search" label="genre" name="genre" />
               <label>
                 Choose a Genre for you track
                 <input list="trackUpladList" />
               </label>
+              <GenresInput />
+              {/* <datalist>
+                {apiGenres.map(function (genre) {
+                  <option value={genre} />;
+                })}
+                ;
+              </datalist> */}
 
+              {/* <datalist id="trackUpladList" >
+                <datalist>{apiGenre.map()}</option>
+                <option data-value="vlor1" label="Valor 1" />
+                <option data-value="Valor 2" label="Valor 1" />
+              </datalist> */}
               <div>Album</div>
             </Form>
           </Formik>
