@@ -19,6 +19,7 @@ function TrendingTrackItem({
   trackId,
   isLiked
 }) {
+  const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const handleLikeTrack = async (likeValue) => {
     setIsLoading(true);
@@ -46,7 +47,11 @@ function TrendingTrackItem({
       />
       {/* <span>{trackDuration}</span> */}
       <ButtonWithIcon />
-      <button type="button" title="More options">
+      <button
+        type="button"
+        onClick={() => setShowDialog(!showDialog)}
+        title="More options"
+      >
         <SVG className="verticalDots" />
       </button>
     </div>
