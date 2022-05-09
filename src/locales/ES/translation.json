@@ -45,5 +45,15 @@
     "p": "Ingrese su correo electrónico y le enviaremos un enlace para acceder a su cuenta.",
     "resetPassword": "Restablecer la contraseña",
     "backToLogin": "Back to Login"
+  },
+  "aside": {
+    "home": "Inicio",
+    "genres": "Generos",
+    "playlists": "Playlists",
+    "artists": "Artistas",
+    "myMusic": "Mi musica",
+    "upload": "Upload",
+    "account": "Cuenta",
+    "signOut": "Cerrar Sesion"
   }
 }

@@ -46,5 +46,15 @@
     "p": "Introduïu el vostre correu electrònic i us enviarem un enllaç per accedir al vostre compte.",
     "resetPassword": "Restablir la contrasenya",
     "backToLogin": "Back to Login"
+  },
+  "aside": {
+    "home": "Inici",
+    "genres": "Generos",
+    "playlists": "Playlists",
+    "artists": "Artistas",
+    "myMusic": "La Meva musica",
+    "upload": "Upload",
+    "account": "Compte",
+    "signOut": "Cerrar Sesion"
   }
 }
