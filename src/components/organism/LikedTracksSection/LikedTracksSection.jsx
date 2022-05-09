@@ -28,7 +28,7 @@ function TrackList({ songs }) {
         artistName={track.artist}
         trackName={track.title}
         artistImg={track.thumbnail}
-        isLiked={track.likedBy[0]}
+        isLiked={track.isLiked}
       />
     ))
   ) : (
