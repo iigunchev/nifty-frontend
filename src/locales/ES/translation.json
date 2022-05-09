@@ -35,5 +35,25 @@
     "loginGoogle": "Continuar con",
     "dontHaveAnAccount": "¿No tienes cuenta?",
     "signUp": "Regístrate"
+  },
+  "changePassword": {
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "ejemplo@ejemplo.com"
+    },
+    "title": "¿Problemas para iniciar sesión?",
+    "p": "Ingrese su correo electrónico y le enviaremos un enlace para acceder a su cuenta.",
+    "resetPassword": "Restablecer la contraseña",
+    "backToLogin": "Back to Login"
+  },
+  "aside": {
+    "home": "Inicio",
+    "genres": "Generos",
+    "playlists": "Playlists",
+    "artists": "Artistas",
+    "myMusic": "Mi musica",
+    "upload": "Upload",
+    "account": "Cuenta",
+    "signOut": "Cerrar Sesion"
   }
 }
