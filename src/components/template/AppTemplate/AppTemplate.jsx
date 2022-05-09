@@ -6,6 +6,7 @@ import Aside from '../../organism/Aside/Aside';
 // styles
 import 'react-toastify/dist/ReactToastify.css';
 import './AppTemplate.scss';
+import Hamburger from '../../atoms/Hamburger/Hamburger';
 
 function AppTemplate({ children }) {
   return (
@@ -26,6 +27,7 @@ function AppTemplate({ children }) {
         draggable
         pauseOnHover
       />
+      <Hamburger />
     </div>
   );
 }
