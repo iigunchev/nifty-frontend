@@ -13,6 +13,9 @@ function Home() {
   const [songs, isLoading] = useFetchTracks('track');
   return (
     <div>
+      <h2 className="heading2" style={{ marginBottom: '1em' }}>
+        Trending tracks
+      </h2>
       {!isLoading ? (
         songs.map((track) => (
           <TrendingTrackItem

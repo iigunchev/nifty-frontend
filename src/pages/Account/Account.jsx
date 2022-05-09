@@ -77,9 +77,9 @@ function Account() {
       <h1 className="heading1">Account</h1>
       <div className="accountCols">
         <div className="colsWrapper">
-          <section className="flexBetween">
+          <section className="flex-between">
             <div className="accountAvatarContainer">
-              <Avatar size={250} />
+              <Avatar size={150} />
               <button
                 type="button"
                 className="editAvatarButton"
@@ -88,6 +88,20 @@ function Account() {
                 Edit
               </button>
             </div>
+            <section className="accountTopRow">
+              <div style={{ width: '100%' }}>
+                <h2 className="heading2">Account Type</h2>
+                <UserInfoRow
+                  type="Status"
+                  details={!user.artist ? 'Normal User' : 'Artist'}
+                />
+                <div className="buttonWrapper">
+                  <Link to={`${APP}${BECOME_ARTIST}`} className="accountLink">
+                    Change
+                  </Link>
+                </div>
+              </div>
+            </section>
           </section>
           <section>
             <h2 className="heading2">Details</h2>
@@ -109,20 +123,6 @@ function Account() {
           <div className="buttonWrapper">
             <Link to={`${APP}${CHANGE_PASSWORD}`} className="accountLink">
               Update
-            </Link>
-          </div>
-          <section>
-            <div>
-              <h2 className="heading2">Type Account</h2>
-              <UserInfoRow
-                type="Type Account"
-                details={!user.artist ? 'Normal User' : 'Artist'}
-              />
-            </div>
-          </section>
-          <div className="buttonWrapper">
-            <Link to={`${APP}${BECOME_ARTIST}`} className="accountLink">
-              Change
             </Link>
           </div>
         </div>
