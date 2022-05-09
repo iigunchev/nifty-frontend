@@ -36,5 +36,15 @@
     "loginGoogle": "Log in with",
     "dontHaveAnAccount": "Don't have account?",
     "signUp": "Sign Up"
+  },
+  "changePassword": {
+    "email": {
+      "label": "Email",
+      "placeholder": "example@example.com"
+    },
+    "title": "Trouble Logging In?",
+    "p": "Enter your email and we'll send you a link to get back into your account.",
+    "resetPassword": "Reset Password",
+    "backToLogin": "Back to Login"
   }
 }
