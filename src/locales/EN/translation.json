@@ -19,6 +19,22 @@
       "placeholder": "Type your password"
     },
     "submit": "Sign up",
-    "backToLogin" : "Back to Login"
+    "backToLogin": "Back to Login"
+  },
+  "login": {
+    "title": "Log In",
+    "email": {
+      "label": "Email",
+      "placeholder": "Type your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Type your password"
+    },
+    "forgotPassword": "Forgot Password?",
+    "login": "Log in",
+    "loginGoogle": "Log in with",
+    "dontHaveAnAccount": "Don't have account?",
+    "signUp": "Sign Up"
   }
 }
