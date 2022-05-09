@@ -21,7 +21,7 @@
     "submit": "Registrarte"
   },
   "login": {
-    "title": "Inicia sesión",
+    "title": "Inicia Sesión",
     "email": {
       "label": "Correo electrónico",
       "placeholder": "Introduce tu correo"
@@ -34,8 +34,6 @@
     "login": "Iniciar sesión",
     "loginGoogle": "Continuar con",
     "dontHaveAnAccount": "¿No tienes cuenta?",
-    "signUp": "Regístrate",
-    "submit": "Registrarte",
-    "backToLogin": "Volver atras"
+    "signUp": "Regístrate"
   }
 }

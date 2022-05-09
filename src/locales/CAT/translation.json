@@ -19,6 +19,22 @@
       "placeholder": "Introdueix la teva contrasenya"
     },
     "submit": "Registra't",
-    "backToLogin" : "Tornar enrere"
+    "backToLogin": "Tornar enrere"
+  },
+  "login": {
+    "title": "Inicia Sessió",
+    "email": {
+      "label": "Correu electrònic",
+      "placeholder": "Introdueix el teu correu"
+    },
+    "password": {
+      "label": "Contrasenya",
+      "placeholder": "Introdueix la teva contrasenya"
+    },
+    "forgotPassword": "Heu oblidat la vostra contrasenya?",
+    "login": "Inicia Sessió",
+    "loginGoogle": "Continuar amb",
+    "dontHaveAnAccount": "No tens compte?",
+    "signUp": "Registra't"
   }
 }
