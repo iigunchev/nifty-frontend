@@ -20,6 +20,7 @@ function Home() {
         songs.map((track) => (
           <TrendingTrackItem
             key={track._id}
+            trackSrc={track.url}
             artistImg={track.thumbnail}
             artistName={track.artist}
             trackId={track._id}

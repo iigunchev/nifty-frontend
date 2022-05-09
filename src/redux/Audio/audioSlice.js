@@ -9,7 +9,8 @@ const initialState = {
   barProgress: 0,
   isPlaying: false,
   artist: '',
-  title: ''
+  title: '',
+  image: null
 };
 
 const audioSlice = createSlice({
@@ -20,6 +21,7 @@ const audioSlice = createSlice({
       state.src = payload.src;
       state.artist = payload.artist;
       state.title = payload.title;
+      state.image = payload.image;
     },
     setTrack: (state, { payload }) => {
       state.track = payload;

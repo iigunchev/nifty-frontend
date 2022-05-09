@@ -16,9 +16,9 @@ function Player() {
     <section className="playerContainer">
       <div className="playerWrapper">
         <TrackInfo
-          title="Motomami"
-          artist="La Rosalia"
-          songImage="https://via.placeholder.com/70x70"
+          title={audio.title}
+          artist={audio.artist}
+          songImage={audio.image}
         />
         <AudioControls />
         <VolumeButton track={audio.track} />
