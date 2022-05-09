@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
+import './UploadTrackForm.scss';
 // components
 import { toast } from 'react-toastify';
 import { Field, Form, Formik } from 'formik';
-import { Waveform } from '@uiball/loaders';
 import UploadZone from '../../molecules/UploadZone/UploadZone';
 import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 // utils
@@ -16,17 +17,20 @@ import getGenresFromApi from '../../../utils/api/apiGenre';
 import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import { useAuth } from '../../../services/auth/auth';
+import defaultSong from '../../../assets/img/defaultSong.png';
 
 function UploadTrackForm() {
   const currentUser = useAuth();
+
   const [genres, setGenres] = useState([]);
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const initialValues = {
-    title: '',
-    genreSearch: ''
+    title: metadata?.title,
+    genreSearch: metadata?.genre,
+    image: metadata?.image
   };
 
   const handleSubmit = async (formValues) => {
@@ -81,6 +85,7 @@ function UploadTrackForm() {
     setMetadata(trackData);
   };
   useEffect(() => {
+    if (!currentUser) return;
     (async () => {
       try {
         const allGenres = await getGenresFromApi();
@@ -104,51 +109,74 @@ function UploadTrackForm() {
           >
             {({ errors, touched }) => (
               <Form>
-                <AccountEditInput
-                  type="text"
-                  name="title"
-                  label="Track name"
-                  error={errors.title}
-                  touched={touched.title}
-                />
-                <Field
-                  name="genreSearch"
-                  type="search"
-                  list="trackUploadList"
-                  error={errors.genreSearch}
-                  required
-                />
-                <datalist id="trackUploadList">
-                  {genres.map((genre) => (
-                    // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                    <option key={genre.id} value={genre.name}>
-                      {genre.name}
-                    </option>
-                  ))}
-                </datalist>
-                <Button type="submit" size="md" isLoading={isLoading}>
-                  {isLoading ? (
-                    <Waveform
-                      size={40}
-                      lineWeight={3.5}
-                      speed={1}
-                      color="white"
+                <div className="formWrapper">
+                  <div className="leftCol">
+                    <AccountEditInput
+                      type="text"
+                      name="title"
+                      label="Track name"
+                      error={errors.title}
+                      touched={touched.title}
+                      placeholder="Title"
                     />
-                  ) : (
-                    'UPLOAD'
-                  )}
-                </Button>
+                    <label htmlFor="genreSearch">
+                      Genre
+                      <Field
+                        name="genreSearch"
+                        type="search"
+                        list="trackUploadList"
+                        error={errors.genreSearch}
+                        className="searchGenreInput"
+                        placeholder="Rock, Pop, Flamenco..."
+                        required
+                      />
+                      <datalist id="trackUploadList">
+                        {genres.map((genre) => (
+                          // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                          <option key={genre._id} value={genre.name}>
+                            {genre.name}
+                          </option>
+                        ))}
+                      </datalist>
+                    </label>
+                  </div>
+                  <div className="rightCol">
+                    <label
+                      htmlFor="uploadTrackFile"
+                      className="uploadTrackFileLabel"
+                    >
+                      <Field
+                        type="file"
+                        name="uploadTrackFile"
+                        id="uploadTrackFile"
+                        className="displayNone"
+                        onChange={(e) => {
+                          setMetadata({
+                            ...metadata,
+                            image: e.target.files[0]
+                          });
+                        }}
+                      />
+                      <img
+                        src={metadata?.image || defaultSong}
+                        alt=""
+                        className="trackImage"
+                      />
+                      <span role="button" className="editTrackImageBtn">
+                        Edit
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div className="buttonWrapper">
+                  <Button type="submit" size="md" isLoading={isLoading}>
+                    UPLOAD
+                  </Button>
+                </div>
               </Form>
             )}
           </Formik>
 
-          <img
-            src={
-              metadata?.image ||
-              'https://static.vecteezy.com/system/resources/thumbnails/001/200/758/small/music-note.png'
-            }
-            alt="hola"
-          />
           {isLoading ? <UploadProgressBar progress={progress} /> : null}
         </>
       ) : (
