@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useAudioControllers = (audio) => {
+const useAudioControllers = (volume) => {
   // states
   const [duration, setDuration] = useState(0);
   // references
@@ -9,8 +9,8 @@ const useAudioControllers = (audio) => {
   const animationRef = useRef(); // reference the animation
 
   useEffect(() => {
-    audioPlayer.current.volume = audio.volume;
-  }, [audio.volume]);
+    audioPlayer.current.volume = volume;
+  }, [volume]);
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);

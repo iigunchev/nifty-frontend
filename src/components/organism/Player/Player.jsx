@@ -10,18 +10,17 @@ import './Player.scss';
 import './Player-vanilla.scss';
 
 function Player() {
-  const audio = useSelector((state) => state.audio);
-
+  const { currentTrack } = useSelector((state) => state.audio);
   return (
     <section className="playerContainer">
       <div className="playerWrapper">
         <TrackInfo
-          title={audio.title}
-          artist={audio.artist}
-          songImage={audio.image}
+          title={currentTrack.title}
+          artist={currentTrack.artist}
+          songImage={currentTrack.image}
         />
         <AudioControls />
-        <VolumeButton track={audio.track} />
+        <VolumeButton />
       </div>
     </section>
   );

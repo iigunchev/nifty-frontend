@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
 // images
@@ -11,13 +11,15 @@ import previous from '../../../assets/img/player/previous.png';
 // styles
 import './AudioControls.scss';
 import useAudioControllers from '../../../hooks/useAudioControllers';
+import { setCurrentTrack } from '../../../redux/Audio/audioSlice';
 
 function AudioControls() {
+  const dispatch = useDispatch();
   // redux volume slice
-  const audio = useSelector((state) => state.audio);
+  const { currentTrack, volume, queue } = useSelector((state) => state.audio);
   // custom hook
   const [audioPlayer, progressBar, animationRef, duration] =
-    useAudioControllers(audio);
+    useAudioControllers(volume);
   // states
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -37,6 +39,7 @@ function AudioControls() {
   };
 
   const togglePlayPause = () => {
+    if (!currentTrack.src) return;
     setIsPlaying((prevState) => !prevState);
     if (!isPlaying) {
       audioPlayer.current.play();
@@ -52,23 +55,47 @@ function AudioControls() {
     audioPlayer.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
   };
+  const playPrevSong = () => {
+    if (!currentTrack.src) return;
+    const trackIndex = queue.findIndex(
+      (track) => track.src === currentTrack.src
+    );
+    if (trackIndex === 0) {
+      return;
+    }
+    dispatch(setCurrentTrack(queue[trackIndex - 1]));
+  };
+  const playNextSong = () => {
+    if (!currentTrack.src) return;
+    const trackIndex = queue.findIndex(
+      (track) => track.src === currentTrack.src
+    );
+    console.log(trackIndex);
+    dispatch(setCurrentTrack(queue[trackIndex + 1]));
+  };
 
   useEffect(() => {
-    if (!audio.src) return;
+    if (!currentTrack.src) return;
     setIsPlaying(true);
     // togglePlayPause();
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
-  }, [audio?.src]);
+  }, [currentTrack.src]);
 
   return (
     <div className="primaryControlsWrapper">
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioPlayer} src={audio.src} />
+      <audio ref={audioPlayer} src={currentTrack.src} />
       <div className="controlButtonsWrapper">
-        <button className="nextPreviousButton" type="button">
+        {/* Previous song button */}
+        <button
+          onClick={playPrevSong}
+          className="nextPreviousButton"
+          type="button"
+        >
           <img className="filteredImg" src={previous} alt="previous" />
         </button>
+        {/* Play / Pause button */}
         <button
           onClick={togglePlayPause}
           className="playStopButton"
@@ -80,7 +107,12 @@ function AudioControls() {
             alt="stop"
           />
         </button>
-        <button className="nextPreviousButton" type="button">
+        {/* Next song button */}
+        <button
+          onClick={playNextSong}
+          className="nextPreviousButton"
+          type="button"
+        >
           <img className="filteredImg" src={next} alt="next" />
         </button>
       </div>

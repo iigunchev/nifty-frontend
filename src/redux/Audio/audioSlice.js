@@ -3,31 +3,31 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   // info song,
-  src: '',
-  track: null,
-  volume: 0.5,
-  barProgress: 0,
-  isPlaying: false,
-  artist: '',
-  title: '',
-  image: null
+  currentTrack: {
+    src: '',
+    artist: '',
+    title: '',
+    image: null
+  },
+  queue: [],
+  volume: 0.5
 };
 
 const audioSlice = createSlice({
   name: 'audio',
   initialState,
   reducers: {
+    setQueue: (state, { payload }) => {
+      state.queue = payload;
+    },
     setAudio: (state, { payload }) => {
       state.src = payload.src;
       state.artist = payload.artist;
       state.title = payload.title;
       state.image = payload.image;
     },
-    setTrack: (state, { payload }) => {
-      state.track = payload;
-    },
-    setCurrentTime: (state, { payload }) => {
-      state.track.currenTime = payload;
+    setCurrentTrack: (state, { payload }) => {
+      state.currentTrack = payload;
     },
     setVolume: (state, { payload }) => {
       state.volume = payload;
@@ -35,7 +35,7 @@ const audioSlice = createSlice({
   }
 });
 
-export const { setTrack, setAudio, setVolume, setCurrentTime } =
+export const { setCurrentTrack, setAudio, setVolume, setQueue } =
   audioSlice.actions;
 
 export default audioSlice.reducer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setAudio } from '../../redux/Audio/audioSlice';
+import { setAudio, setQueue } from '../../redux/Audio/audioSlice';
 import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
 // song
 import purpurina from '../../assets/songsTest/purpurina.mp3';
@@ -11,6 +11,18 @@ import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/Tren
 function Home() {
   const dispatch = useDispatch();
   const [songs, isLoading] = useFetchTracks('track');
+  if (songs.length !== 0) {
+    dispatch(
+      setQueue(
+        songs.map((track) => ({
+          src: track.url,
+          artist: track.artist,
+          title: track.title,
+          image: track.thumbnail
+        }))
+      )
+    );
+  }
   return (
     <div>
       <h2 className="heading2" style={{ marginBottom: '1em' }}>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 // redux
 import { useDispatch } from 'react-redux';
+import { setCurrentTrack } from '../../../redux/Audio/audioSlice';
 // components
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import TrendingItem from '../TrendingItem/TrendingItem';
@@ -14,7 +15,6 @@ import { toggleLike } from '../../../utils/api/apiTrack';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 // styles
 import './TrendingTrackItem.scss';
-import { setAudio } from '../../../redux/Audio/audioSlice';
 
 function TrendingTrackItem({
   artistImg,
@@ -29,7 +29,7 @@ function TrendingTrackItem({
   const dispatch = useDispatch();
   const handlePlayTrack = () => {
     dispatch(
-      setAudio({
+      setCurrentTrack({
         artist: artistName,
         src: trackSrc,
         title: trackName,
