@@ -19,6 +19,42 @@
       "placeholder": "Introdueix la teva contrasenya"
     },
     "submit": "Registra't",
-    "backToLogin" : "Tornar enrere"
+    "backToLogin": "Tornar enrere"
+  },
+  "login": {
+    "title": "Inicia Sessió",
+    "email": {
+      "label": "Correu electrònic",
+      "placeholder": "Introdueix el teu correu"
+    },
+    "password": {
+      "label": "Contrasenya",
+      "placeholder": "Introdueix la teva contrasenya"
+    },
+    "forgotPassword": "Heu oblidat la vostra contrasenya?",
+    "login": "Inicia Sessió",
+    "loginGoogle": "Continuar amb",
+    "dontHaveAnAccount": "No tens compte?",
+    "signUp": "Registra't"
+  },
+  "changePassword": {
+    "email": {
+      "label": "Correu electrònic",
+      "placeholder": "exemple@exemple.com"
+    },
+    "title": "Problemes per iniciar sessió?",
+    "p": "Introduïu el vostre correu electrònic i us enviarem un enllaç per accedir al vostre compte.",
+    "resetPassword": "Restablir la contrasenya",
+    "backToLogin": "Back to Login"
+  },
+  "aside": {
+    "home": "Inici",
+    "genres": "Generos",
+    "playlists": "Playlists",
+    "artists": "Artistas",
+    "myMusic": "La Meva musica",
+    "upload": "Upload",
+    "account": "Compte",
+    "signOut": "Cerrar Sesion"
   }
 }

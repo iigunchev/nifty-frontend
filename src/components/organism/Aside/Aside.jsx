@@ -1,6 +1,8 @@
 import React from 'react';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
+// i18n
+import { useTranslation } from 'react-i18next';
 // components
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
 import NavList from '../../molecules/NavList/NavList';
@@ -16,6 +18,8 @@ import userIcon from '../../../assets/svg/user.svg';
 
 function Aside() {
   const dispatch = useDispatch();
+  // i18
+  const { t } = useTranslation();
   const user = useSelector((state) => state.user);
   return (
     <>
@@ -27,20 +31,20 @@ function Aside() {
       <nav className="navigationContainer">
         <NavList title="Menu">
           <ListItemIcon route={route.APP} icon="home">
-            Home
+            {t('aside.home')}
           </ListItemIcon>
           <ListItemIcon
             route={`${route.APP}${route.GENRES}`}
             selected
             icon="genres"
           >
-            Genres
+            {t('aside.genres')}
           </ListItemIcon>
           <ListItemIcon route={`${route.APP}${route.ALBUMS}`} icon="albums">
-            Albums
+            {t('aside.playlists')}
           </ListItemIcon>
           <ListItemIcon route={`${route.APP}${route.ARTISTS}`} icon="artists">
-            Artists
+            {t('aside.artists')}
           </ListItemIcon>
         </NavList>
         <NavList title="Library">
@@ -48,21 +52,21 @@ function Aside() {
             route={`${route.APP}${route.MY_MUSIC}`}
             icon="favourites"
           >
-            My music
+            {t('aside.myMusic')}
           </ListItemIcon>
           {user.artist ? (
             <ListItemIcon
               route={`${route.APP}${route.UPLOAD_TRACK}`}
               icon="upload"
             >
-              Upload
+              {t('aside.upload')}
             </ListItemIcon>
           ) : null}
         </NavList>
 
         <NavList title="Settings">
           <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
-            Account
+            {t('aside.account')}
           </ListItemIcon>
           <li className="listItemLink">
             <button
@@ -71,7 +75,7 @@ function Aside() {
               className="listItemLink"
             >
               <img src={logout} alt="logout" />
-              <span>Sign out</span>
+              <span>{t('aside.signOut')}</span>
             </button>
           </li>
         </NavList>

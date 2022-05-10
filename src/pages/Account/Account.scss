@@ -45,10 +45,14 @@
   }
 }
 .flex-between {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
 }
 .accountAvatarContainer {
-  width: 200px;
+  max-width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,4 +125,12 @@
   width: 150px;
   height: 150px;
   object-fit: cover;
+}
+
+.accountTopRow {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+  margin: 0 !important;
 }

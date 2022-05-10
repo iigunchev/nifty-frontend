@@ -1,0 +1,57 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.formWrapper {
+  display: flex;
+  gap: 2em;
+  label {
+    font-weight: 500;
+  }
+}
+.uploadTrackFileLabel > * {
+  display: block;
+}
+.uploadTrackFileLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &:hover {
+    text-decoration: underline;
+  }
+  .editTrackImageBtn {
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+.searchGenreInput {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid lightgray;
+  padding: 0.75em 0em 0.75em 2.5em;
+  margin-top: 1em;
+  line-height: 1.5;
+  outline: none;
+}
+.buttonWrapper {
+  margin-top: 2em;
+  button {
+    width: 150px;
+  }
+}
+.rightCol {
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.trackImage {
+  width: 140px;
+  box-shadow: $boxshadow;
+  margin-bottom: 1em;
+  border-radius: $border;
+}
+
+@media only screen and (max-width: 600px) {
+  .formWrapper {
+    flex-direction: column;
+  }
+}

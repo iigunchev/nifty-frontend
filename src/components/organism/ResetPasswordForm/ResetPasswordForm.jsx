@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import './ResetPasswordForm.scss';
 import { Formik, Form } from 'formik';
 
+// i18n
+import { useTranslation } from 'react-i18next';
+
 import { useNavigate, Link } from 'react-router-dom';
 
 import { LOGIN, HOME } from '../../../routes';
@@ -18,14 +21,13 @@ import Button from '../../molecules/Button/Button';
 
 function ResetPasswordForm() {
   const navigate = useNavigate();
+  // i18
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   return (
     <>
-      <h1 className="authHeading">Trouble Logging In?</h1>
-      <p>
-        Enter your email and we&apos;ll send you a link to get back into your
-        account.
-      </p>
+      <h1 className="authHeading">{t('changePassword.title')}</h1>
+      <p>{t('changePassword.p')}</p>
 
       <Formik
         initialValues={{
@@ -49,18 +51,18 @@ function ResetPasswordForm() {
               icon="email"
               id="email"
               name="email"
-              label="E-mail"
+              label={t('changePassword.email.label')}
               error={errors.email}
               touched={touched.email}
-              placeholder="example@example.com"
+              placeholder={t('changePassword.email.placeholder')}
             />
 
             <Button type="submit" size="xl">
-              Reset Password
+              {t('changePassword.resetPassword')}
             </Button>
 
             <div className="loginLink">
-              <Link to={LOGIN}>Back to Login</Link>
+              <Link to={LOGIN}>{t('changePassword.backToLogin')}</Link>
             </div>
           </Form>
         )}
