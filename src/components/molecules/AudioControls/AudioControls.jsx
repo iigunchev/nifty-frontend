@@ -11,7 +11,10 @@ import previous from '../../../assets/img/player/previous.png';
 // styles
 import './AudioControls.scss';
 import useAudioControllers from '../../../hooks/useAudioControllers';
-import { setCurrentTrack } from '../../../redux/Audio/audioSlice';
+import {
+  setCurrentTrack,
+  setTrackPosition
+} from '../../../redux/Audio/audioSlice';
 
 function AudioControls() {
   const dispatch = useDispatch();
@@ -37,7 +40,7 @@ function AudioControls() {
     changePlayerCurrentTime();
     animationRef.current = requestAnimationFrame(whilePlaying);
   };
-
+  // handle pause or play the song
   const togglePlayPause = () => {
     if (!currentTrack.src) return;
     setIsPlaying((prevState) => !prevState);
@@ -56,27 +59,27 @@ function AudioControls() {
     changePlayerCurrentTime();
   };
   const playPrevSong = () => {
-    if (!currentTrack.src) return;
-    const trackIndex = queue.findIndex(
-      (track) => track.src === currentTrack.src
-    );
-    if (trackIndex === 0) {
+    if (currentTrack.position === 0) {
       return;
     }
-    dispatch(setCurrentTrack(queue[trackIndex - 1]));
+    dispatch(setCurrentTrack(queue[currentTrack.queuePosition - 1]));
   };
   const playNextSong = () => {
     if (!currentTrack.src) return;
-    const trackIndex = queue.findIndex(
-      (track) => track.src === currentTrack.src
-    );
-    console.log(trackIndex);
-    dispatch(setCurrentTrack(queue[trackIndex + 1]));
+    dispatch(setCurrentTrack(queue[currentTrack.queuePosition + 1]));
+  };
+  const onEndedSong = () => {
+    if (queue.length === 0) {
+      setIsPlaying(false);
+      return;
+    }
+    playNextSong();
   };
 
   useEffect(() => {
     if (!currentTrack.src) return;
     setIsPlaying(true);
+    dispatch(setTrackPosition());
     // togglePlayPause();
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
@@ -84,8 +87,9 @@ function AudioControls() {
 
   return (
     <div className="primaryControlsWrapper">
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioPlayer} src={currentTrack.src} />
+      <audio onEnded={onEndedSong} ref={audioPlayer} src={currentTrack.src}>
+        <track kind="captions" />
+      </audio>
       <div className="controlButtonsWrapper">
         {/* Previous song button */}
         <button
