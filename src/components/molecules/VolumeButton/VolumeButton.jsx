@@ -12,6 +12,7 @@ function VolumeButton() {
   const { volume } = useSelector((state) => state.audio);
   const onVolumeChange = (e) => {
     const actualVolume = e.target.value / 100;
+    console.log('change volume');
     dispatch(setVolume(actualVolume));
   };
   return (

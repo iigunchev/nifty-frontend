@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // redux
 import { useSelector } from 'react-redux';
 // utils
@@ -10,29 +10,32 @@ import next from '../../../assets/img/player/next.png';
 import previous from '../../../assets/img/player/previous.png';
 // styles
 import './AudioControls.scss';
+import useAudioControllers from '../../../hooks/useAudioControllers';
 
 function AudioControls() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  // references
-  const audioPlayer = useRef(); // reference the audio component
-  const progressBar = useRef(); // reference the progress bar
-  const animationRef = useRef(); // reference the animation
+  // redux volume slice
   const audio = useSelector((state) => state.audio);
+  // custom hook
+  const [audioPlayer, progressBar, animationRef, duration] =
+    useAudioControllers(audio);
+  // states
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  function changePlayerCurrentTime() {
+  const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
       '--seek-before-width',
       `${(progressBar.current.value / duration) * 100}%`
     );
     setCurrentTime(progressBar.current.value);
-  }
-  function whilePlaying() {
+  };
+
+  const whilePlaying = () => {
     progressBar.current.value = audioPlayer.current.currentTime;
     changePlayerCurrentTime();
     animationRef.current = requestAnimationFrame(whilePlaying);
-  }
+  };
+
   const togglePlayPause = () => {
     setIsPlaying((prevState) => !prevState);
     if (!isPlaying) {
@@ -49,11 +52,6 @@ function AudioControls() {
     audioPlayer.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
   };
-  useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
   useEffect(() => {
     if (!audio.src) return;
@@ -62,6 +60,7 @@ function AudioControls() {
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
   }, [audio?.src]);
+
   return (
     <div className="primaryControlsWrapper">
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
