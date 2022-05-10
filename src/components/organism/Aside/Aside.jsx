@@ -40,7 +40,7 @@ function Aside() {
           >
             {t('aside.genres')}
           </ListItemIcon>
-          <ListItemIcon route={`${route.APP}${route.ALBUMS}`} icon="albums">
+          <ListItemIcon route={`${route.APP}${route.PLAYLISTS}`} icon="albums">
             {t('aside.playlists')}
           </ListItemIcon>
           <ListItemIcon route={`${route.APP}${route.ARTISTS}`} icon="artists">

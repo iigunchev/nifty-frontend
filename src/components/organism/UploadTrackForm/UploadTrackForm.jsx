@@ -1,35 +1,40 @@
 import React, { useState, useEffect } from 'react';
-
+// styles
 import './UploadTrackForm.scss';
 // components
 import { toast } from 'react-toastify';
 import { Field, Form, Formik } from 'formik';
 import UploadZone from '../../molecules/UploadZone/UploadZone';
+import Button from '../../molecules/Button/Button';
+import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 // utils
 import getMetadata from '../../../utils/meta/getMetadata';
 import getImage from '../../../utils/trackImageChecker';
 import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
-
 import createTrack from '../../../utils/api/apiTrack';
 import schemas from '../../../utils/schemas';
 import getGenresFromApi from '../../../utils/api/apiGenre';
-import Button from '../../molecules/Button/Button';
-import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import { useAuth } from '../../../services/auth/auth';
 
 function UploadTrackForm() {
+  // fb custom hook for useEffect fetch
   const currentUser = useAuth();
+  // image preview / uploaded states
   const [preview, setPreview] = useState(null);
-  const [genres, setGenres] = useState([]);
   const [hasUserUploadedImage, setHasUserUploadedImage] = useState(false);
+  // genres
+  const [genres, setGenres] = useState([]);
+  // first drag metadata values
   const [metadata, setMetadata] = useState(null);
+  // loading state
   const [isLoading, setIsLoading] = useState(false);
+  // upload progress state
   const [progress, setProgress] = useState(0);
 
   const initialValues = {
-    title: metadata?.title,
+    title: metadata?.title || '',
     genre: '',
     image: metadata?.image
   };
@@ -115,81 +120,76 @@ function UploadTrackForm() {
     setHasUserUploadedImage(true);
   };
 
-  return (
-    <div style={{ padding: '1em' }}>
-      {metadata ? (
-        <>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={schemas.uploadSongSchema}
-            onSubmit={(values) => handleSubmit(values)}
-          >
-            {({ errors, touched }) => (
-              <Form>
-                <div className="formWrapper">
-                  <div className="leftCol">
-                    <AccountEditInput
-                      type="text"
-                      name="title"
-                      label="Track name"
-                      error={errors.title}
-                      touched={touched.title}
-                      placeholder="Title"
-                    />
-                    <AccountEditInput
-                      list="trackUploadList"
-                      name="genre"
-                      label="Genre"
-                      error={errors.genre}
-                      touched={touched.genre}
-                      placeholder="Title"
-                      component="select"
-                      className="searchGenreInput"
-                    >
-                      <option default>Select a genre</option>
-                      {genres.map((genre) => (
-                        // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                        <option key={genre._id} value={genre._id}>
-                          {genre.name}
-                        </option>
-                      ))}
-                    </AccountEditInput>
-                    {/* <datalist id="trackUploadList"></datalist> */}
-                  </div>
-                  <div className="rightCol">
-                    <label
-                      htmlFor="uploadTrackFile"
-                      className="uploadTrackFileLabel"
-                    >
-                      <Field
-                        type="file"
-                        name="uploadTrackFile"
-                        id="uploadTrackFile"
-                        className="displayNone"
-                        onChange={onSelectFile}
-                      />
-                      <img src={preview} alt="" className="trackImage" />
-                      <span role="button" className="editTrackImageBtn">
-                        Edit
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div className="buttonWrapper">
-                  <Button type="submit" size="md" isLoading={isLoading}>
-                    UPLOAD
-                  </Button>
-                </div>
-              </Form>
-            )}
-          </Formik>
+  return metadata ? (
+    <article className="uploadTrackFormContainer">
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schemas.uploadSongSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => (
+          <Form>
+            <div className="formWrapper">
+              <div className="leftCol">
+                <AccountEditInput
+                  type="text"
+                  name="title"
+                  label="Track name"
+                  error={errors.title}
+                  touched={touched.title}
+                  placeholder="Title"
+                />
+                <AccountEditInput
+                  list="trackUploadList"
+                  name="genre"
+                  label="Genre"
+                  error={errors.genre}
+                  touched={touched.genre}
+                  placeholder="Title"
+                  component="select"
+                  className="searchGenreInput"
+                >
+                  <option default>Select a genre</option>
+                  {genres.map((genre) => (
+                    // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                    <option key={genre._id} value={genre._id}>
+                      {genre.name}
+                    </option>
+                  ))}
+                </AccountEditInput>
+              </div>
+              <div className="rightCol">
+                <label
+                  htmlFor="uploadTrackFile"
+                  className="uploadTrackFileLabel"
+                >
+                  <Field
+                    type="file"
+                    name="uploadTrackFile"
+                    id="uploadTrackFile"
+                    className="displayNone"
+                    onChange={onSelectFile}
+                  />
+                  <img src={preview} alt="" className="trackImage" />
+                  <span role="button" className="editTrackImageBtn">
+                    Edit
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div className="buttonWrapper">
+              <Button type="submit" size="md" isLoading={isLoading}>
+                UPLOAD
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
 
-          {isLoading ? <UploadProgressBar progress={progress} /> : null}
-        </>
-      ) : (
-        <UploadZone handleDragFile={handleDragFile} />
-      )}
-    </div>
+      {!isLoading ? <UploadProgressBar progress={progress} /> : null}
+    </article>
+  ) : (
+    <UploadZone className="dragZoneWrapper" handleDragFile={handleDragFile} />
   );
 }
 

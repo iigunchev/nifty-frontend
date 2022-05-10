@@ -40,8 +40,11 @@ function Hamburger() {
             >
               Genres
             </ListItemIcon>
-            <ListItemIcon route={`${route.APP}${route.ALBUMS}`} icon="albums">
-              Albums
+            <ListItemIcon
+              route={`${route.APP}${route.PLAYLISTS}`}
+              icon="albums"
+            >
+              Playlists
             </ListItemIcon>
             <ListItemIcon route={`${route.APP}${route.ARTISTS}`} icon="artists">
               Artists
