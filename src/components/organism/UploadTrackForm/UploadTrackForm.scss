@@ -23,6 +23,7 @@
   }
 }
 .searchGenreInput {
+  background: white;
   width: 100%;
   border-radius: 12px;
   border: 1px solid lightgray;
@@ -44,6 +45,7 @@
   align-items: center;
 }
 .trackImage {
+  aspect-ratio: 1 / 1;
   width: 140px;
   box-shadow: $boxshadow;
   margin-bottom: 1em;

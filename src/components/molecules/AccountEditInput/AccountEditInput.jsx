@@ -14,7 +14,9 @@ function AccountEditInput({
   error,
   touched,
   placeholder = '',
-  type
+  component = null,
+  type,
+  children
 }) {
   const [isVisible, setIsVisible] = useState(type !== 'password');
 
@@ -27,6 +29,7 @@ function AccountEditInput({
       <label htmlFor={`${name}Input`} className="accountEditInputLabel">
         {label}
         <Field
+          component={component}
           type={isVisible ? 'text' : 'password'}
           name={name}
           id={`${name}Input`}
@@ -36,7 +39,9 @@ function AccountEditInput({
               ? `inputError accountEditInput`
               : 'accountEditInput'
           }
-        />
+        >
+          {children}
+        </Field>
       </label>
       {type === 'password' && (
         <button

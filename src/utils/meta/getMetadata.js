@@ -1,6 +1,6 @@
 import jsmediatags from 'jsmediatags';
 
-function blobToBase64(blob) {
+export function blobToBase64(blob) {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onloadend = () => resolve(reader.result);
@@ -23,14 +23,14 @@ const getMetadata = (track) =>
         }
         const { data, format } = tags.picture;
         const blob = new Blob([new Uint8Array(data)], { type: format });
-        const imageSrc = await blobToBase64(blob);
+        // const imageSrc = await blobToBase64(blob);
         return res({
           file: track,
           artist: tags.artist,
           genre: tags.genre,
           title: tags.title,
           year: tags.year,
-          image: imageSrc
+          image: blob
         });
       },
       onError(error) {
