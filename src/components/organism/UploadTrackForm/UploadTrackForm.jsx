@@ -8,6 +8,7 @@ import UploadZone from '../../molecules/UploadZone/UploadZone';
 import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 // utils
 import getMetadata from '../../../utils/meta/getMetadata';
+import getImage from '../../../utils/trackImageChecker';
 import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 
@@ -17,29 +18,23 @@ import getGenresFromApi from '../../../utils/api/apiGenre';
 import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import { useAuth } from '../../../services/auth/auth';
-import defaultSong from '../../../assets/img/defaultSong.png';
 
 function UploadTrackForm() {
   const currentUser = useAuth();
-
+  const [preview, setPreview] = useState(null);
   const [genres, setGenres] = useState([]);
+  const [hasUserUploadedImage, setHasUserUploadedImage] = useState(false);
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const initialValues = {
     title: metadata?.title,
-    genreSearch: metadata?.genre,
+    genre: '',
     image: metadata?.image
   };
 
   const handleSubmit = async (formValues) => {
-    const genreId = genres.find((genre) => {
-      if (genre.name === formValues.genreSearch) {
-        return genre._id;
-      }
-      return null;
-    });
     setIsLoading(true);
     try {
       const formData = new FormData();
@@ -49,7 +44,8 @@ function UploadTrackForm() {
         image: null
       };
       if (metadata.image) {
-        formData.append('file', metadata.image);
+        const image = await getImage(metadata.image, hasUserUploadedImage);
+        formData.append('file', image);
         cloudFiles.image = await uploadToCloudinaryWithProgress(
           'image',
           formData
@@ -62,14 +58,14 @@ function UploadTrackForm() {
         setProgress
       );
 
-      const mock = {
+      const songData = {
         title: formValues.title,
-        genre: genreId,
+        genre: formValues.genre,
         url: cloudFiles.audio.url,
         duration: cloudFiles.audio.duration,
         thumbnail: cloudFiles.image?.url
       };
-      await createTrack(mock);
+      await createTrack(songData);
       // refresh state
       setMetadata(null);
       toast.success('Song uploaded!');
@@ -84,6 +80,7 @@ function UploadTrackForm() {
     const trackData = await getMetadata(track[0]);
     setMetadata(trackData);
   };
+
   useEffect(() => {
     if (!currentUser) return;
     (async () => {
@@ -97,6 +94,26 @@ function UploadTrackForm() {
       }
     })();
   }, [currentUser]);
+
+  useEffect(() => {
+    if (!metadata?.image) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(metadata.image);
+    setPreview(objectUrl);
+    // eslint-disable-next-line consistent-return
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [metadata?.image]);
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setMetadata({ ...metadata, image: null });
+      return;
+    }
+    setMetadata({ ...metadata, image: e.target.files[0] });
+    setHasUserUploadedImage(true);
+  };
 
   return (
     <div style={{ padding: '1em' }}>
@@ -119,26 +136,25 @@ function UploadTrackForm() {
                       touched={touched.title}
                       placeholder="Title"
                     />
-                    <label htmlFor="genreSearch">
-                      Genre
-                      <Field
-                        name="genreSearch"
-                        type="search"
-                        list="trackUploadList"
-                        error={errors.genreSearch}
-                        className="searchGenreInput"
-                        placeholder="Rock, Pop, Flamenco..."
-                        required
-                      />
-                      <datalist id="trackUploadList">
-                        {genres.map((genre) => (
-                          // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                          <option key={genre._id} value={genre.name}>
-                            {genre.name}
-                          </option>
-                        ))}
-                      </datalist>
-                    </label>
+                    <AccountEditInput
+                      list="trackUploadList"
+                      name="genre"
+                      label="Genre"
+                      error={errors.genre}
+                      touched={touched.genre}
+                      placeholder="Title"
+                      component="select"
+                      className="searchGenreInput"
+                    >
+                      <option default>Select a genre</option>
+                      {genres.map((genre) => (
+                        // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                        <option key={genre._id} value={genre._id}>
+                          {genre.name}
+                        </option>
+                      ))}
+                    </AccountEditInput>
+                    {/* <datalist id="trackUploadList"></datalist> */}
                   </div>
                   <div className="rightCol">
                     <label
@@ -150,18 +166,9 @@ function UploadTrackForm() {
                         name="uploadTrackFile"
                         id="uploadTrackFile"
                         className="displayNone"
-                        onChange={(e) => {
-                          setMetadata({
-                            ...metadata,
-                            image: e.target.files[0]
-                          });
-                        }}
+                        onChange={onSelectFile}
                       />
-                      <img
-                        src={metadata?.image || defaultSong}
-                        alt=""
-                        className="trackImage"
-                      />
+                      <img src={preview} alt="" className="trackImage" />
                       <span role="button" className="editTrackImageBtn">
                         Edit
                       </span>
