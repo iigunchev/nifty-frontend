@@ -16,13 +16,14 @@ function SecondaryButton({
   disabled,
   handleClick,
   children,
+  className,
   size = 'xl',
   type = false
 }) {
   return (
     <button
       disabled={disabled}
-      className="secondaryButton"
+      className={`secondaryButton ${className}`}
       onClick={handleClick}
       type={type ? 'button' : 'submit'}
       label="button"
