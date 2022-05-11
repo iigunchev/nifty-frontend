@@ -26,6 +26,8 @@ function AudioControls() {
   // states
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  // detect refresh page
+  const [isRefreshed, setIsRefreshed] = useState(true);
 
   const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
@@ -43,6 +45,8 @@ function AudioControls() {
   // handle pause or play the song
   const togglePlayPause = () => {
     if (!currentTrack.src) return;
+    // check if user refresh
+
     setIsPlaying((prevState) => !prevState);
     if (!isPlaying) {
       audioPlayer.current.play();
@@ -79,6 +83,11 @@ function AudioControls() {
 
   useEffect(() => {
     if (!currentTrack.src) return;
+    // checks if page have been refreshed, to don't pass in useEffect
+    if (isRefreshed) {
+      setIsRefreshed(false);
+      return;
+    }
     setIsPlaying(true);
     dispatch(setTrackPosition());
     audioPlayer.current.play();
