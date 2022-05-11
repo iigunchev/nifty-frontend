@@ -1,16 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
-import { setAudio } from '../../redux/Audio/audioSlice';
 import * as route from '../../routes';
-=======
 import { setAudio, setQueue } from '../../redux/Audio/audioSlice';
->>>>>>> 4c264ab05be1b3957a1bd4e9df24ebbb9a58fec3
 import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
-// song
+
 import purpurina from '../../assets/songsTest/purpurina.mp3';
 import canelita from '../../assets/songsTest/canelita.mp3';
 import useFetchTracks from '../../hooks/useFetchTracks';
@@ -65,14 +61,14 @@ function Home() {
             {!isLoading ? (
               songs.map((track) => (
                 <TrendingTrackItem
-            key={track._id}
-            trackSrc={track.url}
-            artistImg={track.thumbnail}
-            artistName={track.artist}
-            trackId={track._id}
-            trackName={track.title}
-            isLiked={track.isLiked}
-          />
+                  key={track._id}
+                  trackSrc={track.url}
+                  artistImg={track.thumbnail}
+                  artistName={track.artist}
+                  trackId={track._id}
+                  trackName={track.title}
+                  isLiked={track.isLiked}
+                />
               ))
             ) : (
               <TrendingTrackItemSkeleton />
