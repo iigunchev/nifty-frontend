@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  setCurrentTrack,
+  setTrackPosition
+} from '../../../redux/Audio/audioSlice';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
 // images
@@ -11,10 +15,6 @@ import previous from '../../../assets/img/player/previous.png';
 // styles
 import './AudioControls.scss';
 import useAudioControllers from '../../../hooks/useAudioControllers';
-import {
-  setCurrentTrack,
-  setTrackPosition
-} from '../../../redux/Audio/audioSlice';
 
 function AudioControls() {
   const dispatch = useDispatch();
@@ -26,6 +26,8 @@ function AudioControls() {
   // states
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  // detect refresh page
+  // const [isRefreshed, setIsRefreshed] = useState(!!currentTrack);
 
   const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
@@ -43,6 +45,8 @@ function AudioControls() {
   // handle pause or play the song
   const togglePlayPause = () => {
     if (!currentTrack.src) return;
+    // check if user refresh
+
     setIsPlaying((prevState) => !prevState);
     if (!isPlaying) {
       audioPlayer.current.play();
@@ -58,14 +62,15 @@ function AudioControls() {
     audioPlayer.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
   };
+
   const playPrevSong = () => {
-    if (currentTrack.position === 0) {
-      return;
-    }
+    if (currentTrack.queuePosition === 0) return;
+
     dispatch(setCurrentTrack(queue[currentTrack.queuePosition - 1]));
   };
   const playNextSong = () => {
     if (!currentTrack.src) return;
+    if (currentTrack.queuePosition === queue.length - 1) return;
     dispatch(setCurrentTrack(queue[currentTrack.queuePosition + 1]));
   };
   const onEndedSong = () => {
@@ -78,9 +83,13 @@ function AudioControls() {
 
   useEffect(() => {
     if (!currentTrack.src) return;
+    // checks if page have been refreshed, to don't pass in useEffect
+    // if (isRefreshed) {
+    //   setIsRefreshed(false);
+    //   return;
+    // }
     setIsPlaying(true);
     dispatch(setTrackPosition());
-    // togglePlayPause();
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
   }, [currentTrack.src]);

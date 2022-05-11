@@ -52,7 +52,7 @@ function Hamburger() {
           </NavList>
           <NavList title="Library">
             <ListItemIcon
-              route={`${route.APP}${route.MY_MUSIC}`}
+              route={`${route.APP}${route.MY_LIKES}`}
               icon="favourites"
             >
               My music

@@ -5,7 +5,7 @@ import React from 'react';
 
 import './DialogInformation.scss';
 
-function DialogInformation({ handleLike, isLiked }) {
+function DialogInformation({ handleLike, isLiked, handleAddToQueue }) {
   return (
     <div className="dialogInformationWrapper">
       <ul>
@@ -16,11 +16,18 @@ function DialogInformation({ handleLike, isLiked }) {
             }}
             type="button"
           >
-            {isLiked ? 'Remove like' : 'Add to my songs'}
+            {isLiked
+              ? 'Remove from your liked songs'
+              : 'Save to your liked songs'}
           </button>
         </li>
         <li>
           <button type="button">Add to playlist</button>
+        </li>
+        <li>
+          <button onClick={handleAddToQueue} type="button">
+            Add to queue
+          </button>
         </li>
         <li>
           <button type="button">Edit track</button>

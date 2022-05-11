@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 // redux
 import { useDispatch } from 'react-redux';
-import { setCurrentTrack } from '../../../redux/Audio/audioSlice';
+import {
+  removeQueue,
+  setCurrentTrack,
+  setTrackToQueue
+} from '../../../redux/Audio/audioSlice';
 // components
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import TrendingItem from '../TrendingItem/TrendingItem';
@@ -28,9 +32,14 @@ function TrendingTrackItem({
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
+  // on blur id
   let timeOutId;
+
   const dispatch = useDispatch();
+
+  // play track
   const handlePlayTrack = () => {
+    dispatch(removeQueue());
     dispatch(
       setCurrentTrack({
         artist: artistName,
@@ -55,6 +64,7 @@ function TrendingTrackItem({
   };
 
   const handleLikeTrack = async (likeValue) => {
+    setShowDialog(false);
     setIsLoading(true);
     setIsTrackLiked(!isTrackLiked);
     try {
@@ -66,6 +76,19 @@ function TrendingTrackItem({
       setIsLoading(false);
     }
   };
+
+  const handleAddToQueue = () => {
+    setShowDialog(false);
+    dispatch(
+      setTrackToQueue({
+        src: trackSrc,
+        artist: artistName,
+        title: trackName,
+        image: artistImg
+      })
+    );
+  };
+
   return (
     <div className="trendingTrackItemContainer">
       <LikeButton
@@ -73,13 +96,12 @@ function TrendingTrackItem({
         handleLike={handleLikeTrack}
         isLiked={isTrackLiked}
       />
-      {/* <span className="trendingSpot">{spot}</span> */}
       <TrendingItem
         image={artistImg}
         title={trackName}
         description={artistName}
+        handleClick={handlePlayTrack}
       />
-      {/* <span>{trackDuration}</span> */}
       <ButtonWithIcon handleClick={handlePlayTrack} />
       <div
         onFocus={onFocusHandler}
@@ -98,6 +120,7 @@ function TrendingTrackItem({
           <DialogInformation
             handleLike={handleLikeTrack}
             isLiked={isTrackLiked}
+            handleAddToQueue={handleAddToQueue}
           />
         ) : null}
       </div>

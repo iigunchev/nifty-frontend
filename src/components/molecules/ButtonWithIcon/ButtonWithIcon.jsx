@@ -1,13 +1,16 @@
 import React from 'react';
 
+// styles
 import './ButtonWithIcon.scss';
-import { ReactComponent as SVG } from '../../../assets/svg/play.svg';
+// icons
+import { ReactComponent as PlaySVG } from '../../../assets/svg/play.svg';
+// import { ReactComponent as StopSVG } from '../../../assets/svg/stop.svg';
 
 function ButtonWithIcon({ handleClick }) {
   return (
     <div className="playButtonWrapper">
       <button onClick={handleClick} type="button" className="buttonWithIcon">
-        <SVG className="icon" />
+        <PlaySVG className="icon" />
       </button>
     </div>
   );

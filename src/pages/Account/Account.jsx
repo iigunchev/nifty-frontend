@@ -64,6 +64,7 @@ function Account() {
     try {
       const profileImage = { profileImage: newAvatarImage };
       const userApi = await updateUserProfile(profileImage, user.id);
+
       dispatch(setUser(userApi));
     } catch (e) {
       setError(e.message);

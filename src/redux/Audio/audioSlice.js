@@ -18,6 +18,10 @@ const audioSlice = createSlice({
   name: 'audio',
   initialState,
   reducers: {
+    setTrackToQueue: (state, { payload }) => {
+      console.log(state.queue);
+      state.queue = [...state.queue, payload];
+    },
     setTrackPosition: ({ currentTrack, queue }) => {
       if (!currentTrack.src || queue.length === 0) return;
       const index = queue.findIndex((track) => track.src === currentTrack.src);
@@ -26,14 +30,14 @@ const audioSlice = createSlice({
     setQueue: (state, { payload }) => {
       state.queue = payload;
     },
-    setAudio: (state, { payload }) => {
-      state.src = payload.src;
-      state.artist = payload.artist;
-      state.title = payload.title;
-      state.image = payload.image;
-    },
     setCurrentTrack: (state, { payload }) => {
       state.currentTrack = payload;
+      if (state.queue.length === 0) {
+        state.queue = [payload];
+      }
+    },
+    removeQueue: (state) => {
+      state.queue = [];
     },
     setVolume: (state, { payload }) => {
       state.volume = payload;
@@ -46,7 +50,9 @@ export const {
   setAudio,
   setVolume,
   setQueue,
-  setTrackPosition
+  setTrackPosition,
+  setTrackToQueue,
+  removeQueue
 } = audioSlice.actions;
 
 export default audioSlice.reducer;

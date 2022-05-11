@@ -13,7 +13,7 @@ function TrackInfo({ title, artist, songImage }) {
       />
       <div className="songPlayerInfo">
         <h3 className="songPlayerTitle">{title}</h3>
-        <span className="songPlayerArtist">{artist}</span>
+        <span className="songPlayerArtist">{artist || 'Kanye West'}</span>
       </div>
     </div>
   );

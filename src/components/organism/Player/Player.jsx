@@ -16,7 +16,7 @@ function Player() {
       <div className="playerWrapper">
         <TrackInfo
           title={currentTrack.title}
-          artist={currentTrack.artist}
+          artist={currentTrack.artist.firstName}
           songImage={currentTrack.image}
         />
         <AudioControls />
