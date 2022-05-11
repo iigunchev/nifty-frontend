@@ -26,7 +26,9 @@ function TrendingTrackItem({
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
+
   const handlePlayTrack = () => {
     dispatch(
       setCurrentTrack({
@@ -55,13 +57,11 @@ function TrendingTrackItem({
         handleLike={handleLikeTrack}
         liked={isLiked}
       />
-      {/* <span className="trendingSpot">{spot}</span> */}
       <TrendingItem
         image={artistImg}
         title={trackName}
         description={artistName}
       />
-      {/* <span>{trackDuration}</span> */}
       <ButtonWithIcon handleClick={handlePlayTrack} />
       <button
         type="button"

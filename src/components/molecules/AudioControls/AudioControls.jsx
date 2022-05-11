@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  setCurrentTrack,
+  setTrackPosition
+} from '../../../redux/Audio/audioSlice';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
 // images
@@ -11,10 +15,6 @@ import previous from '../../../assets/img/player/previous.png';
 // styles
 import './AudioControls.scss';
 import useAudioControllers from '../../../hooks/useAudioControllers';
-import {
-  setCurrentTrack,
-  setTrackPosition
-} from '../../../redux/Audio/audioSlice';
 
 function AudioControls() {
   const dispatch = useDispatch();
