@@ -7,8 +7,8 @@ import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/Tren
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
-import purpurina from '../../assets/songsTest/purpurina.mp3';
-import canelita from '../../assets/songsTest/canelita.mp3';
+// import purpurina from '../../assets/songsTest/purpurina.mp3';
+// import canelita from '../../assets/songsTest/canelita.mp3';
 import useFetchTracks from '../../hooks/useFetchTracks';
 
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
@@ -32,13 +32,27 @@ function Home() {
   return (
     <main className="homeContainer">
       <div className="homeLeftCol">
-        <section className="trendingPlaylistsContainer"></section>
+        <section className="trendingPlaylistsContainer">
+          <div className="LinkHeader">
+            <h2>Top PlayList</h2>
+            <span className="seemoreLink">
+              <Link to={`${route.APP}${route.PLAYLISTS}`}>See more</Link>
+            </span>
+          </div>
+          <section className="PlayListSection">
+            <PlaylistItem />
+          </section>
+        </section>
         <div className="trendingWrapper">
-          <section className="trendingTracksContainer"></section>
-          <section className="trendingArtistsContainer"></section>
+          <section className="trendingTracksContainer">
+            <h2>Top Tracks</h2>
+          </section>
+          <section className="trendingArtistsContainer">
+            <h2>Top Artists</h2>
+          </section>
         </div>
       </div>
-      <div className="homeRightCol"></div>
+      <div className="homeRightCol">hola3</div>
 
       {/* <section className="header">
         <h1>HOME</h1>
