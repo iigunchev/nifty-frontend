@@ -22,6 +22,8 @@ import accountFilled from '../../../assets/svg/asideSvg/user-circleFilled.svg';
 import logout from '../../../assets/svg/asideSvg/logout.svg';
 import myUploads from '../../../assets/svg/asideSvg/myUploads.svg';
 import myUploadsFilled from '../../../assets/svg/asideSvg/myUploadsFilled.svg';
+import playlist from '../../../assets/svg/playlist.svg';
+import playlistFilled from '../../../assets/svg/playlistFilled.svg';
 
 function ListItemIcon({ icon = 'home', children, route = '/app' }) {
   // ? selected has to be this component?
@@ -43,7 +45,9 @@ function ListItemIcon({ icon = 'home', children, route = '/app' }) {
     uploadFilled,
     account,
     accountFilled,
-    logout
+    logout,
+    playlist,
+    playlistFilled
   };
   return (
     <li>

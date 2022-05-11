@@ -18,6 +18,7 @@ import Playlists from '../../../pages/Playlists/Playlists';
 import Artists from '../../../pages/Artists/Artists';
 import Genres from '../../../pages/Genres/Genres';
 import MyUploads from '../../../pages/MyUploads/MyUploads';
+import MyPlaylists from '../../../pages/MyPlaylists/MyPlaylists';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -33,6 +34,7 @@ function ProtectedRoutes() {
         <Route path={route.UPLOAD_TRACK} element={<UploadTrack />} />
         <Route path={route.MY_LIKES} element={<MyMusic />} />
         <Route path={route.MY_UPLOADS} element={<MyUploads />} />
+        <Route path={route.MY_PLAYLISTS} element={<MyPlaylists />} />
         <Route path={route.PLAYLISTS} element={<Playlists />} />
         <Route path={route.ARTISTS} element={<Artists />} />
         <Route path={route.GENRES} element={<Genres />} />

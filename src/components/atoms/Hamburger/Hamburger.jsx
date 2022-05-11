@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './Hamburger.scss';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
+import { t } from 'i18next';
 import { removeUser } from '../../../redux/User/userSlice';
 // components
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
@@ -56,6 +57,12 @@ function Hamburger() {
               icon="favourites"
             >
               My music
+            </ListItemIcon>
+            <ListItemIcon
+              route={`${route.APP}${route.MY_PLAYLISTS}`}
+              icon="playlist"
+            >
+              {t('aside.myPlaylist')}
             </ListItemIcon>
             {user.artist ? (
               <ListItemIcon

@@ -29,6 +29,7 @@ function Aside() {
         <h3>{user.firstName}</h3>
       </div>
       <nav className="navigationContainer">
+        {/* MENU */}
         <NavList title="Menu">
           <ListItemIcon route={route.APP} icon="home">
             {t('aside.home')}
@@ -47,12 +48,19 @@ function Aside() {
             {t('aside.artists')}
           </ListItemIcon>
         </NavList>
+        {/* LIBRARY */}
         <NavList title="Library">
           <ListItemIcon
             route={`${route.APP}${route.MY_LIKES}`}
             icon="favourites"
           >
             {t('aside.myLikes')}
+          </ListItemIcon>
+          <ListItemIcon
+            route={`${route.APP}${route.MY_PLAYLISTS}`}
+            icon="playlist"
+          >
+            {t('aside.myPlaylist')}
           </ListItemIcon>
           <ListItemIcon
             route={`${route.APP}${route.MY_UPLOADS}`}
