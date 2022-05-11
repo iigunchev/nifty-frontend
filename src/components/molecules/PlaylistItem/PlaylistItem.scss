@@ -1,6 +1,6 @@
-.playlistItemContainer {
-  height: 150px;
-  width: 150px;
+.playListItemContainer {
+  min-height: 120px;
+  min-width: 120px;
   border-radius: 24px;
   background-image: url('https://images.unsplash.com/photo-1620503292890-c597f62cce8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
   background-size: 20rem;
@@ -8,7 +8,7 @@
 
   position: relative;
 }
-.container {
+.playListBottomContainer {
   position: absolute;
   bottom: 0%;
   display: flex;
@@ -18,12 +18,12 @@
   margin-right: 5%;
   margin-left: 5%;
   color: white;
-  width: 140px;
-  height: 50px;
+  width: 110px;
+  height: 45px;
   justify-content: space-between;
 }
 
-.buttoncontainer {
+.playListActionButton {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 0.5em;
@@ -35,17 +35,18 @@
   }
 }
 
-.detailsDescription {
+.detailDescription {
   span {
     font-size: 12px;
+    border-left: 2em;
   }
 }
 
-.detailwrapper {
-  margin-left: 0.5em;
-  border-bottom: 0.5em;
+.detailsWrapper {
+  margin-left: 1em;
+  border-bottom: 1em;
 }
 
-.detailsTitle {
+.detailTitle {
   font-size: 14px;
 }

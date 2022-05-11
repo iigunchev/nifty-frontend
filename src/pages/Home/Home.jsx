@@ -5,6 +5,7 @@ import * as route from '../../routes';
 import { setAudio, setQueue } from '../../redux/Audio/audioSlice';
 import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
+
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
 // import purpurina from '../../assets/songsTest/purpurina.mp3';
@@ -13,6 +14,7 @@ import useFetchTracks from '../../hooks/useFetchTracks';
 
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import './Home.scss';
+import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
 function Home() {
   const dispatch = useDispatch();
@@ -41,6 +43,9 @@ function Home() {
           </div>
           <section className="PlayListSection">
             <PlaylistItem />
+            <PlaylistItem />
+            <PlaylistItem />
+            <PlaylistItem />
           </section>
         </section>
         <div className="trendingWrapper">
@@ -49,6 +54,7 @@ function Home() {
           </section>
           <section className="trendingArtistsContainer">
             <h2>Top Artists</h2>
+            <TrendingItem />
           </section>
         </div>
       </div>
