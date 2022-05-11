@@ -87,6 +87,7 @@ function TrendingTrackItem({
         image: artistImg
       })
     );
+    toast.success('track added to queue 💿');
   };
 
   return (

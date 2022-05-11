@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const initialState = {
   // info song,
@@ -19,7 +20,11 @@ const audioSlice = createSlice({
   initialState,
   reducers: {
     setTrackToQueue: (state, { payload }) => {
-      console.log(state.queue);
+      if (state.queue.some((track) => track.src === payload.src)) {
+        toast.error('Track already added in queue!');
+        toast.remove();
+        return;
+      }
       state.queue = [...state.queue, payload];
     },
     setTrackPosition: ({ currentTrack, queue }) => {

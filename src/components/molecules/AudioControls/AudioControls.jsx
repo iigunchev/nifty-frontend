@@ -45,8 +45,8 @@ function AudioControls() {
   // handle pause or play the song
   const togglePlayPause = () => {
     if (!currentTrack.src) return;
-    // check if user refresh
-
+    console.log(queue);
+    console.log(currentTrack.queuePosition);
     setIsPlaying((prevState) => !prevState);
     if (!isPlaying) {
       audioPlayer.current.play();
@@ -71,6 +71,7 @@ function AudioControls() {
   const playNextSong = () => {
     if (!currentTrack.src) return;
     if (currentTrack.queuePosition === queue.length - 1) return;
+    console.log(currentTrack.queuePosition);
     dispatch(setCurrentTrack(queue[currentTrack.queuePosition + 1]));
   };
   const onEndedSong = () => {

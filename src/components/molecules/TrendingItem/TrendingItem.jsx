@@ -3,7 +3,6 @@ import React from 'react';
 
 import './TrendingItem.scss';
 
-import { Link } from 'react-router-dom';
 import defaultImg from '../../../assets/img/defaultSong.png';
 
 function TrendingItem({ image = null, title, description, handleClick }) {
