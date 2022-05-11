@@ -1,52 +1,25 @@
 import React from 'react';
-// router dom
-import { Link } from 'react-router-dom';
+
 // components
 import TrendingItem from '../../molecules/TrendingTrackItem/TrendingTrackItem';
 // styles
 import './TrendingList.scss';
 
-const mockTrackList = [
-  {
-    artistImg:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ75VCBzmMSP6nD506JfAy8GXuuRMqese0Nr-vetjHT4wQXbPnaHL3ZkvaBePzYTCo03Pc&usqp=CAU',
-    trackName: 'Motomami',
-    artistName: 'Rosalia',
-    trackDuration: '3.05'
-  },
-  {
-    artistImg:
-      'https://i1.sndcdn.com/artworks-000129437053-bgvku6-t500x500.jpg',
-    trackName: 'Thunderstruck We Will Rock youy',
-    artistName: 'AC/DC',
-    trackDuration: '3.25'
-  },
-  {
-    artistImg: 'https://m.media-amazon.com/images/I/71nIIQmyG5L._SS500_.jpg',
-    trackName: 'Memories',
-    artistName: 'Maroon 5',
-    trackDuration: '2.55'
-  }
-];
-
-function TrendingList() {
+function TrendingList({ tracks }) {
   return (
-    <section className="trendingTracksContainer">
-      <div className="trendingHeaderWrapper">
-        <h2 className="heading2">Trending</h2>
-        <Link to="/trending-tracks/all">See More</Link>
-      </div>
-      <div className="trendingListWrapper">
-        {mockTrackList.map((track) => (
-          <TrendingItem
-            key={track.trackName}
-            artistImg={track.artistImg}
-            trackName={track.trackName}
-            artistName={track.artistName}
-          />
-        ))}
-      </div>
-    </section>
+    <div className="trendingListWrapper">
+      {tracks.map((track) => (
+        <TrendingItem
+          key={track._id}
+          trackSrc={track.url}
+          artistImg={track.thumbnail}
+          artistName={track.artist}
+          trackId={track._id}
+          trackName={track.title}
+          isLiked={track.isLiked}
+        />
+      ))}
+    </div>
   );
 }
 

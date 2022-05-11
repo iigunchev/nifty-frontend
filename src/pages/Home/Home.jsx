@@ -2,17 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as route from '../../routes';
-import { setAudio, setQueue } from '../../redux/Audio/audioSlice';
-import TrendingTrackItem from '../../components/molecules/TrendingTrackItem/TrendingTrackItem';
+import { setQueue } from '../../redux/Audio/audioSlice';
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
-// import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
-// import purpurina from '../../assets/songsTest/purpurina.mp3';
-// import canelita from '../../assets/songsTest/canelita.mp3';
 import useFetchTracks from '../../hooks/useFetchTracks';
 
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import './Home.scss';
+import TrendingList from '../../components/organism/TrendingList/TrendingList';
 
 function Home() {
   const dispatch = useDispatch();
@@ -46,6 +43,11 @@ function Home() {
         <div className="trendingWrapper">
           <section className="trendingTracksContainer">
             <h2>Top Tracks</h2>
+            {!isLoading ? (
+              <TrendingList tracks={songs} />
+            ) : (
+              <TrendingTrackItemSkeleton />
+            )}
           </section>
           <section className="trendingArtistsContainer">
             <h2>Top Artists</h2>
@@ -81,41 +83,10 @@ function Home() {
             </span>
           </div>
           <section className="TrendingSection">
-            {!isLoading ? (
-              songs.map((track) => (
-                <TrendingTrackItem
-                  key={track._id}
-                  trackSrc={track.url}
-                  artistImg={track.thumbnail}
-                  artistName={track.artist}
-                  trackId={track._id}
-                  trackName={track.title}
-                  isLiked={track.isLiked}
-                />
-              ))
-            ) : (
-              <TrendingTrackItemSkeleton />
-            )}
           </section>
         </div>
-        <div className="rightsection">
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(setAudio({ src: purpurina }));
-            }}
-          >
-            Play
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(setAudio({ src: canelita }));
-            }}
-          >
-            Play
-          </button>
-        </div>
+
+
       </section> */}
     </main>
   );
