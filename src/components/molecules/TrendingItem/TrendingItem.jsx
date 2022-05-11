@@ -3,6 +3,7 @@ import React from 'react';
 
 import './TrendingItem.scss';
 
+import { Link } from 'react-router-dom';
 import defaultImg from '../../../assets/img/defaultSong.png';
 
 function TrendingItem({ image = null, title, description, handleClick }) {
@@ -18,7 +19,12 @@ function TrendingItem({ image = null, title, description, handleClick }) {
         alt={`${title}`}
         className="trendingItemImg"
       />
-      <div className="detailsWrapper">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        role="button"
+        tabIndex={0}
+        className="detailsWrapper"
+      >
         <span className="detailsTitle">{title}</span>
         <div className="detailsDescription">
           <span>{description}</span>
