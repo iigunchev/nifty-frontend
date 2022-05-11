@@ -10,7 +10,7 @@
   .volumeRange {
     --bar-bg: white;
     --seek-before-width: 0;
-    --seek-before-color: lightgray;
+    --seek-before-color: #c685fd;
     appearance: none;
     background: white;
     border-radius: 10px;
@@ -75,7 +75,7 @@
     width: 10px;
     border-radius: 50%;
     border: none;
-    background-color: $bg-dark-accent;
+    background-color: $accent-dark;
     cursor: pointer;
     position: relative;
     margin: -2px 0 0 0;
@@ -95,7 +95,7 @@
     width: 10px;
     border-radius: 50%;
     border: transparent;
-    background-color: $bg-dark-accent;
+    background-color: $accent-dark;
     cursor: pointer;
     position: relative;
     z-index: 3;
