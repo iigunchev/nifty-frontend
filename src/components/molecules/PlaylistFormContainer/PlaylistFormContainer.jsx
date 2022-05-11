@@ -10,11 +10,12 @@ import pencil from '../../../assets/svg/pencil.svg';
 import './PlaylistFormContainer.scss';
 import { blobToBase64 } from '../../../utils/meta/getMetadata';
 
-function PlaylistFormContainer({ errors, touched }) {
+function PlaylistFormContainer({ errors, touched, handleChangeImage }) {
   const [editImage, setEditImage] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleImagePreview = async (e) => {
+    handleChangeImage(e.target.files[0]);
     const image = await blobToBase64(e.target.files[0]);
     setImagePreview(image);
   };
@@ -23,10 +24,13 @@ function PlaylistFormContainer({ errors, touched }) {
       <div className="playlistInputsContainer">
         <div className="playlistImageWrapper">
           <label
+            htmlFor="playlistImage"
             onMouseEnter={() => setEditImage(true)}
             onMouseLeave={() => setEditImage(false)}
           >
             <input
+              id="playlistImage"
+              name="image"
               onChange={handleImagePreview}
               className="displayNone"
               type="file"
@@ -53,6 +57,7 @@ function PlaylistFormContainer({ errors, touched }) {
           <textarea
             className="playlistTextArea"
             name="description"
+            onChange={handleImagePreview}
             placeholder="Optional description"
           />
         </div>

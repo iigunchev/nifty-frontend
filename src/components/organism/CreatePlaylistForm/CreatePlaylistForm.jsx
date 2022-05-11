@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // components
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 import Modal from '../../template/Modal/Modal';
 import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 // formik
@@ -10,20 +11,33 @@ import './CreatePlaylistForm.scss';
 // icon
 import plusIcon from '../../../assets/svg/plus.svg';
 import PlaylistFormContainer from '../../molecules/PlaylistFormContainer/PlaylistFormContainer';
+import createPlaylist from '../../../utils/api/apiPlaylist';
 
 function CreatePlaylistForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const playlists = [];
+  const [playlistImage, setPlaylistImage] = useState(null);
+  const [playlists, setPlaylists] = useState([]);
 
   const initialValues = {
     name: `My playlist #${playlists.length + 1}`,
-    image: null,
     description: ''
   };
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    const toastId = toast.loading('Creating playlist...');
+    console.log(toastId);
+    setIsModalOpen(false);
+    try {
+      const newPlaylist = await createPlaylist({
+        ...values,
+        image: playlistImage
+      });
+      setPlaylists([...playlists, newPlaylist]);
+      toast.dismiss(toastId);
+      toast.success('Playlist created!🥰');
+    } catch (e) {
+      toast.error('Failed to create playlist, please, try again 😓');
+    }
   };
 
   return (
@@ -48,7 +62,11 @@ function CreatePlaylistForm() {
             validationSchema={createPlaylistSchema}
           >
             {({ errors, touched }) => (
-              <PlaylistFormContainer errors={errors} touched={touched} />
+              <PlaylistFormContainer
+                errors={errors}
+                touched={touched}
+                handleChangeImage={setPlaylistImage}
+              />
             )}
           </Formik>
         </Modal>
