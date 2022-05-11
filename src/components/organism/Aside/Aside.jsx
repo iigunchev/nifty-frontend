@@ -49,10 +49,16 @@ function Aside() {
         </NavList>
         <NavList title="Library">
           <ListItemIcon
-            route={`${route.APP}${route.MY_MUSIC}`}
+            route={`${route.APP}${route.MY_LIKES}`}
             icon="favourites"
           >
-            {t('aside.myMusic')}
+            {t('aside.myLikes')}
+          </ListItemIcon>
+          <ListItemIcon
+            route={`${route.APP}${route.MY_UPLOADS}`}
+            icon="myUploads"
+          >
+            {t('aside.myUploads')}
           </ListItemIcon>
           <ListItemIcon
             route={`${route.APP}${route.POPULAR}`}

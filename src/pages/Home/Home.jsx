@@ -5,10 +5,13 @@ import * as route from '../../routes';
 import { setQueue } from '../../redux/Audio/audioSlice';
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
 
+// import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
+
 import useFetchTracks from '../../hooks/useFetchTracks';
 
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import './Home.scss';
+import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 
 function Home() {
@@ -38,6 +41,9 @@ function Home() {
           </div>
           <section className="PlayListSection">
             <PlaylistItem />
+            <PlaylistItem />
+            <PlaylistItem />
+            <PlaylistItem />
           </section>
         </section>
         <div className="trendingWrapper">
@@ -51,6 +57,7 @@ function Home() {
           </section>
           <section className="trendingArtistsContainer">
             <h2>Top Artists</h2>
+            <TrendingItem />
           </section>
         </div>
       </div>
