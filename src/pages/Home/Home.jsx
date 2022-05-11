@@ -30,8 +30,17 @@ function Home() {
     );
   }
   return (
-    <div>
-      <section className="header">
+    <main className="homeContainer">
+      <div className="homeLeftCol">
+        <section className="trendingPlaylistsContainer"></section>
+        <div className="trendingWrapper">
+          <section className="trendingTracksContainer"></section>
+          <section className="trendingArtistsContainer"></section>
+        </div>
+      </div>
+      <div className="homeRightCol"></div>
+
+      {/* <section className="header">
         <h1>HOME</h1>
         <form>
           <div>
@@ -93,8 +102,8 @@ function Home() {
             Play
           </button>
         </div>
-      </section>
-    </div>
+      </section> */}
+    </main>
   );
 }
 

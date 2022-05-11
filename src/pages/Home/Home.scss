@@ -1,30 +1,88 @@
-.header {
+.homeContainer {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+}
+.homeLeftCol {
+  width: 66.66%;
+  background-color: lightgray;
+  min-height: 100vh;
+}
+.homeRightCol {
+  width: 33.66%;
+  background-color: darkgray;
+  min-height: 100vh;
+}
+.trendingPlaylistsContainer {
+  height: 200px;
+  background-color: rgb(179, 255, 244);
 }
 
-.PlayListSection {
+.trendingWrapper {
   display: flex;
-  gap: 3em;
-}
-.titeles {
-  display: flex;
-  justify-content: space-between;
-  max-width: 880px;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  height: 100%;
+  .trendingTracksContainer {
+    width: 66.66%;
+    background-color: cadetblue;
+    height: 100%;
+  }
+  .trendingArtistsContainer {
+    width: 33.33%;
+    background-color: coral;
+  }
 }
 
-.TrendingSection {
-  min-width: 500px;
-  max-width: 300px;
-  max-height: 300px;
-}
-.mainsectionwrapper {
-  display: flex;
-  justify-content: space-between;
+@media only screen and (max-width: 768px) {
+  .homeContainer {
+    width: 100%;
+  }
+  .trendingWrapper {
+    width: 100%;
+  }
+  .homeLeftCol {
+    width: 100%;
+  }
+
+  .homeRightCol {
+    display: none;
+  }
+  .trendingWrapper {
+    flex-direction: column;
+    .trendingTracksContainer,
+    .trendingArtistsContainer {
+      width: 100%;
+      height: 50%;
+    }
+  }
 }
 
-.tototo {
-  display: flex;
-}
+// .header {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .PlayListSection {
+//   display: flex;
+//   gap: 3em;
+// }
+// .titeles {
+//   display: flex;
+//   justify-content: space-between;
+//   max-width: 880px;
+//   margin-top: 1em;
+//   margin-bottom: 1em;
+// }
+
+// .TrendingSection {
+//   min-width: 500px;
+//   max-width: 300px;
+//   max-height: 300px;
+// }
+// .mainsectionwrapper {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .tototo {
+//   display: flex;
+// }
