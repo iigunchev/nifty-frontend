@@ -8,6 +8,7 @@ import { setCurrentTrack } from '../../../redux/Audio/audioSlice';
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import TrendingItem from '../TrendingItem/TrendingItem';
 import LikeButton from '../LikeButton/LikeButton';
+import DialogInformation from '../DialogInformation/DialogInformation';
 // icons
 import { ReactComponent as SVG } from '../../../assets/svg/verticalDots.svg';
 // utils
@@ -70,6 +71,7 @@ function TrendingTrackItem({
       >
         <SVG className="verticalDots" />
       </button>
+      {showDialog ? <DialogInformation /> : null}
     </div>
   );
 }

@@ -1,0 +1,15 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.dialogInformationWrapper {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  z-index: 2;
+  width: 180px;
+  background-color: $bg-offwhite;
+  border: 1px solid $text-lightgray;
+  border-radius: calc($border/5);
+  button:hover {
+    opacity: 0.5;
+  }
+}
