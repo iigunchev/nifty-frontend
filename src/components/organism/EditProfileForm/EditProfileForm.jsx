@@ -58,7 +58,6 @@ function EditProfileForm() {
         await reauthenticate(password);
         await changeCurrentUserEmail(formValues.email);
       }
-
       const apiUser = await updateUserProfile(formValues, user.id);
       dispatch(setUser(apiUser));
       toast.success('Profile edited!');

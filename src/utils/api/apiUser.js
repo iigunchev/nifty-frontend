@@ -1,11 +1,11 @@
 import { getCurrentUserToken } from '../../services/auth/auth';
 import fetchApi from './fetchApi';
 
-export const updateUserProfile = async (values, id) => {
+export const updateUserProfile = async (values) => {
   try {
     const token = await getCurrentUserToken();
     const authToken = `Bearer ${token}`;
-    const URL = `/account/${id}`;
+    const URL = `/account`;
     const apiUser = await fetchApi(URL, authToken, values, 'PUT');
     return apiUser;
   } catch (e) {
