@@ -12,7 +12,8 @@ export const BECOME_ARTIST = '/account/become-artist';
 export const APP = '/app';
 
 export const GENRES = '/genres';
-export const ALBUMS = '/albums';
+export const PLAYLISTS = '/playlists';
 export const ARTISTS = '/artists';
 export const MY_MUSIC = '/my-music';
+export const POPULAR = '/popular';
 export const UPLOAD_TRACK = '/upload-track';

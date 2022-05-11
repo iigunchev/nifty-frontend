@@ -1,0 +1,51 @@
+.playlistItemContainer {
+  height: 150px;
+  width: 150px;
+  border-radius: 24px;
+  background-image: url('https://images.unsplash.com/photo-1620503292890-c597f62cce8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  background-size: 20rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px;
+
+  position: relative;
+}
+.container {
+  position: absolute;
+  bottom: 0%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.237);
+  border-radius: 24px;
+  margin-bottom: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+  color: white;
+  width: 140px;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.buttoncontainer {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 0.5em;
+  img {
+    max-width: 25px;
+
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+      brightness(102%) contrast(102%);
+  }
+}
+
+.detailsDescription {
+  span {
+    font-size: 12px;
+  }
+}
+
+.detailwrapper {
+  margin-left: 0.5em;
+  border-bottom: 0.5em;
+}
+
+.detailsTitle {
+  font-size: 14px;
+}
