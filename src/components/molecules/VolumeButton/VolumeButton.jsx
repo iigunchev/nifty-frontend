@@ -3,7 +3,6 @@ import './VolumeButton.scss';
 // icon
 import { useDispatch, useSelector } from 'react-redux';
 import volumeIcon from '../../../assets/svg/volume.svg';
-// import volumeFilled from '../../../assets/svg/volumeFilled.svg';
 import volumeOff from '../../../assets/svg/volumeOff.svg';
 import { setVolume } from '../../../redux/Audio/audioSlice';
 

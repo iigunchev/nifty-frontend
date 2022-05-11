@@ -58,14 +58,15 @@ function AudioControls() {
     audioPlayer.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
   };
+
   const playPrevSong = () => {
-    if (currentTrack.position === 0) {
-      return;
-    }
+    if (currentTrack.queuePosition === 0) return;
+
     dispatch(setCurrentTrack(queue[currentTrack.queuePosition - 1]));
   };
   const playNextSong = () => {
     if (!currentTrack.src) return;
+    if (currentTrack.queuePosition === queue.length - 1) return;
     dispatch(setCurrentTrack(queue[currentTrack.queuePosition + 1]));
   };
   const onEndedSong = () => {
@@ -80,7 +81,6 @@ function AudioControls() {
     if (!currentTrack.src) return;
     setIsPlaying(true);
     dispatch(setTrackPosition());
-    // togglePlayPause();
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
   }, [currentTrack.src]);

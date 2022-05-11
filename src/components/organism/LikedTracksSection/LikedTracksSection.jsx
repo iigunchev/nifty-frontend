@@ -26,7 +26,7 @@ function TrackList({ songs }) {
         key={track._id}
         trackSrc={track.url}
         artistImg={track.thumbnail}
-        artistName={track.artist}
+        artistName={track.artist.firstName}
         trackId={track._id}
         trackName={track.title}
         isLiked={track.isLiked}

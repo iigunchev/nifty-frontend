@@ -2,8 +2,12 @@
 @use '../../../sass/core/typography' as t;
 
 .songPlayerWrapper {
+  width: 300px;
   display: flex;
   gap: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   img {
     width: 70px;
     border-radius: calc($border/2);
@@ -26,14 +30,24 @@
     gap: 1em;
     margin-bottom: 8px;
     h3 {
-      line-height: 1
+      line-height: 1;
     }
   }
   @keyframes horizontal-slide {
-    0% {transform: translateX(0)}
-    25% {transform: translateX(200px)}
-    50% {transform: translateX(0)}
-    75% {transform: translateX(-200px)}
-    100% {transform: translateX(0)}
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(200px);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    75% {
+      transform: translateX(-200px);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 }

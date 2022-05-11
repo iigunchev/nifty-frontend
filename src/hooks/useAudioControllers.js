@@ -14,6 +14,7 @@ const useAudioControllers = (volume) => {
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
+    console.log(seconds);
     setDuration(seconds);
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
