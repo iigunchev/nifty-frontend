@@ -54,6 +54,12 @@ function Aside() {
           >
             {t('aside.myMusic')}
           </ListItemIcon>
+          <ListItemIcon
+            route={`${route.APP}${route.POPULAR}`}
+            icon="favourites"
+          >
+            {t('aside.popular')}
+          </ListItemIcon>
           {user.artist ? (
             <ListItemIcon
               route={`${route.APP}${route.UPLOAD_TRACK}`}

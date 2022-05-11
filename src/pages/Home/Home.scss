@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PlayListSection {
+  display: flex;
+  gap: 3em;
+}
+.titeles {
+  display: flex;
+  justify-content: space-between;
+  max-width: 880px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.TrendingSection {
+  min-width: 500px;
+  max-width: 300px;
+  max-height: 300px;
+}
+.mainsectionwrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tototo {
+  display: flex;
+}
