@@ -14,6 +14,9 @@ import AppTemplate from '../AppTemplate/AppTemplate';
 import MyMusic from '../../../pages/MyMusic/MyMusic';
 import UploadTrack from '../../../pages/UploadTrack/UploadTrack';
 import Account from '../../../pages/Account/Account';
+import Playlists from '../../../pages/Playlists/Playlists';
+import Artists from '../../../pages/Artists/Artists';
+import Genres from '../../../pages/Genres/Genres';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -24,14 +27,18 @@ function ProtectedRoutes() {
   return (
     <AppTemplate>
       <Routes>
+        {/* ASIDE ROUTES */}
         <Route path={route.HOME} element={<Home />} />
-
-        <Route path={route.ACCOUNT} element={<Account />} />
         <Route path={route.UPLOAD_TRACK} element={<UploadTrack />} />
+        <Route path={route.MY_MUSIC} element={<MyMusic />} />
+        <Route path={route.PLAYLISTS} element={<Playlists />} />
+        <Route path={route.ARTISTS} element={<Artists />} />
+        <Route path={route.GENRES} element={<Genres />} />
+        {/* ACCOUNT  */}
+        <Route path={route.ACCOUNT} element={<Account />} />
         <Route path={route.EDIT_PROFILE} element={<EditProfile />} />
         <Route path={route.CHANGE_PASSWORD} element={<ChangePassword />} />
         <Route path={route.BECOME_ARTIST} element={<BecomeArtist />} />
-        <Route path={route.MY_MUSIC} element={<MyMusic />} />
       </Routes>
     </AppTemplate>
   );

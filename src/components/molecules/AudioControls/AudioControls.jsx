@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
 // images
@@ -10,30 +10,39 @@ import next from '../../../assets/img/player/next.png';
 import previous from '../../../assets/img/player/previous.png';
 // styles
 import './AudioControls.scss';
+import useAudioControllers from '../../../hooks/useAudioControllers';
+import {
+  setCurrentTrack,
+  setTrackPosition
+} from '../../../redux/Audio/audioSlice';
 
 function AudioControls() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
+  const dispatch = useDispatch();
+  // redux volume slice
+  const { currentTrack, volume, queue } = useSelector((state) => state.audio);
+  // custom hook
+  const [audioPlayer, progressBar, animationRef, duration] =
+    useAudioControllers(volume);
+  // states
   const [currentTime, setCurrentTime] = useState(0);
-  // references
-  const audioPlayer = useRef(); // reference the audio component
-  const progressBar = useRef(); // reference the progress bar
-  const animationRef = useRef(); // reference the animation
-  const audio = useSelector((state) => state.audio);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  function changePlayerCurrentTime() {
+  const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
       '--seek-before-width',
       `${(progressBar.current.value / duration) * 100}%`
     );
     setCurrentTime(progressBar.current.value);
-  }
-  function whilePlaying() {
+  };
+
+  const whilePlaying = () => {
     progressBar.current.value = audioPlayer.current.currentTime;
     changePlayerCurrentTime();
     animationRef.current = requestAnimationFrame(whilePlaying);
-  }
+  };
+  // handle pause or play the song
   const togglePlayPause = () => {
+    if (!currentTrack.src) return;
     setIsPlaying((prevState) => !prevState);
     if (!isPlaying) {
       audioPlayer.current.play();
@@ -49,27 +58,48 @@ function AudioControls() {
     audioPlayer.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
   };
-  useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+  const playPrevSong = () => {
+    if (currentTrack.position === 0) {
+      return;
+    }
+    dispatch(setCurrentTrack(queue[currentTrack.queuePosition - 1]));
+  };
+  const playNextSong = () => {
+    if (!currentTrack.src) return;
+    dispatch(setCurrentTrack(queue[currentTrack.queuePosition + 1]));
+  };
+  const onEndedSong = () => {
+    if (queue.length === 0) {
+      setIsPlaying(false);
+      return;
+    }
+    playNextSong();
+  };
 
   useEffect(() => {
-    if (!audio.src) return;
+    if (!currentTrack.src) return;
     setIsPlaying(true);
+    dispatch(setTrackPosition());
     // togglePlayPause();
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);
-  }, [audio?.src]);
+  }, [currentTrack.src]);
+
   return (
     <div className="primaryControlsWrapper">
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioPlayer} src={audio.src} />
+      <audio onEnded={onEndedSong} ref={audioPlayer} src={currentTrack.src}>
+        <track kind="captions" />
+      </audio>
       <div className="controlButtonsWrapper">
-        <button className="nextPreviousButton" type="button">
+        {/* Previous song button */}
+        <button
+          onClick={playPrevSong}
+          className="nextPreviousButton"
+          type="button"
+        >
           <img className="filteredImg" src={previous} alt="previous" />
         </button>
+        {/* Play / Pause button */}
         <button
           onClick={togglePlayPause}
           className="playStopButton"
@@ -81,7 +111,12 @@ function AudioControls() {
             alt="stop"
           />
         </button>
-        <button className="nextPreviousButton" type="button">
+        {/* Next song button */}
+        <button
+          onClick={playNextSong}
+          className="nextPreviousButton"
+          type="button"
+        >
           <img className="filteredImg" src={next} alt="next" />
         </button>
       </div>

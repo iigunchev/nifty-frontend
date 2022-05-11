@@ -1,5 +1,16 @@
 @use '../../../sass/abstracts/variables' as *;
-
+.dragZoneWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uploadTrackFormContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 100px;
+}
 .formWrapper {
   display: flex;
   gap: 2em;
@@ -23,6 +34,7 @@
   }
 }
 .searchGenreInput {
+  background: white;
   width: 100%;
   border-radius: 12px;
   border: 1px solid lightgray;
@@ -44,6 +56,7 @@
   align-items: center;
 }
 .trackImage {
+  aspect-ratio: 1 / 1;
   width: 140px;
   box-shadow: $boxshadow;
   margin-bottom: 1em;

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 // toast
 import { toast } from 'react-toastify';
+// redux
+import { useDispatch } from 'react-redux';
+import { setCurrentTrack } from '../../../redux/Audio/audioSlice';
 // components
 import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import TrendingItem from '../TrendingItem/TrendingItem';
@@ -15,6 +18,7 @@ import './TrendingTrackItem.scss';
 
 function TrendingTrackItem({
   artistImg,
+  trackSrc,
   trackName,
   artistName,
   trackId,
@@ -22,6 +26,17 @@ function TrendingTrackItem({
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const handlePlayTrack = () => {
+    dispatch(
+      setCurrentTrack({
+        artist: artistName,
+        src: trackSrc,
+        title: trackName,
+        image: artistImg
+      })
+    );
+  };
   const handleLikeTrack = async (likeValue) => {
     setIsLoading(true);
     try {
@@ -47,7 +62,7 @@ function TrendingTrackItem({
         description={artistName}
       />
       {/* <span>{trackDuration}</span> */}
-      <ButtonWithIcon />
+      <ButtonWithIcon handleClick={handlePlayTrack} />
       <button
         type="button"
         onClick={() => setShowDialog(!showDialog)}

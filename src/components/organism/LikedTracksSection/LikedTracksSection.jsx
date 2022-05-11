@@ -24,10 +24,11 @@ function TrackList({ songs }) {
     songs.map((track) => (
       <TrendingTrackItem
         key={track._id}
-        trackId={track._id}
-        artistName={track.artist}
-        trackName={track.title}
+        trackSrc={track.url}
         artistImg={track.thumbnail}
+        artistName={track.artist}
+        trackId={track._id}
+        trackName={track.title}
         isLiked={track.isLiked}
       />
     ))

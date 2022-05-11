@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 // styles
 import './UploadZone.scss';
 
-function UploadZone({ handleDragFile }) {
+function UploadZone({ handleDragFile, className }) {
   return (
     <Dropzone
       onDropAccepted={handleDragFile}
@@ -16,7 +16,7 @@ function UploadZone({ handleDragFile }) {
       accept={{ 'audio/*': ['.mp3', '.mpeg'] }}
     >
       {({ getRootProps, getInputProps }) => (
-        <section>
+        <section className={className}>
           <div className="dragArea" {...getRootProps()}>
             <p>Drag and drop some files here, or click to select files</p>
             <div className="btnWrapper">
