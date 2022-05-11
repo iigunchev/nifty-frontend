@@ -27,6 +27,8 @@ function TrendingTrackItem({
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
+  let timeOutId;
   const dispatch = useDispatch();
   const handlePlayTrack = () => {
     dispatch(
@@ -38,8 +40,23 @@ function TrendingTrackItem({
       })
     );
   };
+  const onBlurHandler = () => {
+    // This is necessary because we need to first check if
+    // another child of the element has received focus as
+    // the blur event fires prior to the new focus event.
+    timeOutId = setTimeout(() => {
+      setShowDialog(false);
+    });
+  };
+
+  const onFocusHandler = () => {
+    // If a child receives focus, do not close the popover.
+    clearTimeout(timeOutId);
+  };
+
   const handleLikeTrack = async (likeValue) => {
     setIsLoading(true);
+    setIsTrackLiked(!isTrackLiked);
     try {
       await toggleLike(likeValue, trackId);
     } catch (e) {
@@ -54,7 +71,7 @@ function TrendingTrackItem({
       <LikeButton
         disabled={isLoading}
         handleLike={handleLikeTrack}
-        liked={isLiked}
+        isLiked={isTrackLiked}
       />
       {/* <span className="trendingSpot">{spot}</span> */}
       <TrendingItem
@@ -64,14 +81,26 @@ function TrendingTrackItem({
       />
       {/* <span>{trackDuration}</span> */}
       <ButtonWithIcon handleClick={handlePlayTrack} />
-      <button
-        type="button"
-        onClick={() => setShowDialog(!showDialog)}
-        title="More options"
+      <div
+        onFocus={onFocusHandler}
+        className="dialogWrapper"
+        onBlur={onBlurHandler}
       >
-        <SVG className="verticalDots" />
-      </button>
-      {showDialog ? <DialogInformation /> : null}
+        <button
+          type="button"
+          onClick={() => setShowDialog(!showDialog)}
+          title="More options"
+        >
+          <SVG className="verticalDots" />
+        </button>
+
+        {showDialog ? (
+          <DialogInformation
+            handleLike={handleLikeTrack}
+            isLiked={isTrackLiked}
+          />
+        ) : null}
+      </div>
     </div>
   );
 }

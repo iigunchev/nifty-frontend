@@ -2,14 +2,29 @@
 
 .dialogInformationWrapper {
   position: absolute;
-  right: 0;
-  bottom: -20px;
+  padding: 0;
+  right: -150px;
+  bottom: -110px;
   z-index: 2;
   width: 180px;
   background-color: $bg-offwhite;
   border: 1px solid $text-lightgray;
   border-radius: calc($border/5);
-  button:hover {
-    opacity: 0.5;
+  button {
+    width: 100%;
+    text-align: left;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin: 0;
+      padding: 0.35em;
+      &:hover {
+        background-color: $text-gray;
+        opacity: 0.7;
+      }
+    }
   }
 }
