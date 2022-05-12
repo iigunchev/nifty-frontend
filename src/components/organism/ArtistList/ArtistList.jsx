@@ -1,16 +1,19 @@
 import React from 'react';
 
 // components
-import TrendingArtists from '../../molecules/TrendingArtists/TrendingArtists';
+// import TrendingArtists from '../../molecules/TrendingArtists/TrendingArtists';
+import TrendingItem from '../../molecules/TrendingItem/TrendingItem';
 
 function ArtistList({ artists }) {
+  console.log(artists);
   return (
     <div className="">
       {artists.map((artist) => (
-        <TrendingArtists
+        <TrendingItem
           key={artist._id}
-          artistImg={artist.image}
-          artistName={artist.firstName}
+          image={artist.profileImage}
+          title={artist.firstName}
+          // followers
         />
       ))}
     </div>

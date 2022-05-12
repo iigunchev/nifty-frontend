@@ -20,6 +20,7 @@ export const getTracks = async (URL) => {
   try {
     const token = await getCurrentUserToken();
     const apiTracks = await fetchApi(URL, `Bearer ${token}`);
+    console.log(apiTracks);
     return apiTracks;
   } catch (e) {
     throw Error('Failed to fetch API');
