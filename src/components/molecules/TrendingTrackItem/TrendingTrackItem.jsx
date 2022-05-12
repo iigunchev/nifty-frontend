@@ -103,7 +103,7 @@ function TrendingTrackItem({
         description={artistName}
         handleClick={handlePlayTrack}
       />
-      <ButtonWithIcon handleClick={handlePlayTrack} />
+      <ButtonWithIcon trackSrc={trackSrc} handlePlayTrack={handlePlayTrack} />
       <div
         onFocus={onFocusHandler}
         className="dialogWrapper"

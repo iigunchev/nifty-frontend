@@ -11,8 +11,9 @@ const initialState = {
     image: null,
     queuePosition: 0
   },
+  isActive: false,
   queue: [],
-  volume: 0.5
+  volume: 0
 };
 
 const audioSlice = createSlice({
@@ -37,6 +38,7 @@ const audioSlice = createSlice({
     },
     setCurrentTrack: (state, { payload }) => {
       state.currentTrack = payload;
+      state.isActive = true;
       if (state.queue.length === 0) {
         state.queue = [payload];
       }
@@ -46,6 +48,9 @@ const audioSlice = createSlice({
     },
     setVolume: (state, { payload }) => {
       state.volume = payload;
+    },
+    setIsActive: (state, { payload }) => {
+      state.isActive = payload;
     }
   }
 });
@@ -57,7 +62,8 @@ export const {
   setQueue,
   setTrackPosition,
   setTrackToQueue,
-  removeQueue
+  removeQueue,
+  setIsActive
 } = audioSlice.actions;
 
 export default audioSlice.reducer;
