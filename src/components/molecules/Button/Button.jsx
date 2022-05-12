@@ -16,10 +16,17 @@ const buttonSize = {
   }
 };
 
-function Button({ children, size = 'md', isLoading = null, type = 'button' }) {
+function Button({
+  children,
+  handleClick,
+  size = 'md',
+  isLoading = null,
+  type = 'button'
+}) {
   return (
     <button
       disabled={isLoading}
+      onClick={handleClick}
       className="button"
       // eslint-disable-next-line react/button-has-type
       type={type}
