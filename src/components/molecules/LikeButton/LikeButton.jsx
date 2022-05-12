@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './LikeButton.scss';
 
 import heart from '../../../assets/svg/likeBtn.svg';
 import heartFilled from '../../../assets/svg/likeBtnFilled.svg';
 
-function LikeButton({ disabled = false, liked = false, handleLike }) {
-  const [isLiked, setIsLiked] = useState(liked);
+function LikeButton({ disabled = false, isLiked = false, handleLike }) {
   return (
     <button
       disabled={disabled}
       onClick={() => {
-        setIsLiked(!isLiked);
         handleLike(!isLiked);
       }}
       className="likeButton"
