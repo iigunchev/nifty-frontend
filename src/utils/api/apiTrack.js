@@ -4,6 +4,7 @@ import fetchApi from './fetchApi';
 const createTrack = async (values) => {
   try {
     const token = await getCurrentUserToken();
+
     const apiTrack = await fetchApi(
       '/track',
       `Bearer ${token}`,

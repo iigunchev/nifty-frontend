@@ -1,21 +1,25 @@
 import React from 'react';
 
 import './PlaylistItem.scss';
+// icons
 import play from '../../../assets/img/player/play.png';
+import song from '../../../assets/svg/asideSvg/genresFilled.svg';
 
-function PlaylistItem() {
+function PlaylistItem({ name, tracksLength, image }) {
   return (
     <div className="playListItemContainer">
+      <img src={image} className="playlistImage" alt="playlistBackground" />
       <div className="playListBottomContainer">
         <div className="detailsWrapper">
-          <span className="detailTitle">titulo</span>
+          <span className="detailTitle">{name}</span>
           <div className="detailDescription">
-            <span>12 tracks</span>
+            <img src={song} alt="song" className="playlistSongIcon" />
+            <span>{tracksLength} tracks</span>
           </div>
         </div>
-        <div className="playListActionButton">
+        <button type="button" className="playListActionButton">
           <img className="filteredImg" src={play} alt="play" />
-        </div>
+        </button>
       </div>
     </div>
   );

@@ -24,17 +24,14 @@ const createPlaylist = async (formValues) => {
       'image',
       formData
     );
-    console.log('formValues', formValues);
     const newPlaylist = await fetchApi(
       URL,
       `Bearer ${token}`,
       { ...formValues, thumbnail },
       'POST'
     );
-    console.log(newPlaylist);
     return newPlaylist;
   } catch (e) {
-    console.log(e.message);
     throw new Error('Failed to fetch to API');
   }
 };

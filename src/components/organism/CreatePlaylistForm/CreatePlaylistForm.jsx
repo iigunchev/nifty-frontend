@@ -47,7 +47,7 @@ function CreatePlaylistForm() {
         type="button"
       >
         <img src={plusIcon} alt="plus" />
-        <span>Create new playlist</span>
+        <span>Create</span>
       </SecondaryButton>
       {isModalOpen ? (
         <Modal

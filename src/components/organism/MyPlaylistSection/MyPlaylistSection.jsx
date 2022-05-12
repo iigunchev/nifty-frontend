@@ -1,14 +1,17 @@
 import React from 'react';
 import './MyPlaylistSection.scss';
+// utils
+import useFetchItems from '../../../hooks/useFetchItems';
+import PlaylistMap from '../PlaylistMap/PlaylistMap';
 
-function MyPlaylistSection({ playlists }) {
-  console.log(playlists);
+function MyPlaylistSection() {
+  const [playlists, isLoading] = useFetchItems('playlist/byuser');
   return (
     <section className="myPlaylistWrapper">
-      {playlists.length === 0 ? (
+      {isLoading ? (
         <h3>You don&apos;t have any playlist created, start here</h3>
       ) : (
-        <h4>Playlists</h4>
+        <PlaylistMap playlists={playlists} />
       )}
     </section>
   );
