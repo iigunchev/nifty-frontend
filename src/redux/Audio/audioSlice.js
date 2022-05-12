@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const initialState = {
   // info song,
@@ -10,6 +11,7 @@ const initialState = {
     image: null,
     queuePosition: 0
   },
+  isActive: false,
   queue: [],
   volume: 0.5
 };
@@ -18,6 +20,14 @@ const audioSlice = createSlice({
   name: 'audio',
   initialState,
   reducers: {
+    setTrackToQueue: (state, { payload }) => {
+      if (state.queue.some((track) => track.src === payload.src)) {
+        toast.error('Track already added in queue!');
+        toast.remove();
+        return;
+      }
+      state.queue = [...state.queue, payload];
+    },
     setTrackPosition: ({ currentTrack, queue }) => {
       if (!currentTrack.src || queue.length === 0) return;
       const index = queue.findIndex((track) => track.src === currentTrack.src);
@@ -26,17 +36,21 @@ const audioSlice = createSlice({
     setQueue: (state, { payload }) => {
       state.queue = payload;
     },
-    setAudio: (state, { payload }) => {
-      state.src = payload.src;
-      state.artist = payload.artist;
-      state.title = payload.title;
-      state.image = payload.image;
-    },
     setCurrentTrack: (state, { payload }) => {
       state.currentTrack = payload;
+      state.isActive = true;
+      if (state.queue.length === 0) {
+        state.queue = [payload];
+      }
+    },
+    removeQueue: (state) => {
+      state.queue = [];
     },
     setVolume: (state, { payload }) => {
       state.volume = payload;
+    },
+    setIsActive: (state, { payload }) => {
+      state.isActive = payload;
     }
   }
 });
@@ -46,7 +60,10 @@ export const {
   setAudio,
   setVolume,
   setQueue,
-  setTrackPosition
+  setTrackPosition,
+  setTrackToQueue,
+  removeQueue,
+  setIsActive
 } = audioSlice.actions;
 
 export default audioSlice.reducer;

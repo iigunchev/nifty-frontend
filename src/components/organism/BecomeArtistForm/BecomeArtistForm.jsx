@@ -1,15 +1,17 @@
 import React from 'react';
-
-import './BecomeArtistForm.scss';
-
-import { useSelector, useDispatch } from 'react-redux';
+// router link
 import { Link } from 'react-router-dom';
+// styles
+import './BecomeArtistForm.scss';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../../redux/User/userSlice';
-// import Button from '../../molecules/Button/Button';
+// components
+import Button from '../../molecules/Button/Button';
+// utils
 import { updateUserProfile } from '../../../utils/api/apiUser';
-
+// routes
 import { ACCOUNT, APP } from '../../../routes';
-// artist: false,
 
 function BecomeArtistForm() {
   const dispatch = useDispatch();
@@ -33,9 +35,9 @@ function BecomeArtistForm() {
         <Link to={`${APP}${ACCOUNT}`} className="backButton">
           Back
         </Link>
-        <button type="submit" onClick={handleSubmit}>
+        <Button type="submit" handleClick={handleSubmit}>
           {!user.artist ? 'Be Artist' : 'Cancel Suscription'}
-        </button>
+        </Button>
       </div>
     </section>
   );

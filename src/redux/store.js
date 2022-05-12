@@ -13,7 +13,8 @@ const reducers = combineReducers({
 });
 const persistConfig = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['audio']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

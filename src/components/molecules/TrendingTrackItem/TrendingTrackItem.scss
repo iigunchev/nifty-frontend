@@ -3,6 +3,7 @@
 @use '../../../sass/layout/flex' as l;
 
 .trendingTrackItemContainer {
+  position: relative;
   @include l.flex-container(
     $direction: row,
     $align: center,
