@@ -3,6 +3,7 @@
 @use '../../../sass/layout/flex' as l;
 
 .trendingTrackItemContainer {
+  position: relative;
   @include l.flex-container(
     $direction: row,
     $align: center,
@@ -11,9 +12,21 @@
   );
   width: 100%;
   height: 60px;
-  
+  &:hover {
+    background-color: $bg-offwhite;
+  }
+
   .verticalDots {
     width: 24px;
     color: $text-gray;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .playButtonWrapper {
+    display: none;
+  }
+  .likeButton {
+    display: none;
   }
 }

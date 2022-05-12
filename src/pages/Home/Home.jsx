@@ -1,8 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as route from '../../routes';
-import { setQueue } from '../../redux/Audio/audioSlice';
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
 
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
@@ -16,32 +14,20 @@ import TrendingList from '../../components/organism/TrendingList/TrendingList';
 // import useFetchArtist from '../../hooks/useFetchArtist';
 
 function Home() {
-  const dispatch = useDispatch();
   const [songs, isLoading] = useFetchTracks('track');
-  if (songs.length !== 0) {
-    dispatch(
-      setQueue(
-        songs.map((track) => ({
-          src: track.url,
-          artist: track.artist,
-          title: track.title,
-          image: track.thumbnail
-        }))
-      )
-    );
-  }
+
   // const dispatchArtist = useDispatch();
   // const [artists, isLoadingArtist] = useFetchArtist('artist');
   // if (artists.length !== 0) {
   //   dispatchArtist(
-  //     setQueue(
+  //
   //       artists.map((artist) => ({
   //         src: artist.url,
   //         artist: artist.artist,
   //         title: artist.title,
   //         image: artist.thumbnail
   //       }))
-  //     )
+  //
   //   );
   // }
 
