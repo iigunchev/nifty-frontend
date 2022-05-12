@@ -7,10 +7,10 @@ import TrendingTrackItemSkeleton from '../../molecules/Skeletons/TrendingTrackIt
 // styles
 import './LikedTracksSection.scss';
 // custom hook
-import useFetchTracks from '../../../hooks/useFetchTracks';
+import useFetchItems from '../../../hooks/useFetchItems';
 
 function LikedTracksSection() {
-  const [songs, isLoading] = useFetchTracks('track/getLiked');
+  const [songs, isLoading] = useFetchItems('track/getLiked');
   return (
     <section className="musicLikedContainer">
       <h1 className="heading1">Songs Liked</h1>

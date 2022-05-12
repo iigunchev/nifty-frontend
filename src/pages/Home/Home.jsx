@@ -5,7 +5,7 @@ import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
 
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
-import useFetchTracks from '../../hooks/useFetchTracks';
+import useFetchItems from '../../hooks/useFetchItems';
 
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import './Home.scss';
@@ -14,7 +14,7 @@ import TrendingList from '../../components/organism/TrendingList/TrendingList';
 // import useFetchArtist from '../../hooks/useFetchArtist';
 
 function Home() {
-  const [songs, isLoading] = useFetchTracks('track');
+  const [songs, isLoading] = useFetchItems('track');
 
   // const dispatchArtist = useDispatch();
   // const [artists, isLoadingArtist] = useFetchArtist('artist');

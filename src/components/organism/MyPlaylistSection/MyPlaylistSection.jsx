@@ -1,8 +1,8 @@
 import React from 'react';
 import './MyPlaylistSection.scss';
 
-function MyPlaylistSection() {
-  const playlists = [];
+function MyPlaylistSection({ playlists }) {
+  console.log(playlists);
   return (
     <section className="myPlaylistWrapper">
       {playlists.length === 0 ? (

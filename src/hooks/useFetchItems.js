@@ -3,20 +3,21 @@ import { useEffect, useState } from 'react';
 
 // toast
 import { toast } from 'react-toastify';
-import { useAuth } from '../services/auth/auth';
+import { getCurrentUserToken, useAuth } from '../services/auth/auth';
 // utils
-import { getTracks } from '../utils/api/apiTrack';
+import fetchApi from '../utils/api/fetchApi';
 
-const useFetchTracks = (endpoint = 'tracks') => {
+const useFetchItems = (endpoint = 'tracks') => {
   const currentUser = useAuth();
-  const [songs, setSongs] = useState([]);
+  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetch = async () => {
       setIsLoading(true);
       try {
-        const apiTracks = await getTracks(`/${endpoint}`);
-        setSongs(apiTracks);
+        const token = await getCurrentUserToken();
+        const apiElements = await fetchApi(`/${endpoint}`, `Bearer ${token}`);
+        setItems(apiElements);
       } catch (e) {
         toast.error('Failed to fetch tracks');
       } finally {
@@ -26,7 +27,7 @@ const useFetchTracks = (endpoint = 'tracks') => {
     if (!currentUser) return;
     fetch();
   }, [currentUser]);
-  return [songs, isLoading];
+  return [items, isLoading];
 };
 
-export default useFetchTracks;
+export default useFetchItems;

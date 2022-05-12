@@ -17,15 +17,13 @@ function CreatePlaylistForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playlistImage, setPlaylistImage] = useState(null);
   const [playlists, setPlaylists] = useState([]);
-
   const initialValues = {
-    name: `My playlist #${playlists.length + 1}`,
+    name: `My new playlist`,
     description: ''
   };
 
   const handleSubmit = async (values) => {
     const toastId = toast.loading('Creating playlist...');
-    console.log(toastId);
     setIsModalOpen(false);
     try {
       const newPlaylist = await createPlaylist({
@@ -34,9 +32,10 @@ function CreatePlaylistForm() {
       });
       setPlaylists([...playlists, newPlaylist]);
       toast.dismiss(toastId);
-      toast.success('Playlist created!🥰');
+      toast.success('Playlist created!');
     } catch (e) {
-      toast.error('Failed to create playlist, please, try again 😓');
+      toast.dismiss(toastId);
+      toast.error('Failed to create playlist, please, try again');
     }
   };
 
