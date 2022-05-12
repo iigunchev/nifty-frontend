@@ -13,7 +13,7 @@ const initialState = {
   },
   isActive: false,
   queue: [],
-  volume: 0
+  volume: 0.5
 };
 
 const audioSlice = createSlice({
