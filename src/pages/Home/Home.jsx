@@ -9,11 +9,28 @@ import useFetchTracks from '../../hooks/useFetchTracks';
 
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import './Home.scss';
-import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
+// import ArtistList from '../../components/organism/ArtistList/ArtistList';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
+// import useFetchArtist from '../../hooks/useFetchArtist';
 
 function Home() {
   const [songs, isLoading] = useFetchTracks('track');
+
+  // const dispatchArtist = useDispatch();
+  // const [artists, isLoadingArtist] = useFetchArtist('artist');
+  // if (artists.length !== 0) {
+  //   dispatchArtist(
+  //
+  //       artists.map((artist) => ({
+  //         src: artist.url,
+  //         artist: artist.artist,
+  //         title: artist.title,
+  //         image: artist.thumbnail
+  //       }))
+  //
+  //   );
+  // }
+
   return (
     <main className="homeContainer">
       <div className="homeLeftCol">
@@ -42,7 +59,11 @@ function Home() {
           </section>
           <section className="trendingArtistsContainer">
             <h2>Top Artists</h2>
-            <TrendingItem />
+            {/* {!isLoadingArtist ? (
+              <ArtistList artist={artists} />
+            ) : (
+              <div>ERROR</div>
+            )} */}
           </section>
         </div>
       </div>
