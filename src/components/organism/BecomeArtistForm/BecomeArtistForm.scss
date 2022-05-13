@@ -13,7 +13,13 @@
     $wrap: nowrap
   );
 }
-
+.artisticNameForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
 .heading1 {
   p {
     font-size: 15px;

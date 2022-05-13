@@ -2,8 +2,10 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import './Modal.scss';
+// icon
+import closeIcon from '../../../assets/svg/crossDefault.svg';
 
-function Modal({ children, title, setShow, showing }) {
+function Modal({ children, title, setShow, showing, width }) {
   return (
     <div
       role="button"
@@ -14,14 +16,19 @@ function Modal({ children, title, setShow, showing }) {
       }}
     >
       <div
+        style={width ? { minWidth: `${width}px` } : null}
         className="modalContent"
         role="button"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modalHeader">
           <h3 className="heading3">{title}</h3>
-          <button type="button" onClick={() => setShow(false)}>
-            Close modal
+          <button
+            className="closeButton"
+            type="button"
+            onClick={() => setShow(false)}
+          >
+            <img src={closeIcon} alt="close" />
           </button>
         </div>
         <div className="modalBody">{children}</div>
