@@ -2,17 +2,17 @@ import { getCurrentUserToken } from '../../services/auth/auth';
 import { uploadToCloudinaryWithProgress } from '../cloudinary/uploadToCloudinary';
 import fetchApi from './fetchApi';
 
-const createPlaylist = async (formValues) => {
+const setPlaylist = async (formValues, method = 'POST', id = null) => {
   try {
     const token = await getCurrentUserToken();
-    const URL = '/playlist';
+    const URL = id ? `/playlist/${id}` : '/playlist';
 
     if (!formValues.image) {
       const newPlaylist = await fetchApi(
         URL,
         `Bearer ${token}`,
         formValues,
-        'POST'
+        method
       );
       return newPlaylist;
     }
@@ -36,4 +36,4 @@ const createPlaylist = async (formValues) => {
   }
 };
 
-export default createPlaylist;
+export default setPlaylist;

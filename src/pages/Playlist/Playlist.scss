@@ -1,5 +1,5 @@
 @use '../../sass/abstracts/variables' as *;
-.playlistHeader {
+.editableInformationWrapper {
   display: inline-flex;
   align-items: center;
   padding: 1em;
@@ -7,13 +7,17 @@
   background-color: $bg-offwhite;
   width: 100%;
   img {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     border-radius: $border;
   }
   .playlistInfoWrapper {
     width: 70%;
+    text-overflow: ellipsis;
+    p {
+      font-size: 13px;
+    }
   }
   .playlistName {
     font-size: clamp(1rem, 3vw, 5rem);
@@ -21,20 +25,20 @@
 }
 
 @media screen and (max-width: 800px) {
-  .playlistHeader {
+  .editableInformationWrapper {
     img {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       object-fit: cover;
       border-radius: $border;
     }
   }
 }
 @media screen and (max-width: 500px) {
-  .playlistHeader {
+  .editableInformationWrapper {
     img {
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       border-radius: $border;
     }

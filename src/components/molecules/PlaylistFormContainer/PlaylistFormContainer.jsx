@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// toastify
+import { toast } from 'react-toastify';
 // components
 import { Field, Form } from 'formik';
 import AccountEditInput from '../AccountEditInput/AccountEditInput';
@@ -10,11 +12,21 @@ import pencil from '../../../assets/svg/pencil.svg';
 import './PlaylistFormContainer.scss';
 import { blobToBase64 } from '../../../utils/meta/getMetadata';
 
-function PlaylistFormContainer({ errors, touched, handleChangeImage }) {
+function PlaylistFormContainer({
+  errors,
+  touched,
+  handleChangeImage,
+  playlistImage = null
+}) {
   const [editImage, setEditImage] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState(playlistImage);
 
   const handleImagePreview = async (e) => {
+    const { size } = e.target.files[0];
+    if (size > 1100000) {
+      toast.error('This image is bigger than 1MB, ');
+      return;
+    }
     handleChangeImage(e.target.files[0]);
     const image = await blobToBase64(e.target.files[0]);
     setImagePreview(image);

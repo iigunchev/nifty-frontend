@@ -22,7 +22,6 @@ function CreatePlaylistForm({ playlists, setPlaylists }) {
   };
 
   const handleSubmit = async (values) => {
-    console.log(values);
     const toastId = toast.loading('Creating playlist...');
     setIsModalOpen(false);
     try {
