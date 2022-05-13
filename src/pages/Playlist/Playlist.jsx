@@ -5,7 +5,7 @@ import useFetchItems from '../../hooks/useFetchItems';
 function Playlist() {
   const { id } = useParams();
   const [playlist, isLoading] = useFetchItems(`playlist/${id}`);
-  console.log(playlist);
+  console.log(isLoading);
   return (
     <div>
       <h1>{playlist.name}</h1>
