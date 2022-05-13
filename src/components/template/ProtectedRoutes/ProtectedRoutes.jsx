@@ -21,6 +21,7 @@ import Genres from '../../../pages/Genres/Genres';
 // import Genre from '../../../pages/Genre/Genre';
 import MyUploads from '../../../pages/MyUploads/MyUploads';
 import MyPlaylists from '../../../pages/MyPlaylists/MyPlaylists';
+import Playlist from '../../../pages/Playlist/Playlist';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -47,6 +48,9 @@ function ProtectedRoutes() {
         <Route path={route.EDIT_PROFILE} element={<EditProfile />} />
         <Route path={route.CHANGE_PASSWORD} element={<ChangePassword />} />
         <Route path={route.BECOME_ARTIST} element={<BecomeArtist />} />
+
+        {/* DYNAMIC ROUTES */}
+        <Route path={route.PLAYLIST} element={<Playlist />} />
       </Routes>
     </AppTemplate>
   );

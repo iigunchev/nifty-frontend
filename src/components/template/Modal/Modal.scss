@@ -19,6 +19,9 @@
   pointer-events: all;
   opacity: 1;
 }
+.closeButton {
+  width: 30px;
+}
 .modalContent {
   border-radius: $border;
   padding: 0.75em;

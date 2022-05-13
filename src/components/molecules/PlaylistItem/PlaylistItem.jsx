@@ -4,17 +4,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './PlaylistItem.scss';
+// routes
+import { APP } from '../../../routes/routes';
 // icons
 import defaultImage from '../../../assets/img/defaultSong.png';
 import play from '../../../assets/img/player/play.png';
 import song from '../../../assets/svg/asideSvg/genresFilled.svg';
 
-function PlaylistItem({ name, tracksLength, image, id = 0 }) {
+function PlaylistItem({ name, tracksLength, image, id }) {
   const navigate = useNavigate();
   return (
     <div
       onClick={() => {
-        navigate(id);
+        navigate(`${APP}/playlist/${id}`);
       }}
       role="button"
       tabIndex={0}

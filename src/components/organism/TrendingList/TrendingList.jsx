@@ -15,7 +15,7 @@ function TrendingList({ tracks }) {
           key={track._id}
           trackSrc={track.url}
           artistImg={track.thumbnail || defaultImg}
-          artistName={track.artist.firstName}
+          artistName={track.artist.artisticName}
           trackId={track._id}
           trackName={track.title}
           isLiked={track.isLiked}

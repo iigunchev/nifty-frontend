@@ -11,12 +11,12 @@ import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/Tren
 import './Home.scss';
 import ArtistList from '../../components/organism/ArtistList/ArtistList';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
-import useFetchArtist from '../../hooks/useFetchArtist';
+import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
 
 function Home() {
   const [songs, isLoading] = useFetchItems('track');
 
-  const [artists, isLoadingArtists] = useFetchArtist('account/byartist');
+  const [artists, isLoadingArtists] = useFetchItems('account/byartist');
 
   return (
     <main className="homeContainer">
@@ -49,7 +49,7 @@ function Home() {
             {!isLoadingArtists ? (
               <ArtistList artists={artists} />
             ) : (
-              <div>ERROR</div>
+              <TrendingItemSkeleton />
             )}
           </section>
         </div>

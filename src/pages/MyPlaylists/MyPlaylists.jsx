@@ -1,4 +1,5 @@
 import React from 'react';
+import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 // component
 import CreatePlaylistForm from '../../components/organism/CreatePlaylistForm/CreatePlaylistForm';
 import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
@@ -16,11 +17,7 @@ function MyPlaylists() {
         <CreatePlaylistForm playlists={playlists} setPlaylists={setPlaylists} />
       </div>
       <section className="myPlaylistWrapper">
-        {isLoading ? (
-          <h3>You don&apos;t have any playlist created, start here</h3>
-        ) : (
-          <PlaylistsList playlists={playlists} />
-        )}
+        {isLoading ? <CardSkeleton /> : <PlaylistsList playlists={playlists} />}
       </section>
     </>
   );

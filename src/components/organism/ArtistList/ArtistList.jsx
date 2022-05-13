@@ -10,6 +10,9 @@ import './ArtistList.scss';
 function ArtistList({ artists }) {
   const navigate = useNavigate();
   const navigateArtist = (id) => navigate(`${APP}/artist/${id}`);
+  if (artists.length === 0) {
+    return <h1>There&apos;s no artists</h1>;
+  }
   return (
     <div className="trendingListWrapper">
       {artists.map((artist) => (
@@ -20,6 +23,7 @@ function ArtistList({ artists }) {
           title={artist.firstName}
           followers={artist.followers}
           handleClick={navigateArtist}
+          title={artist.artisticName}
         />
       ))}
     </div>
