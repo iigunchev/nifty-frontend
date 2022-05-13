@@ -5,24 +5,38 @@
   padding: 1em;
   gap: 1em;
   background-color: $bg-offwhite;
-  max-height: 500px;
   width: 100%;
-  .playlistImageContainer {
-    min-height: 50px;
-    min-width: 50px;
-    width: 300px;
-    height: 300px;
-  }
   img {
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: $border;
   }
   .playlistInfoWrapper {
-    width: 80%;
+    width: 70%;
   }
   .playlistName {
-    font-size: clamp(1.25rem, 2.5vw, 7rem);
+    font-size: clamp(1rem, 3vw, 5rem);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .playlistHeader {
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: $border;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .playlistHeader {
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: $border;
+    }
   }
 }

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import useFetchItems from '../../hooks/useFetchItems';
 // components
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
-import TrendingList from '../../components/organism/TrendingList/TrendingList';
+// import TrendingList from '../../components/organism/TrendingList/TrendingList';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
@@ -17,9 +17,7 @@ function Playlist() {
   return (
     <section className="playlistSectionContainer">
       <header className="playlistHeader">
-        <div className="playlistImageContainer">
-          <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
-        </div>
+        <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
 
         <div className="playlistInfoWrapper">
           <p>{playlist.description}</p>
@@ -27,14 +25,11 @@ function Playlist() {
         </div>
       </header>
 
-      {isLoading ? (
-        <TrendingTrackItemSkeleton />
-      ) : (
-        <TrendingList
+      {!isLoading ? <TrendingTrackItemSkeleton /> : null}
+      {/* <TrendingList
           errorMessage="This playlist do not have tracks"
           tracks={playlist.tracks}
-        />
-      )}
+        /> */}
     </section>
   );
 }

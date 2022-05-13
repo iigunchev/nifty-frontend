@@ -1,12 +1,11 @@
 import React from 'react';
 
-import useFetchArtist from '../../hooks/useFetchArtist';
-
 import ArtistList from '../../components/organism/ArtistList/ArtistList';
+import useFetchItems from '../../hooks/useFetchItems';
 import './Artists.scss';
 
 function Artists() {
-  const [artists, isLoadingArtists] = useFetchArtist('account/byartist');
+  const [artists, isLoadingArtists] = useFetchItems('account/byartist');
 
   return (
     <main>
