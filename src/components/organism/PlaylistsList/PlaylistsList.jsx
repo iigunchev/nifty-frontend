@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItem from '../../molecules/PlaylistItem/PlaylistItem';
 
-function PlaylistMap({ playlists }) {
+function PlaylistsList({ playlists }) {
   return playlists.map((playlist) => (
     <PlaylistItem
       key={playlist._id}
@@ -12,4 +12,4 @@ function PlaylistMap({ playlists }) {
   ));
 }
 
-export default PlaylistMap;
+export default PlaylistsList;

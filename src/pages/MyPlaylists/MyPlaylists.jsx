@@ -1,7 +1,7 @@
 import React from 'react';
 // component
 import CreatePlaylistForm from '../../components/organism/CreatePlaylistForm/CreatePlaylistForm';
-import PlaylistMap from '../../components/organism/PlaylistMap/PlaylistMap';
+import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 // custom hook
 import useFetchItems from '../../hooks/useFetchItems';
 // styles
@@ -19,7 +19,7 @@ function MyPlaylists() {
         {isLoading ? (
           <h3>You don&apos;t have any playlist created, start here</h3>
         ) : (
-          <PlaylistMap playlists={playlists} />
+          <PlaylistsList playlists={playlists} />
         )}
       </section>
     </>
