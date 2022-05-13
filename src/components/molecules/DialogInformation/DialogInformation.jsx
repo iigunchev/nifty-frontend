@@ -16,9 +16,7 @@ function DialogInformation({ handleLike, isLiked, handleAddToQueue }) {
             }}
             type="button"
           >
-            {isLiked
-              ? 'Remove from your liked songs'
-              : 'Save to your liked songs'}
+            {isLiked ? 'Unlike' : 'Like'}
           </button>
         </li>
         <li>

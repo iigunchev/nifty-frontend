@@ -1,7 +1,7 @@
 import React from 'react';
 import LikedTracksSection from '../../components/organism/LikedTracksSection/LikedTracksSection';
 
-function MyMusic() {
+function MyLikes() {
   return (
     <div>
       <LikedTracksSection />
@@ -9,4 +9,4 @@ function MyMusic() {
   );
 }
 
-export default MyMusic;
+export default MyLikes;
