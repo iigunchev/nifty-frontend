@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as route from '../../routes';
-import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
+
+import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
@@ -15,8 +16,8 @@ import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingI
 
 function Home() {
   const [songs, isLoading] = useFetchItems('track');
-
   const [artists, isLoadingArtists] = useFetchItems('account/byartist');
+  const [playlists, isLoadingPlaylists] = useFetchItems('playlist');
 
   return (
     <main className="homeContainer">
@@ -29,10 +30,11 @@ function Home() {
             </span>
           </div>
           <section className="PlayListSection">
-            <PlaylistItem />
-            <PlaylistItem />
-            <PlaylistItem />
-            <PlaylistItem />
+            {!isLoadingPlaylists ? (
+              <PlaylistsList playlists={playlists} />
+            ) : (
+              <TrendingItemSkeleton />
+            )}
           </section>
         </section>
         <div className="trendingWrapper">
