@@ -1,13 +1,13 @@
 import React from 'react';
 
 // components
-// import TrendingArtists from '../../molecules/TrendingArtists/TrendingArtists';
 import TrendingItem from '../../molecules/TrendingItem/TrendingItem';
 
+import './ArtistList.scss';
+
 function ArtistList({ artists }) {
-  console.log(artists);
   return (
-    <div className="">
+    <div className="trendingListWrapper">
       {artists.map((artist) => (
         <TrendingItem
           key={artist._id}

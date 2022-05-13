@@ -5,7 +5,6 @@
 }
 .homeLeftCol {
   width: 66.66%;
-  min-height: 100vh;
 }
 .homeRightCol {
   width: 33.66%;
@@ -14,7 +13,7 @@
 }
 .trendingPlaylistsContainer {
   max-height: 200px;
-  background-color: rgb(179, 255, 244);
+  //background-color: rgb(179, 255, 244);
 }
 
 .trendingWrapper {
@@ -23,10 +22,12 @@
   .trendingTracksContainer {
     width: 66.66%;
     height: 100%;
+    // have to be changed
+    margin-right: 2em;
   }
   .trendingArtistsContainer {
     width: 33.33%;
-    background-color: coral;
+    //background-color: coral;
   }
 }
 
@@ -49,7 +50,6 @@
     .trendingTracksContainer,
     .trendingArtistsContainer {
       width: 100%;
-      height: 50%;
     }
   }
 }
@@ -89,3 +89,7 @@
 // .tototo {
 //   display: flex;
 // }
+
+.trendingArtistsContainer {
+  gap: 1em;
+}

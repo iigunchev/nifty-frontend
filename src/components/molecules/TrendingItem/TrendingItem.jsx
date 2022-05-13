@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import Avvvatars from 'avvvatars-react';
 import React from 'react';
 
 import './TrendingItem.scss';
-
-import defaultImg from '../../../assets/img/defaultSong.png';
 
 function TrendingItem({ image = null, title, description, handleClick }) {
   return (
@@ -13,11 +12,14 @@ function TrendingItem({ image = null, title, description, handleClick }) {
       role="button"
       className="trendingItemContainer"
     >
-      <img
-        src={image || defaultImg}
-        alt={`${title}`}
-        className="trendingItemImg"
-      />
+      {image ? (
+        <img src={image} alt={`${title}`} className="trendingItemImg" />
+      ) : (
+        <div className="trendingItemImg">
+          <Avvvatars size={50} radius={12} value={title} />
+        </div>
+      )}
+
       <div
         onClick={(e) => e.stopPropagation()}
         role="button"

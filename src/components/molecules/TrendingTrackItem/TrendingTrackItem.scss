@@ -8,10 +8,9 @@
     $direction: row,
     $align: center,
     $spacing: space-between,
-    $gap: 1em
+    $gap: 10px
   );
   width: 100%;
-  height: 60px;
   &:hover {
     background-color: $bg-offwhite;
   }
