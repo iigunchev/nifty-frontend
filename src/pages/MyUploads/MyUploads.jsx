@@ -1,10 +1,10 @@
 import React from 'react';
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
-import useFetchTracks from '../../hooks/useFetchTracks';
+import useFetchItems from '../../hooks/useFetchItems';
 
 function MyUploads() {
-  const [songs, isLoading] = useFetchTracks('track/byartist');
+  const [songs, isLoading] = useFetchItems('track/byartist');
   return (
     <main>
       <h1 className="heading1">My Uploads</h1>

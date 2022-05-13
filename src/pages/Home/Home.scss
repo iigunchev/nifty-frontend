@@ -11,10 +11,6 @@
   background-color: darkgray;
   min-height: 100vh;
 }
-.trendingPlaylistsContainer {
-  max-height: 200px;
-  //background-color: rgb(179, 255, 244);
-}
 
 .trendingWrapper {
   display: flex;
@@ -62,8 +58,6 @@
 .PlayListSection {
   display: flex;
   gap: 2em;
-
-  justify-content: space-between;
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 1em;

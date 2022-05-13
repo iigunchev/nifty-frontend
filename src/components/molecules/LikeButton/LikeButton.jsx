@@ -14,7 +14,11 @@ function LikeButton({ disabled = false, isLiked = false, handleLike }) {
       className="likeButton"
       type="button"
     >
-      <img src={isLiked ? heartFilled : heart} alt="heart" />
+      <img
+        src={isLiked ? heartFilled : heart}
+        className="likeImage"
+        alt="heart"
+      />
     </button>
   );
 }

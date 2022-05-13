@@ -10,9 +10,10 @@
     $spacing: space-between,
     $gap: 10px
   );
+
   width: 100%;
   &:hover {
-    background-color: $bg-offwhite;
+    background-color: $bg-offwhite-opacity;
   }
 
   .verticalDots {
