@@ -23,7 +23,7 @@ function ArtistList({ artists }) {
           title={artist.firstName}
           followers={artist.followers}
           handleClick={navigateArtist}
-          title={artist.artisticName}
+          // title={artist.artisticName}
         />
       ))}
     </div>
