@@ -7,7 +7,7 @@ import './ArtistList.scss';
 
 function ArtistList({ artists }) {
   return (
-    <div className="artistListWrapper">
+    <div className="trendingListWrapper">
       {artists.map((artist) => (
         <TrendingItem
           key={artist._id}
