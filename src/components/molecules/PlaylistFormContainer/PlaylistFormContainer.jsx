@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // components
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import AccountEditInput from '../AccountEditInput/AccountEditInput';
 import Button from '../Button/Button';
 // icon
@@ -30,7 +30,6 @@ function PlaylistFormContainer({ errors, touched, handleChangeImage }) {
           >
             <input
               id="playlistImage"
-              name="image"
               onChange={handleImagePreview}
               className="displayNone"
               type="file"
@@ -54,10 +53,10 @@ function PlaylistFormContainer({ errors, touched, handleChangeImage }) {
             error={errors.name}
             touched={touched.name}
           />
-          <textarea
+          <Field
+            as="textarea"
             className="playlistTextArea"
             name="description"
-            onChange={handleImagePreview}
             placeholder="Optional description"
           />
         </div>

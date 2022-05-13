@@ -27,7 +27,7 @@ const useFetchItems = (endpoint = 'tracks') => {
     if (!currentUser) return;
     fetch();
   }, [currentUser]);
-  return [items, isLoading];
+  return [items, isLoading, setItems];
 };
 
 export default useFetchItems;

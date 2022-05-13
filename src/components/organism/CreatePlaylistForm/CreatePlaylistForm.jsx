@@ -3,20 +3,18 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import Modal from '../../template/Modal/Modal';
-import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 // formik
 import { createPlaylistSchema } from '../../../utils/schemas';
 // styles
 import './CreatePlaylistForm.scss';
 // icon
-import plusIcon from '../../../assets/svg/plus.svg';
 import PlaylistFormContainer from '../../molecules/PlaylistFormContainer/PlaylistFormContainer';
 import createPlaylist from '../../../utils/api/apiPlaylist';
+import Button from '../../molecules/Button/Button';
 
-function CreatePlaylistForm() {
+function CreatePlaylistForm({ playlists, setPlaylists }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playlistImage, setPlaylistImage] = useState(null);
-  const [playlists, setPlaylists] = useState([]);
   const initialValues = {
     name: `My new playlist`,
     description: ''
@@ -25,6 +23,7 @@ function CreatePlaylistForm() {
   const handleSubmit = async (values) => {
     const toastId = toast.loading('Creating playlist...');
     setIsModalOpen(false);
+    console.log(values);
     try {
       const newPlaylist = await createPlaylist({
         ...values,
@@ -41,14 +40,13 @@ function CreatePlaylistForm() {
 
   return (
     <section className="createPlaylistSection">
-      <SecondaryButton
+      <Button
         handleClick={() => setIsModalOpen(true)}
         className="OpenCreatePlaylistButton"
         type="button"
       >
-        <img src={plusIcon} alt="plus" />
-        <span>Create</span>
-      </SecondaryButton>
+        <span>Create new</span>
+      </Button>
       {isModalOpen ? (
         <Modal
           title="Create your playlist"
