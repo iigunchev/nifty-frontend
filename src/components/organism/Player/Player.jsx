@@ -11,7 +11,6 @@ import './Player-vanilla.scss';
 
 function Player() {
   const { currentTrack } = useSelector((state) => state.audio);
-  console.log(currentTrack);
   return (
     <section className="playerContainer">
       <div className="playerWrapper">
