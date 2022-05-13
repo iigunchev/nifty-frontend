@@ -14,7 +14,7 @@
 }
 .trendingPlaylistsContainer {
   max-height: 200px;
-  background-color: rgb(179, 255, 244);
+  //background-color: rgb(179, 255, 244);
 }
 
 .trendingWrapper {
@@ -23,10 +23,12 @@
   .trendingTracksContainer {
     width: 66.66%;
     height: 100%;
+    // have to be changed
+    margin-right: 2em;
   }
   .trendingArtistsContainer {
     width: 33.33%;
-    background-color: coral;
+    //background-color: coral;
   }
 }
 
@@ -89,3 +91,7 @@
 // .tototo {
 //   display: flex;
 // }
+
+.trendingArtistsContainer {
+  gap: 1em;
+}

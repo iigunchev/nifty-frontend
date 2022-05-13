@@ -1,4 +1,4 @@
-@use '../../../sass//abstracts//variables' as *;
+@use '../../../sass/abstracts/variables' as *;
 
 .progressInputContainer {
   width: 100%;
@@ -20,7 +20,7 @@
 .progressBar {
   --bar-bg: white;
   --seek-before-width: 0;
-  --seek-before-color: lightgray;
+  --seek-before-color: #c685fd;
 
   appearance: none;
   background: white;
@@ -85,7 +85,7 @@
   width: 10px;
   border-radius: 50%;
   border: none;
-  background-color: $bg-dark-accent;
+  background-color: $accent-dark;
   cursor: pointer;
   position: relative;
   margin: -2px 0 0 0;
@@ -95,17 +95,16 @@
 
 /* knobby while dragging - chrome and safari */
 .progressBar:active::-webkit-slider-thumb {
-  transform: scale(1.2);
-  background: $bg-dark;
+  transform: scale(1.4);
+  background: $accent-dark;
 }
-
 /* knobby - firefox */
 .progressBar::-moz-range-thumb {
   height: 10px;
   width: 10px;
   border-radius: 50%;
   border: transparent;
-  background-color: $bg-dark-accent;
+  background-color: $accent-dark;
   cursor: pointer;
   position: relative;
   z-index: 3;
@@ -114,8 +113,8 @@
 
 /* knobby while dragging - firefox */
 .progressBar:active::-moz-range-thumb {
-  transform: scale(1.2);
-  background: $bg-dark;
+  transform: scale(1.4);
+  background: $accent-dark;
 }
 
 .primaryControlsWrapper {

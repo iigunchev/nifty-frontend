@@ -11,7 +11,7 @@ import EditProfile from '../../../pages/Account/EditProfile/EditProfile';
 import ChangePassword from '../../../pages/Account/ChangePassword/ChangePassword';
 import BecomeArtist from '../../../pages/Account/BecomeArtist/BecomeArtist';
 import AppTemplate from '../AppTemplate/AppTemplate';
-import MyMusic from '../../../pages/MyMusic/MyMusic';
+import MyLikes from '../../../pages/MyLikes/MyLikes';
 import UploadTrack from '../../../pages/UploadTrack/UploadTrack';
 import Account from '../../../pages/Account/Account';
 import Playlists from '../../../pages/Playlists/Playlists';
@@ -32,7 +32,7 @@ function ProtectedRoutes() {
         {/* ASIDE ROUTES */}
         <Route path={route.HOME} element={<Home />} />
         <Route path={route.UPLOAD_TRACK} element={<UploadTrack />} />
-        <Route path={route.MY_LIKES} element={<MyMusic />} />
+        <Route path={route.MY_LIKES} element={<MyLikes />} />
         <Route path={route.MY_UPLOADS} element={<MyUploads />} />
         <Route path={route.MY_PLAYLISTS} element={<MyPlaylists />} />
         <Route path={route.PLAYLISTS} element={<Playlists />} />
