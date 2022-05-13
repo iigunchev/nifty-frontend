@@ -11,6 +11,8 @@ export const CHANGE_PASSWORD = '/account/change-password';
 export const BECOME_ARTIST = '/account/become-artist';
 export const APP = '/app';
 
+export const PLAYLIST = '/playlist/:id';
+
 export const GENRES = '/genres';
 export const PLAYLISTS = '/playlists';
 export const ARTISTS = '/artists';
