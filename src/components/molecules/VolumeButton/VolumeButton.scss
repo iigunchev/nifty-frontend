@@ -71,6 +71,7 @@
 
   /* knobby - chrome and safari */
   .volumeRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
     height: 10px;
     width: 10px;
     border-radius: 50%;
