@@ -59,6 +59,10 @@ function PlaylistFormContainer({ errors, touched, handleChangeImage }) {
             name="description"
             placeholder="Optional description"
           />
+          <div className="checkboxPublicAccess">
+            <Field type="checkbox" name="publicAccessible" />
+            <p>Public playlist</p>
+          </div>
         </div>
       </div>
       <Button type="submit">Create playlist</Button>

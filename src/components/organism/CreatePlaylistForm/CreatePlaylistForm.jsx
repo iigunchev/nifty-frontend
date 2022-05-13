@@ -17,10 +17,12 @@ function CreatePlaylistForm({ playlists, setPlaylists }) {
   const [playlistImage, setPlaylistImage] = useState(null);
   const initialValues = {
     name: `My new playlist`,
-    description: ''
+    description: '',
+    publicAccessible: true
   };
 
   const handleSubmit = async (values) => {
+    console.log(values);
     const toastId = toast.loading('Creating playlist...');
     setIsModalOpen(false);
     try {
