@@ -15,7 +15,10 @@ function LikedTracksSection() {
       {isLoading ? (
         <TrendingTrackItemSkeleton />
       ) : (
-        <TrendingList tracks={songs} />
+        <TrendingList
+          errorMessage="You do not have liked songs!"
+          tracks={songs}
+        />
       )}
     </section>
   );

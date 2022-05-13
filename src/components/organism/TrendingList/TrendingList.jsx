@@ -7,7 +7,10 @@ import defaultImg from '../../../assets/img/defaultSong.png';
 // styles
 import './TrendingList.scss';
 
-function TrendingList({ tracks }) {
+function TrendingList({ tracks, errorMessage = 'Tracks array is empty' }) {
+  if (tracks.length === 0) {
+    return <h3 className="heading3">{errorMessage}</h3>;
+  }
   return (
     <div className="trendingListWrapper">
       {tracks.map((track) => (
