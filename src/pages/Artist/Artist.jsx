@@ -5,7 +5,7 @@ import useFetchItems from '../../hooks/useFetchItems';
 function Artist() {
   const { id } = useParams();
   const [artist, isLoading] = useFetchItems(`account/${id}`);
-  console.log(artist);
+  console.log(isLoading);
   return (
     <div>
       <h1>{artist.name}</h1>

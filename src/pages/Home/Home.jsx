@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as route from '../../routes';
-import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
+
+import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 
 // import TrendingItem from '../../components/molecules/TrendingItem/TrendingItem';
 
@@ -15,8 +16,8 @@ import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingI
 
 function Home() {
   const [songs, isLoading] = useFetchItems('track');
-
   const [artists, isLoadingArtists] = useFetchItems('account/byartist');
+  const [playlists, isLoadingPlaylists] = useFetchItems('playlist');
 
   return (
     <main className="homeContainer">
@@ -29,10 +30,11 @@ function Home() {
             </span>
           </div>
           <section className="PlayListSection">
-            <PlaylistItem />
-            <PlaylistItem />
-            <PlaylistItem />
-            <PlaylistItem />
+            {!isLoadingPlaylists ? (
+              <PlaylistsList playlists={playlists} />
+            ) : (
+              <TrendingItemSkeleton />
+            )}
           </section>
         </section>
         <div className="trendingWrapper">
@@ -55,39 +57,6 @@ function Home() {
         </div>
       </div>
       <div className="homeRightCol">hola3</div>
-
-      {/* <section className="header">
-        <h1>HOME</h1>
-        <form>
-          <div>
-            <input type="search" id="mySearch" name="q" />
-            <button type="submit">Search</button>
-          </div>
-        </form>
-      </section>
-      <section className="mainsectionwrapper">
-        <div className="leftsection">
-          <div className="titeles">
-            <h2>PlayList</h2>
-            <span className="seemoreLink">
-              <Link to={`${route.APP}${route.PLAYLISTS}`}>See more</Link>
-            </span>
-          </div>
-          <section className="PlayListSection">
-            <PlaylistItem />
-          </section>
-          <div className="titeles">
-            <h2>Trending</h2>
-            <span className="seemoreLink">
-              <Link to={`${route.APP}${route.POPULAR}`}>See more</Link>
-            </span>
-          </div>
-          <section className="TrendingSection">
-          </section>
-        </div>
-
-
-      </section> */}
     </main>
   );
 }
