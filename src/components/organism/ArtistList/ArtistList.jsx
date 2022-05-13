@@ -15,7 +15,7 @@ function ArtistList({ artists }) {
         <TrendingItem
           key={artist._id}
           image={artist.profileImage}
-          title={artist.firstName}
+          title={artist.artisticName}
           // followers
         />
       ))}

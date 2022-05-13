@@ -7,6 +7,7 @@ import './BecomeArtistForm.scss';
 import { Form, Formik } from 'formik';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { setUser } from '../../../redux/User/userSlice';
 // components
 import Button from '../../molecules/Button/Button';
@@ -24,13 +25,19 @@ function BecomeArtistForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async ({ name }) => {
-    console.log(name);
     setIsModalOpen(false);
-    const newArtistUser = await updateUserProfile(
-      { artist: !user.artist },
-      user.id
-    );
-    dispatch(setUser(newArtistUser));
+    try {
+      const newArtistUser = await updateUserProfile(
+        { artist: !user.artist, artisticName: name },
+        user.id
+      );
+      if (newArtistUser.artist) {
+        toast.success(`Welcome ${newArtistUser.artisticName}`);
+      }
+      dispatch(setUser(newArtistUser));
+    } catch (e) {
+      toast.error('Failed to create artist');
+    }
   };
   return (
     <section className="ArtistSection">
