@@ -2,6 +2,8 @@ import React from 'react';
 
 // components
 import TrendingItem from '../../molecules/TrendingTrackItem/TrendingTrackItem';
+// default img
+import defaultImg from '../../../assets/img/defaultSong.png';
 // styles
 import './TrendingList.scss';
 
@@ -12,7 +14,7 @@ function TrendingList({ tracks }) {
         <TrendingItem
           key={track._id}
           trackSrc={track.url}
-          artistImg={track.thumbnail}
+          artistImg={track.thumbnail || defaultImg}
           artistName={track.artist.firstName}
           trackId={track._id}
           trackName={track.title}

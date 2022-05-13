@@ -1,7 +1,6 @@
 import React from 'react';
 
 // components
-// import TrendingArtists from '../../molecules/TrendingArtists/TrendingArtists';
 import TrendingItem from '../../molecules/TrendingItem/TrendingItem';
 
 import './ArtistList.scss';
