@@ -17,7 +17,6 @@ function Home() {
   const [songs, isLoading] = useFetchTracks('track');
 
   const [artists, isLoadingArtists] = useFetchArtist('account/byartist');
-  console.log(artists);
 
   return (
     <main className="homeContainer">
