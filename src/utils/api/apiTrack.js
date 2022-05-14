@@ -38,4 +38,20 @@ export const toggleLike = async (value, id) => {
   }
 };
 
+export const deleteTrack = async (id) => {
+  try {
+    const token = await getCurrentUserToken();
+
+    const apiTrack = await fetchApi(
+      `/track/${id}`,
+      `Bearer ${token}`,
+      null,
+      'DELETE'
+    );
+    return apiTrack;
+  } catch (e) {
+    throw Error('Failed to fetch API');
+  }
+};
+
 export default createTrack;

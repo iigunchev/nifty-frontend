@@ -101,6 +101,7 @@ function EditProfileForm() {
             handleSubmitWithoutEmail(values);
           }
         }}
+        // eslint-disable-next-line import/no-named-as-default-member
         validationSchema={schemas.editProfileSchema}
       >
         {({ errors, touched }) => (

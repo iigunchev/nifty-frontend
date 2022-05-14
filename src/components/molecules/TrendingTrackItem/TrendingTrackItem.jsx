@@ -122,6 +122,8 @@ function TrendingTrackItem({
             handleLike={handleLikeTrack}
             isLiked={isTrackLiked}
             handleAddToQueue={handleAddToQueue}
+            trackId={trackId}
+            trackSrc={trackSrc}
           />
         ) : null}
       </div>

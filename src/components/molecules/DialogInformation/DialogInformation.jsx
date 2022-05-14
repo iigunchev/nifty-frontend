@@ -2,10 +2,27 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import './DialogInformation.scss';
+import {
+  setTrackToDelete,
+  toggleDeleteModal
+} from '../../../redux/Dialog/dialogSlice';
 
-function DialogInformation({ handleLike, isLiked, handleAddToQueue }) {
+function DialogInformation({
+  handleLike,
+  isLiked,
+  handleAddToQueue,
+  trackId,
+  trackSrc
+}) {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const handleDeleteTrack = () => {
+    dispatch(toggleDeleteModal(true));
+    dispatch(setTrackToDelete({ id: trackId, src: trackSrc }));
+  };
   return (
     <div className="dialogInformationWrapper">
       <ul>
@@ -30,6 +47,13 @@ function DialogInformation({ handleLike, isLiked, handleAddToQueue }) {
         <li>
           <button type="button">Edit track</button>
         </li>
+        {params['*'] === 'my-uploads' && (
+          <li>
+            <button type="button" onClick={handleDeleteTrack}>
+              Delete track
+            </button>
+          </li>
+        )}
       </ul>
     </div>
   );
