@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 // styles
-import './UploadTrackForm.scss';
+import './EditTrackForm.scss';
 // components
 import { toast } from 'react-toastify';
 import { Field, Form, Formik } from 'formik';
-import UploadZone from '../../molecules/UploadZone/UploadZone';
+
 import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
-import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
+
 // utils
-import getMetadata from '../../../utils/meta/getMetadata';
 import getImage from '../../../utils/trackImageChecker';
 import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
@@ -17,8 +17,9 @@ import createTrack from '../../../utils/api/apiTrack';
 import { uploadSongSchema } from '../../../utils/schemas';
 import getGenresFromApi from '../../../utils/api/apiGenre';
 import { useAuth } from '../../../services/auth/auth';
+import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 
-function UploadTrackForm() {
+function EditTrackForm() {
   // fb custom hook for useEffect fetch
   const currentUser = useAuth();
   // image preview / uploaded states
@@ -32,13 +33,13 @@ function UploadTrackForm() {
   const [isLoading, setIsLoading] = useState(false);
   // upload progress state
   const [progress, setProgress] = useState(0);
+  const { track } = useSelector((state) => state.dialog);
 
   const initialValues = {
-    title: metadata?.title || '',
-    genre: '',
-    image: metadata?.image
+    title: track.name,
+    genre: track.genre,
+    image: track.img
   };
-
   const handleSubmit = async (formValues) => {
     setIsLoading(true);
     try {
@@ -81,10 +82,6 @@ function UploadTrackForm() {
       setIsLoading(false);
     }
   };
-  const handleDragFile = async (track) => {
-    const trackData = await getMetadata(track[0]);
-    setMetadata(trackData);
-  };
 
   useEffect(() => {
     if (!currentUser) return;
@@ -92,6 +89,7 @@ function UploadTrackForm() {
       try {
         const allGenres = await getGenresFromApi();
         setGenres(allGenres);
+        setPreview(track.img);
       } catch (e) {
         // ERROR HANDLING MISSING
         // ? setting metadata null?
@@ -120,7 +118,7 @@ function UploadTrackForm() {
     setHasUserUploadedImage(true);
   };
 
-  return metadata ? (
+  return (
     <article className="uploadTrackFormContainer">
       <Formik
         initialValues={initialValues}
@@ -149,9 +147,8 @@ function UploadTrackForm() {
                   component="select"
                   className="searchGenreInput"
                 >
-                  <option default>Select a genre</option>
+                  <option defaultValue>{track.genre}</option>
                   {genres.map((genre) => (
-                    // eslint-disable-next-line jsx-a11y/control-has-associated-label
                     <option key={genre._id} value={genre._id}>
                       {genre.name}
                     </option>
@@ -188,9 +185,7 @@ function UploadTrackForm() {
 
       {isLoading ? <UploadProgressBar progress={progress} /> : null}
     </article>
-  ) : (
-    <UploadZone className="dragZoneWrapper" handleDragFile={handleDragFile} />
   );
 }
 
-export default UploadTrackForm;
+export default EditTrackForm;

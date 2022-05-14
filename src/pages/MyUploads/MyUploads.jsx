@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 import Button from '../../components/molecules/Button/Button';
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
+import EditTrackForm from '../../components/organism/EditTrackForm/EditTrackForm';
 import Modal from '../../components/template/Modal/Modal';
 import useFetchItems from '../../hooks/useFetchItems';
-import { closeDeleteModal } from '../../redux/Dialog/dialogSlice';
+import { closeModal } from '../../redux/Dialog/dialogSlice';
 import { deleteTrack } from '../../utils/api/apiTrack';
 import './MyUploads.scss';
 
@@ -14,25 +15,25 @@ function MyUploads() {
   const [songs, isLoading] = useFetchItems('track/byartist');
   const [queryState, setQueryState] = useState('');
   const dispatch = useDispatch();
-  const { isDeleteModalOpen, trackToDelete } = useSelector(
+  const { isModalOpen, track, modalAction } = useSelector(
     (state) => state.dialog
   );
 
   const handleDeleteTrack = async () => {
     setQueryState('loading');
     try {
-      deleteTrack(trackToDelete.id);
+      await deleteTrack(track.id);
       // delete asset from cloudinary ????
       toast.success('The track has been deleted');
     } catch (e) {
       toast.error('There has been an error. Please try again later');
     }
     setQueryState('');
-    dispatch(closeDeleteModal());
+    dispatch(closeModal());
   };
 
   const handleCancelDelete = () => {
-    dispatch(closeDeleteModal());
+    dispatch(closeModal());
   };
 
   return (
@@ -45,14 +46,15 @@ function MyUploads() {
           <TrendingTrackItemSkeleton />
         )}
       </div>
-      <Modal
-        title="Delete track"
-        showing={isDeleteModalOpen}
-        setShow={closeDeleteModal}
-      >
-        <div className="modalText">
-          <span>Are you sure that you want to delete this track?</span>
-        </div>
+      <Modal title="" showing={isModalOpen} setShow={closeModal}>
+        {/* Delete track modal */}
+        {modalAction === 'delete' && (
+          <div className="modalText">
+            <span>Are you sure that you want to delete this track?</span>
+          </div>
+        )}
+        {/* Edit track modal */}
+        {modalAction === 'edit' && <EditTrackForm />}
         <div className="buttonsWrapper">
           <button
             type="button"

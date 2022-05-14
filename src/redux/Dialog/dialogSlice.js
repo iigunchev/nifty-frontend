@@ -2,39 +2,38 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isDeleteModalOpen: false,
-  trackToDelete: {
+  isModalOpen: false,
+  modalAction: '',
+  track: {
     id: '',
-    src: ''
-  },
-  isEditModalOpen: false
+    src: '',
+    img: '',
+    name: '',
+    genre: ''
+  }
 };
 
 const dialogSlice = createSlice({
   name: 'dialog',
   initialState,
   reducers: {
-    openDeleteModal: (state) => {
-      state.isDeleteModalOpen = true;
+    openModal: (state) => {
+      state.isModalOpen = true;
     },
-    closeDeleteModal: (state) => {
-      state.isDeleteModalOpen = false;
+    closeModal: (state) => {
+      state.isModalOpen = false;
     },
-    setTrackToDelete: (state, { payload }) => {
-      state.trackToDelete.id = payload.id;
-      state.trackToDelete.src = payload.src;
-    },
-    toggleEditModal: (state) => {
-      state.isDeleteModalOpen = !state.isDeleteModalOpen;
+    setTrack: (state, { payload }) => {
+      state.track.id = payload.id;
+      state.track.src = payload.src;
+      state.track.name = payload.name;
+      state.track.img = payload.img;
+      state.track.genre = payload.genre;
+      state.modalAction = payload.action;
     }
   }
 });
 
-export const {
-  openDeleteModal,
-  closeDeleteModal,
-  toggleEditModal,
-  setTrackToDelete
-} = dialogSlice.actions;
+export const { openModal, closeModal, setTrack } = dialogSlice.actions;
 
 export default dialogSlice.reducer;

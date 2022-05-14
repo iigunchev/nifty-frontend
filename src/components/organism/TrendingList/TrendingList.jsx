@@ -19,6 +19,7 @@ function TrendingList({ tracks }) {
           trackId={track._id}
           trackName={track.title}
           isLiked={track.isLiked}
+          trackGenre={track.genre.name}
         />
       ))}
     </div>

@@ -20,12 +20,14 @@ import { toggleLike } from '../../../utils/api/apiTrack';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 // styles
 import './TrendingTrackItem.scss';
+import { openModal, setTrack } from '../../../redux/Dialog/dialogSlice';
 
 function TrendingTrackItem({
   artistImg,
   trackSrc,
   trackName,
   artistName,
+  trackGenre,
   trackId,
   isLiked
 }) {
@@ -36,7 +38,6 @@ function TrendingTrackItem({
   let timeOutId;
 
   const dispatch = useDispatch();
-
   // play track
   const handlePlayTrack = () => {
     dispatch(removeQueue());
@@ -89,6 +90,23 @@ function TrendingTrackItem({
     );
     toast.success('track added to queue 💿');
   };
+  const handleDeleteTrack = () => {
+    dispatch(openModal());
+    dispatch(setTrack({ id: trackId, src: trackSrc, action: 'delete' }));
+  };
+  const handleEditTrack = () => {
+    dispatch(
+      setTrack({
+        id: trackId,
+        src: trackSrc,
+        action: 'edit',
+        name: trackName,
+        img: artistImg,
+        genre: trackGenre
+      })
+    );
+    dispatch(openModal());
+  };
 
   return (
     <div className="trendingTrackItemContainer">
@@ -122,8 +140,8 @@ function TrendingTrackItem({
             handleLike={handleLikeTrack}
             isLiked={isTrackLiked}
             handleAddToQueue={handleAddToQueue}
-            trackId={trackId}
-            trackSrc={trackSrc}
+            handleEditTrack={handleEditTrack}
+            handleDeleteTrack={handleDeleteTrack}
           />
         ) : null}
       </div>
