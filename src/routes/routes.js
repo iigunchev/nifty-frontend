@@ -21,3 +21,6 @@ export const MY_UPLOADS = '/my-uploads';
 export const POPULAR = '/popular';
 export const UPLOAD_TRACK = '/upload-track';
 export const MY_PLAYLISTS = '/my-playlists';
+
+export const GENRE = '/genre/:id';
+export const ARTIST = '/account/:id';

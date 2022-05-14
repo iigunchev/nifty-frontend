@@ -19,7 +19,7 @@ const useFetchItems = (endpoint = 'tracks') => {
         const apiElements = await fetchApi(`/${endpoint}`, `Bearer ${token}`);
         setItems(apiElements);
       } catch (e) {
-        toast.error('Failed to fetch tracks');
+        toast.error('Failed to fetch to Api');
       } finally {
         setIsLoading(false);
       }

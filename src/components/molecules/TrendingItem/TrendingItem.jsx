@@ -4,10 +4,10 @@ import React from 'react';
 
 import './TrendingItem.scss';
 
-function TrendingItem({ image = null, title, description, handleClick }) {
+function TrendingItem({ image = null, title, description, handleClick, id }) {
   return (
     <div
-      onClick={handleClick}
+      onClick={() => handleClick(id)}
       tabIndex={0}
       role="button"
       className="trendingItemContainer"

@@ -1,0 +1,42 @@
+@use '../../sass/abstracts/variables' as *;
+.playlistHeader {
+  display: inline-flex;
+  align-items: center;
+  padding: 1em;
+  gap: 1em;
+  background-color: $bg-offwhite;
+  width: 100%;
+  img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: $border;
+  }
+  .playlistInfoWrapper {
+    width: 70%;
+  }
+  .playlistName {
+    font-size: clamp(1rem, 3vw, 5rem);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .playlistHeader {
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: $border;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .playlistHeader {
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: $border;
+    }
+  }
+}
