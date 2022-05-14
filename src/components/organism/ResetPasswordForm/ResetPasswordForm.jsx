@@ -14,7 +14,7 @@ import Input from '../../molecules/Input/Input';
 
 import { sendResetEmail } from '../../../services/auth/auth';
 // icons
-import schemas from '../../../utils/schemas';
+import { resetPasswordSchema } from '../../../utils/schemas';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Button from '../../molecules/Button/Button';
@@ -43,7 +43,7 @@ function ResetPasswordForm() {
             setError(message);
           }
         }}
-        validationSchema={schemas.resetPasswordSchema}
+        validationSchema={resetPasswordSchema}
       >
         {({ handleSubmit, errors, touched }) => (
           <Form onSubmit={handleSubmit}>

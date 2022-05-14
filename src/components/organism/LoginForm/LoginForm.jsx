@@ -18,7 +18,7 @@ import { setUser } from '../../../redux/User/userSlice';
 
 import { SIGN_UP, RESET_PASSWORD, APP } from '../../../routes';
 // formik schema
-import schemas from '../../../utils/schemas';
+import { signInSchema } from '../../../utils/schemas';
 // auth
 import {
   signInEmailAndPassword,
@@ -88,7 +88,7 @@ function LoginForm() {
           email: '',
           password: ''
         }}
-        validationSchema={schemas.signInSchema}
+        validationSchema={signInSchema}
         onSubmit={(values) => handleLogin(values)}
       >
         {({ handleSubmit, errors, touched }) => (

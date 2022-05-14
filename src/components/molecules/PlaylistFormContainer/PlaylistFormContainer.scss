@@ -53,10 +53,15 @@
       border: 2px solid black;
     }
   }
+  .checkboxPublicAccess {
+    margin-top: 0.5em;
+    display: inline-flex;
+    gap: 0.25em;
+  }
 }
 
 @media screen and(max-width:500px) {
-  .playlistInputsContainer {
-    flex-direction: column;
+  .playlistImageWrapper {
+    display: none;
   }
 }
