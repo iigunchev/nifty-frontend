@@ -6,7 +6,7 @@ import { Form, Formik } from 'formik';
 import './ChangePasswordForm.scss';
 import { Waveform } from '@uiball/loaders';
 // schema
-import schemas from '../../../utils/schemas';
+import { changePasswordSchema } from '../../../utils/schemas';
 import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import {
@@ -31,10 +31,8 @@ function ChangePasswordForm() {
     try {
       await reauthenticate(values.oldPassword);
       await changePassword(auth.currentUser, values.newPassword);
-      console.log('password successfully changed'); // implement toast
     } catch (e) {
       setQueryError(e.message);
-      console.log(e.message); // implement toast
     } finally {
       setQueryState('');
     }
@@ -46,7 +44,7 @@ function ChangePasswordForm() {
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => handleSubmit(values)}
-          validationSchema={schemas.changePasswordSchema}
+          validationSchema={changePasswordSchema}
         >
           {({ errors, touched }) => (
             <Form>
