@@ -6,13 +6,18 @@
   gap: 1em;
   background-color: $bg-offwhite;
   width: 100%;
-  img {
-    width: 220px;
+  .editablePlaylistButton {
+    min-width: 220px;
     height: 220px;
-    object-fit: cover;
-    border-radius: $border;
+    img {
+      border-radius: $border;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   .playlistInfoWrapper {
+    cursor: pointer;
     width: 70%;
     text-overflow: ellipsis;
     p {
@@ -26,8 +31,8 @@
 
 @media screen and (max-width: 800px) {
   .editableInformationWrapper {
-    img {
-      width: 150px;
+    .editablePlaylistButton {
+      min-width: 150px;
       height: 150px;
       object-fit: cover;
       border-radius: $border;
@@ -36,8 +41,8 @@
 }
 @media screen and (max-width: 500px) {
   .editableInformationWrapper {
-    img {
-      width: 100px;
+    .editablePlaylistButton {
+      min-width: 100px;
       height: 100px;
       object-fit: cover;
       border-radius: $border;

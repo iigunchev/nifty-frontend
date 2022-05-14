@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 // components
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { closeModal, openModal } from '../../../redux/Dialog/dialogSlice';
+// modal
 import Modal from '../../template/Modal/Modal';
 // formik
 import { createPlaylistSchema } from '../../../utils/schemas';
@@ -13,17 +17,18 @@ import createPlaylist from '../../../utils/api/apiPlaylist';
 import Button from '../../molecules/Button/Button';
 
 function CreatePlaylistForm({ playlists, setPlaylists }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { isModalOpen } = useSelector((state) => state.dialog);
   const [playlistImage, setPlaylistImage] = useState(null);
   const initialValues = {
     name: `My new playlist`,
     description: '',
     publicAccessible: true
   };
-
+  console.log(isModalOpen);
   const handleSubmit = async (values) => {
     const toastId = toast.loading('Creating playlist...');
-    setIsModalOpen(false);
+    dispatch(closeModal());
     try {
       const newPlaylist = await createPlaylist({
         ...values,
@@ -41,18 +46,14 @@ function CreatePlaylistForm({ playlists, setPlaylists }) {
   return (
     <section className="createPlaylistSection">
       <Button
-        handleClick={() => setIsModalOpen(true)}
+        handleClick={() => dispatch(openModal())}
         className="OpenCreatePlaylistButton"
         type="button"
       >
         <span>Create new</span>
       </Button>
       {isModalOpen ? (
-        <Modal
-          title="Create your playlist"
-          showing={isModalOpen}
-          setShow={setIsModalOpen}
-        >
+        <Modal title="Create your playlist">
           <Formik
             initialValues={initialValues}
             onSubmit={handleSubmit}

@@ -3,26 +3,34 @@ import React, { useState } from 'react';
 // formik
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
-// hooks
+// router dom
 import { useParams } from 'react-router-dom';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { closeModal, openModal } from '../../redux/Dialog/dialogSlice';
+// hooks
 import useFetchItems from '../../hooks/useFetchItems';
 // components
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
+import Modal from '../../components/template/Modal/Modal';
 import PlaylistFormContainer from '../../components/molecules/PlaylistFormContainer/PlaylistFormContainer';
 // import TrendingList from '../../components/organism/TrendingList/TrendingList';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
 import './Playlist.scss';
+// utils
 import editPlaylist from '../../utils/api/apiPlaylist';
-import Modal from '../../components/template/Modal/Modal';
 import { createPlaylistSchema } from '../../utils/schemas';
 
 function Playlist() {
+  // get playlist id and get playlist
   const { id } = useParams();
   const [playlist, isLoading, setPlaylist] = useFetchItems(`playlist/${id}`);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // edit form values and state
+  // redux
+  const dispatch = useDispatch();
+  const { isModalOpen } = useSelector((state) => state.dialog);
+  // edit form values and image state
   const [playlistImage, setPlaylistImage] = useState(null);
 
   const initialValues = {
@@ -33,7 +41,7 @@ function Playlist() {
 
   const handleEditPlaylist = async (values) => {
     const toastId = toast.loading('Editing playlist...');
-    setIsModalOpen(false);
+    dispatch(closeModal());
     try {
       const newPlaylist = await editPlaylist(
         {
@@ -57,15 +65,21 @@ function Playlist() {
     <>
       <section className="playlistSectionContainer">
         <header className="playlistHeader">
-          <div
-            role="button"
-            tabIndex={0}
-            className="editableInformationWrapper"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
+          <div className="editableInformationWrapper">
+            <button
+              className="editablePlaylistButton"
+              type="button"
+              onClick={() => dispatch(openModal())}
+            >
+              <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
+            </button>
 
-            <div className="playlistInfoWrapper">
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => dispatch(openModal())}
+              className="playlistInfoWrapper"
+            >
               <p>{playlist.description}</p>
               <h1 className="heading1 playlistName">{playlist.name}</h1>
             </div>
@@ -79,11 +93,7 @@ function Playlist() {
         /> */}
       </section>
       {!isLoading && isModalOpen ? (
-        <Modal
-          title="Edit your playlist"
-          showing={isModalOpen}
-          setShow={setIsModalOpen}
-        >
+        <Modal title="Edit your playlist">
           <Formik
             initialValues={initialValues}
             onSubmit={handleEditPlaylist}

@@ -1,22 +1,29 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+// styles
 import './Modal.scss';
 // icon
 import closeIcon from '../../../assets/svg/crossDefault.svg';
+import { closeModal } from '../../../redux/Dialog/dialogSlice';
 
-function Modal({ children, title, setShow, showing, width }) {
+function Modal({ children, title, width }) {
+  const dispatch = useDispatch();
+  const { isModalOpen } = useSelector((state) => state.dialog);
   return (
     <div
       role="button"
-      className={showing ? 'showModal modal' : 'modal'}
-      onKeyPress={(e) => (e.key === 'Escape' ? setShow(false) : null)}
+      tabIndex={0}
+      className={isModalOpen ? 'showModal modal' : 'modal'}
+      onKeyPress={(e) => (e.key === 'Escape' ? dispatch(closeModal()) : null)}
       onClick={() => {
-        setShow(false);
+        dispatch(closeModal());
       }}
     >
       <div
         style={width ? { minWidth: `${width}px` } : null}
+        tabIndex={0}
         className="modalContent"
         role="button"
         onClick={(e) => e.stopPropagation()}
@@ -26,7 +33,7 @@ function Modal({ children, title, setShow, showing, width }) {
           <button
             className="closeButton"
             type="button"
-            onClick={() => setShow(false)}
+            onClick={() => dispatch(closeModal(false))}
           >
             <img src={closeIcon} alt="close" />
           </button>
