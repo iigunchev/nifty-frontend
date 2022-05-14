@@ -2,10 +2,18 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 
 import React from 'react';
-
+import { useParams } from 'react-router-dom';
 import './DialogInformation.scss';
 
-function DialogInformation({ handleLike, isLiked, handleAddToQueue }) {
+function DialogInformation({
+  handleLike,
+  isLiked,
+  handleAddToQueue,
+  handleDeleteTrack,
+  handleEditTrack
+}) {
+  const params = useParams();
+
   return (
     <div className="dialogInformationWrapper">
       <ul>
@@ -28,8 +36,17 @@ function DialogInformation({ handleLike, isLiked, handleAddToQueue }) {
           </button>
         </li>
         <li>
-          <button type="button">Edit track</button>
+          <button type="button" onClick={handleEditTrack}>
+            Edit track
+          </button>
         </li>
+        {params['*'] === 'my-uploads' && (
+          <li>
+            <button type="button" onClick={handleDeleteTrack}>
+              Delete track
+            </button>
+          </li>
+        )}
       </ul>
     </div>
   );

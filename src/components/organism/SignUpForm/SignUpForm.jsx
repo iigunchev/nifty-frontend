@@ -22,7 +22,7 @@ import apiAuth from '../../../utils/api/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 
 // schema
-import schemas from '../../../utils/schemas';
+import { signupSchema } from '../../../utils/schemas';
 import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 // icon
@@ -93,7 +93,7 @@ function SignUpForm() {
       </SecondaryButton>
       <Formik
         initialValues={initialValues}
-        validationSchema={schemas.signupSchema}
+        validationSchema={signupSchema}
         onSubmit={(values) => handleSignup(values)}
       >
         {({ errors, touched }) => (

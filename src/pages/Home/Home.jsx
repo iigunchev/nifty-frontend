@@ -24,7 +24,7 @@ function Home() {
       <div className="homeLeftCol">
         <section className="trendingPlaylistsContainer">
           <div className="LinkHeader">
-            <h2>Top PlayList</h2>
+            <h2 className="heading2">Top PlayList</h2>
             <span className="seemoreLink">
               <Link to={`${route.APP}${route.PLAYLISTS}`}>See more</Link>
             </span>
@@ -39,7 +39,7 @@ function Home() {
         </section>
         <div className="trendingWrapper">
           <section className="trendingTracksContainer">
-            <h2>Top Tracks</h2>
+            <h2 className="heading2">Top Tracks</h2>
             {!isLoading ? (
               <TrendingList tracks={songs} />
             ) : (
@@ -47,7 +47,7 @@ function Home() {
             )}
           </section>
           <section className="trendingArtistsContainer">
-            <h2>Top Artists</h2>
+            <h2 className="heading2">Top Artists</h2>
             {!isLoadingArtists ? (
               <ArtistList artists={artists} />
             ) : (

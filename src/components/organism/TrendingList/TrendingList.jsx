@@ -22,6 +22,7 @@ function TrendingList({ tracks, errorMessage = 'Tracks array is empty' }) {
           trackId={track._id}
           trackName={track.title}
           isLiked={track.isLiked}
+          trackGenre={track.genre.name}
         />
       ))}
     </div>
