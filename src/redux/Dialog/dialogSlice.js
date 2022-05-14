@@ -14,8 +14,11 @@ const dialogSlice = createSlice({
   name: 'dialog',
   initialState,
   reducers: {
-    toggleDeleteModal: (state, { payload }) => {
-      state.isDeleteModalOpen = payload;
+    openDeleteModal: (state) => {
+      state.isDeleteModalOpen = true;
+    },
+    closeDeleteModal: (state) => {
+      state.isDeleteModalOpen = false;
     },
     setTrackToDelete: (state, { payload }) => {
       state.trackToDelete.id = payload.id;
@@ -27,7 +30,11 @@ const dialogSlice = createSlice({
   }
 });
 
-export const { toggleDeleteModal, toggleEditModal, setTrackToDelete } =
-  dialogSlice.actions;
+export const {
+  openDeleteModal,
+  closeDeleteModal,
+  toggleEditModal,
+  setTrackToDelete
+} = dialogSlice.actions;
 
 export default dialogSlice.reducer;

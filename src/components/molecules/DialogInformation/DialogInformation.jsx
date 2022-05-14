@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import './DialogInformation.scss';
 import {
   setTrackToDelete,
-  toggleDeleteModal
+  openDeleteModal
 } from '../../../redux/Dialog/dialogSlice';
 
 function DialogInformation({
@@ -20,7 +20,7 @@ function DialogInformation({
   const dispatch = useDispatch();
   const params = useParams();
   const handleDeleteTrack = () => {
-    dispatch(toggleDeleteModal(true));
+    dispatch(openDeleteModal());
     dispatch(setTrackToDelete({ id: trackId, src: trackSrc }));
   };
   return (

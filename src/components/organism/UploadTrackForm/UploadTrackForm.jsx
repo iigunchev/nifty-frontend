@@ -124,6 +124,7 @@ function UploadTrackForm() {
     <article className="uploadTrackFormContainer">
       <Formik
         initialValues={initialValues}
+        // eslint-disable-next-line import/no-named-as-default-member
         validationSchema={schemas.uploadSongSchema}
         onSubmit={handleSubmit}
       >

@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import Button from '../../components/molecules/Button/Button';
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 import Modal from '../../components/template/Modal/Modal';
 import useFetchItems from '../../hooks/useFetchItems';
-import { toggleDeleteModal } from '../../redux/Dialog/dialogSlice';
+import { closeDeleteModal } from '../../redux/Dialog/dialogSlice';
 import { deleteTrack } from '../../utils/api/apiTrack';
 import './MyUploads.scss';
 
 function MyUploads() {
   const [songs, isLoading] = useFetchItems('track/byartist');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [queryState, setQueryState] = useState('');
   const dispatch = useDispatch();
   const { isDeleteModalOpen, trackToDelete } = useSelector(
     (state) => state.dialog
   );
 
-  const handleDeleteTrack = () => {
+  const handleDeleteTrack = async () => {
     setQueryState('loading');
-    deleteTrack(trackToDelete.id)
-      .then((res) => console.log(res)) // delete asset from cloudinary
-      .catch((e) => console.log(e.message))
-      .finally(() => {
-        setQueryState('');
-        dispatch(toggleDeleteModal(false));
-      });
+    try {
+      deleteTrack(trackToDelete.id);
+      // delete asset from cloudinary ????
+      toast.success('The track has been deleted');
+    } catch (e) {
+      toast.error('There has been an error. Please try again later');
+    }
+    setQueryState('');
+    dispatch(closeDeleteModal());
   };
 
-  useEffect(() => {
-    setIsModalOpen(isDeleteModalOpen);
-  }, [isDeleteModalOpen]);
+  const handleCancelDelete = () => {
+    dispatch(closeDeleteModal());
+  };
 
   return (
     <main>
@@ -45,8 +47,8 @@ function MyUploads() {
       </div>
       <Modal
         title="Delete track"
-        showing={isModalOpen}
-        setShow={setIsModalOpen}
+        showing={isDeleteModalOpen}
+        setShow={closeDeleteModal}
       >
         <div className="modalText">
           <span>Are you sure that you want to delete this track?</span>
@@ -54,7 +56,7 @@ function MyUploads() {
         <div className="buttonsWrapper">
           <button
             type="button"
-            onClick={() => dispatch(toggleDeleteModal(false))}
+            onClick={handleCancelDelete}
             className="cancelBtn"
           >
             Cancel
