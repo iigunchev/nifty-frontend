@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // toast
 import { toast } from 'react-toastify';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   removeQueue,
   setCurrentTrack,
@@ -21,6 +21,7 @@ import handleAuthErrors from '../../../utils/handleAuthErrors';
 // styles
 import './TrendingTrackItem.scss';
 import { openModal, setTrack } from '../../../redux/Dialog/dialogSlice';
+import AddSongToPlaylist from '../../organism/AddSongToPlaylist/AddSongToPlaylist';
 
 function TrendingTrackItem({
   artistImg,
@@ -36,7 +37,10 @@ function TrendingTrackItem({
   const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
   // on blur id
   let timeOutId;
-  console.log(artistName);
+  // redux
+  const { modalAction, track: dialogTrack } = useSelector(
+    (state) => state.dialog
+  );
   const dispatch = useDispatch();
   // play track
   const handlePlayTrack = () => {
@@ -108,6 +112,20 @@ function TrendingTrackItem({
     dispatch(openModal());
   };
 
+  const handleAddToPlaylist = () => {
+    dispatch(
+      setTrack({
+        id: trackId,
+        src: trackSrc,
+        action: 'addToPlaylist',
+        name: trackName,
+        img: artistImg,
+        genre: trackGenre
+      })
+    );
+    dispatch(openModal());
+  };
+
   return (
     <div className="trendingTrackItemContainer">
       <LikeButton
@@ -142,9 +160,13 @@ function TrendingTrackItem({
             handleAddToQueue={handleAddToQueue}
             handleEditTrack={handleEditTrack}
             handleDeleteTrack={handleDeleteTrack}
+            handleAddToPlaylist={handleAddToPlaylist}
           />
         ) : null}
       </div>
+      {modalAction === 'addToPlaylist' && dialogTrack.id === trackId ? (
+        <AddSongToPlaylist />
+      ) : null}
     </div>
   );
 }

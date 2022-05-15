@@ -2,7 +2,10 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 
 import React from 'react';
+
+// router dom
 import { useParams } from 'react-router-dom';
+// styles
 import './DialogInformation.scss';
 
 function DialogInformation({
@@ -10,6 +13,7 @@ function DialogInformation({
   isLiked,
   handleAddToQueue,
   handleDeleteTrack,
+  handleAddToPlaylist,
   handleEditTrack
 }) {
   const params = useParams();
@@ -28,7 +32,9 @@ function DialogInformation({
           </button>
         </li>
         <li>
-          <button type="button">Add to playlist</button>
+          <button type="button" onClick={handleAddToPlaylist}>
+            Add to playlist
+          </button>
         </li>
         <li>
           <button onClick={handleAddToQueue} type="button">

@@ -14,7 +14,7 @@ import useFetchItems from '../../hooks/useFetchItems';
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import Modal from '../../components/template/Modal/Modal';
 import PlaylistFormContainer from '../../components/molecules/PlaylistFormContainer/PlaylistFormContainer';
-// import TrendingList from '../../components/organism/TrendingList/TrendingList';
+import TrendingList from '../../components/organism/TrendingList/TrendingList';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
@@ -29,7 +29,10 @@ function Playlist() {
   const [playlist, isLoading, setPlaylist] = useFetchItems(`playlist/${id}`);
   // redux
   const dispatch = useDispatch();
-  const { isModalOpen } = useSelector((state) => state.dialog);
+  const {
+    dialog: { isModalOpen },
+    user
+  } = useSelector((state) => state);
   // edit form values and image state
   const [playlistImage, setPlaylistImage] = useState(null);
 
@@ -38,6 +41,7 @@ function Playlist() {
     description: playlist.description,
     publicAccessible: playlist.publicAccessible
   };
+  console.log(playlist);
 
   const handleEditPlaylist = async (values) => {
     const toastId = toast.loading('Editing playlist...');
@@ -51,7 +55,6 @@ function Playlist() {
         'PUT',
         playlist._id
       );
-      console.log(newPlaylist);
       setPlaylist({ ...playlist, ...newPlaylist });
       toast.dismiss(toastId);
       toast.success('Playlist edited!');
@@ -69,7 +72,12 @@ function Playlist() {
             <button
               className="editablePlaylistButton"
               type="button"
-              onClick={() => dispatch(openModal())}
+              onClick={() => {
+                if (playlist.userId !== user.id) {
+                  return null;
+                }
+                return dispatch(openModal());
+              }}
             >
               <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
             </button>
@@ -77,7 +85,12 @@ function Playlist() {
             <div
               role="button"
               tabIndex={0}
-              onClick={() => dispatch(openModal())}
+              onClick={() => {
+                if (playlist.userId !== user.id) {
+                  return null;
+                }
+                return dispatch(openModal());
+              }}
               className="playlistInfoWrapper"
             >
               <p>{playlist.description}</p>
@@ -86,11 +99,14 @@ function Playlist() {
           </div>
         </header>
 
-        {!isLoading ? <TrendingTrackItemSkeleton /> : null}
-        {/* <TrendingList
-          errorMessage="This playlist do not have tracks"
-          tracks={playlist.tracks}
-        /> */}
+        {isLoading ? (
+          <TrendingTrackItemSkeleton />
+        ) : (
+          <TrendingList
+            errorMessage="This playlist do not have tracks"
+            tracks={playlist.tracks}
+          />
+        )}
       </section>
       {!isLoading && isModalOpen ? (
         <Modal title="Edit your playlist">

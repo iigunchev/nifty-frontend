@@ -1,0 +1,7 @@
+.playlistScroller {
+  overflow-y: scroll;
+  max-height: 100%;
+  & > * {
+    cursor: pointer;
+  }
+}
