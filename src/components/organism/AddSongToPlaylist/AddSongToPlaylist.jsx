@@ -20,9 +20,8 @@ function AddSongToPlaylist() {
   const handleAddToPlaylist = async (playlistId) => {
     try {
       const apiPlaylist = await updatePlaylist(
-        { tracks: dialog.track },
-        'PUT',
-        playlistId
+        { track: dialog.track },
+        { method: 'PUT', url: `/playlist/${playlistId}/add` }
       );
 
       toast.success(`Song added to ${apiPlaylist.name}`);

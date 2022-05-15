@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
+import { openModal, setTrack } from '../../../redux/Dialog/dialogSlice';
 import {
   removeQueue,
   setCurrentTrack,
@@ -13,15 +14,17 @@ import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import TrendingItem from '../TrendingItem/TrendingItem';
 import LikeButton from '../LikeButton/LikeButton';
 import DialogInformation from '../DialogInformation/DialogInformation';
+import AddSongToPlaylist from '../../organism/AddSongToPlaylist/AddSongToPlaylist';
 // icons
 import { ReactComponent as SVG } from '../../../assets/svg/verticalDots.svg';
 // utils
 import { toggleLike } from '../../../utils/api/apiTrack';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
+import fetchApi from '../../../utils/api/fetchApi';
+// services auth
+import { getCurrentUserToken } from '../../../services/auth/auth';
 // styles
 import './TrendingTrackItem.scss';
-import { openModal, setTrack } from '../../../redux/Dialog/dialogSlice';
-import AddSongToPlaylist from '../../organism/AddSongToPlaylist/AddSongToPlaylist';
 
 function TrendingTrackItem({
   artistImg,
@@ -99,6 +102,7 @@ function TrendingTrackItem({
     dispatch(setTrack({ id: trackId, src: trackSrc, action: 'delete' }));
   };
   const handleEditTrack = () => {
+    setShowDialog(false);
     dispatch(
       setTrack({
         id: trackId,
@@ -113,6 +117,7 @@ function TrendingTrackItem({
   };
 
   const handleAddToPlaylist = () => {
+    setShowDialog(false);
     dispatch(
       setTrack({
         id: trackId,
@@ -124,6 +129,23 @@ function TrendingTrackItem({
       })
     );
     dispatch(openModal());
+  };
+
+  const handleRemoveFromPlaylist = async (playlistId) => {
+    setShowDialog(false);
+    try {
+      const token = await getCurrentUserToken();
+      // remove song petition
+      await fetchApi(
+        `/playlist/${playlistId}/remove`,
+        `Bearer ${token}`,
+        { track: trackId },
+        'PUT'
+      );
+      toast.success('song removed');
+    } catch (e) {
+      toast.error('Failed to remove song');
+    }
   };
 
   return (
@@ -161,6 +183,7 @@ function TrendingTrackItem({
             handleEditTrack={handleEditTrack}
             handleDeleteTrack={handleDeleteTrack}
             handleAddToPlaylist={handleAddToPlaylist}
+            handleRemoveFromPlaylist={handleRemoveFromPlaylist}
           />
         ) : null}
       </div>

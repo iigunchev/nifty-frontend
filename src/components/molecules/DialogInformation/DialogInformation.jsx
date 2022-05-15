@@ -12,11 +12,15 @@ function DialogInformation({
   handleLike,
   isLiked,
   handleAddToQueue,
+  handleRemoveFromPlaylist,
   handleDeleteTrack,
   handleAddToPlaylist,
   handleEditTrack
 }) {
   const params = useParams();
+  // getting the path instead invoke useLocation
+  // ["*"] is all entire path
+  const [path] = params['*'].split('/');
 
   return (
     <div className="dialogInformationWrapper">
@@ -31,27 +35,42 @@ function DialogInformation({
             {isLiked ? 'Unlike' : 'Like'}
           </button>
         </li>
-        <li>
-          <button type="button" onClick={handleAddToPlaylist}>
-            Add to playlist
-          </button>
-        </li>
+        {path !== 'playlist' ? (
+          <li>
+            <button type="button" onClick={handleAddToPlaylist}>
+              Add to playlist
+            </button>
+          </li>
+        ) : (
+          <li>
+            <button
+              type="button"
+              onClick={() => handleRemoveFromPlaylist(params.id)}
+            >
+              Remove from playlist
+            </button>
+          </li>
+        )}
+
         <li>
           <button onClick={handleAddToQueue} type="button">
             Add to queue
           </button>
         </li>
-        <li>
-          <button type="button" onClick={handleEditTrack}>
-            Edit track
-          </button>
-        </li>
-        {params['*'] === 'my-uploads' && (
-          <li>
-            <button type="button" onClick={handleDeleteTrack}>
-              Delete track
-            </button>
-          </li>
+        {path === 'my-uploads' && (
+          <>
+            <li>
+              <button type="button" onClick={handleEditTrack}>
+                Edit track
+              </button>
+            </li>
+
+            <li>
+              <button type="button" onClick={handleDeleteTrack}>
+                Delete track
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </div>

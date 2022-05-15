@@ -1,12 +1,21 @@
 @use '../../sass/abstracts/variables' as *;
+.playlistHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: $bg-offwhite;
+}
+.followButtonWrapper {
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5em;
+}
 .editableInformationWrapper {
   display: inline-flex;
   align-items: center;
   padding: 1em;
   gap: 1em;
-  background-color: $bg-offwhite;
-  width: 100%;
   .editablePlaylistButton {
+    width: 220px;
     min-width: 220px;
     height: 220px;
     img {

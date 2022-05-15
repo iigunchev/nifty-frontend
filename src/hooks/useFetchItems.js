@@ -7,7 +7,7 @@ import { getCurrentUserToken, useAuth } from '../services/auth/auth';
 // utils
 import fetchApi from '../utils/api/fetchApi';
 
-const useFetchItems = (endpoint = 'tracks') => {
+const useFetchItems = (endpoint = 'track') => {
   const currentUser = useAuth();
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

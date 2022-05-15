@@ -7,7 +7,11 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { closeModal, openModal } from '../../redux/Dialog/dialogSlice';
+import {
+  closeModal,
+  openModal,
+  setModalAction
+} from '../../redux/Dialog/dialogSlice';
 // hooks
 import useFetchItems from '../../hooks/useFetchItems';
 // components
@@ -22,6 +26,7 @@ import './Playlist.scss';
 // utils
 import editPlaylist from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
+import Button from '../../components/molecules/Button/Button';
 
 function Playlist() {
   // get playlist id and get playlist
@@ -30,9 +35,11 @@ function Playlist() {
   // redux
   const dispatch = useDispatch();
   const {
-    dialog: { isModalOpen },
+    dialog: { isModalOpen, modalAction },
     user
   } = useSelector((state) => state);
+
+  // currentUser follows playlist state
   // edit form values and image state
   const [playlistImage, setPlaylistImage] = useState(null);
 
@@ -41,7 +48,16 @@ function Playlist() {
     description: playlist.description,
     publicAccessible: playlist.publicAccessible
   };
-  console.log(playlist);
+
+  const handleFollowPlaylist = () => {
+    console.log('hola');
+  };
+
+  const handleOpenEditModal = () => {
+    if (playlist.user._id !== user.id) return;
+    dispatch(openModal());
+    dispatch(setModalAction('editPlaylist'));
+  };
 
   const handleEditPlaylist = async (values) => {
     const toastId = toast.loading('Editing playlist...');
@@ -52,8 +68,7 @@ function Playlist() {
           ...values,
           image: playlistImage
         },
-        'PUT',
-        playlist._id
+        { method: 'PUT', url: `/playlist/${playlist._id}` }
       );
       setPlaylist({ ...playlist, ...newPlaylist });
       toast.dismiss(toastId);
@@ -72,12 +87,7 @@ function Playlist() {
             <button
               className="editablePlaylistButton"
               type="button"
-              onClick={() => {
-                if (playlist.userId !== user.id) {
-                  return null;
-                }
-                return dispatch(openModal());
-              }}
+              onClick={handleOpenEditModal}
             >
               <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
             </button>
@@ -85,18 +95,18 @@ function Playlist() {
             <div
               role="button"
               tabIndex={0}
-              onClick={() => {
-                if (playlist.userId !== user.id) {
-                  return null;
-                }
-                return dispatch(openModal());
-              }}
+              onClick={handleOpenEditModal}
               className="playlistInfoWrapper"
             >
               <p>{playlist.description}</p>
               <h1 className="heading1 playlistName">{playlist.name}</h1>
             </div>
           </div>
+          <span className="followButtonWrapper">
+            <Button size="sm" handleClick={handleFollowPlaylist}>
+              {playlist.isFollowed ? 'Unfollow' : 'Follow'}
+            </Button>
+          </span>
         </header>
 
         {isLoading ? (
@@ -107,8 +117,9 @@ function Playlist() {
             tracks={playlist.tracks}
           />
         )}
+        {/*  */}
       </section>
-      {!isLoading && isModalOpen ? (
+      {isModalOpen && modalAction === 'editPlaylist' ? (
         <Modal title="Edit your playlist">
           <Formik
             initialValues={initialValues}
@@ -118,7 +129,7 @@ function Playlist() {
             {({ errors, touched }) => (
               <PlaylistFormContainer
                 handleChangeImage={setPlaylistImage}
-                playlistImage={playlist.iamge}
+                playlistImage={playlist.image}
                 errors={errors}
                 touched={touched}
               />
