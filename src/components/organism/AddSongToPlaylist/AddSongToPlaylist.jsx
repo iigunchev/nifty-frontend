@@ -23,7 +23,7 @@ function AddSongToPlaylist() {
         { track: dialog.track },
         { method: 'PUT', url: `/playlist/${playlistId}/add` }
       );
-
+      console.log(apiPlaylist);
       toast.success(`Song added to ${apiPlaylist.name}`);
     } catch (e) {
       toast.error('Error to add the song');
