@@ -24,7 +24,7 @@ import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
 import './Playlist.scss';
 // utils
-import editPlaylist from '../../utils/api/apiPlaylist';
+import editPlaylist, { followPlaylist } from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
 import Button from '../../components/molecules/Button/Button';
 
@@ -38,7 +38,6 @@ function Playlist() {
     dialog: { isModalOpen, modalAction },
     user
   } = useSelector((state) => state);
-
   // currentUser follows playlist state
   // edit form values and image state
   const [playlistImage, setPlaylistImage] = useState(null);
@@ -49,8 +48,13 @@ function Playlist() {
     publicAccessible: playlist.publicAccessible
   };
 
-  const handleFollowPlaylist = () => {
-    console.log('hola');
+  const handleFollowPlaylist = async () => {
+    try {
+      await followPlaylist(playlist._id, !playlist.isFollowed);
+      setPlaylist({ ...playlist, isFollowed: !playlist.isFollowed });
+    } catch (e) {
+      toast.error('Failed to follow/unfollow playlist');
+    }
   };
 
   const handleOpenEditModal = () => {
@@ -115,9 +119,9 @@ function Playlist() {
           <TrendingList
             errorMessage="This playlist do not have tracks"
             tracks={playlist.tracks}
+            handleListState={setPlaylist}
           />
         )}
-        {/*  */}
       </section>
       {isModalOpen && modalAction === 'editPlaylist' ? (
         <Modal title="Edit your playlist">

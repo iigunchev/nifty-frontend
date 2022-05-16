@@ -29,7 +29,6 @@ function TrendingItem({ image = null, title, description, handleClick, id }) {
         <span className="detailsTitle">{title}</span>
         <div className="detailsDescription">
           <span>{description}</span>
-          {/* <span>Flamenco</span> */}
         </div>
       </div>
     </div>

@@ -41,4 +41,10 @@ const setPlaylist = async (
   }
 };
 
+export const followPlaylist = async (id, follow = true) => {
+  const token = await getCurrentUserToken();
+  const URL = follow ? `/playlist/follow/${id}` : `/playlist/unfollow/${id}`;
+  await fetchApi(URL, `Bearer ${token}`, null, 'PUT');
+};
+
 export default setPlaylist;

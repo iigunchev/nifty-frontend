@@ -33,7 +33,8 @@ function TrendingTrackItem({
   artistName,
   trackGenre,
   trackId,
-  isLiked
+  isLiked,
+  handleListState
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -142,6 +143,10 @@ function TrendingTrackItem({
         { track: trackId },
         'PUT'
       );
+      handleListState((prevState) => ({
+        ...prevState,
+        tracks: prevState.tracks.filter((element) => element._id !== trackId)
+      }));
       toast.success('song removed');
     } catch (e) {
       toast.error('Failed to remove song');

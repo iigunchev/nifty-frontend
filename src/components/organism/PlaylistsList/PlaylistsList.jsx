@@ -10,7 +10,7 @@ function PlaylistsList({ playlists }) {
       key={playlist._id}
       id={playlist._id}
       name={playlist.name}
-      tracksLength={playlist.tracks}
+      tracks={playlist.tracks}
       image={playlist.thumbnail}
     />
   ));

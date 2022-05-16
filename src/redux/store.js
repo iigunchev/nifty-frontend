@@ -7,13 +7,11 @@ import thunk from 'redux-thunk';
 import userSlice from './User/userSlice';
 import audioSlice from './Audio/audioSlice';
 import dialogSlice from './Dialog/dialogSlice';
-import userPlaylistSlice from './UserPlaylists/userPlaylistsSlice';
 
 const reducers = combineReducers({
   user: userSlice,
   audio: audioSlice,
-  dialog: dialogSlice,
-  userPlaylists: userPlaylistSlice
+  dialog: dialogSlice
 });
 const persistConfig = {
   key: 'root',

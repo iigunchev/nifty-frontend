@@ -30,7 +30,6 @@ function AudioControls() {
   const [currentTime, setCurrentTime] = useState(0);
   // detect refresh page
   // const [isRefreshed, setIsRefreshed] = useState(!!currentTrack);
-
   const changePlayerCurrentTime = () => {
     progressBar.current.style.setProperty(
       '--seek-before-width',

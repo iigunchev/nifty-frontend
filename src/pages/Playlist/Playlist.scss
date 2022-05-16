@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   background-color: $bg-offwhite;
+  flex-wrap: wrap;
 }
 .followButtonWrapper {
   display: flex;
