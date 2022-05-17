@@ -37,7 +37,10 @@ const audioSlice = createSlice({
       state.queue = payload;
     },
     setCurrentTrack: (state, { payload }) => {
-      state.currentTrack = payload;
+      state.currentTrack.src = payload.src;
+      state.currentTrack.image = payload.image;
+      state.currentTrack.artist = payload.artist;
+      state.currentTrack.title = payload.title;
       state.isActive = true;
       if (state.queue.length === 0) {
         state.queue = [payload];

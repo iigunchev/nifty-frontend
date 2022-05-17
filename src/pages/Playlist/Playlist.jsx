@@ -32,6 +32,7 @@ function Playlist() {
   // get playlist id and get playlist
   const { id } = useParams();
   const [playlist, isLoading, setPlaylist] = useFetchItems(`playlist/${id}`);
+
   // redux
   const dispatch = useDispatch();
   const {

@@ -23,6 +23,7 @@ function AudioControls() {
   const { currentTrack, volume, queue, isActive } = useSelector(
     (state) => state.audio
   );
+
   // custom hook
   const [audioPlayer, progressBar, animationRef, duration] =
     useAudioControllers(volume);
@@ -86,6 +87,7 @@ function AudioControls() {
   }, [isActive]);
 
   useEffect(() => {
+    console.log('paso??? useEffect track.src');
     if (!currentTrack.src) return;
     // checks if page have been refreshed, to don't pass in useEffect
     // if (isRefreshed) {
