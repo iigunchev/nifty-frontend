@@ -56,7 +56,6 @@ function Home() {
           </section>
         </div>
       </div>
-      <div className="homeRightCol">hola3</div>
     </main>
   );
 }

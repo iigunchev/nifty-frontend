@@ -3,28 +3,20 @@
   min-height: 100vh;
   display: flex;
 }
-.homeLeftCol {
-  width: 66.66%;
+.trendingPlaylistsContainer {
 }
-.homeRightCol {
-  width: 33.66%;
-  background-color: darkgray;
-  min-height: 100vh;
-}
-
 .trendingWrapper {
   display: flex;
   height: 100%;
+  width: 100vw;
   .trendingTracksContainer {
-    width: 66.66%;
     height: 100%;
     // have to be changed
     margin-right: 2em;
+    max-width: 100%;
   }
-  .trendingArtistsContainer {
-    width: 33.33%;
-    //background-color: coral;
-  }
+  // .trendingArtistsContainer {
+  // }
 }
 
 @media only screen and (max-width: 768px) {
