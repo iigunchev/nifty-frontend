@@ -8,7 +8,7 @@ function Artists() {
   const [artists, isLoadingArtists] = useFetchItems('account/byartist');
 
   return (
-    <main>
+    <main style={{ padding: '1.5em' }}>
       <h1 className="heading1">Artists</h1>
       <div className="genresContainer">
         {!isLoadingArtists ? (

@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import * as route from '../../routes';
 
 import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 
@@ -13,6 +11,8 @@ import './Home.scss';
 import ArtistList from '../../components/organism/ArtistList/ArtistList';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
+// banner image
+import chatBanner from '../../assets/img/chatBanner.png';
 
 function Home() {
   const [songs, isLoading] = useFetchItems('track');
@@ -21,22 +21,19 @@ function Home() {
 
   return (
     <main className="homeContainer">
-      <div className="homeLeftCol">
-        <section className="trendingPlaylistsContainer">
-          <div className="LinkHeader">
-            <h2 className="heading2">Top PlayList</h2>
-            <span className="seemoreLink">
-              <Link to={`${route.APP}${route.PLAYLISTS}`}>See more</Link>
-            </span>
-          </div>
-          <section className="PlayListSection">
-            {!isLoadingPlaylists ? (
-              <PlaylistsList playlists={playlists} />
-            ) : (
-              <TrendingItemSkeleton />
-            )}
-          </section>
+      <section className="trendingPlaylistsContainer">
+        <div className="LinkHeader">
+          <h2 className="heading2">Top PlayList</h2>
+        </div>
+        <section className="PlayListSection">
+          {!isLoadingPlaylists ? (
+            <PlaylistsList playlists={playlists} />
+          ) : (
+            <TrendingItemSkeleton />
+          )}
         </section>
+      </section>
+      <section className="homeBottomCol">
         <div className="trendingWrapper">
           <section className="trendingTracksContainer">
             <h2 className="heading2">Top Tracks</h2>
@@ -55,7 +52,19 @@ function Home() {
             )}
           </section>
         </div>
-      </div>
+        <div className="chatSection">
+          <div className="bannerTitle">
+            <h2>Chat with your friends</h2>
+          </div>
+          <div className="bannerDescription">
+            <p>
+              You can follow your friends and see what they&apos;re listening!
+            </p>
+            <p>Coming soong...</p>
+            <img className="bannerImg" src={chatBanner} alt="banner chat" />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

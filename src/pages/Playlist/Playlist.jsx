@@ -100,10 +100,7 @@ function Playlist() {
             <div className="playlistInfoWrapper">
               <div className="headingFollowPlaylist">
                 <h1 className="heading1 playlistName">{playlist.name}</h1>
-
-                {playlist.tracks?.length !== 0 ? (
-                  <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
-                ) : null}
+                <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
               </div>
               <p>{playlist.description}</p>
               <span className="followButtonWrapper">

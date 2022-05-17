@@ -1,5 +1,7 @@
 @use '../../sass/abstracts/variables' as *;
-
+.genresMain {
+  padding: 1.5em;
+}
 .genresContainer {
   display: flex;
   flex-wrap: wrap;

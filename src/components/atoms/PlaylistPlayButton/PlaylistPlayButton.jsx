@@ -44,6 +44,7 @@ function PlaylistPlayButton({ tracks, isPlaylistView }) {
     <button
       onClick={(e) => {
         e.stopPropagation();
+        if (tracks.length === 0) return;
         if (isPlaylistView) {
           handleDispatchPlayPlaylistView();
           return;
