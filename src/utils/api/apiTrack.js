@@ -54,16 +54,31 @@ export const deleteTrack = async (id) => {
   }
 };
 
-export const getAllTracksById = async (tracksId) => {
+export const getAllTracksById = async (id, values) => {
   try {
     const token = await getCurrentUserToken();
-    const tracks = await Promise.all(
-      tracksId.map((trackId) =>
-        fetchApi(`/track/${trackId}`, `Bearer ${token}`)
-      )
+    const apiTrack = await fetchApi(
+      `/track/${id}`,
+      `Bearer ${token}`,
+      values,
+      'PUT'
     );
-    // introduces one array each other
-    return tracks.flat();
+    return apiTrack;
+  } catch (e) {
+    throw Error('Failed to fetch API');
+  }
+};
+
+export const updateTrack = async (id, values) => {
+  try {
+    const token = await getCurrentUserToken();
+    const apiTrack = await fetchApi(
+      `/track/${id}`,
+      `Bearer ${token}`,
+      values,
+      'PUT'
+    );
+    return apiTrack;
   } catch (e) {
     throw Error('Failed to fetch API');
   }
