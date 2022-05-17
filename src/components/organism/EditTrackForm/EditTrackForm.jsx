@@ -1,39 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 // styles
 import './EditTrackForm.scss';
 // components
 import { toast } from 'react-toastify';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 
 import Button from '../../molecules/Button/Button';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 
 // utils
-import getImage from '../../../utils/trackImageChecker';
-import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
-import createTrack from '../../../utils/api/apiTrack';
+import { updateTrack } from '../../../utils/api/apiTrack';
 import { uploadSongSchema } from '../../../utils/schemas';
-import getGenresFromApi from '../../../utils/api/apiGenre';
-import { useAuth } from '../../../services/auth/auth';
-import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
+import useFetchItems from '../../../hooks/useFetchItems';
+import { blobToBase64 } from '../../../utils/meta/getMetadata';
+import uploadToCloudinary from '../../../utils/cloudinary/uploadToCloudinary';
 
 function EditTrackForm() {
   // fb custom hook for useEffect fetch
-  const currentUser = useAuth();
-  // image preview / uploaded states
-  const [preview, setPreview] = useState(null);
-  const [hasUserUploadedImage, setHasUserUploadedImage] = useState(false);
-  // genres
-  const [genres, setGenres] = useState([]);
-  // first drag metadata values
-  const [metadata, setMetadata] = useState(null);
-  // loading state
-  const [isLoading, setIsLoading] = useState(false);
-  // upload progress state
-  const [progress, setProgress] = useState(0);
+  const [genres, isLoading, setIsLoading] = useFetchItems('genres');
   const { track } = useSelector((state) => state.dialog);
+  // image preview / uploaded states
+  const [preview, setPreview] = useState(track.img);
+  const [newImg, setNewImg] = useState(null);
 
   const initialValues = {
     title: track.name,
@@ -43,37 +33,19 @@ function EditTrackForm() {
   const handleSubmit = async (formValues) => {
     setIsLoading(true);
     try {
-      const formData = new FormData();
-      formData.append('upload_preset', 'track-upload');
-      const cloudFiles = {
-        audio: null,
-        image: null
-      };
-      if (metadata.image) {
-        const image = await getImage(metadata.image, hasUserUploadedImage);
-        formData.append('file', image);
-        cloudFiles.image = await uploadToCloudinaryWithProgress(
-          'image',
-          formData
-        );
-      }
-      formData.append('file', metadata.file);
-      cloudFiles.audio = await uploadToCloudinaryWithProgress(
-        'video',
-        formData,
-        setProgress
-      );
-
-      const songData = {
+      const updatedTrackInfo = {
         title: formValues.title,
         genre: formValues.genre,
-        url: cloudFiles.audio.url,
-        duration: cloudFiles.audio.duration,
-        thumbnail: cloudFiles.image?.url
+        thumbnail: track.img
       };
-      await createTrack(songData);
-      // refresh state
-      setMetadata(null);
+      if (newImg) {
+        const formData = new FormData();
+        formData.append('upload_preset', 'avatar');
+        formData.append('file', newImg);
+        const data = await uploadToCloudinary('image', formData);
+        updatedTrackInfo.thumbnail = data.secure_url;
+      }
+      await updateTrack(track.id, updatedTrackInfo);
       toast.success('Song uploaded!');
     } catch (e) {
       const message = handleAuthErrors(e.message);
@@ -83,39 +55,11 @@ function EditTrackForm() {
     }
   };
 
-  useEffect(() => {
-    if (!currentUser) return;
-    (async () => {
-      try {
-        const allGenres = await getGenresFromApi();
-        setGenres(allGenres);
-        setPreview(track.img);
-      } catch (e) {
-        // ERROR HANDLING MISSING
-        // ? setting metadata null?
-        console.log(e.message);
-      }
-    })();
-  }, [currentUser]);
-
-  useEffect(() => {
-    if (!metadata?.image) {
-      setPreview(undefined);
-      return;
-    }
-    const objectUrl = URL.createObjectURL(metadata.image);
-    setPreview(objectUrl);
-    // eslint-disable-next-line consistent-return
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [metadata?.image]);
-
-  const onSelectFile = (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setMetadata({ ...metadata, image: null });
-      return;
-    }
-    setMetadata({ ...metadata, image: e.target.files[0] });
-    setHasUserUploadedImage(true);
+  // User has uploaded a track image
+  const onSelectFile = async (e) => {
+    const newTrackImg = await blobToBase64(e.target.files[0]);
+    setPreview(newTrackImg);
+    setNewImg(e.target.files[0]);
   };
 
   return (
@@ -148,11 +92,12 @@ function EditTrackForm() {
                   className="searchGenreInput"
                 >
                   <option defaultValue>{track.genre}</option>
-                  {genres.map((genre) => (
-                    <option key={genre._id} value={genre._id}>
-                      {genre.name}
-                    </option>
-                  ))}
+                  {genres.length > 0 &&
+                    genres.map((genre) => (
+                      <option key={genre._id} value={genre._id}>
+                        {genre.name}
+                      </option>
+                    ))}
                 </AccountEditInput>
               </div>
               <div className="rightCol">
@@ -160,7 +105,7 @@ function EditTrackForm() {
                   htmlFor="uploadTrackFile"
                   className="uploadTrackFileLabel"
                 >
-                  <Field
+                  <input
                     type="file"
                     name="uploadTrackFile"
                     id="uploadTrackFile"
@@ -182,8 +127,6 @@ function EditTrackForm() {
           </Form>
         )}
       </Formik>
-
-      {isLoading ? <UploadProgressBar progress={progress} /> : null}
     </article>
   );
 }

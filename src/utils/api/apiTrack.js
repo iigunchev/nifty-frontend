@@ -54,4 +54,19 @@ export const deleteTrack = async (id) => {
   }
 };
 
+export const updateTrack = async (id, values) => {
+  try {
+    const token = await getCurrentUserToken();
+    const apiTrack = await fetchApi(
+      `/track/${id}`,
+      `Bearer ${token}`,
+      values,
+      'PUT'
+    );
+    return apiTrack;
+  } catch (e) {
+    throw Error('Failed to fetch API');
+  }
+};
+
 export default createTrack;
