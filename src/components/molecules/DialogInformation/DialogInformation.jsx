@@ -15,7 +15,8 @@ function DialogInformation({
   handleRemoveFromPlaylist,
   handleDeleteTrack,
   handleAddToPlaylist,
-  handleEditTrack
+  handleEditTrack,
+  clientCoordinates
 }) {
   const params = useParams();
   // getting the path instead invoke useLocation
@@ -23,7 +24,11 @@ function DialogInformation({
   const [path] = params['*'].split('/');
 
   return (
-    <div className="dialogInformationWrapper">
+    <div
+      className={`dialogInformationWrapper ${
+        clientCoordinates > 600 ? 'upperDialog' : 'lowerDialog'
+      }`}
+    >
       <ul>
         <li>
           <button

@@ -39,6 +39,7 @@ function TrendingTrackItem({
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
+  const [clientCoordinates, setClientCoordinates] = useState(null);
   // on blur id
   let timeOutId;
   // redux
@@ -70,6 +71,12 @@ function TrendingTrackItem({
   const onFocusHandler = () => {
     // If a child receives focus, do not close the popover.
     clearTimeout(timeOutId);
+  };
+
+  const handleShowDialog = (e) => {
+    console.log(e.clientY);
+    setClientCoordinates(e.clientY);
+    setShowDialog(!showDialog);
   };
 
   const handleLikeTrack = async (likeValue) => {
@@ -172,11 +179,7 @@ function TrendingTrackItem({
         className="dialogWrapper"
         onBlur={onBlurHandler}
       >
-        <button
-          type="button"
-          onClick={() => setShowDialog(!showDialog)}
-          title="More options"
-        >
+        <button type="button" onClick={handleShowDialog} title="More options">
           <SVG className="verticalDots" />
         </button>
 
@@ -189,6 +192,7 @@ function TrendingTrackItem({
             handleDeleteTrack={handleDeleteTrack}
             handleAddToPlaylist={handleAddToPlaylist}
             handleRemoveFromPlaylist={handleRemoveFromPlaylist}
+            clientCoordinates={clientCoordinates}
           />
         ) : null}
       </div>
