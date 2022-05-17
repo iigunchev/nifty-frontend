@@ -74,7 +74,6 @@ function TrendingTrackItem({
   };
 
   const handleShowDialog = (e) => {
-    console.log(e.clientY);
     setClientCoordinates(e.clientY);
     setShowDialog(!showDialog);
   };
@@ -85,6 +84,11 @@ function TrendingTrackItem({
     setIsTrackLiked(!isTrackLiked);
     try {
       await toggleLike(likeValue, trackId);
+      if (likeValue) {
+        toast.info(`You liked ${trackName}`);
+        return;
+      }
+      toast.info(`You unliked ${trackName}`);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       toast.error(message);
