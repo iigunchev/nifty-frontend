@@ -85,10 +85,16 @@ function TrendingTrackItem({
     try {
       await toggleLike(likeValue, trackId);
       if (likeValue) {
-        toast.info(`You liked ${trackName}`);
+        toast.info(`You liked ${trackName}`, {
+          theme: 'colored',
+          autoClose: 500
+        });
         return;
       }
-      toast.info(`You unliked ${trackName}`);
+      toast.info(`You unliked ${trackName}`, {
+        theme: 'colored',
+        autoClose: 500
+      });
     } catch (e) {
       const message = handleAuthErrors(e.message);
       toast.error(message);

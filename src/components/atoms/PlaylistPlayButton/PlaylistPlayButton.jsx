@@ -3,27 +3,33 @@ import React from 'react';
 // toast
 import { toast } from 'react-toastify';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTrack, setQueue } from '../../../redux/Audio/audioSlice';
 // utils
 import { getAllTracksById } from '../../../utils/api/apiTrack';
+import shuffleArray from '../../../utils/shuffleArray';
 // icon
 import play from '../../../assets/img/player/play.png';
 
 function PlaylistPlayButton({ tracks, isPlaylistView }) {
+  const { isRandomizing } = useSelector((state) => state.audio);
   const dispatch = useDispatch();
 
-  const setTrackProperties = (arrayTracks) =>
-    arrayTracks.map((track) => ({
+  const setTrackProperties = (arrayTracks) => {
+    const arrayWithProperties = arrayTracks.map((track) => ({
       src: track.url,
       artist: track.artist.artisticName,
       image: track.thumbnail,
       duration: track.duration,
       title: track.title
     }));
+    if (isRandomizing) return shuffleArray(arrayWithProperties);
+    return arrayWithProperties;
+  };
 
   const handleDispatchPlayPlaylistView = () => {
     const queueTracks = setTrackProperties(tracks);
+
     dispatch(setQueue(queueTracks));
     dispatch(setCurrentTrack(queueTracks[0]));
   };
@@ -32,7 +38,6 @@ function PlaylistPlayButton({ tracks, isPlaylistView }) {
       const apiTracks = await getAllTracksById(tracks);
       // renaming tracks properties
       const queueTracks = setTrackProperties(apiTracks);
-      // i quit the first element of queue because of bugs of player
       dispatch(setQueue(queueTracks));
       dispatch(setCurrentTrack(queueTracks[0]));
     } catch (error) {

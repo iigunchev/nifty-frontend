@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setCurrentTrack,
   setTrackPosition,
-  setIsActive
+  setIsActive,
+  setIsRandomizing,
+  setQueue
 } from '../../../redux/Audio/audioSlice';
+// custom hooks
+import useAudioControllers from '../../../hooks/useAudioControllers';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
 // images
@@ -13,14 +17,15 @@ import play from '../../../assets/img/player/play.png';
 import pause from '../../../assets/img/player/pause.png';
 import next from '../../../assets/img/player/next.png';
 import previous from '../../../assets/img/player/previous.png';
+import random from '../../../assets/img/player/random.png';
 // styles
 import './AudioControls.scss';
-import useAudioControllers from '../../../hooks/useAudioControllers';
+import shuffleQueue from '../../../utils/shuffleArray';
 
 function AudioControls() {
   const dispatch = useDispatch();
   // redux volume slice
-  const { currentTrack, volume, queue, isActive } = useSelector(
+  const { currentTrack, volume, queue, isActive, isRandomizing } = useSelector(
     (state) => state.audio
   );
 
@@ -62,6 +67,11 @@ function AudioControls() {
     changePlayerCurrentTime();
   };
 
+  const handleRandomizeAction = () => {
+    dispatch(setIsRandomizing(!isRandomizing));
+    dispatch(setQueue(shuffleQueue(queue)));
+  };
+
   const playPrevSong = () => {
     if (currentTrack.queuePosition === 0) return;
 
@@ -71,6 +81,7 @@ function AudioControls() {
   const playNextSong = () => {
     if (!currentTrack.src) return;
     if (currentTrack.queuePosition === queue.length - 1) return;
+
     dispatch(setCurrentTrack(queue[currentTrack.queuePosition + 1]));
   };
 
@@ -104,6 +115,18 @@ function AudioControls() {
         <track kind="captions" />
       </audio>
       <div className="controlButtonsWrapper">
+        {/* Randomize song */}
+        <button
+          type="button"
+          className="nextPreviousButton randomActive"
+          onClick={handleRandomizeAction}
+        >
+          <img
+            className={isRandomizing ? 'randomFilterImg' : 'filteredImg'}
+            src={random}
+            alt="random song"
+          />
+        </button>
         {/* Previous song button */}
         <button
           onClick={playPrevSong}
