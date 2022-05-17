@@ -51,7 +51,7 @@ function PlaylistPlayButton({ tracks, isPlaylistView }) {
         handleDispatchAllSongs();
       }}
       type="button"
-      className="playListActionButton"
+      className={isPlaylistView ? 'playlistPlayButton' : 'playListActionButton'}
     >
       <img className="filteredImg " src={play} alt="play" />
     </button>

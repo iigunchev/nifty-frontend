@@ -19,6 +19,7 @@ import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/Tren
 import Modal from '../../components/template/Modal/Modal';
 import PlaylistFormContainer from '../../components/molecules/PlaylistFormContainer/PlaylistFormContainer';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
+import SecondaryButton from '../../components/molecules/SecondaryButton/SecondaryButton';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
@@ -26,7 +27,6 @@ import './Playlist.scss';
 // utils
 import editPlaylist, { followPlaylist } from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
-import Button from '../../components/molecules/Button/Button';
 import PlaylistPlayButton from '../../components/atoms/PlaylistPlayButton/PlaylistPlayButton';
 
 function Playlist() {
@@ -97,24 +97,22 @@ function Playlist() {
               <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
             </button>
 
-            <div
-              role="button"
-              tabIndex={0}
-              onClick={handleOpenEditModal}
-              className="playlistInfoWrapper"
-            >
+            <div className="playlistInfoWrapper">
+              <div className="headingFollowPlaylist">
+                <h1 className="heading1 playlistName">{playlist.name}</h1>
+
+                {playlist.tracks?.length !== 0 ? (
+                  <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
+                ) : null}
+              </div>
               <p>{playlist.description}</p>
-              <h1 className="heading1 playlistName">{playlist.name}</h1>
-              {playlist.tracks?.length !== 0 ? (
-                <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
-              ) : null}
+              <span className="followButtonWrapper">
+                <SecondaryButton handleClick={handleFollowPlaylist}>
+                  {playlist.isFollowed ? 'Unfollow' : 'Follow'}
+                </SecondaryButton>
+              </span>
             </div>
           </div>
-          <span className="followButtonWrapper">
-            <Button size="sm" handleClick={handleFollowPlaylist}>
-              {playlist.isFollowed ? 'Unfollow' : 'Follow'}
-            </Button>
-          </span>
         </header>
 
         {isLoading ? (

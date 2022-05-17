@@ -6,7 +6,7 @@ import { Waveform } from '@uiball/loaders';
 
 const buttonSize = {
   sm: {
-    padding: '10px 10px'
+    padding: '5px 5px'
   },
   md: {
     padding: '10px 20px'

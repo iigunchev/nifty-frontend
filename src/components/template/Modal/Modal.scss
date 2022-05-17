@@ -1,6 +1,6 @@
 @use '../../../sass/abstracts/variables' as *;
 .modal {
-  z-index: 20;
+  z-index: 99;
   position: fixed;
   left: 0;
   right: 0;
