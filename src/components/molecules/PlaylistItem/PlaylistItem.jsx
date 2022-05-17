@@ -38,7 +38,7 @@ function PlaylistItem({ name, tracks, image, id }) {
             <span>{tracks.length} tracks</span>
           </div>
         </div>
-        <PlaylistPlayButton tracks={tracks} />
+        {tracks.length !== 0 ? <PlaylistPlayButton tracks={tracks} /> : null}
       </div>
     </div>
   );

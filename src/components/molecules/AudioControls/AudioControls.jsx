@@ -87,7 +87,6 @@ function AudioControls() {
   }, [isActive]);
 
   useEffect(() => {
-    console.log('paso??? useEffect track.src');
     if (!currentTrack.src) return;
     // checks if page have been refreshed, to don't pass in useEffect
     // if (isRefreshed) {

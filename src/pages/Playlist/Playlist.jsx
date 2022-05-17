@@ -27,6 +27,7 @@ import './Playlist.scss';
 import editPlaylist, { followPlaylist } from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
 import Button from '../../components/molecules/Button/Button';
+import PlaylistPlayButton from '../../components/atoms/PlaylistPlayButton/PlaylistPlayButton';
 
 function Playlist() {
   // get playlist id and get playlist
@@ -83,7 +84,6 @@ function Playlist() {
       toast.error('Failed to edit playlist, please, try again');
     }
   };
-
   return (
     <>
       <section className="playlistSectionContainer">
@@ -105,6 +105,9 @@ function Playlist() {
             >
               <p>{playlist.description}</p>
               <h1 className="heading1 playlistName">{playlist.name}</h1>
+              {playlist.tracks?.length !== 0 ? (
+                <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
+              ) : null}
             </div>
           </div>
           <span className="followButtonWrapper">

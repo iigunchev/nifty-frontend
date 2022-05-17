@@ -10,11 +10,17 @@
   align-items: flex-end;
   padding: 1.5em;
 }
+.playlistPlayButton {
+  img {
+    width: 100%;
+  }
+}
 .editableInformationWrapper {
   display: inline-flex;
   align-items: center;
   padding: 1em;
   gap: 1em;
+
   .editablePlaylistButton {
     width: 220px;
     min-width: 220px;
