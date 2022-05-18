@@ -39,6 +39,7 @@ function TrendingTrackItem({
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
+  const [clientCoordinates, setClientCoordinates] = useState(null);
   // on blur id
   let timeOutId;
   // redux
@@ -72,12 +73,28 @@ function TrendingTrackItem({
     clearTimeout(timeOutId);
   };
 
+  const handleShowDialog = (e) => {
+    setClientCoordinates(e.clientY);
+    setShowDialog(!showDialog);
+  };
+
   const handleLikeTrack = async (likeValue) => {
     setShowDialog(false);
     setIsLoading(true);
     setIsTrackLiked(!isTrackLiked);
     try {
       await toggleLike(likeValue, trackId);
+      if (likeValue) {
+        toast.info(`You liked ${trackName}`, {
+          theme: 'colored',
+          autoClose: 500
+        });
+        return;
+      }
+      toast.info(`You unliked ${trackName}`, {
+        theme: 'colored',
+        autoClose: 500
+      });
     } catch (e) {
       const message = handleAuthErrors(e.message);
       toast.error(message);
@@ -172,11 +189,7 @@ function TrendingTrackItem({
         className="dialogWrapper"
         onBlur={onBlurHandler}
       >
-        <button
-          type="button"
-          onClick={() => setShowDialog(!showDialog)}
-          title="More options"
-        >
+        <button type="button" onClick={handleShowDialog} title="More options">
           <SVG className="verticalDots" />
         </button>
 
@@ -189,6 +202,7 @@ function TrendingTrackItem({
             handleDeleteTrack={handleDeleteTrack}
             handleAddToPlaylist={handleAddToPlaylist}
             handleRemoveFromPlaylist={handleRemoveFromPlaylist}
+            clientCoordinates={clientCoordinates}
           />
         ) : null}
       </div>

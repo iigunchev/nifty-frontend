@@ -6,6 +6,7 @@ import ArtistList from '../../components/organism/ArtistList/ArtistList';
 
 function Artists() {
   const [artists, isLoadingArtists] = useFetchItems('account/byartist');
+  console.log(artists);
 
   return (
     <main style={{ padding: '1.5em' }}>

@@ -72,6 +72,14 @@ function Hamburger() {
                 Upload
               </ListItemIcon>
             ) : null}
+            {user.artist ? (
+              <ListItemIcon
+                route={`${route.APP}${route.MY_UPLOADS}`}
+                icon="myUploads"
+              >
+                {t('aside.myUploads')}
+              </ListItemIcon>
+            ) : null}
           </NavList>
 
           <NavList title="Settings">

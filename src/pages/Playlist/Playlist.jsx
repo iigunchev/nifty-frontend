@@ -115,11 +115,13 @@ function Playlist() {
         {isLoading ? (
           <TrendingTrackItemSkeleton />
         ) : (
-          <TrendingList
-            errorMessage="This playlist do not have tracks"
-            tracks={playlist.tracks}
-            handleListState={setPlaylist}
-          />
+          <div className="playlistTracksWrapper">
+            <TrendingList
+              errorMessage="This playlist do not have tracks"
+              tracks={playlist.tracks}
+              handleListState={setPlaylist}
+            />
+          </div>
         )}
       </section>
       {isModalOpen && modalAction === 'editPlaylist' ? (

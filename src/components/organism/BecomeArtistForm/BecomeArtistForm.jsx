@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // router link
 import { Link } from 'react-router-dom';
 // styles
@@ -18,14 +18,14 @@ import { ACCOUNT, APP } from '../../../routes';
 import Modal from '../../template/Modal/Modal';
 import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput';
 import { createPlaylistSchema } from '../../../utils/schemas';
+import { closeModal, openModal } from '../../../redux/Dialog/dialogSlice';
 
 function BecomeArtistForm() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async ({ name }) => {
-    setIsModalOpen(false);
+    dispatch(closeModal());
     try {
       const newArtistUser = await updateUserProfile(
         { artist: !user.artist, artisticName: name },
@@ -52,15 +52,11 @@ function BecomeArtistForm() {
         </Link>
         <Button
           type="submit"
-          handleClick={user.artist ? handleSubmit : () => setIsModalOpen(true)}
+          handleClick={user.artist ? handleSubmit : () => dispatch(openModal())}
         >
           {!user.artist ? 'Be Artist' : 'Cancel Suscription'}
         </Button>
-        <Modal
-          title="Becoming an artist!"
-          showing={isModalOpen}
-          setShow={setIsModalOpen}
-        >
+        <Modal title="Becoming an artist!">
           <Formik
             initialValues={{ name: '' }}
             onSubmit={handleSubmit}

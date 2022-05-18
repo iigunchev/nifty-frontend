@@ -12,8 +12,11 @@ const initialState = {
     image: null,
     queuePosition: 0
   },
+  isRandomizing: false,
   isActive: false,
   queue: [],
+  randomizedQueue: [],
+  historicQueue: [],
   volume: 0.5
 };
 
@@ -46,6 +49,8 @@ const audioSlice = createSlice({
       state.isActive = true;
       if (state.queue.length === 0) {
         state.queue = [payload];
+      } else {
+        state.historicQueue = [...state.historicQueue, state.currentTrack];
       }
     },
     removeQueue: (state) => {
@@ -53,6 +58,9 @@ const audioSlice = createSlice({
     },
     setVolume: (state, { payload }) => {
       state.volume = payload;
+    },
+    setIsRandomizing: (state, { payload }) => {
+      state.isRandomizing = payload;
     },
     setIsActive: (state, { payload }) => {
       state.isActive = payload;
@@ -68,6 +76,7 @@ export const {
   setTrackPosition,
   setTrackToQueue,
   removeQueue,
+  setIsRandomizing,
   setIsActive
 } = audioSlice.actions;
 

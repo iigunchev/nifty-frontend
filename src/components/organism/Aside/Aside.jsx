@@ -62,12 +62,6 @@ function Aside() {
           >
             {t('aside.myPlaylist')}
           </ListItemIcon>
-          <ListItemIcon
-            route={`${route.APP}${route.MY_UPLOADS}`}
-            icon="myUploads"
-          >
-            {t('aside.myUploads')}
-          </ListItemIcon>
 
           {user.artist ? (
             <ListItemIcon
@@ -75,6 +69,14 @@ function Aside() {
               icon="upload"
             >
               {t('aside.upload')}
+            </ListItemIcon>
+          ) : null}
+          {user.artist ? (
+            <ListItemIcon
+              route={`${route.APP}${route.MY_UPLOADS}`}
+              icon="myUploads"
+            >
+              {t('aside.myUploads')}
             </ListItemIcon>
           ) : null}
         </NavList>
