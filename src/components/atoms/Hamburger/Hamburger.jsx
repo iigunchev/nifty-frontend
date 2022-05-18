@@ -37,7 +37,7 @@ function Hamburger() {
             <ListItemIcon
               route={`${route.APP}${route.SEARCH}`}
               selected
-              icon="genres"
+              icon="search"
             >
               Genres
             </ListItemIcon>
