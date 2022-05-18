@@ -21,7 +21,6 @@ function PlaybackBar({ time, duration }) {
     // eslint-disable-next-line no-param-reassign
     const currentSeconds = (e.target.value / 100) * duration;
     dispatch(setCurrentTime(currentSeconds));
-    console.log('cambia?');
   };
   return (
     <div className="playbackBarWrapper">
