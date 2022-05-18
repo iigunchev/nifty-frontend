@@ -87,13 +87,13 @@ function TrendingTrackItem({
       if (likeValue) {
         toast.info(`You liked ${trackName}`, {
           theme: 'colored',
-          autoClose: 500
+          autoClose: 1500
         });
         return;
       }
       toast.info(`You unliked ${trackName}`, {
         theme: 'colored',
-        autoClose: 500
+        autoClose: 1500
       });
     } catch (e) {
       const message = handleAuthErrors(e.message);
