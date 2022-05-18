@@ -68,7 +68,7 @@ function Home() {
         )}
       </section>
       <section className="homeBottomCol">
-        <section className="trendingTracksContainer">
+        <section className="homeTrendingTracksContainer">
           <h2 className="heading2">Top Tracks</h2>
           {!isLoading ? (
             <TrendingList tracks={songs?.slice(0, 5)} />
@@ -76,7 +76,7 @@ function Home() {
             <TrendingTrackItemSkeleton />
           )}
         </section>
-        <section className="trendingArtistsContainer">
+        <section className="homeTrendingArtistsContainer">
           <h2 className="heading2">Top Artists</h2>
           {!isLoadingArtists ? (
             <ArtistList artists={artists?.slice(0, 5)} />
