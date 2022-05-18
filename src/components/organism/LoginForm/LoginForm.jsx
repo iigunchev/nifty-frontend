@@ -115,23 +115,25 @@ function LoginForm() {
             <div className="textRightLogin">
               <Link to={RESET_PASSWORD}>{t('login.forgotPassword')}</Link>
             </div>
-
-            <Button
-              className="loginButton"
-              isLoading={isLoading}
-              type="submit"
-              size="xl"
-            >
-              {t('login.login')}
-            </Button>
-            <SecondaryButton
-              disabled={isLoading}
-              handleClick={handleLoginWithGoogle}
-              type
-            >
-              <span>{t('login.loginGoogle')}</span>
-              <img src={googleIcon} alt="google icon" />
-            </SecondaryButton>
+            <div className="loginFormBtnWrapper">
+              <Button
+                className="loginButton"
+                isLoading={isLoading}
+                type="submit"
+                size="xl"
+              >
+                {t('login.login')}
+              </Button>
+              <SecondaryButton
+                size="xl"
+                disabled={isLoading}
+                handleClick={handleLoginWithGoogle}
+                type
+              >
+                <span>{t('login.loginGoogle')}</span>
+                <img src={googleIcon} alt="google icon" />
+              </SecondaryButton>
+            </div>
             <ErrorContainer error={error} />
             <div className="flexBottomText">
               <span className="textSignup">{t('login.dontHaveAnAccount')}</span>

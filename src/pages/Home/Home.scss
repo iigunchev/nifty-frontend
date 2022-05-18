@@ -11,20 +11,19 @@
 .homeBottomCol {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
   .chatSection {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     border-radius: $border;
     padding: 2em;
     color: white;
     background: $primary-gradient;
-    width: 600px;
-    min-width: 500px;
-    height: 400px;
+    width: 50%;
+    min-width: 100px;
     overflow: hidden;
 
     .bannerTitle {
@@ -35,7 +34,7 @@
       max-width: 300px;
       display: flex;
       flex-direction: column;
-      gap: 5em;
+      gap: 2em;
     }
     .bannerImg {
       width: 500px;
@@ -51,12 +50,24 @@
   }
 }
 
+@media screen and (max-width: 1500px) {
+  .chatSection {
+    img {
+      display: none;
+    }
+    .bannerTitle {
+      font-size: 1rem !important;
+    }
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .homeContainer {
     width: 100%;
   }
   .homeBottomCol {
     width: 100%;
+    flex-wrap: wrap;
     gap: 2em;
   }
   .trendingWrapper {
@@ -73,9 +84,7 @@
 
   .chatSection {
     min-width: 100% !important;
-    .bannerTitle {
-      font-size: 1.5rem !important;
-    }
+
     order: -1;
   }
 }
@@ -90,9 +99,6 @@
   }
   .chatSection {
     min-width: 100% !important;
-    img {
-      display: none;
-    }
   }
 }
 

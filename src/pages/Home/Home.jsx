@@ -56,7 +56,7 @@ function Home() {
           <AliceCarousel
             disableButtonsControls
             autoPlay
-            autoPlayInterval={1500}
+            autoPlayInterval={2500}
             mouseTracking
             responsive={responsiveCarousel}
             infinite

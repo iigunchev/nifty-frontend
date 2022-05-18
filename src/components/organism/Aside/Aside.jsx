@@ -26,7 +26,7 @@ function Aside() {
   const user = useSelector((state) => state.user);
   return (
     <>
-      <Link to={route.APP} className="logoWrapper">
+      <Link to={route.APP} className="asideLogoWrapper">
         <img src={niftyLogo} alt="logo" />
       </Link>
       <div className="profileWrapper">
