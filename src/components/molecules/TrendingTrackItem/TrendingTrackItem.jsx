@@ -36,7 +36,6 @@ function TrendingTrackItem({
   const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
   // on blur id
   let timeOutId;
-  console.log(artistName);
   const dispatch = useDispatch();
   // play track
   const handlePlayTrack = () => {

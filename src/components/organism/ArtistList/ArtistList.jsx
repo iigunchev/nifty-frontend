@@ -9,7 +9,7 @@ import './ArtistList.scss';
 
 function ArtistList({ artists }) {
   const navigate = useNavigate();
-  const navigateArtist = (id) => navigate(`${APP}/artist/${id}`);
+  const navigateArtist = (id) => navigate(`${APP}/account/${id}`);
   if (artists.length === 0) {
     return <h1>There&apos;s no artists</h1>;
   }
