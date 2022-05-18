@@ -30,6 +30,14 @@ const audioSlice = createSlice({
         toast.remove();
         return;
       }
+      if (state.queue.length === 0) {
+        state.currentTrack.src = payload.src;
+        state.currentTrack.image = payload.image;
+        state.currentTrack.artist = payload.artist;
+        state.currentTrack.title = payload.title;
+        state.currentTrack.duration = payload.duration;
+        state.isActive = true;
+      }
       state.queue = [...state.queue, payload];
     },
     setTrackPosition: ({ currentTrack, queue }) => {
