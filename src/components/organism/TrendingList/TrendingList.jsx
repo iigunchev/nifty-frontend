@@ -9,7 +9,7 @@ import './TrendingList.scss';
 
 function TrendingList({
   tracks,
-  errorMessage = 'Tracks array is empty',
+  errorMessage = 'Tracks is empty',
   handleListState
 }) {
   if (tracks.length === 0) {

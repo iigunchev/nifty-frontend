@@ -1,68 +1,59 @@
 @use '../../sass/abstracts/variables' as *;
-.artistlistHeader {
-  max-height: 300px;
+.artistHeader {
+  max-height: 150px;
+  min-height: 150px;
+  max-width: 150px;
+  min-width: 150px;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.artistInfo {
+  height: 100%;
+
+  justify-content: space-between;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  img {
+    max-width: 25px;
+  }
+  button {
+    max-width: 100px;
+  }
+}
+
+.WrapperFollow {
+  display: flex;
+  gap: 0.5em;
+}
+
+.artistName {
+  min-width: 300px;
 }
 
 .artistSectionContainer {
   display: flex;
+  flex-direction: column;
   gap: 2em;
+  padding-left: 1.5em;
+  padding-top: 1.5em;
 }
 
 .artistImageContainer {
   img {
-    max-width: 300px;
-    max-height: 300px;
+    max-height: 150px;
+    min-height: 150px;
+    max-width: 150px;
+    min-width: 150px;
     border-radius: 24px;
+    object-fit: cover;
   }
 }
-// .editableInformationWrapper {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   padding: 1em;
-//   gap: 1em;
-//   background-color: $bg-offwhite;
-//   width: 100%;
-//   .editablePlaylistButton {
-//     min-width: 220px;
-//     height: 220px;
-//     img {
-//       border-radius: $border;
-//       width: 100%;
-//       height: 100%;
-//       object-fit: cover;
-//     }
-//   }
-//   .playlistInfoWrapper {
-//     cursor: pointer;
-//     width: 70%;
-//     text-overflow: ellipsis;
-//     p {
-//       font-size: 13px;
-//     }
-//   }
-//   .playlistName {
-//     font-size: clamp(1rem, 3vw, 5rem);
-//   }
-// }
 
-// @media screen and (max-width: 800px) {
-//   .editableInformationWrapper {
-//     .editablePlaylistButton {
-//       min-width: 150px;
-//       height: 150px;
-//       object-fit: cover;
-//       border-radius: $border;
-//     }
-//   }
-// }
-// @media screen and (max-width: 500px) {
-//   .editableInformationWrapper {
-//     .editablePlaylistButton {
-//       min-width: 100px;
-//       height: 100px;
-//       object-fit: cover;
-//       border-radius: $border;
-//     }
-//   }
-// }
+.trendingPlaylistContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5em;
+}
