@@ -20,7 +20,7 @@ function ArtistList({ artists }) {
           key={artist._id}
           id={artist._id}
           image={artist.profileImage}
-          title={artist.artisticName}
+          title={artist.artisticName || artist.firstName}
           followers={artist.followers}
           handleClick={navigateArtist}
         />

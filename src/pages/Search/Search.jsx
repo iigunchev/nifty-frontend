@@ -4,8 +4,11 @@ import debounce from 'lodash.debounce';
 import { useAuth } from '../../services/auth/auth';
 import getGenresFromApi from '../../utils/api/apiGenre';
 import globalSearch from '../../utils/api/apiSearch';
-// import debounceFunction from '../../utils/debounce';
+
+import ArtistList from '../../components/organism/ArtistList/ArtistList';
+import TrendingList from '../../components/organism/TrendingList/TrendingList';
 import './Search.scss';
+import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 
 function Search() {
   const currentUser = useAuth();
@@ -14,14 +17,13 @@ function Search() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState('');
 
-  console.log('search results >>>', searchResults);
-
+  // search query and debounced function
   const updateQuery = (e) => setSearchQuery(e.target.value);
   const debouncedOnChange = debounce(updateQuery, 500);
 
   // fetch search results
   useEffect(() => {
-    if (searchQuery === '') return;
+    if (searchQuery.length < 3) return;
     globalSearch(searchQuery).then((result) => setSearchResults(result));
   }, [searchQuery]);
 
@@ -42,11 +44,16 @@ function Search() {
   if (error) return <div>{error}</div>;
 
   return (
-    <main>
+    <main className="searchMainContainer">
       <h1 className="heading1">Search</h1>
-      <input type="search" onChange={debouncedOnChange} />
+      <input
+        type="search"
+        onChange={debouncedOnChange}
+        className="searhBar"
+        placeholder="Artist, Track, Playlist..."
+      />
       {/* {results && <div>{results}</div>} */}
-      {!searchResults && (
+      {(!searchResults || searchQuery === '') && (
         <div className="genresContainer">
           {genres &&
             genres.map((genre) => (
@@ -60,6 +67,30 @@ function Search() {
               </Link>
             ))}
         </div>
+      )}
+      {searchResults && searchQuery !== '' && (
+        <>
+          {searchResults?.users.length > 0 && (
+            <>
+              <h2 className="heading2">Users</h2>
+              <ArtistList artists={searchResults.users} />
+            </>
+          )}
+          {searchResults?.tracks.length > 0 && (
+            <>
+              <h2 className="heading2">Songs</h2>
+              <TrendingList tracks={searchResults.tracks} />
+            </>
+          )}
+          {searchResults?.playlists.length > 0 && (
+            <>
+              <h2 className="heading2">Playlist</h2>
+              <div className="searchPlaylistWrapper">
+                <PlaylistsList playlists={searchResults.playlists} />
+              </div>
+            </>
+          )}
+        </>
       )}
     </main>
   );
