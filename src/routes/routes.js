@@ -13,7 +13,7 @@ export const APP = '/app';
 
 export const PLAYLIST = '/playlist/:id';
 
-export const GENRES = '/genres';
+export const SEARCH = '/search';
 export const PLAYLISTS = '/playlists';
 export const ARTISTS = '/artists';
 export const MY_LIKES = '/my-likes';

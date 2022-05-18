@@ -2,26 +2,16 @@
 @use '../../../sass/core/typography' as t;
 @use '../../../sass/abstracts/mixins' as m;
 .textRightLogin {
-  padding-bottom: 31px;
+  padding-bottom: 1em;
   padding-top: 8px;
+  font-size: 0.9rem;
   text-align: right !important;
 }
 .flexBottomText {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-  -ms-align-items: center;
-  align-items: center;
+  text-align: center;
 }
 .textSignup {
-  margin-top: 3em;
+  margin-right: 1em;
   font-size: 14px;
   line-height: 1.5;
   padding-bottom: 17px;
@@ -32,7 +22,7 @@
   font-weight: 500;
   line-height: 1.5;
   text-transform: uppercase;
-  
+
   a {
     text-decoration: none;
     color: $text-darkgray;
@@ -44,13 +34,15 @@
     }
   }
 }
-  button {
+button {
   outline: none !important;
   border: none;
   background: transparent;
   cursor: pointer;
 }
-
+.loginFormBtnWrapper button {
+  margin-bottom: 1em;
+}
 .svgimg {
   position: absolute;
   display: block;

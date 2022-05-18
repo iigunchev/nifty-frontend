@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// router dom
+import { Link } from 'react-router-dom';
 // styles
 import './Hamburger.scss';
 // redux
@@ -14,6 +16,7 @@ import * as route from '../../../routes';
 import logout from '../../../assets/svg/asideSvg/logout.svg';
 import hamburgerIcon from '../../../assets/svg/hamburger.svg';
 import crossIcon from '../../../assets/svg/cross.svg';
+import niftyLogo from '../../../assets/svg/LogoViolet.svg';
 
 function Hamburger() {
   const dispatch = useDispatch();
@@ -30,73 +33,84 @@ function Hamburger() {
       </button>
       {isVisible ? (
         <div className="hamburgerWrapper">
-          <NavList title="Menu">
-            <ListItemIcon route={route.APP} icon="home">
-              Home
-            </ListItemIcon>
-            <ListItemIcon
-              route={`${route.APP}${route.GENRES}`}
-              selected
-              icon="genres"
-            >
-              Genres
-            </ListItemIcon>
-            <ListItemIcon
-              route={`${route.APP}${route.PLAYLISTS}`}
-              icon="albums"
-            >
-              Playlists
-            </ListItemIcon>
-            <ListItemIcon route={`${route.APP}${route.ARTISTS}`} icon="artists">
-              Artists
-            </ListItemIcon>
-          </NavList>
-          <NavList title="Library">
-            <ListItemIcon
-              route={`${route.APP}${route.MY_LIKES}`}
-              icon="favourites"
-            >
-              My music
-            </ListItemIcon>
-            <ListItemIcon
-              route={`${route.APP}${route.MY_PLAYLISTS}`}
-              icon="playlist"
-            >
-              {t('aside.myPlaylist')}
-            </ListItemIcon>
-            {user.artist ? (
-              <ListItemIcon
-                route={`${route.APP}${route.UPLOAD_TRACK}`}
-                icon="upload"
-              >
-                Upload
+          <Link to={route.APP} className="hamburgerLogoWrapper">
+            <img className="hamburgerImgLogo" src={niftyLogo} alt="logo" />
+          </Link>
+          <div className="navlistsWrapper">
+            <NavList title="Menu">
+              <ListItemIcon route={route.APP} icon="home">
+                Home
               </ListItemIcon>
-            ) : null}
-            {user.artist ? (
               <ListItemIcon
-                route={`${route.APP}${route.MY_UPLOADS}`}
-                icon="myUploads"
+                route={`${route.APP}${route.SEARCH}`}
+                selected
+                icon="search"
               >
-                {t('aside.myUploads')}
+                Genres
               </ListItemIcon>
-            ) : null}
-          </NavList>
+              <ListItemIcon
+                route={`${route.APP}${route.PLAYLISTS}`}
+                icon="albums"
+              >
+                Playlists
+              </ListItemIcon>
+              <ListItemIcon
+                route={`${route.APP}${route.ARTISTS}`}
+                icon="artists"
+              >
+                Artists
+              </ListItemIcon>
+            </NavList>
+            <NavList title="Library">
+              <ListItemIcon
+                route={`${route.APP}${route.MY_LIKES}`}
+                icon="favourites"
+              >
+                My music
+              </ListItemIcon>
+              <ListItemIcon
+                route={`${route.APP}${route.MY_PLAYLISTS}`}
+                icon="playlist"
+              >
+                {t('aside.myPlaylist')}
+              </ListItemIcon>
+              {user.artist ? (
+                <ListItemIcon
+                  route={`${route.APP}${route.UPLOAD_TRACK}`}
+                  icon="upload"
+                >
+                  Upload
+                </ListItemIcon>
+              ) : null}
+              {user.artist ? (
+                <ListItemIcon
+                  route={`${route.APP}${route.MY_UPLOADS}`}
+                  icon="myUploads"
+                >
+                  {t('aside.myUploads')}
+                </ListItemIcon>
+              ) : null}
+            </NavList>
 
-          <NavList title="Settings">
-            <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
-              Account
-            </ListItemIcon>
-            <li className="listItemLink">
-              <button
-                onClick={() => dispatch(removeUser())}
-                type="button"
-                className="listItemLink"
+            <NavList title="Settings">
+              <ListItemIcon
+                icon="account"
+                route={`${route.APP}${route.ACCOUNT}`}
               >
-                <img src={logout} alt="logout" />
-                <span>Sign out</span>
-              </button>
-            </li>
-          </NavList>
+                Account
+              </ListItemIcon>
+              <li className="listItemLink">
+                <button
+                  onClick={() => dispatch(removeUser())}
+                  type="button"
+                  className="listItemLink"
+                >
+                  <img src={logout} alt="logout" />
+                  <span>Sign out</span>
+                </button>
+              </li>
+            </NavList>
+          </div>
         </div>
       ) : null}
     </>

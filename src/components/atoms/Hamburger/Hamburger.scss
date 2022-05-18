@@ -9,6 +9,14 @@
     width: 50px;
   }
 }
+.hamburgerLogoWrapper {
+  img {
+    width: 70%;
+  }
+}
+.navlistsWrapper {
+  margin-top: 2em;
+}
 .hamburgerWrapper {
   display: none;
   border-radius: $border 0;
@@ -22,7 +30,7 @@
   z-index: 20;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1010px) {
   .hamburgerButton {
     display: block;
   }
