@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+// mobile agent
+import { isMobile } from 'react-device-detect';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -12,6 +14,7 @@ import {
 import useAudioControllers from '../../../hooks/useAudioControllers';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
+import sendCurrentTrackStats from '../../../utils/api/apiStats';
 // images
 import play from '../../../assets/img/player/play.png';
 import pause from '../../../assets/img/player/pause.png';
@@ -25,9 +28,10 @@ import shuffleQueue from '../../../utils/shuffleArray';
 function AudioControls() {
   const dispatch = useDispatch();
   // redux volume slice
-  const { currentTrack, volume, queue, isActive, isRandomizing } = useSelector(
-    (state) => state.audio
-  );
+  const {
+    audio: { currentTrack, volume, queue, isActive, isRandomizing },
+    user: { id }
+  } = useSelector((state) => state);
 
   // custom hook
   const [audioPlayer, progressBar, animationRef, duration] =
@@ -99,11 +103,11 @@ function AudioControls() {
 
   useEffect(() => {
     if (!currentTrack.src) return;
-    // checks if page have been refreshed, to don't pass in useEffect
-    // if (isRefreshed) {
-    //   setIsRefreshed(false);
-    //   return;
-    // }
+    // send stats
+    const sendStats = async () => {
+      await sendCurrentTrackStats(currentTrack.id, id, isMobile);
+    };
+    sendStats();
     dispatch(setTrackPosition());
     audioPlayer.current.play();
     animationRef.current = requestAnimationFrame(whilePlaying);

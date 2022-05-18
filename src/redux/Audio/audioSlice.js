@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 const initialState = {
-  // info song,
   currentTrack: {
+    id: '',
     src: '',
     artist: '',
     title: '',
@@ -31,6 +31,7 @@ const audioSlice = createSlice({
         return;
       }
       if (state.queue.length === 0) {
+        state.currentTrack.id = payload.id;
         state.currentTrack.src = payload.src;
         state.currentTrack.image = payload.image;
         state.currentTrack.artist = payload.artist;
@@ -49,6 +50,7 @@ const audioSlice = createSlice({
       state.queue = payload;
     },
     setCurrentTrack: (state, { payload }) => {
+      state.currentTrack.id = payload.id;
       state.currentTrack.src = payload.src;
       state.currentTrack.image = payload.image;
       state.currentTrack.artist = payload.artist;

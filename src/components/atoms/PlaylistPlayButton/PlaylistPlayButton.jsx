@@ -17,6 +17,7 @@ function PlaylistPlayButton({ tracks, isPlaylistView }) {
 
   const setTrackProperties = (arrayTracks) => {
     const arrayWithProperties = arrayTracks.map((track) => ({
+      id: track._id,
       src: track.url,
       artist: track.artist.artisticName,
       image: track.thumbnail,
