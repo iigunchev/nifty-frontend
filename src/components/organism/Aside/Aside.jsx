@@ -1,4 +1,6 @@
 import React from 'react';
+// router dom
+import { Link } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 // i18n
@@ -15,6 +17,7 @@ import * as route from '../../../routes';
 // icons
 import logout from '../../../assets/svg/asideSvg/logout.svg';
 import userIcon from '../../../assets/svg/user.svg';
+import niftyLogo from '../../../assets/svg/LogoViolet.svg';
 
 function Aside() {
   const dispatch = useDispatch();
@@ -23,8 +26,10 @@ function Aside() {
   const user = useSelector((state) => state.user);
   return (
     <>
+      <Link to={route.APP} className="logoWrapper">
+        <img src={niftyLogo} alt="logo" />
+      </Link>
       <div className="profileWrapper">
-        {/* <Avatar size={40} /> */}
         <img src={userIcon} alt="user icon" className="asideUserSvg" />
         <h3>{user.firstName}</h3>
       </div>
