@@ -35,7 +35,7 @@ function Hamburger() {
               Home
             </ListItemIcon>
             <ListItemIcon
-              route={`${route.APP}${route.GENRES}`}
+              route={`${route.APP}${route.SEARCH}`}
               selected
               icon="genres"
             >
@@ -70,6 +70,14 @@ function Hamburger() {
                 icon="upload"
               >
                 Upload
+              </ListItemIcon>
+            ) : null}
+            {user.artist ? (
+              <ListItemIcon
+                route={`${route.APP}${route.MY_UPLOADS}`}
+                icon="myUploads"
+              >
+                {t('aside.myUploads')}
               </ListItemIcon>
             ) : null}
           </NavList>

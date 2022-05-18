@@ -11,8 +11,8 @@ import albums from '../../../assets/svg/asideSvg/albums.svg';
 import albumsFilled from '../../../assets/svg/asideSvg/albumsFilled.svg';
 import artists from '../../../assets/svg/asideSvg/artists.svg';
 import artistsFilled from '../../../assets/svg/asideSvg/artistsFilled.svg';
-import genres from '../../../assets/svg/asideSvg/genres.svg';
-import genresFilled from '../../../assets/svg/asideSvg/genresFilled.svg';
+import search from '../../../assets/svg/asideSvg/search.svg';
+import searchFilled from '../../../assets/svg/asideSvg/searchFilled.svg';
 import favourites from '../../../assets/svg/asideSvg/heart.svg';
 import favouritesFilled from '../../../assets/svg/asideSvg/heartFilled.svg';
 import upload from '../../../assets/svg/asideSvg/upload.svg';
@@ -35,8 +35,8 @@ function ListItemIcon({ icon = 'home', children, route = '/app' }) {
     albumsFilled,
     artists,
     artistsFilled,
-    genres,
-    genresFilled,
+    search,
+    searchFilled,
     favourites,
     favouritesFilled,
     myUploads,

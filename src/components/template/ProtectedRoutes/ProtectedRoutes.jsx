@@ -17,7 +17,7 @@ import Account from '../../../pages/Account/Account';
 import Playlists from '../../../pages/Playlists/Playlists';
 import Artists from '../../../pages/Artists/Artists';
 import Artist from '../../../pages/Artist/Artist';
-import Genres from '../../../pages/Genres/Genres';
+import Search from '../../../pages/Search/Search';
 // import Genre from '../../../pages/Genre/Genre';
 import MyUploads from '../../../pages/MyUploads/MyUploads';
 import MyPlaylists from '../../../pages/MyPlaylists/MyPlaylists';
@@ -41,7 +41,7 @@ function ProtectedRoutes() {
         <Route path={route.PLAYLISTS} element={<Playlists />} />
         <Route path={route.ARTISTS} element={<Artists />} />
         <Route path={route.ARTIST} element={<Artist />} />
-        <Route path={route.GENRES} element={<Genres />} />
+        <Route path={route.SEARCH} element={<Search />} />
 
         {/* ACCOUNT  */}
         <Route path={route.ACCOUNT} element={<Account />} />
