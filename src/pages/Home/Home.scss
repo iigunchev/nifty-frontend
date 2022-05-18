@@ -8,38 +8,40 @@
   flex-direction: column;
   gap: 2em;
 }
-.PlayListSection {
-  display: flex;
-  gap: 2em;
-  overflow: scroll;
-}
 .homeBottomCol {
   display: flex;
   flex-direction: row;
-  gap: 7em;
+  justify-content: space-around;
   flex-wrap: wrap;
   .chatSection {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     border-radius: $border;
     padding: 2em;
     color: white;
     background: $primary-gradient;
     width: 600px;
     min-width: 500px;
-    height: 500px;
+    height: 400px;
     overflow: hidden;
+
     .bannerTitle {
       font-size: 2rem;
       max-width: 300px;
     }
     .bannerDescription {
       max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 5em;
     }
     .bannerImg {
       width: 500px;
       position: absolute;
-      bottom: -15px;
-      right: -200px;
+      bottom: -55px;
+      right: -225px;
       z-index: 1;
     }
     .trendingTracksContainer {
@@ -71,6 +73,9 @@
 
   .chatSection {
     min-width: 100% !important;
+    .bannerTitle {
+      font-size: 1.5rem !important;
+    }
     order: -1;
   }
 }
@@ -83,12 +88,13 @@
       width: 100%;
     }
   }
+  .chatSection {
+    min-width: 100% !important;
+    img {
+      display: none;
+    }
+  }
 }
-
-// .header {
-//   display: flex;
-//   justify-content: space-between;
-// }
 
 .LinkHeader {
   display: flex;
