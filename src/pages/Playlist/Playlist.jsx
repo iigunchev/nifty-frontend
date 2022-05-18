@@ -7,29 +7,40 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { closeModal, openModal } from '../../redux/Dialog/dialogSlice';
+import {
+  closeModal,
+  openModal,
+  setModalAction
+} from '../../redux/Dialog/dialogSlice';
 // hooks
 import useFetchItems from '../../hooks/useFetchItems';
 // components
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 import Modal from '../../components/template/Modal/Modal';
 import PlaylistFormContainer from '../../components/molecules/PlaylistFormContainer/PlaylistFormContainer';
-// import TrendingList from '../../components/organism/TrendingList/TrendingList';
+import TrendingList from '../../components/organism/TrendingList/TrendingList';
+import SecondaryButton from '../../components/molecules/SecondaryButton/SecondaryButton';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
 import './Playlist.scss';
 // utils
-import editPlaylist from '../../utils/api/apiPlaylist';
+import editPlaylist, { followPlaylist } from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
+import PlaylistPlayButton from '../../components/atoms/PlaylistPlayButton/PlaylistPlayButton';
 
 function Playlist() {
   // get playlist id and get playlist
   const { id } = useParams();
   const [playlist, isLoading, setPlaylist] = useFetchItems(`playlist/${id}`);
+
   // redux
   const dispatch = useDispatch();
-  const { isModalOpen } = useSelector((state) => state.dialog);
+  const {
+    dialog: { isModalOpen, modalAction },
+    user
+  } = useSelector((state) => state);
+  // currentUser follows playlist state
   // edit form values and image state
   const [playlistImage, setPlaylistImage] = useState(null);
 
@@ -37,6 +48,21 @@ function Playlist() {
     name: playlist.name,
     description: playlist.description,
     publicAccessible: playlist.publicAccessible
+  };
+
+  const handleFollowPlaylist = async () => {
+    try {
+      await followPlaylist(playlist._id, !playlist.isFollowed);
+      setPlaylist({ ...playlist, isFollowed: !playlist.isFollowed });
+    } catch (e) {
+      toast.error('Failed to follow/unfollow playlist');
+    }
+  };
+
+  const handleOpenEditModal = () => {
+    if (playlist.user._id !== user.id) return;
+    dispatch(openModal());
+    dispatch(setModalAction('editPlaylist'));
   };
 
   const handleEditPlaylist = async (values) => {
@@ -48,10 +74,8 @@ function Playlist() {
           ...values,
           image: playlistImage
         },
-        'PUT',
-        playlist._id
+        { method: 'PUT', url: `/playlist/${playlist._id}` }
       );
-      console.log(newPlaylist);
       setPlaylist({ ...playlist, ...newPlaylist });
       toast.dismiss(toastId);
       toast.success('Playlist edited!');
@@ -60,7 +84,6 @@ function Playlist() {
       toast.error('Failed to edit playlist, please, try again');
     }
   };
-
   return (
     <>
       <section className="playlistSectionContainer">
@@ -69,30 +92,39 @@ function Playlist() {
             <button
               className="editablePlaylistButton"
               type="button"
-              onClick={() => dispatch(openModal())}
+              onClick={handleOpenEditModal}
             >
               <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
             </button>
 
-            <div
-              role="button"
-              tabIndex={0}
-              onClick={() => dispatch(openModal())}
-              className="playlistInfoWrapper"
-            >
+            <div className="playlistInfoWrapper">
+              <div className="headingFollowPlaylist">
+                <h1 className="heading1 playlistName">{playlist.name}</h1>
+                <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
+              </div>
               <p>{playlist.description}</p>
-              <h1 className="heading1 playlistName">{playlist.name}</h1>
+              <span className="followButtonWrapper">
+                <SecondaryButton handleClick={handleFollowPlaylist}>
+                  {playlist.isFollowed ? 'Unfollow' : 'Follow'}
+                </SecondaryButton>
+              </span>
             </div>
           </div>
         </header>
 
-        {!isLoading ? <TrendingTrackItemSkeleton /> : null}
-        {/* <TrendingList
-          errorMessage="This playlist do not have tracks"
-          tracks={playlist.tracks}
-        /> */}
+        {isLoading ? (
+          <TrendingTrackItemSkeleton />
+        ) : (
+          <div className="playlistTracksWrapper">
+            <TrendingList
+              errorMessage="This playlist do not have tracks"
+              tracks={playlist.tracks}
+              handleListState={setPlaylist}
+            />
+          </div>
+        )}
       </section>
-      {!isLoading && isModalOpen ? (
+      {isModalOpen && modalAction === 'editPlaylist' ? (
         <Modal title="Edit your playlist">
           <Formik
             initialValues={initialValues}
@@ -102,7 +134,7 @@ function Playlist() {
             {({ errors, touched }) => (
               <PlaylistFormContainer
                 handleChangeImage={setPlaylistImage}
-                playlistImage={playlist.iamge}
+                playlistImage={playlist.image}
                 errors={errors}
                 touched={touched}
               />

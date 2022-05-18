@@ -15,11 +15,7 @@ function ButtonWithIcon({ handlePlayTrack, trackSrc }) {
     // if is the same song doesn't change
 
     if (trackSrc === currentTrack.src) {
-      if (!isActive) {
-        dispatch(setIsActive(true));
-      } else {
-        dispatch(setIsActive(false));
-      }
+      dispatch(setIsActive(!isActive));
     } else handlePlayTrack();
   };
   return (

@@ -2,9 +2,14 @@
 import Avvvatars from 'avvvatars-react';
 import React from 'react';
 
+// loader
+import { Ping } from '@uiball/loaders';
+
 import './TrendingItem.scss';
+import { useSelector } from 'react-redux';
 
 function TrendingItem({ image = null, title, description, handleClick, id }) {
+  const { isActive, currentTrack } = useSelector((state) => state.audio);
   return (
     <div
       onClick={() => handleClick(id)}
@@ -13,7 +18,14 @@ function TrendingItem({ image = null, title, description, handleClick, id }) {
       className="trendingItemContainer"
     >
       {image ? (
-        <img src={image} alt={`${title}`} className="trendingItemImg" />
+        <>
+          <img src={image} alt={`${title}`} className="trendingItemImg" />
+          {isActive && currentTrack.title === title && (
+            <div className="playingTrackItem">
+              <Ping size={50} />
+            </div>
+          )}
+        </>
       ) : (
         <div className="trendingItemImg">
           <Avvvatars size={50} radius={12} value={title} />
@@ -29,7 +41,6 @@ function TrendingItem({ image = null, title, description, handleClick, id }) {
         <span className="detailsTitle">{title}</span>
         <div className="detailsDescription">
           <span>{description}</span>
-          {/* <span>Flamenco</span> */}
         </div>
       </div>
     </div>

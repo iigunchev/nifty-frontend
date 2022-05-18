@@ -9,7 +9,7 @@ function Artists() {
   console.log(artists);
 
   return (
-    <main>
+    <main style={{ padding: '1.5em' }}>
       <h1 className="heading1">Artists</h1>
       <div className="genresContainer">
         {!isLoadingArtists ? (

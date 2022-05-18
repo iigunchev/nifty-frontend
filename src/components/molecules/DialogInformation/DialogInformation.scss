@@ -1,11 +1,20 @@
 @use '../../../sass/abstracts/variables' as *;
 
+.upperDialog {
+  right: 0px;
+  bottom: 90px;
+}
+
+.lowerDialog {
+  right: 0px;
+  bottom: -130px;
+}
+
 .dialogInformationWrapper {
   position: absolute;
   padding: 0;
-  right: 0px;
-  bottom: -160px;
   z-index: 2;
+  min-height: 100px;
   width: 180px;
   background-color: $bg-dark-aside;
   font-size: 0.85em;

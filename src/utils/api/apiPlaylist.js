@@ -2,17 +2,22 @@ import { getCurrentUserToken } from '../../services/auth/auth';
 import { uploadToCloudinaryWithProgress } from '../cloudinary/uploadToCloudinary';
 import fetchApi from './fetchApi';
 
-const setPlaylist = async (formValues, method = 'POST', id = null) => {
+const setPlaylist = async (
+  formValues,
+  options = {
+    method: 'POST',
+    url: '/playlist'
+  }
+) => {
   try {
     const token = await getCurrentUserToken();
-    const URL = id ? `/playlist/${id}` : '/playlist';
 
     if (!formValues.image) {
       const newPlaylist = await fetchApi(
-        URL,
+        options.url,
         `Bearer ${token}`,
         formValues,
-        method
+        options.method
       );
       return newPlaylist;
     }
@@ -34,6 +39,12 @@ const setPlaylist = async (formValues, method = 'POST', id = null) => {
   } catch (e) {
     throw new Error('Failed to fetch to API');
   }
+};
+
+export const followPlaylist = async (id, follow = true) => {
+  const token = await getCurrentUserToken();
+  const URL = follow ? `/playlist/follow/${id}` : `/playlist/unfollow/${id}`;
+  await fetchApi(URL, `Bearer ${token}`, null, 'PUT');
 };
 
 export default setPlaylist;

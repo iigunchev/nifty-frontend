@@ -6,5 +6,6 @@
 }
 .trendingListWrapper {
   padding: 1em 0;
+  max-width: 700px;
   @include l.flex-container($direction: column, $spacing: center, $gap: 0.5em);
 }

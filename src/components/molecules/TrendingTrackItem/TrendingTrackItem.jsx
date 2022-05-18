@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 // toast
 import { toast } from 'react-toastify';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal, setTrack } from '../../../redux/Dialog/dialogSlice';
 import {
   removeQueue,
   setCurrentTrack,
@@ -13,14 +14,17 @@ import ButtonWithIcon from '../ButtonWithIcon/ButtonWithIcon';
 import TrendingItem from '../TrendingItem/TrendingItem';
 import LikeButton from '../LikeButton/LikeButton';
 import DialogInformation from '../DialogInformation/DialogInformation';
+import AddSongToPlaylist from '../../organism/AddSongToPlaylist/AddSongToPlaylist';
 // icons
 import { ReactComponent as SVG } from '../../../assets/svg/verticalDots.svg';
 // utils
 import { toggleLike } from '../../../utils/api/apiTrack';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
+import fetchApi from '../../../utils/api/fetchApi';
+// services auth
+import { getCurrentUserToken } from '../../../services/auth/auth';
 // styles
 import './TrendingTrackItem.scss';
-import { openModal, setTrack } from '../../../redux/Dialog/dialogSlice';
 
 function TrendingTrackItem({
   artistImg,
@@ -29,13 +33,19 @@ function TrendingTrackItem({
   artistName,
   trackGenre,
   trackId,
-  isLiked
+  isLiked,
+  handleListState
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isTrackLiked, setIsTrackLiked] = useState(isLiked);
+  const [clientCoordinates, setClientCoordinates] = useState(null);
   // on blur id
   let timeOutId;
+  // redux
+  const { modalAction, track: dialogTrack } = useSelector(
+    (state) => state.dialog
+  );
   const dispatch = useDispatch();
   // play track
   const handlePlayTrack = () => {
@@ -63,12 +73,28 @@ function TrendingTrackItem({
     clearTimeout(timeOutId);
   };
 
+  const handleShowDialog = (e) => {
+    setClientCoordinates(e.clientY);
+    setShowDialog(!showDialog);
+  };
+
   const handleLikeTrack = async (likeValue) => {
     setShowDialog(false);
     setIsLoading(true);
     setIsTrackLiked(!isTrackLiked);
     try {
       await toggleLike(likeValue, trackId);
+      if (likeValue) {
+        toast.info(`You liked ${trackName}`, {
+          theme: 'colored',
+          autoClose: 500
+        });
+        return;
+      }
+      toast.info(`You unliked ${trackName}`, {
+        theme: 'colored',
+        autoClose: 500
+      });
     } catch (e) {
       const message = handleAuthErrors(e.message);
       toast.error(message);
@@ -94,6 +120,7 @@ function TrendingTrackItem({
     dispatch(setTrack({ id: trackId, src: trackSrc, action: 'delete' }));
   };
   const handleEditTrack = () => {
+    setShowDialog(false);
     dispatch(
       setTrack({
         id: trackId,
@@ -105,6 +132,42 @@ function TrendingTrackItem({
       })
     );
     dispatch(openModal());
+  };
+
+  const handleAddToPlaylist = () => {
+    setShowDialog(false);
+    dispatch(
+      setTrack({
+        id: trackId,
+        src: trackSrc,
+        action: 'addToPlaylist',
+        name: trackName,
+        img: artistImg,
+        genre: trackGenre
+      })
+    );
+    dispatch(openModal());
+  };
+
+  const handleRemoveFromPlaylist = async (playlistId) => {
+    setShowDialog(false);
+    try {
+      const token = await getCurrentUserToken();
+      // remove song petition
+      await fetchApi(
+        `/playlist/${playlistId}/remove`,
+        `Bearer ${token}`,
+        { track: trackId },
+        'PUT'
+      );
+      handleListState((prevState) => ({
+        ...prevState,
+        tracks: prevState.tracks.filter((element) => element._id !== trackId)
+      }));
+      toast.success('song removed');
+    } catch (e) {
+      toast.error('Failed to remove song');
+    }
   };
 
   return (
@@ -126,11 +189,7 @@ function TrendingTrackItem({
         className="dialogWrapper"
         onBlur={onBlurHandler}
       >
-        <button
-          type="button"
-          onClick={() => setShowDialog(!showDialog)}
-          title="More options"
-        >
+        <button type="button" onClick={handleShowDialog} title="More options">
           <SVG className="verticalDots" />
         </button>
 
@@ -141,9 +200,15 @@ function TrendingTrackItem({
             handleAddToQueue={handleAddToQueue}
             handleEditTrack={handleEditTrack}
             handleDeleteTrack={handleDeleteTrack}
+            handleAddToPlaylist={handleAddToPlaylist}
+            handleRemoveFromPlaylist={handleRemoveFromPlaylist}
+            clientCoordinates={clientCoordinates}
           />
         ) : null}
       </div>
+      {modalAction === 'addToPlaylist' && dialogTrack.id === trackId ? (
+        <AddSongToPlaylist />
+      ) : null}
     </div>
   );
 }

@@ -1,29 +1,52 @@
+@use '../../sass/abstracts/variables' as *;
+
 .homeContainer {
+  padding: 1.5em;
   width: 100%;
   min-height: 100vh;
   display: flex;
-}
-.homeLeftCol {
-  width: 66.66%;
-}
-.homeRightCol {
-  width: 33.66%;
-  background-color: darkgray;
-  min-height: 100vh;
+  flex-direction: column;
+  gap: 2em;
 }
 
-.trendingWrapper {
+.homeBottomCol {
   display: flex;
-  height: 100%;
-  .trendingTracksContainer {
-    width: 66.66%;
-    height: 100%;
-    // have to be changed
-    margin-right: 2em;
+  gap: 10em;
+  .chatSection {
+    position: relative;
+    z-index: 2;
+    top: 50px;
+    right: 0;
+    border-radius: $border;
+    padding: 2em;
+    color: white;
+    background: $primary-gradient;
+    width: 600px;
+    height: 500px;
+    overflow: hidden;
+    .bannerTitle {
+      font-size: 2rem;
+      max-width: 300px;
+    }
+    .bannerDescription {
+      max-width: 300px;
+    }
+    .bannerImg {
+      width: 500px;
+      position: absolute;
+      bottom: -15px;
+      right: -200px;
+      z-index: 1;
+    }
   }
-  .trendingArtistsContainer {
-    width: 33.33%;
-    //background-color: coral;
+  .trendingWrapper {
+    display: flex;
+    height: 100%;
+    gap: 5em;
+    .trendingTracksContainer {
+      height: 100%;
+      max-width: 100%;
+    }
   }
 }
 
@@ -61,7 +84,7 @@
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 1em;
-  overflow: hidden;
+  overflow: scroll;
 }
 .LinkHeader {
   display: flex;

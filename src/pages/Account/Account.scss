@@ -3,6 +3,7 @@
 @use '../../sass/layout/flex' as l;
 
 .accountContainer {
+  padding: 1.5em;
   @include l.flex-container($direction: column, $align: flex-start);
   a {
     text-decoration: none;
@@ -49,7 +50,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
 }
 .accountAvatarContainer {
   max-width: 150px;

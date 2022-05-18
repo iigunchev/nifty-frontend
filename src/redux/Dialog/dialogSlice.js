@@ -30,10 +30,14 @@ const dialogSlice = createSlice({
       state.track.img = payload.img;
       state.track.genre = payload.genre;
       state.modalAction = payload.action;
+    },
+    setModalAction: (state, { payload }) => {
+      state.modalAction = payload;
     }
   }
 });
 
-export const { openModal, closeModal, setTrack } = dialogSlice.actions;
+export const { openModal, closeModal, setTrack, setModalAction } =
+  dialogSlice.actions;
 
 export default dialogSlice.reducer;

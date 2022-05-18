@@ -2,17 +2,20 @@
 import React from 'react';
 // navigate
 import { useNavigate } from 'react-router-dom';
-
+// styles
 import './PlaylistItem.scss';
 // routes
 import { APP } from '../../../routes/routes';
 // icons
 import defaultImage from '../../../assets/img/defaultSong.png';
-import play from '../../../assets/img/player/play.png';
-import song from '../../../assets/svg/asideSvg/genresFilled.svg';
 
-function PlaylistItem({ name, tracksLength, image, id }) {
+import song from '../../../assets/svg/asideSvg/genresFilled.svg';
+// utils
+import PlaylistPlayButton from '../../atoms/PlaylistPlayButton/PlaylistPlayButton';
+
+function PlaylistItem({ name, tracks, image, id }) {
   const navigate = useNavigate();
+
   return (
     <div
       onClick={() => {
@@ -32,18 +35,10 @@ function PlaylistItem({ name, tracksLength, image, id }) {
           <span className="detailTitle">{name}</span>
           <div className="detailDescription">
             <img src={song} alt="song" className="playlistSongIcon" />
-            <span>{tracksLength} tracks</span>
+            <span>{tracks.length} tracks</span>
           </div>
         </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          type="button"
-          className="playListActionButton"
-        >
-          <img className="filteredImg" src={play} alt="play" />
-        </button>
+        <PlaylistPlayButton tracks={tracks} />
       </div>
     </div>
   );

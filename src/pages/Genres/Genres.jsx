@@ -25,7 +25,7 @@ function Genres() {
   if (error) return <div>{error}</div>;
 
   return (
-    <main>
+    <main className="genresMain">
       <h1 className="heading1">Genres</h1>
       <div className="genresContainer">
         {genres &&

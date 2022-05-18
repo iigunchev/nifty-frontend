@@ -8,11 +8,15 @@ const initialState = {
     src: '',
     artist: '',
     title: '',
+    duration: 0,
     image: null,
     queuePosition: 0
   },
+  isRandomizing: false,
   isActive: false,
   queue: [],
+  randomizedQueue: [],
+  historicQueue: [],
   volume: 0.5
 };
 
@@ -37,10 +41,16 @@ const audioSlice = createSlice({
       state.queue = payload;
     },
     setCurrentTrack: (state, { payload }) => {
-      state.currentTrack = payload;
+      state.currentTrack.src = payload.src;
+      state.currentTrack.image = payload.image;
+      state.currentTrack.artist = payload.artist;
+      state.currentTrack.title = payload.title;
+      state.currentTrack.duration = payload.duration;
       state.isActive = true;
       if (state.queue.length === 0) {
         state.queue = [payload];
+      } else {
+        state.historicQueue = [...state.historicQueue, state.currentTrack];
       }
     },
     removeQueue: (state) => {
@@ -48,6 +58,9 @@ const audioSlice = createSlice({
     },
     setVolume: (state, { payload }) => {
       state.volume = payload;
+    },
+    setIsRandomizing: (state, { payload }) => {
+      state.isRandomizing = payload;
     },
     setIsActive: (state, { payload }) => {
       state.isActive = payload;
@@ -63,6 +76,7 @@ export const {
   setTrackPosition,
   setTrackToQueue,
   removeQueue,
+  setIsRandomizing,
   setIsActive
 } = audioSlice.actions;
 

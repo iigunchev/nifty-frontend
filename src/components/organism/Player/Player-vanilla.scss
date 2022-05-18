@@ -128,6 +128,10 @@
     align-items: center;
     gap: 0.5em;
   }
+  img.randomFilterImg {
+    filter: invert(72%) sepia(70%) saturate(3807%) hue-rotate(221deg)
+      brightness(101%) contrast(99%);
+  }
   img.filteredImg {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
       brightness(102%) contrast(102%);
@@ -135,7 +139,6 @@
   .alterButton {
     width: 1.55em;
   }
-
   .nextPreviousButton {
     width: 1.7em;
   }

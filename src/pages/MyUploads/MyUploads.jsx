@@ -37,7 +37,7 @@ function MyUploads() {
   };
 
   return (
-    <main>
+    <main style={{ padding: ' 1.5em' }}>
       <h1 className="heading1">My Uploads</h1>
       <div className="listWrapper">
         {!isLoading ? (
