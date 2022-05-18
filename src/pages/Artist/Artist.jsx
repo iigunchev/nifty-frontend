@@ -1,77 +1,77 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Artist.scss';
-import { useSelector } from 'react-redux';
+
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import useFetchItems from '../../hooks/useFetchItems';
-// import Button from '../../components/molecules/Button/Button';
-import FollowButton from '../../components/molecules/FollowButton/FollowButton';
+
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
+
+import Button from '../../components/molecules/Button/Button';
 
 import follow from '../../utils/api/apiFollow';
 import handleAuthErrors from '../../utils/handleAuthErrors';
 import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
+import IconFollow from '../../assets/img/users-avatar.png';
 
 function Artist() {
   const { id } = useParams();
-  const [artist, isLoading3] = useFetchItems(`account/${id}`);
+  const [artist, isLoadingArtist, setArtist] = useFetchItems(`account/${id}`);
   const [songs, isLoadingSongs] = useFetchItems(`track/byartist/${id}`);
   const [playlists, isLoadingPlaylists] = useFetchItems(
     `playlist/byuser/${id}`
   );
-  const userId = useSelector((state) => state.user.id);
-  console.log(artist);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isArtistFollow, setIsArtistFollow] = useState();
 
-  const followers = artist.followedBy?.length;
-
-  const handleFollowUser = async (followValue) => {
-    setIsLoading(true);
-    setIsArtistFollow(!isArtistFollow);
+  console.log(isLoadingArtist);
+  const handleFollowUser = async () => {
     try {
-      await follow(followValue, id);
+      await follow(artist._id, !artist.isFollowed);
+      setArtist({ ...artist, isFollowed: !artist.isFollowed });
     } catch (e) {
       const message = handleAuthErrors(e.message);
       toast.error(message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
-  console.log(isLoading3);
-
   return (
-    <div className="">
-      <section className="artistSectionContainer">
+    <section className="artistSectionContainer">
+      <header className="artistHeader">
         <div className="artistImageContainer">
-          <img src={artist.profileImage} alt="artist" />
+          {artist.profileImage ? (
+            <img src={artist.profileImage} alt="artistImg" className="" />
+          ) : (
+            <img
+              src=" https://images.unsplash.com/photo-1575285113814-f770cb8c796e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687"
+              alt="artistImg"
+              className=""
+            />
+          )}
         </div>
-        <div className="artistdiv">
-          <h1 className="">{artist.artisticName}</h1>
-          <p>{artist.followers}</p>
-          {/* {!followers ? <p>Followers {followers}</p> : null} */}
-
-          <p>Followers {followers}</p>
-          <FollowButton
-            disabled={isLoading}
-            handleFollow={handleFollowUser}
-            isFollowing={artist?.followedBy?.includes(userId)}
-          />
+        <div className="artistInfo">
+          <h1 className="artistName">{artist.artisticName}</h1>
+          <div className="WrapperFollow">
+            <img src={IconFollow} alt="iconfollow" />
+            <p>Followers {artist.followers}</p>
+          </div>
+          <Button className="ButtonFollow" handleClick={handleFollowUser}>
+            {artist.isFollowed ? 'Unfollow' : 'Follow'}
+          </Button>
         </div>
-      </section>
+      </header>
       <section className="trendingTracksContainer">
         <h2 className="heading2">Tracks</h2>
         {!isLoadingSongs ? <TrendingList tracks={songs} /> : <div>ERROR</div>}
       </section>
-      {!isLoadingPlaylists ? (
-        <PlaylistsList playlists={playlists} />
-      ) : (
-        <TrendingItemSkeleton />
-      )}
-      <h2>hola</h2>
-    </div>
+      <h2 className="heading2">Playlists</h2>
+      <section className="trendingPlaylistContainer">
+        {!isLoadingPlaylists ? (
+          <PlaylistsList playlists={playlists} />
+        ) : (
+          <TrendingItemSkeleton />
+        )}
+      </section>
+    </section>
   );
 }
 
