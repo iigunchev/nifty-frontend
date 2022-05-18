@@ -34,24 +34,22 @@ function Home() {
         </section>
       </section>
       <section className="homeBottomCol">
-        <div className="trendingWrapper">
-          <section className="trendingTracksContainer">
-            <h2 className="heading2">Top Tracks</h2>
-            {!isLoading ? (
-              <TrendingList tracks={songs} />
-            ) : (
-              <TrendingTrackItemSkeleton />
-            )}
-          </section>
-          <section className="trendingArtistsContainer">
-            <h2 className="heading2">Top Artists</h2>
-            {!isLoadingArtists ? (
-              <ArtistList artists={artists} />
-            ) : (
-              <TrendingItemSkeleton />
-            )}
-          </section>
-        </div>
+        <section className="trendingTracksContainer">
+          <h2 className="heading2">Top Tracks</h2>
+          {!isLoading ? (
+            <TrendingList tracks={songs?.slice(0, 6)} />
+          ) : (
+            <TrendingTrackItemSkeleton />
+          )}
+        </section>
+        <section className="trendingArtistsContainer">
+          <h2 className="heading2">Top Artists</h2>
+          {!isLoadingArtists ? (
+            <ArtistList artists={artists?.slice(0, 6)} />
+          ) : (
+            <TrendingItemSkeleton />
+          )}
+        </section>
         <div className="chatSection">
           <div className="bannerTitle">
             <h2>Chat with your friends</h2>

@@ -8,20 +8,24 @@
   flex-direction: column;
   gap: 2em;
 }
-
+.PlayListSection {
+  display: flex;
+  gap: 2em;
+  overflow: scroll;
+}
 .homeBottomCol {
   display: flex;
-  gap: 10em;
+  flex-direction: row;
+  gap: 7em;
+  flex-wrap: wrap;
   .chatSection {
     position: relative;
-    z-index: 2;
-    top: 50px;
-    right: 0;
     border-radius: $border;
     padding: 2em;
     color: white;
     background: $primary-gradient;
     width: 600px;
+    min-width: 500px;
     height: 500px;
     overflow: hidden;
     .bannerTitle {
@@ -38,11 +42,6 @@
       right: -200px;
       z-index: 1;
     }
-  }
-  .trendingWrapper {
-    display: flex;
-    height: 100%;
-    gap: 5em;
     .trendingTracksContainer {
       height: 100%;
       max-width: 100%;
@@ -54,16 +53,29 @@
   .homeContainer {
     width: 100%;
   }
+  .homeBottomCol {
+    width: 100%;
+    gap: 2em;
+  }
   .trendingWrapper {
     width: 100%;
   }
-  .homeLeftCol {
+
+  .trendingTracksContainer,
+  .trendingArtistsContainer {
     width: 100%;
   }
-
-  .homeRightCol {
-    display: none;
+  .trendingTracksContainer {
+    order: -2;
   }
+
+  .chatSection {
+    min-width: 100% !important;
+    order: -1;
+  }
+}
+
+@media only screen and (max-width: 550px) {
   .trendingWrapper {
     flex-direction: column;
     .trendingTracksContainer,
@@ -78,35 +90,9 @@
 //   justify-content: space-between;
 // }
 
-.PlayListSection {
-  display: flex;
-  gap: 2em;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 1em;
-  overflow: scroll;
-}
 .LinkHeader {
   display: flex;
   justify-content: space-between;
   max-width: 630px;
   margin-bottom: 1em;
-}
-
-// .TrendingSection {
-//   min-width: 500px;
-//   max-width: 300px;
-//   max-height: 300px;
-// }
-// .mainsectionwrapper {
-//   display: flex;
-//   justify-content: space-between;
-// }
-
-// .tototo {
-//   display: flex;
-// }
-
-.trendingArtistsContainer {
-  gap: 1em;
 }
