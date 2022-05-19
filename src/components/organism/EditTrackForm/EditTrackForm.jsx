@@ -24,6 +24,8 @@ function EditTrackForm() {
   // image preview / uploaded states
   const [preview, setPreview] = useState(track.img);
   const [newImg, setNewImg] = useState(null);
+  // default genre value
+  const [defGenreValue, setDefGenreValue] = useState(null);
 
   const initialValues = {
     title: track.name,
@@ -91,13 +93,21 @@ function EditTrackForm() {
                   component="select"
                   className="searchGenreInput"
                 >
-                  <option defaultValue>{track.genre}</option>
+                  <option defaultValue value={defGenreValue}>
+                    {track.genre}
+                  </option>
                   {genres.length > 0 &&
-                    genres.map((genre) => (
-                      <option key={genre._id} value={genre._id}>
-                        {genre.name}
-                      </option>
-                    ))}
+                    genres.map((genre) => {
+                      if (genre.name === track.genre) {
+                        setDefGenreValue(genre._id);
+                        return null;
+                      }
+                      return (
+                        <option key={genre._id} value={genre._id}>
+                          {genre.name}
+                        </option>
+                      );
+                    })}
                 </AccountEditInput>
               </div>
               <div className="rightCol">
