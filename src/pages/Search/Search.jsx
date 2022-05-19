@@ -16,7 +16,6 @@ function Search() {
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState('');
-
   // search query and debounced function
   const updateQuery = (e) => setSearchQuery(e.target.value);
   const debouncedOnChange = debounce(updateQuery, 500);
@@ -56,10 +55,7 @@ function Search() {
         <div className="genresContainer">
           {genres &&
             genres.map((genre) => (
-              <Link
-                to={`/app/search/${genre.name.toLowerCase()}`}
-                key={genre._id}
-              >
+              <Link to={`/app/genre/${genre._id}`} key={genre._id}>
                 <div className="genreWrapper">
                   <span className="genreName">{genre.name}</span>
                 </div>

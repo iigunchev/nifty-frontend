@@ -23,6 +23,7 @@ import MyUploads from '../../../pages/MyUploads/MyUploads';
 import MyPlaylists from '../../../pages/MyPlaylists/MyPlaylists';
 import Playlist from '../../../pages/Playlist/Playlist';
 import Queue from '../../../pages/Queue/Queue';
+import Genre from '../../../pages/Genre/Genre';
 
 function ProtectedRoutes() {
   const isAuthenticated = useSelector((state) => state.user.isLoggedIn);
@@ -54,6 +55,7 @@ function ProtectedRoutes() {
         {/* DYNAMIC ROUTES */}
         <Route path={route.ARTIST} element={<Artist />} />
         <Route path={route.PLAYLIST} element={<Playlist />} />
+        <Route path={route.GENRE} element={<Genre />} />
       </Routes>
     </AppTemplate>
   );
