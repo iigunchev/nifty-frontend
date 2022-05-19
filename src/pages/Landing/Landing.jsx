@@ -53,10 +53,10 @@ function Landing() {
               <span className="newFeatureTitle">NEW</span>
               <span className="newFeatureText">Create your own playlist</span>
             </div>
-            <p className="headingTitle">
+            <h1 className="headingTitle">
               Never Stop <br />
               Listening
-            </p>
+            </h1>
             <p className="landingText">
               Discover, stream and share a constantly expanding mix of music
               from emerging and major artists around the world
