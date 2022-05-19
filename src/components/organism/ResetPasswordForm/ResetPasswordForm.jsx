@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import './ResetPasswordForm.scss';
 import { Formik, Form } from 'formik';
 
+// i18n
+import { useTranslation } from 'react-i18next';
+
 import { useNavigate, Link } from 'react-router-dom';
 
 import { LOGIN, HOME } from '../../../routes';
@@ -11,21 +14,20 @@ import Input from '../../molecules/Input/Input';
 
 import { sendResetEmail } from '../../../services/auth/auth';
 // icons
-import schemas from '../../../utils/schemas';
+import { resetPasswordSchema } from '../../../utils/schemas';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import ErrorContainer from '../../molecules/ErrorContainer/ErrorContainer';
 import Button from '../../molecules/Button/Button';
 
 function ResetPasswordForm() {
   const navigate = useNavigate();
+  // i18
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   return (
     <>
-      <h1 className="authHeading">Trouble Logging In?</h1>
-      <p>
-        Enter your email and we&apos;ll send you a link to get back into your
-        account.
-      </p>
+      <h1 className="authHeading">{t('changePassword.title')}</h1>
+      <p>{t('changePassword.p')}</p>
 
       <Formik
         initialValues={{
@@ -41,7 +43,7 @@ function ResetPasswordForm() {
             setError(message);
           }
         }}
-        validationSchema={schemas.resetPasswordSchema}
+        validationSchema={resetPasswordSchema}
       >
         {({ handleSubmit, errors, touched }) => (
           <Form onSubmit={handleSubmit}>
@@ -49,16 +51,18 @@ function ResetPasswordForm() {
               icon="email"
               id="email"
               name="email"
-              label="E-mail"
+              label={t('changePassword.email.label')}
               error={errors.email}
               touched={touched.email}
-              placeholder="example@example.com"
+              placeholder={t('changePassword.email.placeholder')}
             />
 
-            <Button>Reset Password</Button>
+            <Button type="submit" size="xl">
+              {t('changePassword.resetPassword')}
+            </Button>
 
             <div className="loginLink">
-              <Link to={LOGIN}>Back to Login</Link>
+              <Link to={LOGIN}>{t('changePassword.backToLogin')}</Link>
             </div>
           </Form>
         )}

@@ -1,0 +1,27 @@
+@use '../../../sass/abstracts/variables' as *;
+li {
+  width: 100%;
+  margin: 0.5em 0;
+  cursor: pointer;
+  .listItemLink {
+    padding: 0;
+    display: inline;
+    display: inline-flex;
+    align-items: center;
+    gap: 1em;
+    color: $text-gray;
+    text-decoration: none !important;
+    img {
+      width: 1.5em;
+    }
+    &:hover {
+      color: white;
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+  .activeLink {
+    color: white;
+  }
+}

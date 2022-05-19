@@ -5,13 +5,18 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import userSlice from './User/userSlice';
+import audioSlice from './Audio/audioSlice';
+import dialogSlice from './Dialog/dialogSlice';
 
 const reducers = combineReducers({
-  user: userSlice
+  user: userSlice,
+  audio: audioSlice,
+  dialog: dialogSlice
 });
 const persistConfig = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['audio', 'dialog']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

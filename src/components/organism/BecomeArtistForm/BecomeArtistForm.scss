@@ -1,0 +1,27 @@
+@use '../../../sass/abstracts/variables' as *;
+
+@use '../../../sass/abstracts/mixins' as m;
+@use '../../../sass/core/typography' as t;
+@use '../../../sass/layout/flex' as f;
+
+.ArtistSection {
+  padding: 3em;
+  @include f.flex-container(
+    $direction: column,
+    $align: flex-start,
+    $gap: 1.5em,
+    $wrap: nowrap
+  );
+}
+.artisticNameForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+.heading1 {
+  p {
+    font-size: 15px;
+  }
+}

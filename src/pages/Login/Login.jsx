@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from '../../components/organism/LoginForm/LoginForm';
-import AuthTemplate from '../../components/template/AuthTemplate';
+import AuthTemplate from '../../components/template/AuthTemplate/AuthTemplate';
 
 function Login() {
   return (

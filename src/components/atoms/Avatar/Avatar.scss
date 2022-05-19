@@ -1,0 +1,9 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.avatar {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: $border-xl;
+  margin: 0 !important;
+  width: 100%;
+}

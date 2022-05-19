@@ -1,0 +1,193 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.progressInputContainer {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+.progressBarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1em;
+  gap: 1em;
+}
+.currentTime,
+.duration {
+  font-size: 12px;
+}
+
+.progressBar {
+  --bar-bg: rgb(215, 215, 215);
+  --seek-before-width: 0;
+  --seek-before-color: #c685fd;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 300px;
+  height: 4px;
+  outline: none;
+}
+
+/* progress bar - safari */
+.progressBar::-webkit-slider-runnable-track {
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: 4px;
+  outline: none;
+}
+
+/* progress bar - firefox */
+.progressBar::-moz-range-track {
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: 4px;
+  outline: none;
+}
+
+.progressBar::-moz-focus-outer {
+  border: 0;
+}
+
+/* progress bar - chrome and safari */
+.progressBar::before {
+  content: '';
+  height: 4px;
+  width: var(--seek-before-width);
+  background-color: var(--seek-before-color);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* progress bar - firefox */
+.progressBar::-moz-range-progress {
+  background-color: var(--seek-before-color);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 4px;
+}
+
+/* knobby - chrome and safari */
+.progressBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: $accent-dark;
+  cursor: pointer;
+  position: relative;
+  margin: -2px 0 0 0;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+/* knobby while dragging - chrome and safari */
+.progressBar:active::-webkit-slider-thumb {
+  transform: scale(1.4);
+  background: $accent-dark;
+}
+/* knobby - firefox */
+.progressBar::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: transparent;
+  background-color: $accent-dark;
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+/* knobby while dragging - firefox */
+.progressBar:active::-moz-range-thumb {
+  transform: scale(1.4);
+  background: $accent-dark;
+}
+
+.primaryControlsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .controlButtonsWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  img.randomFilterImg {
+    filter: invert(72%) sepia(70%) saturate(3807%) hue-rotate(221deg)
+      brightness(101%) contrast(99%);
+  }
+  img.filteredImg {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+      brightness(102%) contrast(102%);
+  }
+  .alterButton {
+    width: 1.55em;
+  }
+  .nextPreviousButton {
+    width: 1.7em;
+  }
+  .playStopButton {
+    width: 3em;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .primaryControlsWrapper {
+    max-width: 400px;
+  }
+}
+// @media only screen and (max-width: 760px) {
+//   img.songPlayerImage {
+//     display: none !important;
+//   }
+//   .primaryControlsWrapper {
+//     order: 3;
+//     margin: 0 auto;
+//   }
+// }
+
+@media only screen and (max-width: 810px) {
+  .progressInputContainer {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: -1.5px;
+  }
+  .progressBar {
+    width: 100%;
+    margin: 0;
+  }
+  .currentTime,
+  .duration {
+    display: none;
+  }
+  .songPlayerWrapper {
+    img{
+      width: 50px;
+    }
+  }
+  .songPlayerInfo {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 475px) {
+  .songPlayerWrapper {
+    img{
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@use '../../sass/abstracts/variables' as *;
+.searchMainContainer {
+  padding: 1em;
+}
+.genresContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.genreWrapper {
+  width: 200px;
+  height: 200px;
+  border-radius: 24px;
+  background: $bg-dark;
+  display: flex;
+}
+.genreName {
+  color: white;
+  font-size: 1.6em;
+  font-weight: 600;
+  padding: 0.5em;
+}
+.searhBar {
+  color: $text-dark;
+  line-height: 1.2;
+  display: block;
+  max-width: 300px;
+  background: transparent;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  outline: none;
+  border: 2px solid $bg-offwhite;
+  border-radius: 24px;
+  &:focus {
+    border: 2px solid $bg-gray !important;
+  }
+}
+.searchPlaylistWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-top: 1em;
+}

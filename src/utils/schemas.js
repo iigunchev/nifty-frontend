@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const signupSchema = Yup.object().shape({
+export const signupSchema = Yup.object().shape({
   firstName: Yup.string()
     .min('2', 'First name too short')
     .max('20', 'First name too long')
@@ -18,7 +18,7 @@ const signupSchema = Yup.object().shape({
     )
 });
 
-const signInSchema = Yup.object().shape({
+export const signInSchema = Yup.object().shape({
   password: Yup.string()
     .min(3, 'The password is too short')
     .max(20, 'The password is too long')
@@ -28,13 +28,13 @@ const signInSchema = Yup.object().shape({
     .required('Email is required')
 });
 
-const resetPasswordSchema = Yup.object().shape({
+export const resetPasswordSchema = Yup.object().shape({
   email: Yup.string()
     .email('This must be a valid email address')
     .required('Email is required')
 });
 
-const editProfileSchema = Yup.object().shape({
+export const editProfileSchema = Yup.object().shape({
   firstName: Yup.string()
     .min('2', 'First name too short')
     .max('20', 'First name too long')
@@ -46,7 +46,7 @@ const editProfileSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required')
 });
 
-const changePasswordSchema = Yup.object().shape({
+export const changePasswordSchema = Yup.object().shape({
   newPassword: Yup.string()
     .required('Password required')
     .matches(
@@ -59,10 +59,24 @@ const changePasswordSchema = Yup.object().shape({
   )
 });
 
+export const uploadSongSchema = Yup.object().shape({
+  title: Yup.string()
+    .required('Title is required')
+    .max('30', 'Title is too long'),
+  genre: Yup.string().required('Please select a genre')
+});
+
+export const createPlaylistSchema = Yup.object().shape({
+  name: Yup.string()
+    .required('Playlists need a name!')
+    .max('25', 'Playlist name too long')
+});
+
 export default {
   signupSchema,
   signInSchema,
   resetPasswordSchema,
   editProfileSchema,
-  changePasswordSchema
+  changePasswordSchema,
+  uploadSongSchema
 };

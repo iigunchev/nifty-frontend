@@ -11,6 +11,7 @@ import {
   sendPasswordResetEmail,
   deleteUser,
   updateEmail,
+  updatePassword,
   EmailAuthProvider,
   reauthenticateWithCredential
 } from 'firebase/auth';
@@ -78,9 +79,13 @@ export function getCurrentUserFullName() {
 //* GET INFO CURRENT USER
 
 //* EDIT INFO USER
-export function reauthenticate(password) {
-  const cred = EmailAuthProvider.credential(auth.currentUser.email, password);
-  return reauthenticateWithCredential(auth.currentUser, cred);
+export async function reauthenticate(password) {
+  try {
+    const cred = EmailAuthProvider.credential(auth.currentUser.email, password);
+    return reauthenticateWithCredential(auth.currentUser, cred);
+  } catch (error) {
+    throw Error('Failed fetching resources to API');
+  }
 }
 
 export function changeCurrentUserEmail(newEmail) {
@@ -95,6 +100,15 @@ export function changeCurrentUserEmail(newEmail) {
 export async function deleteCurrentUser() {
   try {
     await deleteUser(auth.currentUser);
+  } catch (e) {
+    throw Error(e.message);
+  }
+}
+//* Change User Password
+
+export async function changePassword(user, password) {
+  try {
+    await updatePassword(user, password);
   } catch (e) {
     throw Error(e.message);
   }

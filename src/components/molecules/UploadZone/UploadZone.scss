@@ -1,0 +1,14 @@
+@use '../../../sass/abstracts/variables' as *;
+.dragArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 3px dashed $bg-gray;
+  padding: 1.5em;
+  height: 400px;
+  max-width: 600px;
+  .btnWrapper {
+    max-width: 200px;
+  }
+}

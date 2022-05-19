@@ -9,6 +9,8 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import './sass/main.scss';
 import store from './redux/store';
+// i18 languages
+import './i18n';
 
 const persistor = persistStore(store);
 

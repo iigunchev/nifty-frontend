@@ -3,6 +3,8 @@ import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 // styles
 import './SignUpForm.scss';
+// i18n
+import { useTranslation } from 'react-i18next';
 // redux
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
@@ -11,23 +13,25 @@ import Input from '../../molecules/Input/Input';
 import Button from '../../molecules/Button/Button';
 // actions
 import { setUser } from '../../../redux/User/userSlice';
-import { HOME, LOGIN } from '../../../routes';
+import { APP, LOGIN } from '../../../routes';
 // auth
 import {
   signInWithGoogle,
   signUpEmailAndPassword
 } from '../../../services/auth/auth';
-import apiAuth from '../../../utils/fetchAuthApi';
+import apiAuth from '../../../utils/api/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 
 // schema
-import schemas from '../../../utils/schemas';
+import { signupSchema } from '../../../utils/schemas';
 import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 // icon
 import googleIcon from '../../../assets/svg/googleIcon.svg';
 
 function SignUpForm() {
+  // i18
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // navigatings
@@ -51,7 +55,7 @@ function SignUpForm() {
       const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(HOME);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -68,7 +72,7 @@ function SignUpForm() {
       const apiUser = await apiAuth.signupWithApi(firstName, lastName);
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(HOME);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -79,18 +83,18 @@ function SignUpForm() {
 
   return (
     <>
-      <h1 className="authHeading">Sign up</h1>
+      <h1 className="authHeading">{t('signup.title')}</h1>
       <SecondaryButton
         disabled={isLoading}
         handleClick={handleLoginWithGoogle}
         type="button"
       >
-        <span>Sign up with</span>
+        <span>{t('signup.with')}</span>
         <img src={googleIcon} alt="google icon" />
       </SecondaryButton>
       <Formik
         initialValues={initialValues}
-        validationSchema={schemas.signupSchema}
+        validationSchema={signupSchema}
         onSubmit={(values) => handleSignup(values)}
       >
         {({ errors, touched }) => (
@@ -100,24 +104,24 @@ function SignUpForm() {
               touched={touched.firstName}
               icon="user"
               name="firstName"
-              label="First Name"
-              placeholder="Type your Name"
+              label={t('signup.firstName.label')}
+              placeholder={t('signup.firstName.placeholder')}
             />
             <Input
               error={errors.lastName}
               touched={touched.lastName}
               icon="user"
               name="lastName"
-              label="Last Name"
-              placeholder="Type your last name"
+              label={t('signup.lastName.label')}
+              placeholder={t('signup.lastName.placeholder')}
             />
             <Input
               error={errors.email}
               touched={touched.email}
               icon="email"
               name="email"
-              label="Email"
-              placeholder="Type your email"
+              label={t('signup.email.label')}
+              placeholder={t('signup.email.placeholder')}
             />
             <Input
               error={errors.password}
@@ -126,16 +130,18 @@ function SignUpForm() {
               icon="password"
               password
               name="password"
-              label="Password"
-              placeholder="Type your password"
+              label={t('signup.password.label')}
+              placeholder={t('signup.password.placeholder')}
             />
-            <Button isLoading={isLoading}>SIGN UP</Button>
+            <Button isLoading={isLoading} type="submit" size="xl">
+              {t('signup.title')}
+            </Button>
           </Form>
         )}
       </Formik>
       <ErrorContainer error={error} />
       <div className="loginLink">
-        <Link to={LOGIN}>Back to Login</Link>
+        <Link to={LOGIN}>{t('signup.backToLogin')}</Link>
       </div>
     </>
   );

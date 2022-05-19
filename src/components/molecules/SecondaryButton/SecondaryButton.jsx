@@ -9,20 +9,21 @@ const buttonSize = {
     width: '50%'
   },
   xl: {
-    width: '100%'
+    padding: '10px 10px'
   }
 };
 function SecondaryButton({
   disabled,
   handleClick,
   children,
+  className = null,
   size = 'xl',
   type = false
 }) {
   return (
     <button
       disabled={disabled}
-      className="secondaryButton"
+      className={`secondaryButton ${className}`}
       onClick={handleClick}
       type={type ? 'button' : 'submit'}
       label="button"

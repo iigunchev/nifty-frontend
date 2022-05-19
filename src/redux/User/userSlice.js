@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+import { getCurrentUserProviderId } from '../../services/auth/auth';
 
 const initialState = {
   id: '',
@@ -12,13 +13,17 @@ const initialState = {
   language: 'en',
   artist: false,
   profileImage: null,
-  isLoggedIn: false
+  isLoggedIn: false,
+  providerId: null
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setLanguage: (state, { payload }) => {
+      state.language = payload;
+    },
     setUser: (state, { payload }) => {
       state.id = payload._id;
       state.firstName = payload.firstName;
@@ -28,7 +33,9 @@ const userSlice = createSlice({
       state.following = payload.following;
       state.language = payload.language;
       state.artist = payload.artist;
+      state.profileImage = payload.profileImage;
       state.isLoggedIn = true;
+      state.providerId = getCurrentUserProviderId();
     },
     removeUser: () => {
       storage.removeItem('persist:root');
@@ -37,6 +44,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, setLanguage } = userSlice.actions;
 
 export default userSlice.reducer;

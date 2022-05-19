@@ -1,23 +1,75 @@
-.menu {
+@use '../../sass/abstracts/variables' as *;
+.LinkHeader {
+  margin-bottom: 1em;
+}
+.homeContainer {
+  padding: 1.5em;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 720px;
-  margin: 0 auto;
-  height: 10vh;
-  list-style: none;
+  flex-direction: column;
+  gap: 1.5em;
+}
+.skeletonFlexRow {
+  display: flex;
+  gap: 1em;
+}
+.homeBottomCol {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 1em;
+  .trendingHeader {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+  }
+  .homeLikedSongsContainer {
+    height: 100%;
+    max-width: 100%;
+  }
+  .homeTrendingTracksContainer {
+    height: 100%;
+
+    max-width: 100%;
+  }
+  .homeTrendingArtistsContainer {
+    overflow: hidden;
+
+    min-width: 400px;
+    .artistListWrapper {
+      height: 400px;
+      overflow: hidden;
+      gap: 0;
+    }
+    .artistItemWrapper {
+      width: 150px;
+    }
+  }
 }
 
-.menu li {
-  width: 125px;
-  height: 50px;
-  transition: background-position-x 0.9s linear;
-  text-align: center;
+@media screen and (max-width: 1315px) {
+  .homeBottomCol {
+    flex-wrap: wrap;
+    .homeTrendingTracksContainer,
+    .homeLikedSongsContainer {
+      width: 45%;
+    }
+  }
+}
 
-  a {
-    font-size: 22px;
-    color: #777;
-    text-decoration: none;
-    transition: all 0.45s;
+@media only screen and (max-width: 768px) {
+  .homeContainer {
+    width: 100%;
+  }
+  .homeBottomCol {
+    width: 100%;
+    gap: 2em;
+  }
+
+  .homeTrendingTracksContainer,
+  .homeTrendingArtistsContainer,
+  .homeLikedSongsContainer {
+    width: 100% !important;
   }
 }

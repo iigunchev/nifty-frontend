@@ -8,22 +8,26 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 // router
 import { useNavigate, Link } from 'react-router-dom';
+
+// i18n
+import { useTranslation } from 'react-i18next';
+// components
+import Input from '../../molecules/Input/Input';
 // redux actions
 import { setUser } from '../../../redux/User/userSlice';
 
-import { HOME, SIGN_UP, RESET_PASSWORD } from '../../../routes';
+import { SIGN_UP, RESET_PASSWORD, APP } from '../../../routes';
 // formik schema
-import schemas from '../../../utils/schemas';
-// components
-import Input from '../../molecules/Input/Input';
+import { signInSchema } from '../../../utils/schemas';
 // auth
 import {
   signInEmailAndPassword,
   signInWithGoogle
 } from '../../../services/auth/auth';
 // utils
-import apiAuth from '../../../utils/fetchAuthApi';
+import apiAuth from '../../../utils/api/fetchAuthApi';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
+
 // icons
 import googleIcon from '../../../assets/svg/googleIcon.svg';
 // components
@@ -34,6 +38,8 @@ import SecondaryButton from '../../molecules/SecondaryButton/SecondaryButton';
 
 function LoginForm() {
   const navigate = useNavigate();
+  // i18
+  const { t } = useTranslation();
 
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +54,7 @@ function LoginForm() {
       const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(HOME);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -66,7 +72,7 @@ function LoginForm() {
       const apiUser = await apiAuth.loginWithApi();
       // set user in redux
       dispatch(setUser(apiUser));
-      navigate(HOME);
+      navigate(APP);
     } catch (e) {
       const message = handleAuthErrors(e.message);
       setError(message);
@@ -76,13 +82,13 @@ function LoginForm() {
   };
   return (
     <>
-      <h1 className="authHeading">Login</h1>
+      <h1 className="authHeading">{t('login.title')}</h1>
       <Formik
         initialValues={{
           email: '',
           password: ''
         }}
-        validationSchema={schemas.signInSchema}
+        validationSchema={signInSchema}
         onSubmit={(values) => handleLogin(values)}
       >
         {({ handleSubmit, errors, touched }) => (
@@ -93,8 +99,8 @@ function LoginForm() {
               icon="email"
               error={errors.email}
               name="email"
-              label="Email"
-              placeholder="Type your email"
+              label={t('login.email.label')}
+              placeholder={t('login.email.placeholder')}
             />
             <Input
               id="password"
@@ -102,29 +108,38 @@ function LoginForm() {
               name="password"
               touched={touched.password}
               error={errors.password}
-              label="Password"
-              placeholder="Type your password"
+              label={t('login.password.label')}
+              placeholder={t('login.password.placeholder')}
               password
             />
             <div className="textRightLogin">
-              <Link to={RESET_PASSWORD}>Forgot password?</Link>
+              <Link to={RESET_PASSWORD}>{t('login.forgotPassword')}</Link>
             </div>
-
-            <Button isLoading={isLoading}>LOG IN</Button>
-            <SecondaryButton
-              disabled={isLoading}
-              handleClick={handleLoginWithGoogle}
-              type
-            >
-              <span>Continue with</span>
-              <img src={googleIcon} alt="google icon" />
-            </SecondaryButton>
+            <div className="loginFormBtnWrapper">
+              <Button
+                className="loginButton"
+                isLoading={isLoading}
+                type="submit"
+                size="xl"
+              >
+                {t('login.login')}
+              </Button>
+              <SecondaryButton
+                size="xl"
+                disabled={isLoading}
+                handleClick={handleLoginWithGoogle}
+                type
+              >
+                <span>{t('login.loginGoogle')}</span>
+                <img src={googleIcon} alt="google icon" />
+              </SecondaryButton>
+            </div>
             <ErrorContainer error={error} />
             <div className="flexBottomText">
-              <span className="textSignup">Don&apos;t have an account?</span>
+              <span className="textSignup">{t('login.dontHaveAnAccount')}</span>
 
               <span className="signupLink">
-                <Link to={SIGN_UP}>Sign up</Link>
+                <Link to={SIGN_UP}>{t('login.signUp')}</Link>
               </span>
             </div>
           </Form>

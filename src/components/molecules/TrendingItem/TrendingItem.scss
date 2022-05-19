@@ -1,0 +1,45 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+
+.trendingItemContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  padding: 0.5em;
+}
+.playingTrackItem {
+  position: absolute;
+  display: none;
+}
+.trendingItemImg {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  min-height: 50px;
+  width: 50px;
+  box-shadow: $boxshadow;
+}
+.detailsWrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  .detailsTitle {
+    color: $text-dark;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .detailsDescription {
+    color: $text-gray;
+    font-size: 12px;
+    margin-right: 0.5em;
+  }
+}
+
+@media screen and(max-width:500px) {
+  .playingTrackItem {
+    display: block;
+  }
+}

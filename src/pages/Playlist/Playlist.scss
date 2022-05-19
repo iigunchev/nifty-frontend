@@ -1,0 +1,77 @@
+@use '../../sass/abstracts/variables' as *;
+.playlistHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+.followButtonWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.playlistPlayButton {
+  width: 100%;
+  img {
+    filter: invert(6%) sepia(66%) saturate(6079%) hue-rotate(275deg)
+      brightness(62%) contrast(103%);
+  }
+}
+.editableInformationWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  gap: 1em;
+  .headingFollowPlaylist {
+    display: flex;
+    gap: 1em;
+  }
+  .editablePlaylistButton {
+    width: 150px;
+    height: 150px;
+    img {
+      aspect-ratio: 1/1;
+      border-radius: $border;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .playlistInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    height: 100%;
+    overflow: hidden;
+    p {
+      font-size: 14px;
+      width: 70%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.playlistButtonWrapper {
+  width: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.playlistTracksWrapper {
+  padding: 1.5em;
+}
+
+@media screen and (max-width: 500px) {
+  .playlistPlayButton {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    img {
+      filter: invert(99%) sepia(96%) saturate(20%) hue-rotate(220deg)
+        brightness(103%) contrast(100%);
+    }
+  }
+  .editablePlaylistButton {
+    max-width: 100px;
+  }
+}
