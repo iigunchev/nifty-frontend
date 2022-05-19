@@ -15,9 +15,7 @@
 }
 .homeBottomCol {
   display: flex;
-
   justify-content: space-between;
-
   gap: 1em;
   .trendingHeader {
     display: flex;
@@ -25,14 +23,12 @@
     gap: 2em;
   }
   .homeLikedSongsContainer {
-    height: 100%;
-    min-width: 280px;
-    max-width: 100%;
+    min-width: 400px;
+    width: 100%;
   }
   .homeTrendingTracksContainer {
-    height: 100%;
-
-    max-width: 100%;
+    min-width: 400px;
+    width: 100%;
   }
 
   .homeTrendingArtistsContainer {

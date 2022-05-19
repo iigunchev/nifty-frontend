@@ -94,7 +94,7 @@ function Home() {
         <article className="homeTrendingArtistsContainer">
           <span className="trendingHeader">
             <h2 className="heading2">Top Artists</h2>
-            <Link to="/app/artists">See more...</Link>
+            <Link to="/app/artists">See more</Link>
           </span>
           {!isLoadingArtists ? (
             <ArtistList avatarWidth={120} artists={artists.slice(0, 10)} />

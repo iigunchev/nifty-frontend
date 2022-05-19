@@ -24,11 +24,13 @@
   z-index: 3;
   width: 90%;
   margin-bottom: 0.5em;
-  display: flex;
   background-color: rgba(0, 0, 0, 0.716);
   border-radius: 24px;
   color: white;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
   .playlistSongIcon {
     width: 15px;
   }
@@ -46,15 +48,21 @@
 
 .detailDescription {
   display: flex;
-  flex-direction: row;
   gap: 5px;
   span {
     font-size: 12px;
   }
 }
-
+.detailsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .detailTitle {
   font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  
 }
 
 @media screen and (max-width: 500px) {
