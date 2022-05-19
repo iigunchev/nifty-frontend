@@ -32,7 +32,7 @@ function PlaylistItem({ name, tracks, image, id }) {
       />
       <div className="playListBottomContainer">
         <span className="detailTitle">{name}</span>
-        <div className="detailsWrapper">
+        <div className="playlistDetailsWrapper">
           <div className="detailDescription">
             <img src={song} alt="song" className="playlistSongIcon" />
             <span>{tracks.length}</span>
