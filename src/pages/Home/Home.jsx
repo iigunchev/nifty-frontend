@@ -18,10 +18,10 @@ import TrendingList from '../../components/organism/TrendingList/TrendingList';
 import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
 
 function Home() {
-  const [songs, isLoading] = useFetchItems('track');
-  const [artists, isLoadingArtists] = useFetchItems('account/byartist');
+  const [popularTracks, isLoading] = useFetchItems('track/popular');
+  const [artists, isLoadingArtists] = useFetchItems('account/popular');
   const [likedSongs, isLoadingLikedSongs] = useFetchItems(`track/getLiked`);
-  const [playlists, isLoadingPlaylists] = useFetchItems('playlist');
+  const [playlists, isLoadingPlaylists] = useFetchItems('playlist/popular');
 
   const responsiveCarousel = {
     0: { items: 2 },
@@ -75,7 +75,7 @@ function Home() {
         <article className="homeTrendingTracksContainer">
           <h2 className="heading2">Top Tracks</h2>
           {!isLoading ? (
-            <TrendingList tracks={songs.slice(0, 5)} />
+            <TrendingList tracks={popularTracks.slice(0, 5)} />
           ) : (
             <TrendingTrackItemSkeleton />
           )}
