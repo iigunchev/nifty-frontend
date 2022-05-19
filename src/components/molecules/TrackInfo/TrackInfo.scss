@@ -1,0 +1,67 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+
+.songPlayerWrapper {
+  z-index: 1;
+  width: 300px;
+  display: flex;
+  gap: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 70px;
+    border-radius: calc($border/2);
+  }
+
+  h3 {
+    color: white;
+  }
+  span {
+    color: $text-lightgray;
+    font-size: t.$text-sm;
+  }
+}
+@media only screen and (max-width: 810px) {
+  .songPlayerWrapper {
+    max-width: 400px;
+    padding: 0;
+  }
+  .songPlayerInfo {
+    padding: 0 1em;
+    width: 100%;
+    // animation: 20s linear 1s infinite running horizontal-slide;
+    gap: 1em;
+    margin-bottom: 8px;
+    h3 {
+      line-height: 1;
+    }
+  }
+  @keyframes horizontal-slide {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(200px);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    75% {
+      transform: translateX(-200px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+@media only screen and (max-width: 475px) {
+  .songPlayerInfo {
+    display: flex;
+  }
+  .controlButtonsWrapper {
+    justify-content: center;
+  }
+}

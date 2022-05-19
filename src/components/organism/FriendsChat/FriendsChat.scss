@@ -1,0 +1,31 @@
+.chatSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: $border;
+  padding: 2em;
+  color: white;
+  background: $primary-gradient;
+  width: 50%;
+  min-width: 100px;
+  overflow: hidden;
+
+  .bannerTitle {
+    font-size: 2rem;
+    max-width: 300px;
+  }
+  .bannerDescription {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+  .bannerImg {
+    width: 500px;
+    position: absolute;
+    bottom: -55px;
+    right: -225px;
+    z-index: 1;
+  }
+}

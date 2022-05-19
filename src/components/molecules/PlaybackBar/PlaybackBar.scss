@@ -1,0 +1,16 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+
+.playbackBarWrapper {
+  display: flex;
+  color: $text-lightgray;
+  align-items: center;
+  width: 80%;
+  .time {
+    font-size: t.$text-sm;
+  }
+  input[type='range'] {
+    width: 100%;
+    cursor: pointer;
+  }
+}

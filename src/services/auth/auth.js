@@ -8,7 +8,12 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  deleteUser,
+  updateEmail,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 
@@ -46,6 +51,15 @@ export function sendResetEmail(email) {
 export function logOut() {
   return signOut(auth);
 }
+//* GET INFO CURRENT USER
+
+export function getCurrentUserProviderId() {
+  if (!auth.currentUser) {
+    return null;
+  }
+  // returns provider (google, password, etc)
+  return auth.currentUser.providerData[0].providerId;
+}
 
 export function getCurrentUserToken() {
   if (!auth.currentUser) {
@@ -55,12 +69,49 @@ export function getCurrentUserToken() {
   return auth.currentUser.getIdToken();
 }
 
-export function getCurrentUserEmail() {
+export function getCurrentUserFullName() {
   if (!auth.currentUser) {
     return null;
   }
 
-  return auth.currentUser.email;
+  return auth.currentUser.displayName;
+}
+//* GET INFO CURRENT USER
+
+//* EDIT INFO USER
+export async function reauthenticate(password) {
+  try {
+    const cred = EmailAuthProvider.credential(auth.currentUser.email, password);
+    return reauthenticateWithCredential(auth.currentUser, cred);
+  } catch (error) {
+    throw Error('Failed fetching resources to API');
+  }
+}
+
+export function changeCurrentUserEmail(newEmail) {
+  if (!auth.currentUser) {
+    return null;
+  }
+  return updateEmail(auth.currentUser, newEmail);
+}
+
+//* EDIT INFO USER
+
+export async function deleteCurrentUser() {
+  try {
+    await deleteUser(auth.currentUser);
+  } catch (e) {
+    throw Error(e.message);
+  }
+}
+//* Change User Password
+
+export async function changePassword(user, password) {
+  try {
+    await updatePassword(user, password);
+  } catch (e) {
+    throw Error(e.message);
+  }
 }
 
 export function useAuth() {

@@ -1,0 +1,23 @@
+.listWrapper {
+  max-width: 800px;
+}
+.modalText {
+  span {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.75em;
+    margin-bottom: 1em;
+  }
+}
+
+.buttonsWrapper {
+  margin-top: 1em;
+  display: flex;
+  gap: 2em;
+  .cancelBtn {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

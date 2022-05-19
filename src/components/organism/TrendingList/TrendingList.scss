@@ -1,0 +1,11 @@
+@use '../../../sass/layout/flex' as l;
+
+.trendingHeaderWrapper {
+  @include l.flex-container($direction: row, $spacing: space-between);
+  width: 100%;
+}
+.trendingListWrapper {
+  padding: 1em 0;
+  max-width: 700px;
+  @include l.flex-container($direction: column, $spacing: center, $gap: 0.5em);
+}

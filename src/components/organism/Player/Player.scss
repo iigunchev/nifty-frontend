@@ -1,0 +1,42 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.playerContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 21;
+  .playerWrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0.75em;
+    background: $bg-gray;
+    width: 100%;
+    .controllersWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 70%;
+    }
+  }
+}
+
+// @media screen and (max-width: 1000px) {
+//   .playerContainer {
+//     position: absolute;
+//     bottom: 0;
+//     width: 100%;
+//   }
+// }
+// @media screen and (max-width: 760px) {
+//   .playerWrapper {
+//     flex-wrap: wrap;
+//   }
+// }
+@media screen and (max-width: 475px) {
+  .playerWrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5em;
+  }
+}

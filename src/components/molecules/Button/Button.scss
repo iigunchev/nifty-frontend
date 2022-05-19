@@ -1,0 +1,17 @@
+@use '../../../sass/abstracts/variables' as *;
+@use '../../../sass/core/typography' as t;
+@use '../../../sass/abstracts/mixins' as m;
+
+.button {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: $border;
+  color: #fff;
+  background: $primary-gradient;
+  box-shadow: $boxshadow;
+}

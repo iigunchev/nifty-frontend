@@ -1,0 +1,62 @@
+{
+  "signup": {
+    "title": "Crear cuenta",
+    "with": "Crear cuenta con",
+    "firstName": {
+      "label": "Nombre",
+      "placeholder": "Introduce tu nombre"
+    },
+    "lastName": {
+      "label": "Apellidos",
+      "placeholder": "Introduce tus apellidos"
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Introduce tu correo"
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Introduce tu contraseña"
+    },
+    "submit": "Registrarte"
+  },
+  "login": {
+    "title": "Inicia Sesión",
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Introduce tu correo"
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Introduce tu contraseña"
+    },
+    "forgotPassword": "¿Has olvidado tu contraseña?",
+    "login": "Iniciar sesión",
+    "loginGoogle": "Continuar con",
+    "dontHaveAnAccount": "¿No tienes cuenta?",
+    "signUp": "Regístrate"
+  },
+  "changePassword": {
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "ejemplo@ejemplo.com"
+    },
+    "title": "¿Problemas para iniciar sesión?",
+    "p": "Ingrese su correo electrónico y le enviaremos un enlace para acceder a su cuenta.",
+    "resetPassword": "Restablecer la contraseña",
+    "backToLogin": "Back to Login"
+  },
+  "aside": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "playlists": "Playlists",
+    "artists": "Artistas",
+    "myLikes": "Likes",
+    "myPlaylist": "Mis playlist",
+    "myUploads": "Mis canciones",
+    "upload": "Upload",
+    "popular": "Popular",
+    "account": "Cuenta",
+    "signOut": "Cerrar Sesion"
+  }
+}

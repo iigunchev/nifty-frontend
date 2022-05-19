@@ -1,0 +1,7 @@
+@use '../../../sass/layout/flex' as l;
+
+.artistListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}

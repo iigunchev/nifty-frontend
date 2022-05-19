@@ -1,0 +1,6 @@
+@use '../../../sass/abstracts/variables' as *;
+
+.currentTime, .duration {
+  color: white;
+  font-weight: 500;
+}

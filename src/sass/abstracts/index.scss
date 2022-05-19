@@ -1,0 +1,10 @@
+@forward './mixins';
+@forward './variables';
+
+a {
+  text-decoration: none;
+  color: #26033e;
+  &:hover {
+    text-decoration: underline;
+  }
+}

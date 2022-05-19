@@ -1,0 +1,63 @@
+{
+  "signup": {
+    "title": "Sign up",
+    "with": "Sign up with",
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Type your first name"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Type your last name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Type your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Type your password"
+    },
+    "submit": "Sign up",
+    "backToLogin": "Back to Login"
+  },
+  "login": {
+    "title": "Log In",
+    "email": {
+      "label": "Email",
+      "placeholder": "Type your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Type your password"
+    },
+    "forgotPassword": "Forgot Password?",
+    "login": "Log in",
+    "loginGoogle": "Log in with",
+    "dontHaveAnAccount": "Don't have account?",
+    "signUp": "Sign Up"
+  },
+  "changePassword": {
+    "email": {
+      "label": "Email",
+      "placeholder": "example@example.com"
+    },
+    "title": "Trouble Logging In?",
+    "p": "Enter your email and we'll send you a link to get back into your account.",
+    "resetPassword": "Reset Password",
+    "backToLogin": "Back to Login"
+  },
+  "aside": {
+    "home": "Home",
+    "search": "Search",
+    "playlists": "Playlists",
+    "artists": "Artists",
+    "myLikes": "My likes",
+    "myPlaylist": "My playlists",
+    "myUploads": "My uploads",
+    "popular": "Popular",
+    "upload": "Upload",
+    "account": "Account",
+    "signOut": "Sign out"
+  }
+}

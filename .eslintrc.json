@@ -18,6 +18,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "no-underscore-dangle": "off",
     "prettier/prettier": [
       "error",
       {
@@ -40,6 +41,19 @@
         }
       }
     ],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "jsx-a11y/no-static-element-interactions": [
+      "error",
+      {
+        "handlers": [
+          "onClick",
+          "onMouseDown",
+          "onMouseUp",
+          "onKeyPress",
+          "onKeyDown",
+          "onKeyUp"
+        ]
+      }
+    ]
   }
 }

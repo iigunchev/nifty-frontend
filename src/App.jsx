@@ -1,26 +1,28 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 // react router dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // pages
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
-import store from './redux/store';
 import * as route from './routes';
+import ProtectedRoutes from './components/template/ProtectedRoutes/ProtectedRoutes';
+import Login from './pages/Login/Login';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
+import Signup from './pages/Signup/Signup';
+import Landing from './pages/Landing/Landing';
+import TrendingList from './components/organism/TrendingList/TrendingList';
 
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path={route.HOME} element={<Home />} />
-          <Route path={route.SIGN_UP} element={<SignUp />} />
-          <Route path={route.LOGIN} element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route path={`${route.APP}/*`} element={<ProtectedRoutes />} />
+        <Route path={route.LANDING} element={<Landing />} />
+        <Route path={route.LOGIN} element={<Login />} />
+        <Route path={route.SIGN_UP} element={<Signup />} />
+        <Route path={route.RESET_PASSWORD} element={<ResetPassword />} />
+        <Route path="trending-tracks" element={<TrendingList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
