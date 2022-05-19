@@ -3,7 +3,7 @@ import axios from 'axios';
 const uploadToCloudinary = async (fileType, data) => {
   try {
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/devhubnifty/${fileType}/upload`,
+      `${process.env.REACT_APP_CLOUDINARY_URL}/${fileType}/upload`,
       {
         method: 'POST',
         body: data
@@ -24,7 +24,7 @@ export const uploadToCloudinaryWithProgress = async (
   try {
     const response = await axios.request({
       method: 'post',
-      url: `https://api.cloudinary.com/v1_1/devhubnifty/${fileType}/upload`,
+      url: `${process.env.REACT_APP_CLOUDINARY_URL}/${fileType}/upload`,
       data,
       onUploadProgress: setProgress
         ? (p) => {

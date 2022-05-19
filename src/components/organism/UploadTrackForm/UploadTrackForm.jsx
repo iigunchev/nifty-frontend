@@ -95,7 +95,6 @@ function UploadTrackForm() {
       } catch (e) {
         // ERROR HANDLING MISSING
         // ? setting metadata null?
-        console.log(e.message);
       }
     })();
   }, [currentUser]);
