@@ -13,7 +13,8 @@ import {
   updateEmail,
   updatePassword,
   EmailAuthProvider,
-  reauthenticateWithCredential
+  reauthenticateWithCredential,
+  signInWithRedirect
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 
@@ -30,10 +31,11 @@ initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 
-export function signInWithGoogle() {
+export function signInWithGoogle(isMobile) {
   const GoogleProvider = new GoogleAuthProvider();
-
-  return signInWithPopup(auth, GoogleProvider);
+  return isMobile
+    ? signInWithRedirect(auth, GoogleProvider)
+    : signInWithPopup(auth, GoogleProvider);
 }
 
 export function signInEmailAndPassword(email, password) {
