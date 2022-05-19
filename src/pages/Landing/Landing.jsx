@@ -30,10 +30,10 @@ function Landing() {
             {!user.isLoggedIn ? (
               <>
                 <li className="navListSignUp">
-                  <a href="http://localhost:3000/sign-up">Sign Up</a>
+                  <a href="/register">Sign Up</a>
                 </li>
                 <li className="navListLogIn">
-                  <a href="http://localhost:3000/login">Log In</a>
+                  <a href="/login">Log In</a>
                 </li>
               </>
             ) : (
