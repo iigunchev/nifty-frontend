@@ -1,11 +1,13 @@
 import React from 'react';
 // Carousel playlist
 import AliceCarousel from 'react-alice-carousel';
+// router
+import { Link } from 'react-router-dom';
 // components
 import PlaylistItem from '../../components/molecules/PlaylistItem/PlaylistItem';
 // custom hook
 import useFetchItems from '../../hooks/useFetchItems';
-
+import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/TrendingTrackItemSkeleton';
 // styles
 import 'react-alice-carousel/lib/scss/alice-carousel.scss';
@@ -14,12 +16,11 @@ import './Home.scss';
 import ArtistList from '../../components/organism/ArtistList/ArtistList';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
-// banner image
-import chatBanner from '../../assets/img/chatBanner.png';
 
 function Home() {
   const [songs, isLoading] = useFetchItems('track');
   const [artists, isLoadingArtists] = useFetchItems('account/byartist');
+  const [likedSongs, isLoadingLikedSongs] = useFetchItems(`track/getLiked`);
   const [playlists, isLoadingPlaylists] = useFetchItems('playlist');
 
   const responsiveCarousel = {
@@ -31,7 +32,7 @@ function Home() {
   };
 
   const CarouselItems = () =>
-    playlists.map((playlist) => (
+    playlists.slice(0, 10).map((playlist) => (
       <div
         key={playlist._id}
         style={{ marginRight: 24 }}
@@ -45,6 +46,7 @@ function Home() {
         />
       </div>
     ));
+
   return (
     <main className="homeContainer">
       <section className="trendingPlaylistsContainer">
@@ -64,38 +66,42 @@ function Home() {
             controlsStrategy="alternate"
           />
         ) : (
-          <TrendingItemSkeleton />
+          <div className="skeletonFlexRow">
+            <CardSkeleton />
+          </div>
         )}
       </section>
       <section className="homeBottomCol">
-        <section className="homeTrendingTracksContainer">
+        <article className="homeTrendingTracksContainer">
           <h2 className="heading2">Top Tracks</h2>
           {!isLoading ? (
-            <TrendingList tracks={songs?.slice(0, 5)} />
+            <TrendingList tracks={songs.slice(0, 5)} />
           ) : (
             <TrendingTrackItemSkeleton />
           )}
-        </section>
-        <section className="homeTrendingArtistsContainer">
-          <h2 className="heading2">Top Artists</h2>
+        </article>
+        <article className="homeLikedSongsContainer">
+          <h2 className="heading2">Liked Songs</h2>
+          {isLoadingLikedSongs ? (
+            <TrendingTrackItemSkeleton />
+          ) : (
+            <TrendingList
+              errorMessage="You do not have liked songs!"
+              tracks={likedSongs.slice(0, 5)}
+            />
+          )}
+        </article>
+        <article className="homeTrendingArtistsContainer">
+          <span className="trendingHeader">
+            <h2 className="heading2">Top Artists</h2>
+            <Link to="/app/artists">See more</Link>
+          </span>
           {!isLoadingArtists ? (
-            <ArtistList artists={artists?.slice(0, 5)} />
+            <ArtistList avatarWidth={120} artists={artists.slice(0, 10)} />
           ) : (
             <TrendingItemSkeleton />
           )}
-        </section>
-        <div className="chatSection">
-          <div className="bannerTitle">
-            <h2>Chat with your friends</h2>
-          </div>
-          <div className="bannerDescription">
-            <p>
-              You can follow your friends and see what they&apos;re listening!
-            </p>
-            <p>Coming soon...</p>
-            <img className="bannerImg" src={chatBanner} alt="banner chat" />
-          </div>
-        </div>
+        </article>
       </section>
     </main>
   );

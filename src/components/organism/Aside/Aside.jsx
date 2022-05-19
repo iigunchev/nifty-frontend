@@ -84,22 +84,21 @@ function Aside() {
               {t('aside.myUploads')}
             </ListItemIcon>
           ) : null}
-        </NavList>
-
-        <NavList title="Settings">
-          <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
-            {t('aside.account')}
-          </ListItemIcon>
-          <li className="listItemLink">
-            <button
-              onClick={() => dispatch(removeUser())}
-              type="button"
-              className="listItemLink"
-            >
-              <img src={logout} alt="logout" />
-              <span>{t('aside.signOut')}</span>
-            </button>
-          </li>
+          <div className="accountSettings">
+            <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
+              {t('aside.account')}
+            </ListItemIcon>
+            <li className="listItemLink">
+              <button
+                onClick={() => dispatch(removeUser())}
+                type="button"
+                className="listItemLink"
+              >
+                <img src={logout} alt="logout" />
+                <span>{t('aside.signOut')}</span>
+              </button>
+            </li>
+          </div>
         </NavList>
       </nav>
     </>

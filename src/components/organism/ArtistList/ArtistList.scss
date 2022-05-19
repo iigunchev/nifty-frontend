@@ -1,6 +1,7 @@
 @use '../../../sass/layout/flex' as l;
 
-.trendingHeaderWrapper {
-  @include l.flex-container($direction: row, $spacing: space-between);
-  width: 100%;
+.artistListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
 }

@@ -30,7 +30,7 @@ const setPlaylist = async (
       formData
     );
     const newPlaylist = await fetchApi(
-      URL,
+      options.url,
       `Bearer ${token}`,
       { ...formValues, thumbnail },
       'POST'

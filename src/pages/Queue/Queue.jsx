@@ -15,17 +15,21 @@ function Queue() {
     <>
       <h1 className="heading1">Queue</h1>
       <section className="queueWrapper">
-        {queue.map((track) => (
-          <TrendingTrackItem
-            key={track.id}
-            trackSrc={track.src}
-            artistImg={track.image || defaultSong}
-            artistName={track.artist}
-            trackId={track.id}
-            trackName={track.title}
-            isLiked={track.isLiked}
-          />
-        ))}
+        {queue.length !== 0 ? (
+          queue.map((track) => (
+            <TrendingTrackItem
+              key={track.id}
+              trackSrc={track.src}
+              artistImg={track.image || defaultSong}
+              artistName={track.artist}
+              trackId={track.id}
+              trackName={track.title}
+              isLiked={track.isLiked}
+            />
+          ))
+        ) : (
+          <h3 className="heading3">Your queue is empty!</h3>
+        )}
       </section>
     </>
   );

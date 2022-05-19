@@ -14,6 +14,7 @@ import handleAuthErrors from '../../utils/handleAuthErrors';
 import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
 import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
 import IconFollow from '../../assets/img/users-avatar.png';
+import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 
 function Artist() {
   const { id } = useParams();
@@ -23,7 +24,6 @@ function Artist() {
     `playlist/byuser/${id}`
   );
 
-  console.log(isLoadingArtist);
   const handleFollowUser = async () => {
     try {
       await follow(artist._id, !artist.isFollowed);
@@ -37,17 +37,21 @@ function Artist() {
   return (
     <section className="artistSectionContainer">
       <header className="artistHeader">
-        <div className="artistImageContainer">
-          {artist.profileImage ? (
-            <img src={artist.profileImage} alt="artistImg" className="" />
-          ) : (
-            <img
-              src=" https://images.unsplash.com/photo-1575285113814-f770cb8c796e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687"
-              alt="artistImg"
-              className=""
-            />
-          )}
-        </div>
+        {!isLoadingArtist ? (
+          <div className="artistImageContainer">
+            {artist.profileImage ? (
+              <img src={artist.profileImage} alt="artistImg" className="" />
+            ) : (
+              <img
+                src=" https://images.unsplash.com/photo-1575285113814-f770cb8c796e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687"
+                alt="artistImg"
+                className=""
+              />
+            )}
+          </div>
+        ) : (
+          <CardSkeleton count={1} />
+        )}
         <div className="artistInfo">
           <h1 className="artistName">{artist.artisticName}</h1>
           <div className="WrapperFollow">

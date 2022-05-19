@@ -4,7 +4,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-
 }
 .followButtonWrapper {
   display: flex;
@@ -14,7 +13,9 @@
 .playlistPlayButton {
   width: 100%;
   img {
-    filter: invert(6%) sepia(66%) saturate(6079%) hue-rotate(275deg) brightness(62%) contrast(103%);  }
+    filter: invert(6%) sepia(66%) saturate(6079%) hue-rotate(275deg)
+      brightness(62%) contrast(103%);
+  }
 }
 .editableInformationWrapper {
   width: 100%;
@@ -41,7 +42,6 @@
     flex-direction: column;
     gap: 2em;
     height: 100%;
-    cursor: pointer;
     overflow: hidden;
     p {
       font-size: 14px;
