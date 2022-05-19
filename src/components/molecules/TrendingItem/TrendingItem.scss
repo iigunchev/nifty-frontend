@@ -25,6 +25,9 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .detailsTitle {
     color: $text-dark;

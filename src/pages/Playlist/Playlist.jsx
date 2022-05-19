@@ -33,7 +33,6 @@ function Playlist() {
   // get playlist id and get playlist
   const { id } = useParams();
   const [playlist, isLoading, setPlaylist] = useFetchItems(`playlist/${id}`);
-
   // redux
   const dispatch = useDispatch();
   const {
@@ -123,7 +122,7 @@ function Playlist() {
                   onClick={handleFollowPlaylist}
                   className="playlistFollowBtn"
                 >
-                  {playlist.isFollowed ? 'Follow' : 'Unfollow'}
+                  {playlist.isFollowed ? 'Unfollow' : 'Follow'}
                 </button>
               </div>
             </div>
@@ -152,7 +151,7 @@ function Playlist() {
             {({ errors, touched }) => (
               <PlaylistFormContainer
                 handleChangeImage={setPlaylistImage}
-                playlistImage={playlist.image}
+                playlistImage={playlist.thumbnail}
                 errors={errors}
                 touched={touched}
               />

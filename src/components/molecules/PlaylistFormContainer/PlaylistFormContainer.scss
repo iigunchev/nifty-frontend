@@ -23,6 +23,12 @@
         opacity: 0.5;
       }
     }
+    .checkboxPublicAccess {
+      margin-top: 0.5em;
+      display: flex;
+      margin-top: 2em;
+      gap: 0.25em;
+    }
   }
   .hoveredPlaylistImage {
     text-align: center;
@@ -39,7 +45,15 @@
     gap: 2em;
   }
   .playlistTextInputs {
+    input, textarea {
+      padding: 1em;
+      font-weight: 400;
+      margin-top: 0.5em;
+    }
     display: block;
+    .textareaLabel {
+      font-weight: 500;
+    }
   }
   .playlistTextArea {
     padding: 0.25em;
@@ -48,16 +62,12 @@
     max-height: 100px;
     outline: none;
     border: 1px solid lightgray;
-    border-radius: 5px;
+    border-radius: 12px;
     &:focus {
       border: 2px solid black;
     }
   }
-  .checkboxPublicAccess {
-    margin-top: 0.5em;
-    display: inline-flex;
-    gap: 0.25em;
-  }
+
 }
 
 @media screen and(max-width:500px) {
