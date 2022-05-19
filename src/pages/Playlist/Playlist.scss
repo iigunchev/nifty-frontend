@@ -62,14 +62,9 @@
 }
 
 @media screen and (max-width: 500px) {
-  .playlistPlayButton {
-    position: absolute;
-    top: 40px;
-    left: 30px;
-    img {
-      filter: invert(99%) sepia(96%) saturate(20%) hue-rotate(220deg)
-        brightness(103%) contrast(100%);
-    }
+  .headingFollowPlaylist {
+    width: 80%;
+    flex-wrap: wrap;
   }
   .editablePlaylistButton {
     max-width: 100px;
