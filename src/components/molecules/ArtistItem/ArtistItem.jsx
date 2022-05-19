@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+// mobile
+import { isMobile } from 'react-device-detect';
 // avatar
 import Avvvatars from 'avvvatars-react';
 // toast
@@ -44,6 +46,7 @@ function ArtistItem({ id, image, name, avatarWidth = 150 }) {
               type="button"
               onClick={handleFollowUser}
               className="followUserBtn"
+              style={{ opacity: isMobile ? 1 : 0 }}
             >
               <img className="followUserImage" src={plus} alt="follow user" />
             </button>
