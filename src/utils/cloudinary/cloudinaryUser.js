@@ -1,7 +1,7 @@
 const uploadNewAvatarImage = async (fileType, data) => {
   try {
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/devhubnifty/${fileType}/upload`,
+      `${process.env.REACT_APP_CLOUDINARY_URL}/${fileType}/upload`,
       {
         method: 'POST',
         body: data
