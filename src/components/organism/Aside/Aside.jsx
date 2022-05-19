@@ -29,10 +29,11 @@ function Aside() {
       <Link to={route.APP} className="asideLogoWrapper">
         <img src={niftyLogo} alt="logo" />
       </Link>
-      <div className="profileWrapper">
+
+      <Link to={`${route.APP}${route.ACCOUNT}`} className="profileWrapper">
         <img src={userIcon} alt="user icon" className="asideUserSvg" />
         <h3>{user.firstName}</h3>
-      </div>
+      </Link>
       <nav className="navigationContainer">
         {/* MENU */}
         <NavList title="Menu">
