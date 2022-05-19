@@ -68,7 +68,7 @@ function ArtistItem({ id, image, name, avatarWidth = 150 }) {
           <Avvvatars size={avatarWidth} radius={12} value={name} />
         )}
       </div>
-      <h3 className="heading3">{name}</h3>
+      <h3 className="heading3 artistItemName">{name}</h3>
     </div>
   );
 }

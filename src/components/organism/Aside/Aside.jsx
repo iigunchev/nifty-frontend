@@ -85,7 +85,7 @@ function Aside() {
               {t('aside.myUploads')}
             </ListItemIcon>
           ) : null}
-          <div className="accountSettings">
+          <NavList title="Settings">
             <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
               {t('aside.account')}
             </ListItemIcon>
@@ -99,7 +99,7 @@ function Aside() {
                 <span>{t('aside.signOut')}</span>
               </button>
             </li>
-          </div>
+          </NavList>
         </NavList>
       </nav>
     </>

@@ -13,7 +13,7 @@ import {
   updatePassword,
   EmailAuthProvider,
   reauthenticateWithCredential,
-  signInWithRedirect
+  signInWithPopup
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 
@@ -32,7 +32,7 @@ export const auth = getAuth();
 
 export function signInWithGoogle() {
   const GoogleProvider = new GoogleAuthProvider();
-  return signInWithRedirect(auth, GoogleProvider);
+  return signInWithPopup(auth, GoogleProvider);
 }
 
 export function signInEmailAndPassword(email, password) {

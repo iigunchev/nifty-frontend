@@ -20,6 +20,7 @@
       width: 100%;
     }
   }
+
   .followedUserWrapper {
     position: absolute;
     border: 2px solid $bg-dark;
@@ -39,7 +40,7 @@
     background-color: $bg-dark-accent;
     border-radius: 50px;
     overflow: hidden;
-    bottom: 50px;
+    bottom: 60px;
     right: 20px;
     opacity: 0;
     pointer-events: none;
