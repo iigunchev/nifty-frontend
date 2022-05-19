@@ -1,7 +1,5 @@
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
-// isMobile
-import { isMobile } from 'react-device-detect';
 // styles
 import './SignUpForm.scss';
 // i18n
@@ -52,7 +50,7 @@ function SignUpForm() {
       setIsLoading(true);
       setError(null);
       // auth in firebase and api
-      await signInWithGoogle(isMobile);
+      await signInWithGoogle();
       const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));
