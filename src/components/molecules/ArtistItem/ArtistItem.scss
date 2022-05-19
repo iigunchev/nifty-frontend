@@ -10,8 +10,15 @@
   cursor: pointer;
   .imageWrapper {
     max-width: 150px;
+    width: 100%;
     border-radius: 50%;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
+    img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      width: 100%;
+    }
   }
   .followedUserWrapper {
     position: absolute;
