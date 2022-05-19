@@ -19,7 +19,6 @@ import TrendingTrackItemSkeleton from '../../components/molecules/Skeletons/Tren
 import Modal from '../../components/template/Modal/Modal';
 import PlaylistFormContainer from '../../components/molecules/PlaylistFormContainer/PlaylistFormContainer';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
-import SecondaryButton from '../../components/molecules/SecondaryButton/SecondaryButton';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
 // styles
@@ -28,6 +27,7 @@ import './Playlist.scss';
 import editPlaylist, { followPlaylist } from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
 import PlaylistPlayButton from '../../components/atoms/PlaylistPlayButton/PlaylistPlayButton';
+import LikeButton from '../../components/molecules/LikeButton/LikeButton';
 
 function Playlist() {
   // get playlist id and get playlist
@@ -99,15 +99,21 @@ function Playlist() {
 
             <div className="playlistInfoWrapper">
               <div className="headingFollowPlaylist">
-                <h1 className="heading1 playlistName">{playlist.name}</h1>
-                <PlaylistPlayButton isPlaylistView tracks={playlist.tracks} />
+                <h2 className="heading2 playlistName">{playlist.name}</h2>
+                <div className="followButtonWrapper">
+                  <div className="playlistButtonWrapper">
+                    <PlaylistPlayButton
+                      isPlaylistView
+                      tracks={playlist.tracks}
+                    />
+                  </div>
+                  <LikeButton
+                    handleLike={handleFollowPlaylist}
+                    isLiked={playlist.isFollowed}
+                  />
+                </div>
               </div>
               <p>{playlist.description}</p>
-              <span className="followButtonWrapper">
-                <SecondaryButton handleClick={handleFollowPlaylist}>
-                  {playlist.isFollowed ? 'Unfollow' : 'Follow'}
-                </SecondaryButton>
-              </span>
             </div>
           </div>
         </header>

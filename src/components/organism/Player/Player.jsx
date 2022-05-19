@@ -8,7 +8,6 @@ import AudioControls from '../../molecules/AudioControls/AudioControls';
 // styles
 import './Player.scss';
 import './Player-vanilla.scss';
-import QueueButton from '../../atoms/QueueButton/QueueButton';
 
 function Player() {
   const { currentTrack } = useSelector((state) => state.audio);
@@ -19,9 +18,9 @@ function Player() {
           title={currentTrack.title}
           artist={currentTrack.artist}
           songImage={currentTrack.image}
+          style={!currentTrack ? { display: 'none' } : null}
         />
         <AudioControls />
-        <QueueButton />
         <VolumeButton />
       </div>
     </section>

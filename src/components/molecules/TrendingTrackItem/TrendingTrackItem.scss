@@ -23,10 +23,12 @@
 }
 
 @media screen and (max-width: 500px) {
-  .playButtonWrapper {
-    display: none;
-  }
-  .likeButton {
-    display: none;
+  .trendingTrackItemContainer {
+    .playButtonWrapper {
+      display: none;
+    }
+    .likeButton {
+      display: none;
+    }
   }
 }

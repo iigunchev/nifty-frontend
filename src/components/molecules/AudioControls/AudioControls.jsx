@@ -10,6 +10,8 @@ import {
   setIsRandomizing,
   setQueue
 } from '../../../redux/Audio/audioSlice';
+// components
+import QueueButton from '../../atoms/QueueButton/QueueButton';
 // custom hooks
 import useAudioControllers from '../../../hooks/useAudioControllers';
 // utils
@@ -159,6 +161,7 @@ function AudioControls() {
         >
           <img className="filteredImg" src={next} alt="next" />
         </button>
+        <QueueButton />
       </div>
       <div className="progressBarWrapper">
         {/* current time */}

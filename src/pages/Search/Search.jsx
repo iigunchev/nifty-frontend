@@ -52,7 +52,6 @@ function Search() {
         className="searhBar"
         placeholder="Artist, Track, Playlist..."
       />
-      {/* {results && <div>{results}</div>} */}
       {(!searchResults || searchQuery === '') && (
         <div className="genresContainer">
           {genres &&
