@@ -1,9 +1,21 @@
 @use '../../sass/abstracts/variables' as *;
 .playlistHeader {
+  margin-top: 1.25em;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  .playlistImageWrapper {
+    text-align: center;
+  }
+  .playlistImage {
+    width: 150px;
+    border-radius: $border;
+    img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+  }
 }
 .followButtonWrapper {
   display: flex;
@@ -12,10 +24,7 @@
 }
 .playlistPlayButton {
   width: 100%;
-  img {
-    filter: invert(6%) sepia(66%) saturate(6079%) hue-rotate(275deg)
-      brightness(62%) contrast(103%);
-  }
+  outline: 1px solid red;
 }
 .editableInformationWrapper {
   width: 100%;
@@ -28,26 +37,26 @@
     gap: 1em;
   }
   .editablePlaylistButton {
-    width: 150px;
-    height: 150px;
-    img {
-      aspect-ratio: 1/1;
-      border-radius: $border;
-      width: 100%;
-      object-fit: cover;
+    width: 30px;
+    &:hover {
+      text-decoration: underline;
     }
   }
   .playlistInfoWrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2em;
-    height: 100%;
+    gap: 0.75em;
     overflow: hidden;
     p {
       font-size: 14px;
-      width: 70%;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .buttonsWrapper {
+      margin: 0;
+      display: flex;
+      align-items:center;
     }
   }
 }
@@ -60,6 +69,18 @@
 .playlistTracksWrapper {
   padding: 1.5em;
 }
+.playlistFollowBtn {
+  border: 1px solid $accent-dark;
+  border-radius: 24px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: $text-dark;
+  font-weight: 500;
+  &:hover {
+    border-color: $accent-light !important;
+    padding: 3px 10px;
+  }
+}
 
 @media screen and (max-width: 500px) {
   .headingFollowPlaylist {
@@ -68,5 +89,20 @@
   }
   .editablePlaylistButton {
     max-width: 100px;
+  }
+}
+
+@media screen and (min-width: 810px) {
+  .playlistHeader {
+    h2 {
+      font-size: 3em !important;
+    }
+  }
+  .playlistButtonWrapper {
+    width: 50px;
+    img {
+      filter: invert(23%) sepia(96%) saturate(5115%) hue-rotate(272deg)
+        brightness(26%) contrast(105%);
+    }
   }
 }

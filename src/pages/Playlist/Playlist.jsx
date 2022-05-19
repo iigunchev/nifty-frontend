@@ -21,13 +21,13 @@ import PlaylistFormContainer from '../../components/molecules/PlaylistFormContai
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 // icons
 import defaultPlaylist from '../../assets/img/defaultSong.png';
+import dots from '../../assets/svg/dotsHorizontal.svg';
 // styles
 import './Playlist.scss';
 // utils
 import editPlaylist, { followPlaylist } from '../../utils/api/apiPlaylist';
 import { createPlaylistSchema } from '../../utils/schemas';
 import PlaylistPlayButton from '../../components/atoms/PlaylistPlayButton/PlaylistPlayButton';
-import LikeButton from '../../components/molecules/LikeButton/LikeButton';
 
 function Playlist() {
   // get playlist id and get playlist
@@ -89,13 +89,13 @@ function Playlist() {
       <section className="playlistSectionContainer">
         <header className="playlistHeader">
           <div className="editableInformationWrapper">
-            <button
-              className="editablePlaylistButton"
-              type="button"
-              onClick={handleOpenEditModal}
-            >
-              <img src={playlist.thumbnail || defaultPlaylist} alt="playlist" />
-            </button>
+            <div className="playlistImageWrapper">
+              <img
+                src={playlist.thumbnail || defaultPlaylist}
+                alt="playlist"
+                className="playlistImage"
+              />
+            </div>
 
             <div className="playlistInfoWrapper">
               <div className="headingFollowPlaylist">
@@ -107,13 +107,25 @@ function Playlist() {
                       tracks={playlist.tracks}
                     />
                   </div>
-                  <LikeButton
-                    handleLike={handleFollowPlaylist}
-                    isLiked={playlist.isFollowed}
-                  />
                 </div>
               </div>
               <p>{playlist.description}</p>
+              <div className="buttonsWrapper">
+                <button
+                  className="editablePlaylistButton"
+                  type="button"
+                  onClick={handleOpenEditModal}
+                >
+                  <img src={dots} alt="" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleFollowPlaylist}
+                  className="playlistFollowBtn"
+                >
+                  {playlist.isFollowed ? 'Follow' : 'Unfollow'}
+                </button>
+              </div>
             </div>
           </div>
         </header>
