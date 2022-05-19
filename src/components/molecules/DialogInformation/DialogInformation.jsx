@@ -3,8 +3,13 @@
 
 import React from 'react';
 
+// redux
+import { useSelector } from 'react-redux';
+
 // router dom
 import { useParams } from 'react-router-dom';
+// utils
+import useFetchItems from '../../../hooks/useFetchItems';
 // styles
 import './DialogInformation.scss';
 
@@ -22,62 +27,68 @@ function DialogInformation({
   // getting the path instead invoke useLocation
   // ["*"] is all entire path
   const [path] = params['*'].split('/');
+  const { id: userId } = useSelector((state) => state.user);
+  const [playlists, isLoading] = useFetchItems(`playlist/byuser/${userId}`);
 
+  const isPlaylistOwned = () =>
+    playlists.some((playlist) => playlist._id === params.id);
   return (
     <div
       className={`dialogInformationWrapper ${
         clientCoordinates > 600 ? 'upperDialog' : 'lowerDialog'
       }`}
     >
-      <ul>
-        <li>
-          <button
-            onClick={() => {
-              handleLike(!isLiked);
-            }}
-            type="button"
-          >
-            {isLiked ? 'Unlike' : 'Like'}
-          </button>
-        </li>
-        {path !== 'playlist' ? (
-          <li>
-            <button type="button" onClick={handleAddToPlaylist}>
-              Add to playlist
-            </button>
-          </li>
-        ) : (
+      {!isLoading && (
+        <ul>
           <li>
             <button
+              onClick={() => {
+                handleLike(!isLiked);
+              }}
               type="button"
-              onClick={() => handleRemoveFromPlaylist(params.id)}
             >
-              Remove from playlist
+              {isLiked ? 'Unlike' : 'Like'}
             </button>
           </li>
-        )}
-
-        <li>
-          <button onClick={handleAddToQueue} type="button">
-            Add to queue
-          </button>
-        </li>
-        {path === 'my-uploads' && (
-          <>
+          {!isPlaylistOwned() ? (
             <li>
-              <button type="button" onClick={handleEditTrack}>
-                Edit track
+              <button type="button" onClick={handleAddToPlaylist}>
+                Add to playlist
               </button>
             </li>
-
+          ) : (
             <li>
-              <button type="button" onClick={handleDeleteTrack}>
-                Delete track
+              <button
+                type="button"
+                onClick={() => handleRemoveFromPlaylist(params.id)}
+              >
+                Remove from playlist
               </button>
             </li>
-          </>
-        )}
-      </ul>
+          )}
+
+          <li>
+            <button onClick={handleAddToQueue} type="button">
+              Add to queue
+            </button>
+          </li>
+          {path === 'my-uploads' && (
+            <>
+              <li>
+                <button type="button" onClick={handleEditTrack}>
+                  Edit track
+                </button>
+              </li>
+
+              <li>
+                <button type="button" onClick={handleDeleteTrack}>
+                  Delete track
+                </button>
+              </li>
+            </>
+          )}
+        </ul>
+      )}
     </div>
   );
 }
