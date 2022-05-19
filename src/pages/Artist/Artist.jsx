@@ -1,20 +1,25 @@
 import React from 'react';
+// styles
 import './Artist.scss';
-
+// toast
 import { toast } from 'react-toastify';
+// react dom
 import { useParams } from 'react-router-dom';
-import useFetchItems from '../../hooks/useFetchItems';
+// components
+import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
+import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
+import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 
 import Button from '../../components/molecules/Button/Button';
 
+// utils
+import useFetchItems from '../../hooks/useFetchItems';
 import follow from '../../utils/api/apiFollow';
 import handleAuthErrors from '../../utils/handleAuthErrors';
-import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
-import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
+// icons
 import IconFollow from '../../assets/img/users-avatar.png';
-import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 
 function Artist() {
   const { id } = useParams();
