@@ -7,7 +7,7 @@ import * as route from './routes';
 import ProtectedRoutes from './components/template/ProtectedRoutes/ProtectedRoutes';
 import Login from './pages/Login/Login';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
-import Signup from './pages/Signup/Signup';
+import Signup from './pages/SignUp/SignUp';
 import Landing from './pages/Landing/Landing';
 import TrendingList from './components/organism/TrendingList/TrendingList';
 
