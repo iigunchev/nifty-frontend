@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   GoogleAuthProvider,
-  signInWithPopup,
   sendPasswordResetEmail,
   deleteUser,
   updateEmail,
@@ -31,11 +30,9 @@ initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 
-export function signInWithGoogle(isMobile) {
+export function signInWithGoogle() {
   const GoogleProvider = new GoogleAuthProvider();
-  return isMobile
-    ? signInWithRedirect(auth, GoogleProvider)
-    : signInWithPopup(auth, GoogleProvider);
+  return signInWithRedirect(auth, GoogleProvider);
 }
 
 export function signInEmailAndPassword(email, password) {
