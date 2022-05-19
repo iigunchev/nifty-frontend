@@ -8,7 +8,6 @@ function Genre() {
   // get playlist id and get playlist
   const { id } = useParams();
   const [songs, isLoading] = useFetchItems(`genres/tracks/${id}`);
-  console.log(songs);
   return (
     <div className="listWrapper">
       {!isLoading ? (
