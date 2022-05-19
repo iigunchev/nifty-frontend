@@ -4,10 +4,13 @@
   align-items: center;
   gap: 2em;
 }
+.headingFollowedPlaylist {
+  padding: 1em;
+}
 .myPlaylistWrapper {
   padding: 1.5em;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 3em;
   flex-wrap: wrap;
 }

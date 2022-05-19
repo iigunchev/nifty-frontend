@@ -45,12 +45,11 @@ function Artist() {
         {!isLoadingArtist ? (
           <div className="artistImageContainer">
             {artist.profileImage ? (
-              <img src={artist.profileImage} alt="artistImg" className="" />
+              <img src={artist.profileImage} alt="artistImg" />
             ) : (
               <img
                 src=" https://images.unsplash.com/photo-1575285113814-f770cb8c796e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687"
                 alt="artistImg"
-                className=""
               />
             )}
           </div>
@@ -58,7 +57,9 @@ function Artist() {
           <CardSkeleton count={1} />
         )}
         <div className="artistInfo">
-          <h1 className="artistName">{artist.artisticName}</h1>
+          <h1 className="artistName">
+            {artist.artisticName || artist.firstName}
+          </h1>
           <div className="WrapperFollow">
             <img src={IconFollow} alt="iconfollow" />
             <p>Followers {artist.followers}</p>

@@ -46,8 +46,8 @@
   &:hover {
     background-color: $bg-offwhite-opacity;
     .followUserBtn {
-      opacity: 1;
-      transition: 1s;
+      opacity: 1 !important;
+      transition: 0.7s;
       pointer-events: all;
       display: block;
     }

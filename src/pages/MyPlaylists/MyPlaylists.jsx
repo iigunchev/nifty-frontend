@@ -18,20 +18,25 @@ function MyPlaylists() {
         <h1 className="heading1">Your playlists!</h1>
         <CreatePlaylistForm playlists={playlists} setPlaylists={setPlaylists} />
       </div>
-      <section className="myPlaylistWrapper">
-        {isLoading && isLoadingFollowedPlaylists ? (
-          <CardSkeleton />
-        ) : (
-          <>
+
+      {isLoading && isLoadingFollowedPlaylists ? (
+        <CardSkeleton />
+      ) : (
+        <>
+          <section className="myPlaylistWrapper">
             <PlaylistsList playlists={playlists} />
-            <h1 className="heading1">Followed playlist</h1>
+          </section>
+          <h1 className="heading1 headingFollowedPlaylist">
+            Followed playlist
+          </h1>
+          <section className="myPlaylistWrapper">
             <PlaylistsList
               message="you do not follow any playlists"
               playlists={playlistsFollowed}
             />
-          </>
-        )}
-      </section>
+          </section>
+        </>
+      )}
     </>
   );
 }
