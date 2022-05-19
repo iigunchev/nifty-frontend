@@ -10,7 +10,7 @@ export const EDIT_PROFILE = '/account/edit-profile';
 export const CHANGE_PASSWORD = '/account/change-password';
 export const BECOME_ARTIST = '/account/become-artist';
 export const APP = '/app';
-
+export const QUEUE = '/queue';
 export const PLAYLIST = '/playlist/:id';
 
 export const SEARCH = '/search';

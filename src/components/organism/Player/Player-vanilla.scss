@@ -1,7 +1,9 @@
 @use '../../../sass/abstracts/variables' as *;
 
 .progressInputContainer {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 300px;
 }
 .progressBarWrapper {
   display: flex;
@@ -9,31 +11,29 @@
   justify-content: center;
   padding: 0 1em;
   gap: 1em;
-  width: 100%;
 }
 .currentTime,
 .duration {
-  width: 50px;
   font-size: 12px;
 }
 
 .progressBar {
-  --bar-bg: white;
+  --bar-bg: rgb(215, 215, 215);
   --seek-before-width: 0;
   --seek-before-color: #c685fd;
 
   appearance: none;
-  background: white;
+  background: var(--bar-bg);
   border-radius: 10px;
   position: relative;
-  width: 100%;
+  width: 300px;
   height: 4px;
   outline: none;
 }
 
 /* progress bar - safari */
 .progressBar::-webkit-slider-runnable-track {
-  background: white;
+  background: var(--bar-bg);
   border-radius: 10px;
   position: relative;
   width: 100%;
@@ -43,7 +43,7 @@
 
 /* progress bar - firefox */
 .progressBar::-moz-range-track {
-  background: white;
+  background: var(--bar-bg);
   border-radius: 10px;
   position: relative;
   width: 100%;
@@ -118,8 +118,6 @@
 }
 
 .primaryControlsWrapper {
-  max-width: 600px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -151,12 +149,45 @@
     max-width: 400px;
   }
 }
-@media only screen and (max-width: 760px) {
-  img.songPlayerImage {
-    display: none !important;
+// @media only screen and (max-width: 760px) {
+//   img.songPlayerImage {
+//     display: none !important;
+//   }
+//   .primaryControlsWrapper {
+//     order: 3;
+//     margin: 0 auto;
+//   }
+// }
+
+@media only screen and (max-width: 810px) {
+  .progressInputContainer {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: -1.5px;
   }
-  .primaryControlsWrapper {
-    order: 3;
-    margin: 0 auto;
+  .progressBar {
+    width: 100%;
+    margin: 0;
+  }
+  .currentTime,
+  .duration {
+    display: none;
+  }
+  .songPlayerWrapper {
+    img{
+      width: 50px;
+    }
+  }
+  .songPlayerInfo {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 475px) {
+  .songPlayerWrapper {
+    img{
+      display: none;
+    }
   }
 }

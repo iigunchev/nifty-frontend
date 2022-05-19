@@ -2,34 +2,33 @@
 .playlistHeader {
   display: flex;
   justify-content: space-between;
-  background-color: $bg-offwhite;
   flex-wrap: wrap;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
 .followButtonWrapper {
-  width: 150px;
   display: flex;
   align-items: center;
+  gap: 0.5em;
 }
 .playlistPlayButton {
-  width: 50px;
+  width: 100%;
   img {
-    width: 100%;
+    filter: invert(6%) sepia(66%) saturate(6079%) hue-rotate(275deg)
+      brightness(62%) contrast(103%);
   }
 }
 .editableInformationWrapper {
   width: 100%;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   padding: 1em;
   gap: 1em;
   .headingFollowPlaylist {
-    display: inline-flex;
-    flex-wrap: wrap;
+    display: flex;
     gap: 1em;
   }
   .editablePlaylistButton {
     width: 150px;
-    min-width: 150px;
     height: 150px;
     img {
       aspect-ratio: 1/1;
@@ -41,20 +40,21 @@
   .playlistInfoWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 2em;
     height: 100%;
-    cursor: pointer;
     overflow: hidden;
     p {
-      font-size: 13px;
+      font-size: 14px;
       width: 70%;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .playlistName {
-      font-size: clamp(1rem, 2rem, 5vw);
-    }
   }
+}
+.playlistButtonWrapper {
+  width: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .playlistTracksWrapper {
@@ -62,18 +62,11 @@
 }
 
 @media screen and (max-width: 500px) {
-  .playlistPlayButton {
-    position: absolute;
-    top: 40px;
-    left: 30px;
-    img {
-      filter: invert(99%) sepia(96%) saturate(20%) hue-rotate(220deg)
-        brightness(103%) contrast(100%);
-    }
+  .headingFollowPlaylist {
+    width: 80%;
+    flex-wrap: wrap;
   }
-  .followButtonWrapper {
-    button {
-      width: 100px !important;
-    }
+  .editablePlaylistButton {
+    max-width: 100px;
   }
 }

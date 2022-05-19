@@ -7,6 +7,8 @@ import './EditProfileForm.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+// redux actions
+import { closeModal, openModal } from '../../../redux/Dialog/dialogSlice';
 import { setUser } from '../../../redux/User/userSlice';
 // schemas
 import schemas from '../../../utils/schemas';
@@ -27,9 +29,9 @@ import Modal from '../../template/Modal/Modal';
 function EditProfileForm() {
   // router navigate
   const navigate = useNavigate();
-
+  // dispatch
+  const dispatch = useDispatch();
   // state confirm with pass
-  const [togglePassword, setTogglePassword] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   // state error manage
@@ -41,7 +43,6 @@ function EditProfileForm() {
     email: ''
   });
 
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const initialValues = {
     firstName: user.firstName,
@@ -67,6 +68,7 @@ function EditProfileForm() {
       setError(message);
     } finally {
       setIsLoading(false);
+      dispatch(closeModal());
     }
   };
 
@@ -96,7 +98,7 @@ function EditProfileForm() {
           setFormValues(values);
 
           if (values.email !== initialValues.email) {
-            setTogglePassword(true);
+            dispatch(openModal());
           } else {
             handleSubmitWithoutEmail(values);
           }
@@ -139,11 +141,7 @@ function EditProfileForm() {
           </Form>
         )}
       </Formik>
-      <Modal
-        title="Confirm your password"
-        showing={togglePassword}
-        setShow={setTogglePassword}
-      >
+      <Modal title="Confirm your password">
         <Formik
           initialValues={{
             password: ''

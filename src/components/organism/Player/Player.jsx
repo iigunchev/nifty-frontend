@@ -18,6 +18,7 @@ function Player() {
           title={currentTrack.title}
           artist={currentTrack.artist}
           songImage={currentTrack.image}
+          style={!currentTrack ? { display: 'none' } : null}
         />
         <AudioControls />
         <VolumeButton />

@@ -38,7 +38,9 @@ function Landing() {
               </>
             ) : (
               <li className="AvatarLogin">
-                <Avatar size={50} />
+                <div className="landingAvatarWrapper">
+                  <Avatar size={50} />
+                </div>
               </li>
             )}
           </ul>

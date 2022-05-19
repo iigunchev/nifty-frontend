@@ -52,6 +52,7 @@ function TrendingTrackItem({
     dispatch(removeQueue());
     dispatch(
       setCurrentTrack({
+        id: trackId,
         artist: artistName,
         src: trackSrc,
         title: trackName,
@@ -107,6 +108,7 @@ function TrendingTrackItem({
     setShowDialog(false);
     dispatch(
       setTrackToQueue({
+        id: trackId,
         src: trackSrc,
         artist: artistName,
         title: trackName,

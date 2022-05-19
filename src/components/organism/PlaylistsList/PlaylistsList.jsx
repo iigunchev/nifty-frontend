@@ -1,9 +1,12 @@
 import React from 'react';
 import PlaylistItem from '../../molecules/PlaylistItem/PlaylistItem';
 
-function PlaylistsList({ playlists }) {
+function PlaylistsList({
+  playlists,
+  message = 'You do not have any playlist created, start here'
+}) {
   if (playlists.length === 0) {
-    return <h3>You don&apos;t have any playlist created, start here</h3>;
+    return <h3>{message}</h3>;
   }
   return playlists.map((playlist) => (
     <PlaylistItem

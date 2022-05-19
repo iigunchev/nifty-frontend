@@ -10,6 +10,8 @@ import './MyPlaylists.scss';
 
 function MyPlaylists() {
   const [playlists, isLoading, setPlaylists] = useFetchItems('playlist/byuser');
+  const [playlistsFollowed, isLoadingFollowedPlaylists] =
+    useFetchItems('playlist/followed');
   return (
     <>
       <div className="playlistHeadingWrapper">
@@ -17,7 +19,18 @@ function MyPlaylists() {
         <CreatePlaylistForm playlists={playlists} setPlaylists={setPlaylists} />
       </div>
       <section className="myPlaylistWrapper">
-        {isLoading ? <CardSkeleton /> : <PlaylistsList playlists={playlists} />}
+        {isLoading && isLoadingFollowedPlaylists ? (
+          <CardSkeleton />
+        ) : (
+          <>
+            <PlaylistsList playlists={playlists} />
+            <h1 className="heading1">Followed playlist</h1>
+            <PlaylistsList
+              message="you do not follow any playlists"
+              playlists={playlistsFollowed}
+            />
+          </>
+        )}
       </section>
     </>
   );

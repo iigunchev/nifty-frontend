@@ -61,7 +61,7 @@
   background: v.$bg-gray;
   border-radius: 0 0 0 25px;
   width: 100%;
-  min-height: 100vh;
+  height: 700px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -79,19 +79,17 @@
 .newFeatureContainer {
   display: flex;
   background-color: rgba(119, 119, 119, 0.166);
-  height: 50px;
-  width: 60%;
+  height: 40px;
+  width: 275px;
   border-radius: v.$border;
-  min-width: 350px;
   align-items: center;
 }
 
 .newFeatureText {
-  font-size: 18px;
+  font-size: 14px;
   padding-left: 1em;
 }
 .newFeatureTitle {
-  height: 50px;
   width: 25%;
   border-radius: v.$border;
 
@@ -137,6 +135,8 @@
 .imggirl {
   position: absolute;
   bottom: -10px;
+  left: -100px;
+  width: 1000px;
 }
 
 @media only screen and (max-width: 390px) {
@@ -144,9 +144,12 @@
     min-width: 300px;
     margin-right: 1em;
   }
+  .headerWrapper, .leftLandingSection {
+    padding: 0 2em;
+  }
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 810px) {
   .navListSignUp {
     display: none;
   }
@@ -161,10 +164,20 @@
     padding-right: 1em;
   }
   .leftLandingSection {
-    margin-top: 1em;
+    margin-top: 10em;
   }
 
   .newFeatureText {
     font-size: 14px;
   }
+  .rightLandingSection {
+    display: none;
+  }
+  .landingAvatarWrapper {
+    width: 50px;
+  }
+}
+
+.landingAvatarWrapper {
+  width: 75px;
 }

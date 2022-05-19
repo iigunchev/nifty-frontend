@@ -25,19 +25,15 @@ import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorConta
 import { updateUserProfile } from '../../utils/api/apiUser';
 import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
 import createFormData from '../../utils/createFormData';
+import { openModal } from '../../redux/Dialog/dialogSlice';
 
 function Account() {
   const [error, setError] = useState('');
   const [queryState, setQueryState] = useState('');
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [newAvatarImage, setNewAvatarImage] = useState(null);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
-  const toggleModal = () => {
-    setIsModalVisible((prevState) => !prevState);
-  };
 
   const input = document.querySelector('input[type="file"]');
 
@@ -84,7 +80,7 @@ function Account() {
               <button
                 type="button"
                 className="editAvatarButton"
-                onClick={toggleModal}
+                onClick={() => dispatch(openModal())}
               >
                 Edit
               </button>
@@ -128,11 +124,7 @@ function Account() {
           </div>
         </div>
       </div>
-      <Modal
-        showing={isModalVisible}
-        setShow={setIsModalVisible}
-        title="Update profile image"
-      >
+      <Modal title="Update profile image">
         <form
           method={!newAvatarImage ? 'POST' : ''}
           onSubmit={handleSubmitNewImage}

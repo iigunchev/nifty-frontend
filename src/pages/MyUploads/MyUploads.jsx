@@ -41,7 +41,10 @@ function MyUploads() {
       <h1 className="heading1">My Uploads</h1>
       <div className="listWrapper">
         {!isLoading ? (
-          <TrendingList tracks={songs} />
+          <TrendingList
+            tracks={songs}
+            errorMessage="You didn't uploaded songs yet"
+          />
         ) : (
           <TrendingTrackItemSkeleton />
         )}
