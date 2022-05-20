@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = false;
+const initialState = {
+  isHamburgerActive: false
+};
 
 const hamburgerSlice = createSlice({
   initialState,
   name: 'hamburger',
   reducers: {
-    setHamburger: (state, { payload }) => payload
+    setHamburger: (state, { payload }) => ({ isHamburgerActive: payload })
   }
 });
 

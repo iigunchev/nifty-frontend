@@ -34,14 +34,14 @@
   .homeTrendingArtistsContainer {
     overflow: hidden;
     min-width: 400px;
-    height: 430px;
+    height: 500px;
     .trendingHeader {
       display: flex;
       gap: 3em;
     }
     .artistListWrapper {
       overflow: hidden;
-      gap: 0;
+      gap: 2.5em;
     }
     .artistItemWrapper {
       width: 150px;
