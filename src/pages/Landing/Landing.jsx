@@ -5,11 +5,14 @@ import { Link } from 'react-router-dom';
 import { APP, SIGN_UP } from '../../routes';
 
 import LOGO from '../../assets/svg/LogoViolet.svg';
-import GIRL from '../../assets/svg/woman-music.svg';
+// import GIRL from '../../assets/svg/woman-music.svg';
 import Button from '../../components/molecules/Button/Button';
 import SelectLang from '../../components/atoms/SelectLang/SelectLang';
-
+import video from '../../assets/video/nifty_promo.mp4';
 import Avatar from '../../components/atoms/Avatar/Avatar';
+
+import woman from '../../assets/img/woman-listening-to-music.jpg';
+import band from '../../assets/img/band.jpg';
 
 import './Landing.scss';
 
@@ -47,16 +50,26 @@ function Landing() {
         </nav>
       </header>
       <article className="flexWrapper">
-        <section className="leftLandingSection">
-          <div className="leftLandingWrapper">
-            <div className="newFeatureContainer">
+        <div className="iframeContainer">
+          {' '}
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            className="responsive-iframe"
+            width="100%"
+            height="100%"
+            autoPlay
+            title="Nifty video"
+            src={video}
+          />
+        </div>
+        <div className="landingSectionWrapper">
+          <section className="leftLandingSection">
+            {/* <div className="leftLandingWrapper"> */}
+            {/* <div className="newFeatureContainer">
               <span className="newFeatureTitle">NEW</span>
               <span className="newFeatureText">Create your own playlist</span>
-            </div>
-            <p className="headingTitle">
-              Never Stop <br />
-              Listening
-            </p>
+            </div> */}
+            <h1 className="headingTitle">Never Stop Listening</h1>
             <p className="landingText">
               Discover, stream and share a constantly expanding mix of music
               from emerging and major artists around the world
@@ -70,13 +83,42 @@ function Landing() {
                 )}
               </Button>
             </div>
+          </section>
+          <div className="landingImageWrapper">
+            <img src={woman} alt="woman listening to music" />
           </div>
-        </section>
-        <section className="rightLandingSection">
-          <div className="imggirl">
+        </div>
+        <div className="landingSectionWrapper2">
+          <div className="landingImageWrapper">
+            <img src={band} alt="woman listening to music" />
+          </div>
+          <section className="leftLandingSection">
+            {/* <div className="leftLandingWrapper"> */}
+            {/* <div className="newFeatureContainer">
+              <span className="newFeatureTitle">NEW</span>
+              <span className="newFeatureText">Create your own playlist</span>
+            </div> */}
+            <h1 className="headingTitle">Share your music</h1>
+            <p className="landingText">
+              Share your tracks and engage with the community. Check custom
+              statistics and performance metrics and grow your career.
+            </p>
+            <div className="buttonWrapper">
+              <Button>
+                {!user.isLoggedIn ? (
+                  <Link to={SIGN_UP}>Become an artist</Link>
+                ) : (
+                  <Link to={APP}>Become an artist</Link>
+                )}
+              </Button>
+            </div>
+          </section>
+        </div>
+        {/* <section className="rightLandingSection"> */}
+        {/* <div className="imggirl">
             <img src={GIRL} alt="girl-music" />
-          </div>
-        </section>
+          </div> */}
+        {/* </section> */}
       </article>
     </div>
   );
