@@ -13,8 +13,7 @@ const signUpWithGoogle = async () => {
     const token = await getCurrentUserToken();
     const authToken = `Bearer ${token}`;
     const URL = '/account/signUpWithProvider';
-    const apiUser = await fetchApi(URL, authToken, { firstName }, 'POST');
-    return apiUser;
+    return await fetchApi(URL, authToken, { firstName }, 'POST');
   } catch (e) {
     // in error case, delete fb user.
     deleteCurrentUser();
@@ -29,14 +28,7 @@ const signupWithApi = async (firstName, lastName) => {
     const authToken = `Bearer ${token}`;
     const URL = '/account/signup';
 
-    const apiUser = await fetchApi(
-      URL,
-      authToken,
-      { firstName, lastName },
-      'POST'
-    );
-
-    return apiUser;
+    return await fetchApi(URL, authToken, { firstName, lastName }, 'POST');
   } catch (e) {
     // in error case, delete fb user.
     deleteCurrentUser();

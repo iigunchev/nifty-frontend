@@ -4,13 +4,12 @@ import fetchApi from './fetchApi';
 const globalSearch = async (query) => {
   try {
     const token = await getCurrentUserToken();
-    const apiSearch = await fetchApi(
+    return await fetchApi(
       `/search/all/${query}`,
       `Bearer ${token}`,
       null,
       'GET'
     );
-    return apiSearch;
   } catch (e) {
     throw Error('Failed to fetch API');
   }

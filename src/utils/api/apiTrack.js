@@ -5,13 +5,7 @@ const createTrack = async (values) => {
   try {
     const token = await getCurrentUserToken();
 
-    const apiTrack = await fetchApi(
-      '/track',
-      `Bearer ${token}`,
-      values,
-      'POST'
-    );
-    return apiTrack;
+    return await fetchApi('/track', `Bearer ${token}`, values, 'POST');
   } catch (e) {
     throw Error('Failed to fetch API');
   }
@@ -20,8 +14,7 @@ const createTrack = async (values) => {
 export const getTracks = async (URL) => {
   try {
     const token = await getCurrentUserToken();
-    const apiTracks = await fetchApi(URL, `Bearer ${token}`);
-    return apiTracks;
+    return await fetchApi(URL, `Bearer ${token}`);
   } catch (e) {
     throw Error('Failed to fetch API');
   }
@@ -42,13 +35,7 @@ export const deleteTrack = async (id) => {
   try {
     const token = await getCurrentUserToken();
 
-    const apiTrack = await fetchApi(
-      `/track/${id}`,
-      `Bearer ${token}`,
-      null,
-      'DELETE'
-    );
-    return apiTrack;
+    return await fetchApi(`/track/${id}`, `Bearer ${token}`, null, 'DELETE');
   } catch (e) {
     throw Error('Failed to fetch API');
   }
@@ -72,13 +59,7 @@ export const getAllTracksById = async (tracksId) => {
 export const updateTrack = async (id, values) => {
   try {
     const token = await getCurrentUserToken();
-    const apiTrack = await fetchApi(
-      `/track/${id}`,
-      `Bearer ${token}`,
-      values,
-      'PUT'
-    );
-    return apiTrack;
+    return await fetchApi(`/track/${id}`, `Bearer ${token}`, values, 'PUT');
   } catch (e) {
     throw Error('Failed to fetch API');
   }

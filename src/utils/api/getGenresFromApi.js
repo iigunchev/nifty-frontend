@@ -4,8 +4,7 @@ import fetchApi from './fetchApi';
 const getGenresFromApi = async () => {
   try {
     const token = await getCurrentUserToken();
-    const genres = await fetchApi('/genres', `Bearer ${token}`, 'GET');
-    return genres;
+    return await fetchApi('/genres', `Bearer ${token}`, 'GET');
   } catch (e) {
     throw Error('Failed to fetch API');
   }
