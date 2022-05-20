@@ -1,7 +1,7 @@
-const shuffleQueue = (array) =>
-  array
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value);
+// const shuffleQueue = (array) =>
+//   array
+//     .map((value) => ({ value, sort: Math.random() }))
+//     .sort((a, b) => a.sort - b.sort)
+//     .map(({ value }) => value);
 
-export default shuffleQueue;
+// export default shuffleQueue;
