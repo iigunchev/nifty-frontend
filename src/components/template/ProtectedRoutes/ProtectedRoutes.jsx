@@ -18,7 +18,6 @@ import Playlists from '../../../pages/Playlists/Playlists';
 import Artists from '../../../pages/Artists/Artists';
 import Artist from '../../../pages/Artist/Artist';
 import Search from '../../../pages/Search/Search';
-// import Genre from '../../../pages/Genre/Genre';
 import MyUploads from '../../../pages/MyUploads/MyUploads';
 import MyPlaylists from '../../../pages/MyPlaylists/MyPlaylists';
 import Playlist from '../../../pages/Playlist/Playlist';

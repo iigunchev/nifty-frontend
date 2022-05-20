@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+
 import { Form, Formik } from 'formik';
 
 import './ChangePasswordForm.scss';
