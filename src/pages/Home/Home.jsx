@@ -97,7 +97,7 @@ function Home() {
             <Link to="/app/artists">See more</Link>
           </span>
           {!isLoadingArtists ? (
-            <ArtistList avatarWidth={130} artists={artists.slice(0, 10)} />
+            <ArtistList avatarWidth={120} artists={artists.slice(0, 10)} />
           ) : (
             <TrendingItemSkeleton />
           )}
