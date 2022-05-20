@@ -13,7 +13,7 @@ export const signupSchema = Yup.object().shape({
   password: Yup.string()
     .required('Password required')
     .matches(
-      /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+      /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/,
       'Must Contain 8 Characters,One Lowercase, One Uppercase, One Number and One Special Case Character'
     )
 });
@@ -50,7 +50,7 @@ export const changePasswordSchema = Yup.object().shape({
   newPassword: Yup.string()
     .required('Password required')
     .matches(
-      /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+      /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/,
       'Must Contain 8 Characters,One Lowercase, One Uppercase, One Number and One Special Case Character'
     ),
   repeatNewPassword: Yup.string().oneOf(
