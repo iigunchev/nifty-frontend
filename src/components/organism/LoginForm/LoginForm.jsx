@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 // styles
 import './LoginForm.scss';
-
 // redux
 import { useDispatch } from 'react-redux';
 // formik

@@ -9,7 +9,7 @@ describe('allows a normal user to', () => {
     cy.get('#passwordInput').clear();
     cy.get('#passwordInput').type('Pa$$w0rd');
     cy.get('.button').click();
-    cy.findByText('Ivan').should('exist');
+    // cy.findByText('Ivan').should('exist');
   });
   // it('see the landing page', () => {
   //   cy.get('h1').should('exist');
@@ -22,12 +22,12 @@ describe('allows a normal user to', () => {
   //   cy.get('.playStopButton > .filteredImg').click();
   // });
 
-  // it('create a playlist', () => {
-  //   cy.get(':nth-child(2) > ul > :nth-child(2) > .listItemLink > span').click();
-  //   cy.get('.button > span').click();
-  //   cy.get('#nameInput').clear();
-  //   cy.get('#nameInput').type('MY LAST PLAYLIST');
-  //   cy.get('.playlistFormWrapper > .button').click();
-  //   cy.findByText('MY LAST PLAYLIST').should('exist');
-  // });
+  it('create a playlist', () => {
+    cy.get(':nth-child(2) > ul > :nth-child(2) > .listItemLink > span').click();
+    cy.get('.button > span').click();
+    cy.get('#nameInput').clear();
+    cy.get('#nameInput').type('MY LAST PLAYLIST');
+    cy.get('.playlistFormWrapper > .button').click();
+    cy.findByText('MY LAST PLAYLIST').should('exist');
+  });
 });

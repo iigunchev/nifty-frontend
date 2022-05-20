@@ -16,7 +16,7 @@ import QueueButton from '../../atoms/QueueButton/QueueButton';
 import useAudioControllers from '../../../hooks/useAudioControllers';
 // utils
 import { calculateTime } from '../../../utils/audioPlayer';
-import sendCurrentTrackStats from '../../../utils/api/apiStats';
+import sendCurrentTrackStats from '../../../utils/api/sendCurrentTrackStats';
 // images
 import play from '../../../assets/img/player/play.png';
 import pause from '../../../assets/img/player/pause.png';
@@ -25,7 +25,7 @@ import previous from '../../../assets/img/player/previous.png';
 import random from '../../../assets/img/player/random.png';
 // styles
 import './AudioControls.scss';
-import shuffleQueue from '../../../utils/shuffleArray';
+import shuffleQueue from '../../../utils/shuffleQueue';
 
 function AudioControls() {
   const dispatch = useDispatch();

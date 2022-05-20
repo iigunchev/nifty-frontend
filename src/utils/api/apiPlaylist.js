@@ -13,13 +13,12 @@ const setPlaylist = async (
     const token = await getCurrentUserToken();
 
     if (!formValues.image) {
-      const newPlaylist = await fetchApi(
+      return await fetchApi(
         options.url,
         `Bearer ${token}`,
         formValues,
         options.method
       );
-      return newPlaylist;
     }
     // upload playlist image to cloudinary
     const formData = new FormData();
@@ -29,13 +28,16 @@ const setPlaylist = async (
       'image',
       formData
     );
+<<<<<<< HEAD
     const newPlaylist = await fetchApi(
+=======
+    return await fetchApi(
+>>>>>>> main
       options.url,
       `Bearer ${token}`,
       { ...formValues, thumbnail },
       'POST'
     );
-    return newPlaylist;
   } catch (e) {
     throw new Error('Failed to fetch to API');
   }

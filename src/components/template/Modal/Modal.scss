@@ -35,6 +35,14 @@
     margin-top: 0.75em;
     display: inline-flex;
     justify-content: space-between;
+
+    img {
+      border-radius: 50px;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.134);
+      }
+      box-shadow: none;
+    }
   }
   .modalBody {
     display: flex;

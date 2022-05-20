@@ -31,14 +31,14 @@ function PlaylistItem({ name, tracks, image, id }) {
         alt="playlistBackground"
       />
       <div className="playListBottomContainer">
-        <div className="detailsWrapper">
-          <span className="detailTitle">{name}</span>
+        <span className="detailTitle">{name}</span>
+        <div className="playlistDetailsWrapper">
           <div className="detailDescription">
             <img src={song} alt="song" className="playlistSongIcon" />
-            <span>{tracks.length} tracks</span>
+            <span>{tracks.length}</span>
           </div>
+          <PlaylistPlayButton tracks={tracks} />
         </div>
-        <PlaylistPlayButton tracks={tracks} />
       </div>
     </div>
   );

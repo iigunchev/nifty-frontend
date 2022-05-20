@@ -29,10 +29,11 @@ function Aside() {
       <Link to={route.APP} className="asideLogoWrapper">
         <img src={niftyLogo} alt="logo" />
       </Link>
-      <div className="profileWrapper">
+
+      <Link to={`${route.APP}${route.ACCOUNT}`} className="profileWrapper">
         <img src={userIcon} alt="user icon" className="asideUserSvg" />
         <h3>{user.firstName}</h3>
-      </div>
+      </Link>
       <nav className="navigationContainer">
         {/* MENU */}
         <NavList title="Menu">
@@ -84,22 +85,21 @@ function Aside() {
               {t('aside.myUploads')}
             </ListItemIcon>
           ) : null}
-        </NavList>
-
-        <NavList title="Settings">
-          <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
-            {t('aside.account')}
-          </ListItemIcon>
-          <li className="listItemLink">
-            <button
-              onClick={() => dispatch(removeUser())}
-              type="button"
-              className="listItemLink"
-            >
-              <img src={logout} alt="logout" />
-              <span>{t('aside.signOut')}</span>
-            </button>
-          </li>
+          <NavList title="Settings">
+            <ListItemIcon icon="account" route={`${route.APP}${route.ACCOUNT}`}>
+              {t('aside.account')}
+            </ListItemIcon>
+            <li className="listItemLink">
+              <button
+                onClick={() => dispatch(removeUser())}
+                type="button"
+                className="listItemLink"
+              >
+                <img src={logout} alt="logout" />
+                <span>{t('aside.signOut')}</span>
+              </button>
+            </li>
+          </NavList>
         </NavList>
       </nav>
     </>

@@ -1,12 +1,30 @@
 .playlistHeadingWrapper {
+  margin-top: 1em;
   padding: 1.5em;
   display: flex;
   align-items: center;
   gap: 2em;
 }
+.headingFollowedPlaylist {
+  padding: 1em;
+}
 .myPlaylistWrapper {
   padding: 1.5em;
   display: flex;
-  gap: 3em;
+  flex-direction: row;
+  gap: 1.5em;
   flex-wrap: wrap;
+}
+.playlistDetailsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .playlistHeadingWrapper {
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: flex-start;
+  }
 }

@@ -10,12 +10,12 @@ import AccountEditInput from '../../molecules/AccountEditInput/AccountEditInput'
 import UploadProgressBar from '../../molecules/UploadProgressBar/UploadProgressBar';
 // utils
 import getMetadata from '../../../utils/meta/getMetadata';
-import getImage from '../../../utils/trackImageChecker';
+import getImage from '../../../utils/getImage';
 import { uploadToCloudinaryWithProgress } from '../../../utils/cloudinary/uploadToCloudinary';
 import handleAuthErrors from '../../../utils/handleAuthErrors';
 import createTrack from '../../../utils/api/apiTrack';
 import { uploadSongSchema } from '../../../utils/schemas';
-import getGenresFromApi from '../../../utils/api/apiGenre';
+import getGenresFromApi from '../../../utils/api/getGenresFromApi';
 import { useAuth } from '../../../services/auth/auth';
 
 function UploadTrackForm() {
@@ -95,7 +95,6 @@ function UploadTrackForm() {
       } catch (e) {
         // ERROR HANDLING MISSING
         // ? setting metadata null?
-        console.log(e.message);
       }
     })();
   }, [currentUser]);
@@ -186,7 +185,7 @@ function UploadTrackForm() {
         )}
       </Formik>
 
-      {isLoading ? <UploadProgressBar progress={progress} /> : null}
+      {isLoading && <UploadProgressBar progress={progress} />}
     </article>
   ) : (
     <UploadZone className="dragZoneWrapper" handleDragFile={handleDragFile} />

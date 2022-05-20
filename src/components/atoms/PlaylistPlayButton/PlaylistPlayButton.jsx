@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTrack, setQueue } from '../../../redux/Audio/audioSlice';
 // utils
 import { getAllTracksById } from '../../../utils/api/apiTrack';
-import shuffleArray from '../../../utils/shuffleArray';
+import shuffleQueue from '../../../utils/shuffleQueue';
 // icon
 import play from '../../../assets/img/player/play.png';
 
@@ -24,7 +24,7 @@ function PlaylistPlayButton({ tracks, isPlaylistView }) {
       duration: track.duration,
       title: track.title
     }));
-    if (isRandomizing) return shuffleArray(arrayWithProperties);
+    if (isRandomizing) return shuffleQueue(arrayWithProperties);
     return arrayWithProperties;
   };
 

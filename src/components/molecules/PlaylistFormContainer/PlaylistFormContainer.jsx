@@ -57,6 +57,10 @@ function PlaylistFormContainer({
               alt="playlist"
             />
           </label>
+          <div className="checkboxPublicAccess">
+            <Field type="checkbox" name="publicAccessible" />
+            <p>Public playlist</p>
+          </div>
         </div>
         <div className="playlistTextInputs">
           <AccountEditInput
@@ -65,19 +69,18 @@ function PlaylistFormContainer({
             error={errors.name}
             touched={touched.name}
           />
-          <Field
-            as="textarea"
-            className="playlistTextArea"
-            name="description"
-            placeholder="Optional description"
-          />
-          <div className="checkboxPublicAccess">
-            <Field type="checkbox" name="publicAccessible" />
-            <p>Public playlist</p>
-          </div>
+          <label htmlFor="description" className="textareaLabel">
+            Description
+            <Field
+              as="textarea"
+              className="playlistTextArea"
+              name="description"
+              placeholder="Optional description"
+            />
+          </label>
         </div>
       </div>
-      <Button type="submit">Create playlist</Button>
+      <Button type="submit">Save</Button>
     </Form>
   );
 }

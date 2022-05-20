@@ -6,6 +6,7 @@ import { Waveform } from '@uiball/loaders';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/User/userSlice';
+import { closeModal, openModal } from '../../redux/Dialog/dialogSlice';
 // components
 import UserInfoRow from '../../components/molecules/UserInfoRow/UserInfoRow';
 // routes
@@ -23,52 +24,46 @@ import Modal from '../../components/template/Modal/Modal';
 import ErrorContainer from '../../components/molecules/ErrorContainer/ErrorContainer';
 // utils fn
 import { updateUserProfile } from '../../utils/api/apiUser';
-import uploadNewAvatarImage from '../../utils/cloudinary/cloudinaryUser';
 import createFormData from '../../utils/createFormData';
 
-function Account() {
-  const [error, setError] = useState('');
-  const [queryState, setQueryState] = useState('');
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [newAvatarImage, setNewAvatarImage] = useState(null);
+import { blobToBase64 } from '../../utils/meta/getMetadata';
+import { uploadToCloudinaryWithProgress } from '../../utils/cloudinary/uploadToCloudinary';
 
+// icons
+
+function Account() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const toggleModal = () => {
-    setIsModalVisible((prevState) => !prevState);
+  const [error, setError] = useState('');
+  const [queryState, setQueryState] = useState('');
+  const [newAvatarImage, setNewAvatarImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(user.profileImage);
+
+  const handleChangePreviewImage = async (e) => {
+    const preview = await blobToBase64(e.target.files[0]);
+    setPreviewImage(preview);
+    setNewAvatarImage(e.target.files[0]);
   };
 
-  const input = document.querySelector('input[type="file"]');
-
-  const handleSubmitNewImage = async (event) => {
-    event.preventDefault();
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    if (!newAvatarImage) {
+      setError('Please upload an image');
+      return;
+    }
+    setQueryState('isLoading');
     setError('');
-    if (input.files.length === 0) {
-      return setError('Please upload an image');
-    }
-    setQueryState('isLoading');
     try {
-      const formData = createFormData(event, 'avatar');
-      const data = await uploadNewAvatarImage('image', formData);
-      return setNewAvatarImage(data.secure_url);
-    } catch (e) {
-      return setError(e.message);
-    } finally {
-      setQueryState('');
-    }
-  };
-
-  const handleUpload = async () => {
-    setQueryState('isLoading');
-    try {
-      const profileImage = { profileImage: newAvatarImage };
+      const formData = createFormData(newAvatarImage, 'avatar');
+      const data = await uploadToCloudinaryWithProgress('image', formData);
+      const profileImage = { profileImage: data.secure_url };
       const userApi = await updateUserProfile(profileImage, user.id);
-
       dispatch(setUser(userApi));
-    } catch (e) {
-      setError(e.message);
+    } catch (err) {
+      setError(err.message);
     } finally {
+      dispatch(closeModal());
       setQueryState('');
     }
   };
@@ -84,7 +79,7 @@ function Account() {
               <button
                 type="button"
                 className="editAvatarButton"
-                onClick={toggleModal}
+                onClick={() => dispatch(openModal())}
               >
                 Edit
               </button>
@@ -128,60 +123,34 @@ function Account() {
           </div>
         </div>
       </div>
-      <Modal
-        showing={isModalVisible}
-        setShow={setIsModalVisible}
-        title="Update profile image"
-      >
+      <Modal title="Update profile image">
         <form
-          method={!newAvatarImage ? 'POST' : ''}
-          onSubmit={handleSubmitNewImage}
+          method="PUT"
+          onSubmit={handleUpload}
           className="accountUpdateModalForm"
         >
-          {newAvatarImage ? (
-            <img src={newAvatarImage} alt="" className="newAvatar" />
-          ) : null}
+          <img src={previewImage} alt="" className="newAvatar" />
 
           <label className="customFileUpload">
-            <input type="file" name="file" id="uploadImage" />
+            <input
+              onChange={handleChangePreviewImage}
+              type="file"
+              name="file"
+              id="uploadImage"
+            />
           </label>
           <div className="buttonWrapper">
-            {!newAvatarImage ? (
-              <button
-                type="submit"
-                className="uploadButton"
-                disabled={queryState}
-              >
-                {queryState ? (
-                  <Waveform
-                    size={40}
-                    lineWeight={3.5}
-                    speed={1}
-                    color="#9c32f1"
-                  />
-                ) : (
-                  'Upload'
-                )}
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className="uploadButton"
-                disabled={!newAvatarImage}
-                onClick={handleUpload}
-              >
-                {queryState ? (
-                  <Waveform
-                    size={30}
-                    lineWeight={2}
-                    speed={1}
-                    color="#9c32f1"
-                  />
-                ) : (
-                  'SAVE'
-                )}
-              </button>
-            )}
+            <button
+              type="submit"
+              className="uploadButton"
+              onClick={handleUpload}
+            >
+              {queryState ? (
+                <Waveform size={30} lineWeight={2} speed={1} color="#9c32f1" />
+              ) : (
+                'SAVE'
+              )}
+            </button>
           </div>
           <ErrorContainer error={error} />
         </form>

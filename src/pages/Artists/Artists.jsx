@@ -1,8 +1,10 @@
 import React from 'react';
 
-import './Artists.scss';
+// custom hooks
 import useFetchItems from '../../hooks/useFetchItems';
+// components
 import ArtistList from '../../components/organism/ArtistList/ArtistList';
+import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 
 function Artists() {
   const [artists, isLoadingArtists] = useFetchItems('account/byartist');
@@ -14,7 +16,9 @@ function Artists() {
         {!isLoadingArtists ? (
           <ArtistList artists={artists} />
         ) : (
-          <div>ERROR</div>
+          <div>
+            <CardSkeleton />
+          </div>
         )}
       </div>
     </main>

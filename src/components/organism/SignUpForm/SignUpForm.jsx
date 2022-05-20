@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
-// styles
-import './SignUpForm.scss';
+
 // i18n
 import { useTranslation } from 'react-i18next';
 // redux

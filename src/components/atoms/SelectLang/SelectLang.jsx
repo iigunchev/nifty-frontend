@@ -1,6 +1,6 @@
 import React from 'react';
 // sass
-import './SelectLang.scss';
+
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { setLanguage } from '../../../redux/User/userSlice';

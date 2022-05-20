@@ -1,18 +1,24 @@
 import React from 'react';
+// styles
 import './Artist.scss';
-
+// toast
 import { toast } from 'react-toastify';
+// react dom
 import { useParams } from 'react-router-dom';
-import useFetchItems from '../../hooks/useFetchItems';
+// components
+import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
+import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
+import CardSkeleton from '../../components/molecules/Skeletons/CardSkeleton';
 
 import TrendingList from '../../components/organism/TrendingList/TrendingList';
 
 import Button from '../../components/molecules/Button/Button';
 
-import follow from '../../utils/api/apiFollow';
+// utils
+import useFetchItems from '../../hooks/useFetchItems';
+import follow from '../../utils/api/followArtist';
 import handleAuthErrors from '../../utils/handleAuthErrors';
-import PlaylistsList from '../../components/organism/PlaylistsList/PlaylistsList';
-import TrendingItemSkeleton from '../../components/molecules/Skeletons/TrendingItemSkeleton';
+// icons
 import IconFollow from '../../assets/img/users-avatar.png';
 
 function Artist() {
@@ -23,7 +29,6 @@ function Artist() {
     `playlist/byuser/${id}`
   );
 
-  console.log(isLoadingArtist);
   const handleFollowUser = async () => {
     try {
       await follow(artist._id, !artist.isFollowed);
@@ -37,19 +42,24 @@ function Artist() {
   return (
     <section className="artistSectionContainer">
       <header className="artistHeader">
-        <div className="artistImageContainer">
-          {artist.profileImage ? (
-            <img src={artist.profileImage} alt="artistImg" className="" />
-          ) : (
-            <img
-              src=" https://images.unsplash.com/photo-1575285113814-f770cb8c796e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687"
-              alt="artistImg"
-              className=""
-            />
-          )}
-        </div>
+        {!isLoadingArtist ? (
+          <div className="artistImageContainer">
+            {artist.profileImage ? (
+              <img src={artist.profileImage} alt="artistImg" />
+            ) : (
+              <img
+                src=" https://images.unsplash.com/photo-1575285113814-f770cb8c796e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687"
+                alt="artistImg"
+              />
+            )}
+          </div>
+        ) : (
+          <CardSkeleton count={1} />
+        )}
         <div className="artistInfo">
-          <h1 className="artistName">{artist.artisticName}</h1>
+          <h1 className="artistName">
+            {artist.artisticName || artist.firstName}
+          </h1>
           <div className="WrapperFollow">
             <img src={IconFollow} alt="iconfollow" />
             <p>Followers {artist.followers}</p>

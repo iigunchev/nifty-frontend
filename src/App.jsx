@@ -1,6 +1,7 @@
 import React from 'react';
 // react router dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 // pages
 import * as route from './routes';
 import ProtectedRoutes from './components/template/ProtectedRoutes/ProtectedRoutes';

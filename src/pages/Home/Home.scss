@@ -1,61 +1,60 @@
 @use '../../sass/abstracts/variables' as *;
-
+.LinkHeader {
+  margin-bottom: 1em;
+}
 .homeContainer {
   padding: 1.5em;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.5em;
+}
+.skeletonFlexRow {
+  display: flex;
+  gap: 1em;
 }
 .homeBottomCol {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   gap: 1em;
-  .chatSection {
-    position: relative;
+  .trendingHeader {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: $border;
-    padding: 2em;
-    color: white;
-    background: $primary-gradient;
-    width: 50%;
-    min-width: 100px;
-    overflow: hidden;
+    align-items: center;
+    gap: 2em;
+  }
+  .homeLikedSongsContainer {
+    min-width: 400px;
+    width: 100%;
+  }
+  .homeTrendingTracksContainer {
+    min-width: 400px;
+    width: 100%;
+  }
 
-    .bannerTitle {
-      font-size: 2rem;
-      max-width: 300px;
-    }
-    .bannerDescription {
-      max-width: 300px;
+  .homeTrendingArtistsContainer {
+    overflow: hidden;
+    min-width: 400px;
+    height: 500px;
+    .trendingHeader {
       display: flex;
-      flex-direction: column;
-      gap: 2em;
+      gap: 3em;
     }
-    .bannerImg {
-      width: 500px;
-      position: absolute;
-      bottom: -55px;
-      right: -225px;
-      z-index: 1;
+    .artistListWrapper {
+      overflow: hidden;
+      gap: 2.5em;
     }
-    .trendingTracksContainer {
-      height: 100%;
-      max-width: 100%;
+    .artistItemWrapper {
+      width: 150px;
     }
   }
 }
 
-@media screen and (max-width: 1500px) {
-  .chatSection {
-    img {
-      display: none;
-    }
-    .bannerTitle {
-      font-size: 1rem !important;
+@media screen and (max-width: 1315px) {
+  .homeBottomCol {
+    flex-wrap: wrap;
+    .homeTrendingTracksContainer,
+    .homeLikedSongsContainer {
+      width: 45%;
     }
   }
 }
@@ -66,44 +65,12 @@
   }
   .homeBottomCol {
     width: 100%;
-    flex-wrap: wrap;
     gap: 2em;
-  }
-  .trendingWrapper {
-    width: 100%;
   }
 
   .homeTrendingTracksContainer,
-  .homeTrendingArtistsContainer {
-    width: 100%;
+  .homeTrendingArtistsContainer,
+  .homeLikedSongsContainer {
+    width: 100% !important;
   }
-  .homeTrendingTracksContainer {
-    order: -2;
-  }
-
-  .chatSection {
-    min-width: 100% !important;
-
-    order: -1;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  .trendingWrapper {
-    flex-direction: column;
-    .trendingTracksContainer,
-    .trendingArtistsContainer {
-      width: 100%;
-    }
-  }
-  .chatSection {
-    min-width: 100% !important;
-  }
-}
-
-.LinkHeader {
-  display: flex;
-  justify-content: space-between;
-  max-width: 630px;
-  margin-bottom: 1em;
 }

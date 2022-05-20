@@ -1,8 +1,11 @@
 import React from 'react';
-
+// styles
 import './ListItemIcon.scss';
-// router
+// redux
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { setHamburger } from '../../../redux/Hamburger/hamburgerSlice';
+// router
 
 // icons
 import home from '../../../assets/svg/asideSvg/home.svg';
@@ -49,12 +52,14 @@ function ListItemIcon({ icon = 'home', children, route = '/app' }) {
     playlist,
     playlistFilled
   };
+  const dispatch = useDispatch();
   return (
     <li>
       <Link
         className={
           pathname === route ? 'listItemLink activeLink' : 'listItemLink'
         }
+        onClick={() => dispatch(setHamburger(false))}
         to={route}
       >
         <img

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 // router dom
 import { Link } from 'react-router-dom';
 // styles
 import './Hamburger.scss';
+// i18n
+import { t } from 'i18next';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { t } from 'i18next';
+import { setHamburger } from '../../../redux/Hamburger/hamburgerSlice';
 import { removeUser } from '../../../redux/User/userSlice';
 // components
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
@@ -20,18 +22,24 @@ import niftyLogo from '../../../assets/svg/LogoViolet.svg';
 
 function Hamburger() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [isVisible, setIsVisible] = useState(false);
+  const {
+    user,
+    hamburger: { isHamburgerActive }
+  } = useSelector((state) => state);
+
   return (
     <>
       <button
         className="hamburgerButton"
         type="button"
-        onClick={() => setIsVisible(!isVisible)}
+        onClick={() => dispatch(setHamburger(!isHamburgerActive))}
       >
-        <img src={isVisible ? crossIcon : hamburgerIcon} alt="hamburger" />
+        <img
+          src={isHamburgerActive ? crossIcon : hamburgerIcon}
+          alt="hamburger"
+        />
       </button>
-      {isVisible ? (
+      {isHamburgerActive ? (
         <div className="hamburgerWrapper">
           <Link to={route.APP} className="hamburgerLogoWrapper">
             <img className="hamburgerImgLogo" src={niftyLogo} alt="logo" />
@@ -46,7 +54,7 @@ function Hamburger() {
                 selected
                 icon="search"
               >
-                Genres
+                Search
               </ListItemIcon>
               <ListItemIcon
                 route={`${route.APP}${route.PLAYLISTS}`}
@@ -74,22 +82,22 @@ function Hamburger() {
               >
                 {t('aside.myPlaylist')}
               </ListItemIcon>
-              {user.artist ? (
+              {user.artist && (
                 <ListItemIcon
                   route={`${route.APP}${route.UPLOAD_TRACK}`}
                   icon="upload"
                 >
                   Upload
                 </ListItemIcon>
-              ) : null}
-              {user.artist ? (
+              )}
+              {user.artist && (
                 <ListItemIcon
                   route={`${route.APP}${route.MY_UPLOADS}`}
                   icon="myUploads"
                 >
                   {t('aside.myUploads')}
                 </ListItemIcon>
-              ) : null}
+              )}
             </NavList>
 
             <NavList title="Settings">

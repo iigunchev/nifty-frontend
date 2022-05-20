@@ -10,15 +10,33 @@ import './MyPlaylists.scss';
 
 function MyPlaylists() {
   const [playlists, isLoading, setPlaylists] = useFetchItems('playlist/byuser');
+  const [playlistsFollowed, isLoadingFollowedPlaylists] =
+    useFetchItems('playlist/followed');
   return (
     <>
       <div className="playlistHeadingWrapper">
         <h1 className="heading1">Your playlists!</h1>
         <CreatePlaylistForm playlists={playlists} setPlaylists={setPlaylists} />
       </div>
-      <section className="myPlaylistWrapper">
-        {isLoading ? <CardSkeleton /> : <PlaylistsList playlists={playlists} />}
-      </section>
+
+      {isLoading && isLoadingFollowedPlaylists ? (
+        <CardSkeleton />
+      ) : (
+        <>
+          <section className="myPlaylistWrapper">
+            <PlaylistsList playlists={playlists} />
+          </section>
+          <h1 className="heading1 headingFollowedPlaylist">
+            Followed playlist
+          </h1>
+          <section className="myPlaylistWrapper">
+            <PlaylistsList
+              message="you do not follow any playlists"
+              playlists={playlistsFollowed}
+            />
+          </section>
+        </>
+      )}
     </>
   );
 }
