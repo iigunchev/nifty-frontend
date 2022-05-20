@@ -16,7 +16,7 @@ import Button from '../../components/molecules/Button/Button';
 
 // utils
 import useFetchItems from '../../hooks/useFetchItems';
-import follow from '../../utils/api/apiFollow';
+import follow from '../../utils/api/followArtist';
 import handleAuthErrors from '../../utils/handleAuthErrors';
 // icons
 import IconFollow from '../../assets/img/users-avatar.png';

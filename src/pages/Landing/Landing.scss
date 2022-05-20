@@ -103,7 +103,6 @@
 }
 
 .headingTitle {
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-size: t.$text-3xl;
@@ -115,7 +114,7 @@
 .landingText {
   padding-top: 1em;
   padding-bottom: 2em;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 300;
   color: rgba(0, 0, 0, 0.5);
@@ -144,7 +143,8 @@
     min-width: 300px;
     margin-right: 1em;
   }
-  .headerWrapper, .leftLandingSection {
+  .headerWrapper,
+  .leftLandingSection {
     padding: 0 2em;
   }
 }
