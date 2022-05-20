@@ -64,11 +64,6 @@ function Landing() {
         </div>
         <div className="landingSectionWrapper">
           <section className="leftLandingSection">
-            {/* <div className="leftLandingWrapper"> */}
-            {/* <div className="newFeatureContainer">
-              <span className="newFeatureTitle">NEW</span>
-              <span className="newFeatureText">Create your own playlist</span>
-            </div> */}
             <h1 className="headingTitle">Never Stop Listening</h1>
             <p className="landingText">
               Discover, stream and share a constantly expanding mix of music
@@ -93,11 +88,6 @@ function Landing() {
             <img src={band} alt="woman listening to music" />
           </div>
           <section className="leftLandingSection">
-            {/* <div className="leftLandingWrapper"> */}
-            {/* <div className="newFeatureContainer">
-              <span className="newFeatureTitle">NEW</span>
-              <span className="newFeatureText">Create your own playlist</span>
-            </div> */}
             <h1 className="headingTitle">Share your music</h1>
             <p className="landingText">
               Share your tracks and engage with the community. Check custom
@@ -114,11 +104,6 @@ function Landing() {
             </div>
           </section>
         </div>
-        {/* <section className="rightLandingSection"> */}
-        {/* <div className="imggirl">
-            <img src={GIRL} alt="girl-music" />
-          </div> */}
-        {/* </section> */}
       </article>
     </div>
   );
