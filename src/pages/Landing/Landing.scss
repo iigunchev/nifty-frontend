@@ -47,10 +47,6 @@
       a {
         font-size: t.$text-lg;
         color: rgb(237, 225, 225);
-        // text-decoration: none;
-        // &:hover{
-        //   text-decoration: underline;
-        // }
       }
     }
   }
@@ -79,16 +75,6 @@
   width: 100%;
   height: 100%;
 }
-// .rightLandingSection {
-//   background: v.$bg-gray;
-//   border-radius: 0 0 0 25px;
-//   width: 100%;
-//   height: 700px;
-//   display: flex;
-//   flex-direction: column;
-//   position: relative;
-//   overflow: hidden;
-// }
 
 .landingSectionWrapper,
 .landingSectionWrapper2 {
@@ -113,25 +99,6 @@
     max-width: 400px;
   }
 }
-// .rightLandingSection {
-//   margin-top: 1em;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-end;
-//   width: 40%;
-//   h1 {
-//     max-width: 400px;
-//   }
-//   h1,
-//   p {
-//     text-align: right;
-//   }
-//   .buttonWrapper {
-//     display: flex;
-//     justify-content: flex-end;
-//   }
-// }
 
 .newFeatureContainer {
   display: flex;
@@ -247,16 +214,17 @@
   .newFeatureText {
     font-size: 14px;
   }
-  .landingAvatarWrapper {
-    width: 50px;
-  }
+
   .landingSectionWrapper,
   .landingSectionWrapper2 {
     flex-direction: column;
   }
-  // .landingImageWrapper {
-  //   height: 100px;
-  // }
+}
+.landingAvatarWrapper {
+  width: 50px !important;
+  img {
+    width: 50px !important;
+  }
 }
 
 @media only screen and (max-width: 1280px) {
