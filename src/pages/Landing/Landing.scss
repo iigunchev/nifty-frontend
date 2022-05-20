@@ -47,10 +47,6 @@
       a {
         font-size: t.$text-lg;
         color: rgb(237, 225, 225);
-        // text-decoration: none;
-        // &:hover{
-        //   text-decoration: underline;
-        // }
       }
     }
   }
@@ -217,16 +213,17 @@
   .newFeatureText {
     font-size: 14px;
   }
-  .landingAvatarWrapper {
-    width: 50px;
-  }
+
   .landingSectionWrapper,
   .landingSectionWrapper2 {
     flex-direction: column;
   }
-  // .landingImageWrapper {
-  //   height: 100px;
-  // }
+}
+.landingAvatarWrapper {
+  width: 50px !important;
+  img {
+    width: 50px !important;
+  }
 }
 
 @media only screen and (max-width: 1280px) {
