@@ -185,7 +185,7 @@ function UploadTrackForm() {
         )}
       </Formik>
 
-      {isLoading ? <UploadProgressBar progress={progress} /> : null}
+      {isLoading && <UploadProgressBar progress={progress} />}
     </article>
   ) : (
     <UploadZone className="dragZoneWrapper" handleDragFile={handleDragFile} />

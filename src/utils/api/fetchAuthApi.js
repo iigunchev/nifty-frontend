@@ -44,9 +44,7 @@ const loginWithApi = async () => {
 
     const URL = '/account';
 
-    const apiUser = await fetchApi(URL, authToken);
-
-    return apiUser;
+    return await fetchApi(URL, authToken);
   } catch (e) {
     throw new Error('Failed fetching resources to API');
   }
