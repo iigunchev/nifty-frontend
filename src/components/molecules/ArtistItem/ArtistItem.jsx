@@ -17,7 +17,7 @@ import './ArtistItem.scss';
 // icons
 import plus from '../../../assets/svg/plus.svg';
 import userFollowed from '../../../assets/img/userFollowed.png';
-import followArtist from '../../../utils/api/apiFollow';
+import followArtist from '../../../utils/api/followArtist';
 
 function ArtistItem({ id, image, name, avatarWidth = 150 }) {
   const navigate = useNavigate();

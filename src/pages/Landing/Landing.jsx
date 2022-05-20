@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { APP, SIGN_UP } from '../../routes';
 
 import LOGO from '../../assets/svg/LogoViolet.svg';
-// import GIRL from '../../assets/svg/woman-music.svg';
 import Button from '../../components/molecules/Button/Button';
 import SelectLang from '../../components/atoms/SelectLang/SelectLang';
 import video from '../../assets/video/nifty_promo.mp4';

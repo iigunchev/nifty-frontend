@@ -6,8 +6,7 @@ export const updateUserProfile = async (values) => {
     const token = await getCurrentUserToken();
     const authToken = `Bearer ${token}`;
     const URL = `/account`;
-    const apiUser = await fetchApi(URL, authToken, values, 'PUT');
-    return apiUser;
+    return await fetchApi(URL, authToken, values, 'PUT');
   } catch (e) {
     throw Error('Something went wrong in API');
   }

@@ -1,6 +1,5 @@
 import React from 'react';
-// styles
-import './Artists.scss';
+
 // custom hooks
 import useFetchItems from '../../hooks/useFetchItems';
 // components

@@ -23,7 +23,7 @@ const getMetadata = (track) =>
         }
         const { data, format } = tags.picture;
         const blob = new Blob([new Uint8Array(data)], { type: format });
-        // const imageSrc = await blobToBase64(blob);
+
         return res({
           file: track,
           artist: tags.artist,

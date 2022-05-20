@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import { useAuth } from '../../services/auth/auth';
-import getGenresFromApi from '../../utils/api/apiGenre';
-import globalSearch from '../../utils/api/apiSearch';
+import getGenresFromApi from '../../utils/api/getGenresFromApi';
+import globalSearch from '../../utils/api/globalSearch';
 
 import ArtistList from '../../components/organism/ArtistList/ArtistList';
 import TrendingList from '../../components/organism/TrendingList/TrendingList';

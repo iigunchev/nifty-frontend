@@ -24,7 +24,6 @@
       }
     }
     .checkboxPublicAccess {
-      margin-top: 0.5em;
       display: flex;
       margin-top: 2em;
       gap: 0.25em;
@@ -45,7 +44,8 @@
     gap: 2em;
   }
   .playlistTextInputs {
-    input, textarea {
+    input,
+    textarea {
       padding: 1em;
       font-weight: 400;
       margin-top: 0.5em;
@@ -67,7 +67,6 @@
       border: 2px solid black;
     }
   }
-
 }
 
 @media screen and(max-width:500px) {
