@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 // styles
 import './LoginForm.scss';
-// isMobile device
-import { isMobile } from 'react-device-detect';
 // redux
 import { useDispatch } from 'react-redux';
 // formik
@@ -51,7 +49,7 @@ function LoginForm() {
       setIsLoading(true);
       setError(null);
       // auth in firebase and api
-      await signInWithGoogle(isMobile);
+      await signInWithGoogle();
       const apiUser = await apiAuth.signUpWithGoogle();
       // set user in redux
       dispatch(setUser(apiUser));

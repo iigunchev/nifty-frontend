@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // router dom
 import { Link } from 'react-router-dom';
 // styles
@@ -17,22 +17,22 @@ import logout from '../../../assets/svg/asideSvg/logout.svg';
 import hamburgerIcon from '../../../assets/svg/hamburger.svg';
 import crossIcon from '../../../assets/svg/cross.svg';
 import niftyLogo from '../../../assets/svg/LogoViolet.svg';
+import { setHamburger } from '../../../redux/Hamburger/hamburgerSlice';
 
 function Hamburger() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [isVisible, setIsVisible] = useState(false);
+  const { user, hamburger } = useSelector((state) => state);
   return (
     <>
       <button
         className="hamburgerButton"
         type="button"
-        onClick={() => setIsVisible(!isVisible)}
+        onClick={() => dispatch(setHamburger(!hamburger))}
       >
-        <img src={isVisible ? crossIcon : hamburgerIcon} alt="hamburger" />
+        <img src={hamburger ? crossIcon : hamburgerIcon} alt="hamburger" />
       </button>
-      {isVisible ? (
-        <div className="hamburgerWrapper">
+      {hamburger ? (
+        <div on className="hamburgerWrapper">
           <Link to={route.APP} className="hamburgerLogoWrapper">
             <img className="hamburgerImgLogo" src={niftyLogo} alt="logo" />
           </Link>
