@@ -3,9 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // styles
 import './Hamburger.scss';
+// i18n
+import { t } from 'i18next';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { t } from 'i18next';
+import { setHamburger } from '../../../redux/Hamburger/hamburgerSlice';
 import { removeUser } from '../../../redux/User/userSlice';
 // components
 import ListItemIcon from '../../molecules/ListItemIcon/ListItemIcon';
@@ -17,22 +19,28 @@ import logout from '../../../assets/svg/asideSvg/logout.svg';
 import hamburgerIcon from '../../../assets/svg/hamburger.svg';
 import crossIcon from '../../../assets/svg/cross.svg';
 import niftyLogo from '../../../assets/svg/LogoViolet.svg';
-import { setHamburger } from '../../../redux/Hamburger/hamburgerSlice';
 
 function Hamburger() {
   const dispatch = useDispatch();
-  const { user, hamburger } = useSelector((state) => state);
+  const {
+    user,
+    hamburger: { isHamburgerActive }
+  } = useSelector((state) => state);
+
   return (
     <>
       <button
         className="hamburgerButton"
         type="button"
-        onClick={() => dispatch(setHamburger(!hamburger))}
+        onClick={() => dispatch(setHamburger(!isHamburgerActive))}
       >
-        <img src={hamburger ? crossIcon : hamburgerIcon} alt="hamburger" />
+        <img
+          src={isHamburgerActive ? crossIcon : hamburgerIcon}
+          alt="hamburger"
+        />
       </button>
-      {hamburger ? (
-        <div on className="hamburgerWrapper">
+      {isHamburgerActive ? (
+        <div className="hamburgerWrapper">
           <Link to={route.APP} className="hamburgerLogoWrapper">
             <img className="hamburgerImgLogo" src={niftyLogo} alt="logo" />
           </Link>
