@@ -77,22 +77,22 @@ function Hamburger() {
               >
                 {t('aside.myPlaylist')}
               </ListItemIcon>
-              {user.artist ? (
+              {user.artist && (
                 <ListItemIcon
                   route={`${route.APP}${route.UPLOAD_TRACK}`}
                   icon="upload"
                 >
                   Upload
                 </ListItemIcon>
-              ) : null}
-              {user.artist ? (
+              )}
+              {user.artist && (
                 <ListItemIcon
                   route={`${route.APP}${route.MY_UPLOADS}`}
                   icon="myUploads"
                 >
                   {t('aside.myUploads')}
                 </ListItemIcon>
-              ) : null}
+              )}
             </NavList>
 
             <NavList title="Settings">

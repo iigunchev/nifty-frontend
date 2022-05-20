@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { APP, SIGN_UP } from '../../routes';
+import { APP, LANDING, SIGN_UP } from '../../routes';
 
 import LOGO from '../../assets/svg/LogoViolet.svg';
 import Button from '../../components/molecules/Button/Button';
@@ -21,7 +21,9 @@ function Landing() {
     <div className="landingContainer">
       <header className="headerWrapper">
         <div className="logoWrapper">
-          <img src={LOGO} alt="girl-music" />
+          <Link to={LANDING}>
+            <img src={LOGO} alt="girl-music" />
+          </Link>
         </div>
         <nav className="navWrapper">
           <ul className="navList">
